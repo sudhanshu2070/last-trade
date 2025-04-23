@@ -70,6 +70,8 @@ const NavTabs = () => {
           width: 240,
           boxSizing: 'border-box',
           bgcolor: 'primary.main',
+          top: 64, // Below TopNavbar
+          height: 'calc(100vh - 64px)', // Account for TopNavbar
           color: 'white',
         },
       }}

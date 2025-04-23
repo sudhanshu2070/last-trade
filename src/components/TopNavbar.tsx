@@ -10,6 +10,7 @@ const TopNavbar = () => {
     <AppBar 
       position="fixed"
       sx={{ 
+        height: 64, // Fixed height
         zIndex: (theme) => theme.zIndex.drawer + 1,
         bgcolor: 'background.paper',
         color: 'text.primary',

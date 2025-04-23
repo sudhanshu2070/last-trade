@@ -1,50 +1,73 @@
 import { Box, ThemeProvider } from '@mui/material';
 import CssBaseline from '@mui/material/CssBaseline';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';  // Changed from Router to BrowserRouter
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { tradingTheme } from './styles/theme';
 import Dashboard from './components/Dashboard';
 import NavTabs from './components/NavTabs';
 import RightSideNav from './components/RightSideNav';
-import { useMediaQuery, Theme } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
 import TestComp from './components/TestComp';
 import TopNavbar from './components/TopNavbar';
 
 function AppContent() {
-  const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
+  const isMobile = useMediaQuery(tradingTheme.breakpoints.down('sm'));
 
   return (
-      <BrowserRouter>  {/* Changed from Router to BrowserRouter */}
+    <BrowserRouter>
       <TopNavbar />
-        <Box sx={{ display: 'flex', minHeight: '100vh',pt: 8, }}>
-          {/* Left Navigation (desktop only) */}
-          {!isMobile && <NavTabs />}
-          
-          {/* Main Content */}
-          <Box 
-          component="main" 
-          sx={{ 
+      <Box
+        sx={{
+          display: 'flex',
+          minHeight: '100vh',
+          pt: '64px', // Height of TopNavbar
+          pb: isMobile ? '56px' : 0, // Height of bottom nav if mobile
+        }}
+      >
+        {/* Left Navigation (desktop only) */}
+        {!isMobile && (
+          <Box
+            sx={{
+              width: 240,
+              flexShrink: 0,
+              position: 'fixed',
+              left: 0,
+              top: '64px', // Below TopNavbar
+              bottom: 0,
+              overflowY: 'auto',
+            }}
+          >
+            <NavTabs />
+          </Box>
+        )}
+
+        {/* Main Content */}
+        <Box
+          component="main"
+          sx={{
             flexGrow: 1,
             p: 3,
-            pb: isMobile ? '56px' : 3,
-            mr: '64px', // space for right nav
+            ml: !isMobile ? '240px' : 0, // Offset for left nav
+            mr: '64px', // Space for right nav
+            width: '100%',
+            maxWidth: 'calc(100% - 64px)', // Account for right nav
           }}
         >
-            <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/portfolio" element={<TestComp />} />
-              <Route path="/orders" element={<TestComp />} />
-              <Route path="/strategies" element={<TestComp />} />
-              <Route path="/settings" element={<TestComp />} />
-            </Routes>
-          </Box>
-          
-          {/* Right Navigation (always visible) */}
-          <RightSideNav />
-          
-          {/* Bottom Navigation (mobile only) */}
-          {isMobile && <NavTabs />}
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/portfolio" element={<TestComp />} />
+            <Route path="/orders" element={<TestComp />} />
+            <Route path="/strategies" element={<TestComp />} />
+            <Route path="/settings" element={<TestComp />} />
+          </Routes>
         </Box>
-      </BrowserRouter>
+
+        {/* Right Navigation (always visible) */}
+        {/* <RightSideNav /> */}
+      </Box>
+
+      {/* Bottom Navigation (mobile only) */}
+      {isMobile && <NavTabs />}
+    </BrowserRouter>
   );
 }
 
