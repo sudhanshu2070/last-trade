@@ -60,5 +60,13 @@ export const tradingTheme = createTheme({
         },
       },
     },
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backdropFilter: 'blur(8px)',
+          backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        },
+      },
+    },
   },
 });
