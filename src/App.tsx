@@ -7,13 +7,15 @@ import NavTabs from './components/NavTabs';
 import RightSideNav from './components/RightSideNav';
 import { useMediaQuery, Theme } from '@mui/material';
 import TestComp from './components/TestComp';
+import TopNavbar from './components/TopNavbar';
 
 function AppContent() {
   const isMobile = useMediaQuery((theme: Theme) => theme.breakpoints.down('sm'));
 
   return (
       <BrowserRouter>  {/* Changed from Router to BrowserRouter */}
-        <Box sx={{ display: 'flex', minHeight: '100vh' }}>
+      <TopNavbar />
+        <Box sx={{ display: 'flex', minHeight: '100vh',pt: 8, }}>
           {/* Left Navigation (desktop only) */}
           {!isMobile && <NavTabs />}
           
@@ -24,7 +26,7 @@ function AppContent() {
             flexGrow: 1,
             p: 3,
             pb: isMobile ? '56px' : 3,
-            mr: '64px', // Make space for right nav
+            mr: '64px', // space for right nav
           }}
         >
             <Routes>
