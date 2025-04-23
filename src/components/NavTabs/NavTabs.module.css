@@ -1,0 +1,143 @@
+/* Base Variables */
+:root {
+    --nav-bg: var(--primary-main);
+    --nav-text: white;
+    --nav-active-bg: var(--primary-light);
+    --nav-hover-bg: var(--primary-dark);
+    --nav-icon-size: 1.5rem;
+    --nav-transition: all 0.3s ease;
+    --nav-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Mobile Navigation */
+  .mobileNav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--nav-bg);
+    box-shadow: var(--nav-shadow);
+  }
+  
+  .mobileNavContainer {
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5rem 0;
+  }
+  
+  .mobileNavItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 0.75rem;
+    transition: var(--nav-transition);
+    opacity: 0.7;
+  }
+  
+  .mobileNavItem:hover {
+    opacity: 1;
+  }
+  
+  .mobileNavItem.active {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+  
+  .mobileNavItem .icon {
+    font-size: var(--nav-icon-size);
+    margin-bottom: 0.25rem;
+  }
+  
+  /* Desktop Navigation */
+  .desktopNav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 240px;
+    background: var(--nav-bg);
+    z-index: 90;
+  }
+  
+  .desktopNavContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    height: 100%;
+  }
+  
+  .desktopNavItem {
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    margin: 0.25rem 0.5rem;
+    color: var(--nav-text);
+    text-decoration: none;
+    border-radius: 8px;
+    transition: var(--nav-transition);
+    position: relative;
+  }
+  
+  .desktopNavItem:hover {
+    background: var(--nav-hover-bg);
+  }
+  
+  .desktopNavItem.active {
+    background: var(--nav-active-bg);
+    font-weight: 500;
+  }
+  
+  .desktopNavItem .icon {
+    font-size: var(--nav-icon-size);
+    margin-right: 1rem;
+  }
+  
+  .desktopNavItem .activeIndicator {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 60%;
+    width: 3px;
+    background: white;
+    border-radius: 0 3px 3px 0;
+    opacity: 0;
+    transition: var(--nav-transition);
+  }
+  
+  .desktopNavItem.active .activeIndicator {
+    opacity: 1;
+  }
+  
+  /* Modern UI Enhancements */
+  @media (min-width: 769px) {
+    .desktopNav {
+      backdrop-filter: blur(10px);
+      background: rgba(25, 118, 210, 0.9);
+      border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+  
+    .desktopNavItem {
+      margin: 0.5rem 1rem;
+    }
+  }
+  
+  /* Animation for active state */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-10px); }
+    to { opacity: 1; transform: translateX(0); }
+  }
+  
+  .desktopNavItem {
+    animation: fadeIn 0.3s ease forwards;
+  }
+  
+  .desktopNavItem:nth-child(1) { animation-delay: 0.1s; }
+  .desktopNavItem:nth-child(2) { animation-delay: 0.2s; }
+  .desktopNavItem:nth-child(3) { animation-delay: 0.3s; }
+  .desktopNavItem:nth-child(4) { animation-delay: 0.4s; }
+  .desktopNavItem:nth-child(5) { animation-delay: 0.5s; }

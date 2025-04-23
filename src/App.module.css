@@ -1,0 +1,49 @@
+/* Variables - should match other components */
+:root {
+    --topnav-height: 64px;
+    --mobile-nav-height: 56px;
+    --desktop-nav-width: 240px;
+    --content-padding: 24px;
+  }
+  
+  .appContainer {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--background-default);
+  }
+  
+  .contentWrapper {
+    display: flex;
+    flex: 1;
+    position: relative;
+    padding-top: var(--topnav-height);
+  }
+  
+  .mainContent {
+    flex: 1;
+    padding: var(--content-padding);
+    transition: all 0.3s ease;
+  }
+  
+  .mainContent.withNav {
+    margin-left: var(--desktop-nav-width);
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .contentWrapper {
+      padding-bottom: var(--mobile-nav-height);
+    }
+    
+    .mainContent {
+      padding: 16px;
+    }
+  }
+  
+  /* Smooth transitions for layout changes */
+  @media (prefers-reduced-motion: no-preference) {
+    .mainContent {
+      transition: margin-left 0.3s ease, padding 0.3s ease;
+    }
+  }
