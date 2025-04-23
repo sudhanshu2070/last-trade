@@ -52,22 +52,23 @@
     margin-bottom: 0.25rem;
   }
   
-  /* Desktop Navigation */
+  /* Desktop Navigation - No Scroll */
   .desktopNav {
+    height: calc(100vh - var(--topnav-height));
+    width: var(--desktop-nav-width);
+    background: var(--primary-main);
+    color: white;
     position: fixed;
     left: 0;
-    top: 0;
-    bottom: 0;
-    width: 240px;
-    background: var(--nav-bg);
-    z-index: 90;
+    top: var(--topnav-height);
+    overflow: hidden; /* Completely disable scrolling */
   }
   
   .desktopNavContainer {
     display: flex;
     flex-direction: column;
-    padding: 1rem 0;
     height: 100%;
+    padding: 1rem 0;
   }
   
   .desktopNavItem {

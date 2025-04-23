@@ -16,7 +16,11 @@ function App() {
         <TopNavbar />
         
         <div className={styles.contentWrapper}>
-          {!isMobile && <NavTabs />}
+          {!isMobile && (
+            <div className={styles.desktopNavContainer}>
+              <NavTabs />
+            </div>
+          )}
 
           <main className={`${styles.mainContent} ${!isMobile ? styles.withNav : ''}`}>
             <Routes>

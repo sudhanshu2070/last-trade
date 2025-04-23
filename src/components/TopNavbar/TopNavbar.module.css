@@ -1,6 +1,6 @@
 /* Shared Variables with NavTabs */
 :root {
-    --topnav-bg: var(--primary-main);
+    --topnav-bg: var(--background-paper);
     --topnav-text: white;
     --topnav-icon-size: 1.5rem;
     --topnav-height: 64px;
