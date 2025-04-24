@@ -1,0 +1,65 @@
+.tradeButtonsContainer {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .tradeButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    height: 56px;
+    min-width: 180px;
+  }
+  
+  .tradeButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .tradeButton:active {
+    transform: translateY(0);
+  }
+  
+  .connectButton {
+    background: var(--primary-main);
+    color: white;
+  }
+  
+  .connectButton:hover {
+    background: var(--primary-dark);
+  }
+  
+  .executeButton {
+    background: var(--secondary-main);
+    color: white;
+  }
+  
+  .executeButton:hover {
+    background: var(--primary-dark);
+  }
+  
+  .buttonIcon {
+    font-size: 1.25rem;
+    stroke-width: 2px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .tradeButtonsContainer {
+      flex-direction: column;
+      width: 100%;
+    }
+    
+    .tradeButton {
+      width: 100%;
+      min-width: auto;
+    }
+  }
