@@ -1,5 +1,5 @@
 import React from 'react';
-import BrokerConnection from '../../BrokerConnection';
+import BrokerConnection from '../../Brokers/BrokerConnection';
 import PnLDisplay from '../../PnLDisplay';
 import TradeButtons from '../../TradeButtons';
 import MarketSection from '../../MarketSection';
