@@ -1,9 +1,9 @@
 import React from 'react';
-import BrokerConnection from '../../Brokers/BrokerConnection';
-import PnLDisplay from '../../PnLDisplay';
-import TradeButtons from '../../TradeButtons';
-import MarketSection from '../../MarketSection';
-import RecentActivity from '../../RecentActivity';
+import BrokerConnection from '../Brokers/BrokerConnection';
+import PnLDisplay from '../PnLDisplay';
+import TradeButtons from '../TradeButtons';
+import MarketSection from '../MarketSection';
+import RecentActivity from '../RecentActivity';
 import styles from './Dashboard.module.css';
 
 const Dashboard: React.FC = () => {

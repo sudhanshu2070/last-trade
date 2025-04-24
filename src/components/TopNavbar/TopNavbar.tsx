@@ -11,7 +11,7 @@ const TopNavbar = () => {
     <header className={styles.topNavbar}>
       <Link to="/" className={styles.logoLink}>
         <img 
-          src="/logo.png" 
+          src="https://web.algorooms.com/static/media/logo.6bc988bc8808247b91ee.png" 
           alt="Trading Platform" 
           className={styles.logo} 
         />
