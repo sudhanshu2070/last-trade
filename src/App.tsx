@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
-import Dashboard from './components/Dashboard';
+import Dashboard from './components/TopNavbar/Dashboard/Dashboard';
 import TestComp from './components/TestComp';
 import TopNavbar from './components/TopNavbar/TopNavbar';
 import NavTabs from './components/NavTabs/NavTabs';

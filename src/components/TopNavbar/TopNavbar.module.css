@@ -1,134 +1,164 @@
-/* Shared Variables with NavTabs */
+/* Modern Trading Platform TopNavbar */
 :root {
-    --topnav-bg: var(--background-paper);
-    --topnav-text: white;
-    --topnav-icon-size: 1.5rem;
-    --topnav-height: 64px;
-    --topnav-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    --badge-color: #f44336;
-  }
-  
+  --topnav-bg: var(--primary-main);
+  --topnav-text: white;
+  --topnav-icon-size: 1.5rem;
+  --topnav-height: 64px;
+  --topnav-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --badge-color: #f44336;
+  --icon-hover-bg: rgba(255, 255, 255, 0.15);
+  --avatar-border: rgba(255, 255, 255, 0.3);
+}
+
+.topNavbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--topnav-height);
+  background: var(--topnav-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+  z-index: 110;
+  box-shadow: var(--topnav-shadow);
+  border-bottom: 1px solid var(--avatar-border);
+}
+
+/* Logo Section */
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  height: 100%;
+}
+
+.logo {
+  height: 32px;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.platformName {
+  color: var(--topnav-text);
+  font-weight: 600;
+  font-size: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+/* Navigation Icons */
+.navIcons {
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+  height: 100%;
+}
+
+.iconButton {
+  background: transparent;
+  border: none;
+  color: var(--topnav-text);
+  cursor: pointer;
+  position: relative;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+}
+
+.iconButton:hover {
+  background: var(--icon-hover-bg);
+  transform: translateY(-2px);
+}
+
+.icon {
+  font-size: var(--topnav-icon-size);
+  stroke-width: 2px;
+}
+
+/* Notification Badge */
+.notificationWrapper {
+  position: relative;
+}
+
+.badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: var(--badge-color);
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: 700;
+  border: 2px solid var(--topnav-bg);
+}
+
+/* User Avatar */
+.avatarContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: 1rem;
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--avatar-border);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.avatar:hover {
+  border-color: white;
+  transform: scale(1.1);
+}
+
+.username {
+  color: var(--topnav-text);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .topNavbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: var(--topnav-height);
-    background: var(--topnav-bg);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 24px;
-    z-index: 110;
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0 1rem;
   }
   
-  .logoLink {
-    display: flex;
-    align-items: center;
-    height: 100%;
-  }
-  
-  .logo {
-    height: 32px;
-    transition: transform 0.3s ease;
-  }
-  
-  .logo:hover {
-    transform: scale(1.05);
+  .platformName {
+    display: none;
   }
   
   .navIcons {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    height: 100%;
+    gap: 0.75rem;
   }
   
   .iconButton {
-    background: transparent;
-    border: none;
-    color: var(--topnav-text);
-    cursor: pointer;
-    position: relative;
-    padding: 8px;
-    border-radius: 8px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .iconButton:hover {
-    background: rgba(255, 255, 255, 0.1);
-  }
-  
-  .icon {
-    font-size: var(--topnav-icon-size);
-    stroke-width: 1.5px;
-  }
-  
-  .notificationWrapper {
-    position: relative;
-    display: flex;
-  }
-  
-  .badge {
-    position: absolute;
-    top: -4px;
-    right: -4px;
-    background: var(--badge-color);
-    color: white;
-    border-radius: 50%;
-    width: 18px;
-    height: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 10px;
-    font-weight: 600;
-  }
-  
-  .avatarButton {
-    padding: 0;
-    margin-left: 8px;
+    width: 36px;
+    height: 36px;
   }
   
   .avatar {
     width: 32px;
     height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    transition: all 0.3s ease;
   }
   
-  .avatar:hover {
-    border-color: rgba(255, 255, 255, 0.4);
-    transform: scale(1.05);
+  .username {
+    display: none;
   }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .topNavbar {
-      padding: 0 16px;
-    }
-    
-    .navIcons {
-      gap: 12px;
-    }
-    
-    .logo {
-      height: 28px;
-    }
-    
-    .icon {
-      font-size: 1.25rem;
-    }
-    
-    .avatar {
-      width: 28px;
-      height: 28px;
-    }
-  }
+}
