@@ -1,0 +1,77 @@
+.pnlContainer {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+    border-radius: 12px;
+    background: var(--background-paper);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    font-family: var(--font-family);
+    transition: all 0.3s ease;
+  }
+  
+  .pnlContainer:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  }
+  
+  .pnlContainer.profit {
+    border-left: 4px solid var(--success);
+  }
+  
+  .pnlContainer.loss {
+    border-left: 4px solid var(--error);
+  }
+  
+  .pnlLabel {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+  
+  .pnlValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  
+  .pnlContainer.profit .pnlValue {
+    color: var(--success);
+  }
+  
+  .pnlContainer.loss .pnlValue {
+    color: var(--error);
+  }
+  
+  .trendIcon {
+    font-size: 2rem;
+    stroke-width: 2px;
+  }
+  
+  .pnlContainer.profit .trendIcon {
+    color: var(--success);
+  }
+  
+  .pnlContainer.loss .trendIcon {
+    color: var(--error);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .pnlContainer {
+      padding: 1rem;
+      gap: 0.75rem;
+    }
+    
+    .pnlLabel {
+      font-size: 1rem;
+    }
+    
+    .pnlValue {
+      font-size: 1.25rem;
+    }
+    
+    .trendIcon {
+      font-size: 1.75rem;
+    }
+  }
