@@ -6,11 +6,13 @@ const PnLDisplay: React.FC = () => {
   const [timePeriod, setTimePeriod] = useState('Daily');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   
-  // Sample data - replace with your actual data
+  // Sample data with varying digit lengths
   const pnlData = {
     Daily: 12500.75,
     Weekly: 84250.30,
-    Monthly: 356200.00
+    Monthly: 356200.00,
+    Quarterly: 1250000.50,
+    Yearly: 5250000.00
   };
 
   const pnlValue = pnlData[timePeriod as keyof typeof pnlData];
@@ -32,7 +34,7 @@ const PnLDisplay: React.FC = () => {
           
           {isDropdownOpen && (
             <div className={styles.dropdownMenu}>
-              {['Daily', 'Weekly', 'Monthly'].map((period) => (
+              {Object.keys(pnlData).map((period) => (
                 <button
                   key={period}
                   className={`${styles.dropdownItem} ${timePeriod === period ? styles.active : ''}`}

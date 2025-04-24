@@ -5,6 +5,9 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     font-family: var(--font-family);
     transition: all 0.3s ease;
+    width: 100%;
+    max-width: 380px; /* Increased from original */
+    min-width: 280px; /* Ensures good proportions */
   }
   
   .pnlCard:hover {
@@ -17,6 +20,7 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+    gap: 1rem;
   }
   
   .pnlTitle {
@@ -24,16 +28,19 @@
     font-weight: 600;
     color: var(--text-primary);
     margin: 0;
+    white-space: nowrap;
   }
   
   /* Dropdown Styles */
   .timePeriodDropdown {
     position: relative;
+    min-width: 100px;
   }
   
   .dropdownToggle {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 0.5rem;
     background: var(--background-default);
     border: 1px solid var(--divider);
@@ -43,6 +50,7 @@
     color: var(--text-primary);
     cursor: pointer;
     transition: all 0.2s ease;
+    width: 100%;
   }
   
   .dropdownToggle:hover {
@@ -51,6 +59,7 @@
   
   .dropdownIcon {
     transition: transform 0.2s ease;
+    flex-shrink: 0;
   }
   
   .dropdownIcon.rotate {
@@ -66,7 +75,7 @@
     border-radius: 6px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     z-index: 10;
-    min-width: 120px;
+    width: 100%;
   }
   
   .dropdownItem {
@@ -96,12 +105,19 @@
     display: flex;
     align-items: center;
     gap: 0.75rem;
+    width: 100%;
+    min-height: 40px; /* Fixed height for stability */
   }
   
   .pnlAmount {
     font-size: 1.75rem;
     font-weight: 700;
     letter-spacing: 0.5px;
+    flex-grow: 1;
+    min-width: 0; /* Allows text truncation */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
   
   .pnlValueContainer.profit .pnlAmount {
@@ -115,6 +131,7 @@
   .trendIcon {
     font-size: 2rem;
     stroke-width: 2px;
+    flex-shrink: 0;
   }
   
   .pnlValueContainer.profit .trendIcon {
@@ -129,6 +146,7 @@
   @media (max-width: 768px) {
     .pnlCard {
       padding: 1.25rem;
+      max-width: 100%;
     }
     
     .pnlAmount {
@@ -137,5 +155,11 @@
     
     .trendIcon {
       font-size: 1.75rem;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .pnlCard {
+      max-width: 420px; /* Even wider for large displays */
     }
   }
