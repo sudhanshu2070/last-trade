@@ -22,8 +22,7 @@ const RecentActivity: React.FC = () => {
   return (
     <div className={styles.activityContainer}>
       <div className={styles.header}>
-        <h3 className={styles.title}>Market Watch</h3>
-        <h4 className={styles.subtitle}>Recent Strategy Activity</h4>
+        <h3 className={styles.title}>Recent Strategy Activity</h3>
       </div>
       
       <div className={styles.tableContainer}>

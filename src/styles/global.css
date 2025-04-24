@@ -6,8 +6,15 @@ body {
   color: var(--text-primary);
 }
 
-/* Layout constants (not in theme.ts) */
 :root {
+  --background-paper: #ffffff;
+  --background-default: #f5f9ff;
+  --text-primary: #263238;
+  --text-secondary: #5c6b7c;
+  --divider: #e0e0e0;
+  --success: #4caf50;
+  --error: #f44336;
+  --warning: #ff9800;
   --topnav-height: 64px;
   --mobile-nav-height: 56px;
   --desktop-nav-width: 240px;

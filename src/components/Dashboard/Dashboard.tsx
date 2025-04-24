@@ -2,7 +2,7 @@ import React from 'react';
 import BrokerConnection from '../Brokers/BrokerConnection';
 import PnLDisplay from '../PanelDisplay/PnLDisplay';
 import TradeButtons from '../TradeButtons/TradeButtons';
-import MarketSection from '../MarketSection';
+import MarketSection from '../MarketSection/MarketSection';
 import RecentActivity from '../RecentActivity/RecentActivity';
 import styles from './Dashboard.module.css';
 
