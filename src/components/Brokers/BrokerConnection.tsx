@@ -30,37 +30,32 @@ const BrokerConnection: React.FC = () => {
             key={broker.name}
             className={`${styles.brokerCard} ${broker.connected ? styles.connected : ''}`}
           >
-            <div className={styles.brokerLogo}>
-              <img 
-                src={broker.logo} 
-                alt={`${broker.name} logo`} 
-                onError={(e) => {
-                  (e.target as HTMLImageElement).src = '/brokers/default-broker.png';
-                }}
-              />
-            </div>
-            <div className={styles.brokerInfo}>
-              <h3>{broker.name}</h3>
-              <div className={styles.connectionStatus}>
-                {broker.connected ? (
-                  <>
-                    <FiCheckCircle className={styles.connectedIcon} />
-                    <span>Connected</span>
-                  </>
-                ) : (
-                  <>
-                    <FiAlertCircle className={styles.disconnectedIcon} />
-                    <span>Disconnected</span>
-                  </>
-                )}
+            <div className={styles.cardContent}>
+              <div className={styles.brokerHeader}>
+                <img 
+                  src={broker.logo} 
+                  alt={`${broker.name} logo`}
+                  className={styles.brokerLogo}
+                />
+                <div className={styles.brokerNameStatus}>
+                  <span className={styles.brokerName}>{broker.name}</span>
+                  <div className={styles.connectionStatus}>
+                    {broker.connected ? (
+                      <FiCheckCircle className={styles.connectedIcon} />
+                    ) : (
+                      <FiAlertCircle className={styles.disconnectedIcon} />
+                    )}
+                    <span>{broker.connected ? 'Connected' : 'Disconnected'}</span>
+                  </div>
+                </div>
               </div>
+              <button 
+                className={styles.connectButton}
+                aria-label={broker.connected ? 'Disconnect' : 'Connect'}
+              >
+                {broker.connected ? 'Disconnect' : 'Connect'}
+              </button>
             </div>
-            <button 
-              className={styles.connectButton}
-              aria-label={broker.connected ? 'Disconnect' : 'Connect'}
-            >
-              {broker.connected ? 'Disconnect' : 'Connect'}
-            </button>
           </div>
         ))}
       </div>
