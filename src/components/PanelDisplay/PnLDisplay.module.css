@@ -1,45 +1,114 @@
-.pnlContainer {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.25rem;
-    border-radius: 12px;
+.pnlCard {
     background: var(--background-paper);
+    border-radius: 12px;
+    padding: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     font-family: var(--font-family);
     transition: all 0.3s ease;
   }
   
-  .pnlContainer:hover {
+  .pnlCard:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
   }
   
-  .pnlContainer.profit {
-    border-left: 4px solid var(--success);
+  .pnlHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
   }
   
-  .pnlContainer.loss {
-    border-left: 4px solid var(--error);
-  }
-  
-  .pnlLabel {
+  .pnlTitle {
     font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--text-secondary);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
   }
   
-  .pnlValue {
-    font-size: 1.5rem;
+  /* Dropdown Styles */
+  .timePeriodDropdown {
+    position: relative;
+  }
+  
+  .dropdownToggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--background-default);
+    border: 1px solid var(--divider);
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .dropdownToggle:hover {
+    border-color: var(--primary-main);
+  }
+  
+  .dropdownIcon {
+    transition: transform 0.2s ease;
+  }
+  
+  .dropdownIcon.rotate {
+    transform: rotate(180deg);
+  }
+  
+  .dropdownMenu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: var(--background-paper);
+    border: 1px solid var(--divider);
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    min-width: 120px;
+  }
+  
+  .dropdownItem {
+    display: block;
+    width: 100%;
+    padding: 0.5rem 1rem;
+    text-align: left;
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.2s ease;
+  }
+  
+  .dropdownItem:hover {
+    background: rgba(0, 0, 0, 0.05);
+  }
+  
+  .dropdownItem.active {
+    color: var(--primary-main);
+    font-weight: 500;
+  }
+  
+  /* PnL Value Display */
+  .pnlValueContainer {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  
+  .pnlAmount {
+    font-size: 1.75rem;
     font-weight: 700;
     letter-spacing: 0.5px;
   }
   
-  .pnlContainer.profit .pnlValue {
+  .pnlValueContainer.profit .pnlAmount {
     color: var(--success);
   }
   
-  .pnlContainer.loss .pnlValue {
+  .pnlValueContainer.loss .pnlAmount {
     color: var(--error);
   }
   
@@ -48,27 +117,22 @@
     stroke-width: 2px;
   }
   
-  .pnlContainer.profit .trendIcon {
+  .pnlValueContainer.profit .trendIcon {
     color: var(--success);
   }
   
-  .pnlContainer.loss .trendIcon {
+  .pnlValueContainer.loss .trendIcon {
     color: var(--error);
   }
   
   /* Responsive Design */
   @media (max-width: 768px) {
-    .pnlContainer {
-      padding: 1rem;
-      gap: 0.75rem;
+    .pnlCard {
+      padding: 1.25rem;
     }
     
-    .pnlLabel {
-      font-size: 1rem;
-    }
-    
-    .pnlValue {
-      font-size: 1.25rem;
+    .pnlAmount {
+      font-size: 1.5rem;
     }
     
     .trendIcon {
