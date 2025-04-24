@@ -3,7 +3,7 @@ import BrokerConnection from '../Brokers/BrokerConnection';
 import PnLDisplay from '../PanelDisplay/PnLDisplay';
 import TradeButtons from '../TradeButtons/TradeButtons';
 import MarketSection from '../MarketSection';
-import RecentActivity from '../RecentActivity';
+import RecentActivity from '../RecentActivity/RecentActivity';
 import styles from './Dashboard.module.css';
 
 const Dashboard: React.FC = () => {

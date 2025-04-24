@@ -1,0 +1,137 @@
+.activityContainer {
+    background: var(--background-paper);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    border: 1px solid var(--divider);
+  }
+  
+  .header {
+    margin-bottom: 1.25rem;
+  }
+  
+  .title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0 0 0.25rem 0;
+  }
+  
+  .subtitle {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    margin: 0;
+  }
+  
+  .tableContainer {
+    font-size: 0.9rem;
+  }
+  
+  .tableHeader {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--background-default);
+    border-radius: 8px;
+    font-weight: 500;
+    color: var(--text-secondary);
+  }
+  
+  .tableBody {
+    margin-top: 0.5rem;
+  }
+  
+  .tableRow {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 1rem;
+    padding: 0.75rem 1rem;
+    align-items: center;
+    border-bottom: 1px solid var(--divider);
+  }
+  
+  .tableRow:last-child {
+    border-bottom: none;
+  }
+  
+  .tableCell {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .headerCell {
+    font-weight: 500;
+  }
+  
+  .rightAlign {
+    text-align: right;
+  }
+  
+  /* Status Styles */
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+  }
+  
+  .completed {
+    color: var(--success);
+    background: rgba(76, 175, 80, 0.1);
+  }
+  
+  .failed {
+    color: var(--error);
+    background: rgba(244, 67, 54, 0.1);
+  }
+  
+  .pending {
+    color: var(--warning);
+    background: rgba(255, 152, 0, 0.1);
+  }
+  
+  .successIcon {
+    color: var(--success);
+  }
+  
+  .errorIcon {
+    color: var(--error);
+  }
+  
+  .warningIcon {
+    color: var(--warning);
+  }
+  
+  /* PNL Styles */
+  .profit {
+    color: var(--success);
+    font-weight: 500;
+  }
+  
+  .loss {
+    color: var(--error);
+    font-weight: 500;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .activityContainer {
+      padding: 1rem;
+    }
+    
+    .tableHeader,
+    .tableRow {
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 0.75rem;
+      padding: 0.5rem;
+    }
+    
+    .status {
+      font-size: 0.75rem;
+    }
+  }
