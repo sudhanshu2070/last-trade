@@ -34,7 +34,10 @@ const TopNavbar = () => {
         </button>
 
         <button className={`${styles.iconButton} ${styles.avatarButton}`} aria-label="Profile">
-          <img src="/profile.jpg" alt="Profile" className={styles.avatar} />
+          <img 
+            src="https://api.dicebear.com/7.x/adventurer/svg?seed=Midnight" 
+            alt="Profile" 
+            className={styles.avatar} />
         </button>
       </div>
     </header>
