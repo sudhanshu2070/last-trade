@@ -1,100 +1,97 @@
 .brokerConnection {
-    margin-bottom: 1.5rem;
-  }
-  
-  .sectionTitle {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: 1rem;
-  }
-  
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+/* Updated brokersGrid for three cards per row */
+.brokersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); /* Reduced from 220px */
+  gap: 1rem;
+}
+
+/* Slightly more compact broker card */
+.brokerCard {
+  background: var(--background-paper);
+  border-radius: 8px;
+  padding: 0.75rem; /* Reduced from 1rem */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid var(--divider);
+  transition: all 0.2s ease;
+  min-width: 0; /* Prevents grid blowout */
+}
+
+.brokerCard.connected {
+  border-left: 3px solid var(--primary-main);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem; /* Reduced from 0.75rem */
+}
+
+.brokerHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Reduced from 0.75rem */
+}
+
+.brokerLogo {
+  width: 32px; /* Reduced from 36px */
+  height: 32px;
+  object-fit: contain;
+}
+
+.brokerName {
+  font-size: 0.9rem; /* Reduced from 0.95rem */
+  font-weight: 500;
+  color: var(--text-primary);
+  display: block;
+}
+
+.connectionStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem; /* Reduced from 0.8rem */
+  color: var(--text-secondary);
+}
+
+.connectButton {
+  width: 100%;
+  background: var(--primary-main);
+  color: white;
+  border: none;
+  padding: 0.4rem; /* Reduced from 0.5rem */
+  border-radius: 6px;
+  font-size: 0.8rem; /* Reduced from 0.85rem */
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Responsive Design - Now only stacks on mobile */
+@media (max-width: 640px) { /* Changed from 768px */
   .brokersGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 1rem;
-  }
-  
-  .brokerCard {
-    background: var(--background-paper);
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--divider);
-    transition: all 0.2s ease;
-  }
-  
-  .brokerCard.connected {
-    border-left: 3px solid var(--primary-main);
-  }
-  
-  .cardContent {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  
-  .brokerHeader {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  
-  .brokerLogo {
-    width: 36px;
-    height: 36px;
-    object-fit: contain;
-  }
-  
-  .brokerNameStatus {
-    flex: 1;
-  }
-  
-  .brokerName {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    display: block;
-  }
-  
-  .connectionStatus {
-    display: flex;
-    align-items: center;
-    gap: 0.25rem;
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-  }
-  
-  .connectedIcon {
-    color: var(--primary-main);
-    font-size: 0.9rem;
-  }
-  
-  .disconnectedIcon {
-    color: var(--error);
-    font-size: 0.9rem;
-  }
-  
-  .connectButton {
-    width: 100%;
-    background: var(--primary-main);
-    color: white;
-    border: none;
-    padding: 0.5rem;
-    border-radius: 6px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-  
-  .connectButton:hover {
-    background: var(--primary-dark);
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .brokersGrid {
       grid-template-columns: 1fr;
-    }
   }
+  
+  /* Revert to original sizes on mobile */
+  .brokerCard {
+      padding: 1rem;
+  }
+  .brokerLogo {
+      width: 36px;
+      height: 36px;
+  }
+  .brokerName {
+      font-size: 0.95rem;
+  }
+}
