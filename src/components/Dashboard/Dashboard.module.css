@@ -1,71 +1,219 @@
 /* Modern Trading Dashboard Styles */
 .dashboardContainer {
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 2rem;
-    color: var(--text-primary);
-    font-family: var(--font-family);
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  position: relative;
+}
+
+.dashboardHeader {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboardHeader h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--primary-main);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.mainContent {
+  display: grid;
+  grid-template-columns: 1fr 420px; /* Increased right column width */
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.leftColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.rightColumn {
+  position: sticky;
+  top: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+/* Dashboard Section Styles */
+.dashboardSection {
+  background: var(--background-paper);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  border: 1px solid var(--divider);
+  transition: all 0.3s ease;
+}
+
+.dashboardSection:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Full-width Activity Section */
+.fullWidthActivity {
+  width: calc(100% + 2rem);
+  margin-right: -2rem;
+  padding-right: 2rem;
+}
+
+/* PNL and Trade Container */
+.pnlTradeContainer {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Activity Container Styles */
+.activityContainer {
+  width: 100%;
+}
+
+.tableContainer {
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr; /* Adjusted column ratios */
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--background-default);
+  border-radius: 8px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.tableBody {
+  margin-top: 0.5rem;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  align-items: center;
+  border-bottom: 1px solid var(--divider);
+}
+
+.tableRow:last-child {
+  border-bottom: none;
+}
+
+/* Status Styles */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+}
+
+.completed {
+  color: var(--success);
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.failed {
+  color: var(--error);
+  background: rgba(244, 67, 54, 0.1);
+}
+
+.pending {
+  color: var(--warning);
+  background: rgba(255, 152, 0, 0.1);
+}
+
+/* PNL Styles */
+.profit {
+  color: var(--success);
+  font-weight: 500;
+}
+
+.loss {
+  color: var(--error);
+  font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .mainContent {
+      grid-template-columns: 1fr;
   }
   
-  .dashboardHeader {
-    margin-bottom: 2rem;
+  .rightColumn {
+      position: static;
+      height: auto;
+      grid-row: 2;
   }
   
-  .dashboardHeader h1 {
-    font-size: 2rem;
-    font-weight: 600;
-    color: var(--primary-main);
-    margin: 0;
-    letter-spacing: -0.5px;
+  .fullWidthActivity {
+      width: 100%;
+      margin-right: 0;
   }
-  
-  .dashboardSection {
-    background: var(--background-paper);
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-    border: 1px solid var(--divider);
+}
+
+@media (max-width: 1024px) {
+  .dashboardContainer {
+      padding: 1.5rem;
   }
   
   .pnlTradeContainer {
-    display: flex;
-    gap: 1.5rem;
-    margin: 1.5rem 0;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 1024px) {
-    .dashboardContainer {
-      padding: 1.5rem;
-    }
-    
-    .pnlTradeContainer {
       flex-direction: column;
       gap: 1rem;
-    }
   }
   
-  @media (max-width: 768px) {
-    .dashboardContainer {
+  .mainContent {
+      gap: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboardContainer {
       padding: 1rem;
-    }
-    
-    .dashboardHeader h1 {
+  }
+  
+  .dashboardHeader h1 {
       font-size: 1.75rem;
-    }
-    
-    .dashboardSection {
-      padding: 1rem;
-    }
   }
   
-  /* Animations */
   .dashboardSection {
-    transition: all 0.3s ease;
+      padding: 1rem;
   }
   
-  .dashboardSection:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-    transform: translateY(-2px);
+  .tableHeader,
+  .tableRow {
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 0.75rem;
+      padding: 0.5rem;
   }
+  
+  .status {
+      font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .tableHeader,
+  .tableRow {
+      grid-template-columns: 2fr 1fr 1fr;
+  }
+  
+  .tableHeader :last-child,
+  .tableRow :last-child {
+      display: none;
+  }
+}

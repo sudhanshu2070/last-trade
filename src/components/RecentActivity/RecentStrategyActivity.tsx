@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './RecentActivity.module.css';
+import styles from './RecentStrategyActivity.module.css';
 import { FiCheckCircle, FiXCircle, FiClock } from 'react-icons/fi';
 
 const activities = [
@@ -9,7 +9,7 @@ const activities = [
   { id: 4, strategy: 'FMCG Trend Following', status: 'completed', time: '1:45 PM', pnl: '+2,100.75' },
 ];
 
-const RecentActivity: React.FC = () => {
+const RecentStrategyActivity: React.FC = () => {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'completed': return <FiCheckCircle className={styles.successIcon} />;
@@ -58,4 +58,4 @@ const RecentActivity: React.FC = () => {
   );
 };
 
-export default RecentActivity;
+export default RecentStrategyActivity;
