@@ -101,7 +101,7 @@
 }
 
 .marketWatch {
-  flex: 1; /* 30% width */
+  flex: 1.5; /* 30% width */
   min-width: 300px; /* Minimum width */
   background: #ffffff;
   border-radius: 12px;
