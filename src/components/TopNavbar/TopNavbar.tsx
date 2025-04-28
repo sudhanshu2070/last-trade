@@ -6,6 +6,10 @@ import {
   FiStar as SubscribeIcon,
 } from 'react-icons/fi';
 
+const userData = {
+  name: 'Rishi Sunak',
+};
+
 const TopNavbar = () => {
   return (
     <header className={styles.topNavbar}>
@@ -33,12 +37,15 @@ const TopNavbar = () => {
           </div>
         </button>
 
-        <button className={`${styles.iconButton} ${styles.avatarButton}`} aria-label="Profile">
-          <img 
-            src="https://api.dicebear.com/7.x/adventurer/svg?seed=Midnight" 
-            alt="Profile" 
-            className={styles.avatar} />
-        </button>
+        <div className={styles.profileSection}>
+          <span className={styles.greeting}>Hello, {userData.name}</span>
+          <button className={`${styles.iconButton} ${styles.avatarButton}`} aria-label="Profile">
+            <img 
+              src="https://api.dicebear.com/7.x/adventurer/svg?seed=Midnight" 
+              alt="Profile" 
+              className={styles.avatar} />
+          </button>
+        </div>
       </div>
     </header>
   );

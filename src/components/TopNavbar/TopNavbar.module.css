@@ -138,12 +138,33 @@
   font-weight: 500;
   font-size: 0.95rem;
 }
+/* Profile Section */
+.profileSection {
+  display: flex; /* Use flexbox for horizontal alignment */
+  align-items: center; /* Vertically align items */
+  gap: 8px; /* Space between greeting and avatar */
+}
 
-/* Search Bar - If you want to add */
-.searchBar {
-  flex: 1;
-  max-width: 400px;
-  margin: 0 2rem;
+.greeting {
+  color: var(--topnav-text);
+  font-weight: 700;
+  font-size: 1.1rem;
+  font-family: 'Poppins', sans-serif; /* Modern font */
+  white-space: nowrap; /* Prevent text wrapping */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+}
+
+.avatarButton {
+  padding: 0; /* Remove padding for the avatar button */
+}
+
+.avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--avatar-border);
+  transition: all 0.3s ease;
 }
 
 /* Responsive Design */
@@ -180,9 +201,13 @@
   .username {
     display: none;
   }
-  
-  .searchBar {
-    display: none;
+
+  .profileSection {
+    gap: 4px; /* Reduce spacing on smaller screens */
+  }
+
+  .greeting {
+    font-size: 0.85rem; /* Smaller font size for better fit */
   }
 }
 
