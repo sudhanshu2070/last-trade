@@ -5,6 +5,8 @@ import TradeButtons from '../TradeButtons/TradeButtons';
 import MarketSection from '../MarketSection/MarketSection';
 import RecentActivity from '../RecentActivity/RecentStrategyActivity';
 import styles from './Dashboard.module.css';
+import TrendFollowingStrategy from '../StrategyTemplate/TrendFollowingStrategy/TrendFollowingStrategy';
+import MeanReversionStrategy from '../StrategyTemplate/MeanReversionStrategy/MeanReversionStrategy';
 
 const Dashboard: React.FC = () => {
   return (
@@ -35,6 +37,14 @@ const Dashboard: React.FC = () => {
           <section className={styles.dashboardSection}>
             <RecentActivity />
           </section>
+        </div>
+
+        <div className={styles.strategySection}>
+          <h2 className={styles.sectionTitle}>Strategy Templates</h2>
+          <div className={styles.strategyGrid}>
+            <TrendFollowingStrategy />
+            <MeanReversionStrategy />
+          </div>
         </div>
       </div>
     </div>

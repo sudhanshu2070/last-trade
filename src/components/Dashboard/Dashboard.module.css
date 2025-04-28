@@ -67,6 +67,24 @@
   transform: translateY(-2px);
 }
 
+/*Strategy Section*/
+.strategySection {
+  margin-top: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 1.5rem;
+}
+
+.strategyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
 /* Activity Section Specific Styles */
 .activityContainer {
   width: 100%;
