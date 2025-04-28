@@ -1,269 +1,139 @@
-/* Modern Trading Dashboard Styles */
-.dashboardContainer {
-  max-width: 1440px;
-  margin: 0 auto;
-  padding: 2rem;
-  color: var(--text-primary);
-  font-family: var(--font-family);
-  position: relative;
-  overflow-x: hidden;
-  box-sizing: border-box;
-}
-
-.dashboardHeader {
-  margin-bottom: 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.dashboardHeader h1 {
-  font-size: 2rem;
-  font-weight: 600;
-  color: var(--primary-main);
+/* General Reset */
+* {
   margin: 0;
-  letter-spacing: -0.5px;
-}
-
-.mainContent {
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.leftColumn {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  min-width: 0; /* Prevent grid blowout */
-}
-.rightColumn {
-  position: sticky;
-  top: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  height: calc(100vh - 4rem);
-  overflow-y: auto;
-  padding-right: 0.5rem;
-  width: 450px; /* Increased the width slightly */
-}
-
-/* Dashboard Section Base Styles */
-.dashboardSection {
-  background: var(--background-paper);
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  padding: 1.5rem;
-  border: 1px solid var(--divider);
-  transition: all 0.3s ease;
-  width: 100%;
+  padding: 0;
   box-sizing: border-box;
 }
 
-.dashboardSection:hover {
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+/* Dashboard Container */
+.dashboardContainer {
+  display: flex;
+  flex-direction: column;
+  /* height: 100vh; */
+  font-family: 'Inter', sans-serif;
+  background-color: #f9fafb;
+  color: #1f2937;
+  /* overflow: hidden; Prevent scrollbars on the main container */
 }
 
-/*Strategy Section*/
-.strategySection {
-  margin-top: 2rem;
+/* Main Content */
+.mainContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 24px;
+  gap: 24px; /* Space between sections */
 }
 
-.sectionTitle {
-  font-size: 1.5rem;
+/* Connected Brokers */
+.connectedBrokers {
+  width: 55%; /* 70% width */
+  max-width: 100%; /* Ensure it doesn't exceed the viewport width */
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  transition: transform 0.3s ease;
+}
+
+.connectedBrokers:hover {
+  transform: translateY(-2px); /* Subtle hover effect */
+}
+
+/* Strategy Templates */
+.strategyTemplates {
+  width: 100%; /* Full width */
+}
+
+.strategyTemplates .sectionTitle {
+  font-size: 18px;
   font-weight: 600;
-  color: #111827;
-  margin-bottom: 1.5rem;
+  color: #1f2937;
+  margin-bottom: 16px;
 }
 
 .strategyGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-/* Activity Section Specific Styles */
-.activityContainer {
-  width: 100%;
-  overflow: hidden; /* Changed from auto to prevent any scroll */
-}
-
-.tableContainer {
-  font-size: 0.9rem;
-  width: 100%;
-  overflow: hidden;
-}
-
-.tableHeader {
-  display: grid;
-  grid-template-columns: 3fr 1fr 1fr 1fr;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
-  background: var(--background-default);
-  border-radius: 8px;
-  font-weight: 500;
-  color: var(--text-secondary);
-}
-
-.tableBody {
-  margin-top: 0.5rem;
-  width: 100%;
-}
-
-.tableRow {
-  display: grid;
-  grid-template-columns: 3fr 1fr 1fr 1fr;
-  gap: 1rem;
-  padding: 0.75rem 1rem;
-  align-items: center;
-  border-bottom: 1px solid var(--divider);
-}
-
-.tableRow:last-child {
-  border-bottom: none;
-}
-
-/* Status Indicator Styles */
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 12px;
-  font-size: 0.8rem;
-}
-
-.completed {
-  color: var(--success);
-  background: rgba(76, 175, 80, 0.1);
-}
-
-.failed {
-  color: var(--error);
-  background: rgba(244, 67, 54, 0.1);
-}
-
-.pending {
-  color: var(--warning);
-  background: rgba(255, 152, 0, 0.1);
-}
-
-/* PNL Styles */
-.profit {
-  color: var(--success);
-  font-weight: 500;
-}
-
-.loss {
-  color: var(--error);
-  font-weight: 500;
-}
-
-/* Layout Components */
-.pnlTradeContainer {
   display: flex;
-  gap: 1.5rem;
-  width: 100%;
+  gap: 24px; /* Space between strategy cards */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.strategyGrid .strategyCard {
+  flex: 1 1 calc(50% - 24px); /* Two cards per row with spacing */
+  min-width: 300px; /* Minimum width for each card */
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  transition: transform 0.3s ease;
+}
+
+.strategyGrid .strategyCard:hover {
+  transform: translateY(-4px); /* Hover effect */
+}
+
+/* Bottom Row: Market Watch + Recent Activity */
+.bottomRow {
+  display: flex;
+  gap: 24px; /* Space between Market Watch and Recent Activity */
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+.marketWatch {
+  flex: 1; /* 30% width */
+  min-width: 300px; /* Minimum width */
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  transition: transform 0.3s ease;
+}
+
+.marketWatch:hover {
+  transform: translateY(-2px); /* Subtle hover effect */
+}
+
+.recentActivity {
+  flex: 2; /* 70% width */
+  min-width: 300px; /* Minimum width */
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  transition: transform 0.3s ease;
+}
+
+.recentActivity:hover {
+  transform: translateY(-2px); /* Subtle hover effect */
 }
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .mainContent {
-      grid-template-columns: 1fr;
+  .connectedBrokers {
+    width: 100%; /* Full width on smaller screens */
   }
-  
-  .rightColumn {
-      position: static;
-      height: auto;
-      grid-row: 2;
-      padding-right: 0;
-  }
-  
-  .dashboardSection {
-      margin-bottom: 1.5rem;
-  }
-}
 
-@media (max-width: 1024px) {
-  .dashboardContainer {
-      padding: 1.5rem;
+  .bottomRow {
+    flex-direction: column; /* Stack Market Watch and Recent Activity vertically */
   }
-  
-  .pnlTradeContainer {
-      flex-direction: column;
-      gap: 1rem;
+
+  .marketWatch,
+  .recentActivity {
+    flex: 1; /* Full width */
   }
 }
 
 @media (max-width: 768px) {
-  .dashboardContainer {
-      padding: 1rem;
+  .mainContent {
+    padding: 16px; /* Reduce padding on smaller screens */
   }
-  
-  .dashboardHeader h1 {
-      font-size: 1.75rem;
-  }
-  
-  .dashboardSection {
-      padding: 1rem;
-  }
-  
-  .tableHeader,
-  .tableRow {
-      grid-template-columns: 2fr 1fr 1fr;
-      gap: 0.75rem;
-      padding: 0.5rem;
-  }
-  
-  /* Hide less important column on mobile */
-  .tableHeader :nth-child(4),
-  .tableRow :nth-child(4) {
-      display: none;
-  }
-  
-  .status {
-      font-size: 0.75rem;
-  }
-}
 
-@media (max-width: 480px) {
-  .tableHeader,
-  .tableRow {
-      grid-template-columns: 2fr 1fr;
+  .strategyGrid {
+    flex-direction: column; /* Stack strategy cards vertically */
+    gap: 16px;
   }
-  
-  /* Hide another column on very small screens */
-  .tableHeader :nth-child(3),
-  .tableRow :nth-child(3) {
-      display: none;
+
+  .strategyGrid .strategyCard {
+    flex: 1 1 100%; /* Single column layout */
   }
-}
-
-/* Global Page Scrollbar Styles */
-html {
-  scrollbar-width: thin; /* For Firefox */
-  scrollbar-color: rgba(0, 0, 0, 0.2) white; /* thumb and track color - Firefox */
-}
-
-/* For Chrome, Edge, Safari */
-html::-webkit-scrollbar {
-  width: 10px;
-  height: 10px; /* For horizontal scrollbar */
-}
-
-html::-webkit-scrollbar-track {
-  background: white;
-}
-
-html::-webkit-scrollbar-thumb {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 5px;
-  border: 2px solid white; /* Creates padding effect */
-}
-
-html::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 0, 0, 0.3);
 }
