@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import Chart from 'chart.js/auto';
-import styles from './MeanReversionStrategy.module.css';
+import styles from './StrangleStrategy.module.css';
 
-const MeanReversionStrategy: React.FC = () => {
+const StrangleStrategy: React.FC = () => {
   const chartRef = useRef<HTMLCanvasElement>(null);
   const chartInstance = useRef<Chart | null>(null);
 
@@ -13,8 +13,8 @@ const MeanReversionStrategy: React.FC = () => {
         data: {
           labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
           datasets: [{
-            label: 'Delta Neutral Nifty Returns',
-            data: [15, 58, 12, 60, 78, 124, 150, 93],
+            label: 'Strangle Strategy Returns',
+            data: [0.00, 25.00, 9.00, 50.50, 75.00, 100.00, 62, 80],
             borderColor: '#3b82f6', // same blue as line
             backgroundColor: 'rgba(59, 130, 246, 0.2)', // light blue fill
             fill: true,
@@ -61,7 +61,7 @@ const MeanReversionStrategy: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.title}>Delta Neutral Nifty</h2>
+        <h2 className={styles.title}>1 % SL strangle BNF</h2>
         <div className={styles.metrics}>
           <div className={styles.metric}>
             <span className={styles.metricLabel}>Max DD</span>
@@ -85,4 +85,4 @@ const MeanReversionStrategy: React.FC = () => {
   );
 };
 
-export default MeanReversionStrategy;
+export default StrangleStrategy;
