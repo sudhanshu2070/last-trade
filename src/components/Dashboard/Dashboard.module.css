@@ -9,11 +9,9 @@
 .dashboardContainer {
   display: flex;
   flex-direction: column;
-  /* height: 100vh; */
   font-family: 'Inter', sans-serif;
   background-color: #f9fafb;
   color: #1f2937;
-  /* overflow: hidden; Prevent scrollbars on the main container */
 }
 
 /* Main Content */
@@ -25,10 +23,14 @@
   gap: 24px; /* Space between sections */
 }
 
-/* Connected Brokers */
+/* Top Row: Connected Brokers + PnL + Trade Buttons */
+.topRow {
+  display: flex;
+  gap: 24px; /* Space between Connected Brokers and PnL+Buttons */
+}
+
 .connectedBrokers {
-  width: 55%; /* 70% width */
-  max-width: 100%; /* Ensure it doesn't exceed the viewport width */
+  flex: 3; /* 60% width */
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -37,6 +39,25 @@
 }
 
 .connectedBrokers:hover {
+  transform: translateY(-2px); /* Subtle hover effect */
+}
+
+.pnlAndButtons {
+  flex: 2; /* 40% width */
+  display: flex;
+  flex-direction: column;
+  gap: 16px; /* Space between PnL and Trade Buttons */
+}
+
+.pnlAndButtons > div {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  transition: transform 0.3s ease;
+}
+
+.pnlAndButtons > div:hover {
   transform: translateY(-2px); /* Subtle hover effect */
 }
 
@@ -109,8 +130,13 @@
 
 /* Responsive Design */
 @media (max-width: 1200px) {
-  .connectedBrokers {
-    width: 100%; /* Full width on smaller screens */
+  .topRow {
+    flex-direction: column; /* Stack Connected Brokers and PnL+Buttons vertically */
+  }
+
+  .connectedBrokers,
+  .pnlAndButtons {
+    flex: 1; /* Full width */
   }
 
   .bottomRow {

@@ -1,12 +1,12 @@
 import React from 'react';
 import BrokerConnection from '../Brokers/BrokerConnection';
+import PnLDisplay from '../PanelDisplay/PnLDisplay';
+import TradeButtons from '../TradeButtons/TradeButtons';
 import MarketSection from '../MarketSection/MarketSection';
 import RecentActivity from '../RecentActivity/RecentStrategyActivity';
 import styles from './Dashboard.module.css';
 import MeanReversionStrategy from '../StrategyTemplate/MeanReversionStrategy/MeanReversionStrategy';
 import StrangleStrategy from '../StrategyTemplate/StrangleStrategy/StrangleStrategy';
-import TradeButtons from '../TradeButtons/TradeButtons';
-import PnLDisplay from '../PanelDisplay/PnLDisplay';
 
 const Dashboard: React.FC = () => {
   return (
@@ -14,16 +14,19 @@ const Dashboard: React.FC = () => {
 
       {/* Main Content */}
       <div className={styles.mainContent}>
-        {/* Connected Brokers */}
-        <section className={styles.connectedBrokers}>
-          <BrokerConnection />
-        </section>
+        {/* Top Row: Connected Brokers + PnL + Trade Buttons */}
+        <div className={styles.topRow}>
+          {/* Connected Brokers */}
+          <section className={styles.connectedBrokers}>
+            <BrokerConnection />
+          </section>
 
-        {/* PnL and Buttons
-        <section className={styles.pnlAndButtons}>
-          <PnLDisplay />
-          <TradeButtons />
-        </section> */}
+          {/* PnL Display + Trade Buttons */}
+          <section className={styles.pnlAndButtons}>
+            <PnLDisplay />
+            <TradeButtons />
+          </section>
+        </div>
 
         {/* Strategy Templates */}
         <section className={styles.strategyTemplates}>
