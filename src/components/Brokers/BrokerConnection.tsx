@@ -23,7 +23,6 @@ const brokers = [
 const BrokerConnection: React.FC = () => {
   return (
     <div className={styles.brokerConnection}>
-      <h2 className={styles.sectionTitle}>Connected Brokers</h2>
       <div className={styles.brokersGrid}>
         {brokers.map((broker) => (
           <div 
