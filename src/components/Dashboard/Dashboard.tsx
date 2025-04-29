@@ -1,7 +1,5 @@
 import React from 'react';
 import BrokerConnection from '../Brokers/BrokerConnection';
-import PnLDisplay from '../PanelDisplay/PnLDisplay';
-import TradeButtons from '../TradeButtons/TradeButtons';
 import MarketSection from '../MarketSection/MarketSection';
 import RecentActivity from '../RecentActivity/RecentStrategyActivity';
 import styles from './Dashboard.module.css';
@@ -14,7 +12,7 @@ const Dashboard: React.FC = () => {
 
       {/* Main Content */}
       <div className={styles.mainContent}>
-        {/* Top Row: Connected Brokers + PnL + Trade Buttons */}
+        {/* Top Row: Connected Brokers + Market Watch */}
         <div className={styles.topRow}>
           {/* Connected Brokers */}
           <section className={styles.connectedBrokers}>
@@ -22,9 +20,8 @@ const Dashboard: React.FC = () => {
           </section>
 
           {/* PnL Display + Trade Buttons */}
-          <section className={styles.pnlAndButtons}>
-            <PnLDisplay />
-            <TradeButtons />
+          <section className={styles.marketWatch}>
+            <MarketSection />
           </section>
         </div>
 
@@ -37,11 +34,8 @@ const Dashboard: React.FC = () => {
           </div>
         </section>
 
-        {/* Bottom Row: Market Watch + Recent Activity */}
+        {/* Recent Activity */}
         <div className={styles.bottomRow}>
-          <div className={styles.marketWatch}>
-            <MarketSection />
-          </div>
           <div className={styles.recentActivity}>
             <RecentActivity />
           </div>

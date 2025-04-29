@@ -42,14 +42,14 @@
   transform: translateY(-2px); /* Subtle hover effect */
 }
 
-.pnlAndButtons {
+.marketWatch {
   flex: 2; /* 40% width */
   display: flex;
   flex-direction: column;
   gap: 16px; /* Space between PnL and Trade Buttons */
 }
 
-.pnlAndButtons > div {
+.marketWatch > div {
   background: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -57,7 +57,7 @@
   transition: transform 0.3s ease;
 }
 
-.pnlAndButtons > div:hover {
+.marketWatch > div:hover {
   transform: translateY(-2px); /* Subtle hover effect */
 }
 
@@ -100,22 +100,8 @@
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
-.marketWatch {
-  flex: 1.5; /* 30% width */
-  min-width: 300px; /* Minimum width */
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  padding: 16px;
-  transition: transform 0.3s ease;
-}
-
-.marketWatch:hover {
-  transform: translateY(-2px); /* Subtle hover effect */
-}
-
 .recentActivity {
-  flex: 2; /* 70% width */
+  flex: 1; 
   min-width: 300px; /* Minimum width */
   background: #ffffff;
   border-radius: 12px;
@@ -135,7 +121,7 @@
   }
 
   .connectedBrokers,
-  .pnlAndButtons {
+  .marketWatch {
     flex: 1; /* Full width */
   }
 
@@ -143,7 +129,6 @@
     flex-direction: column; /* Stack Market Watch and Recent Activity vertically */
   }
 
-  .marketWatch,
   .recentActivity {
     flex: 1; /* Full width */
   }
