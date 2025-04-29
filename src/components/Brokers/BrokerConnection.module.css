@@ -3,9 +3,9 @@
   --primary-color: #1e88e5; /* Blue for active items */
   --secondary-color: #f44336; /* Red for inactive items */
   --background-gradient: linear-gradient(135deg, #1e88e5, #6c63ff); /* Gradient background */
-  --text-primary: #ffffff; /* Primary text color */
-  --text-secondary: #d1d5db; /* Secondary text color */
-  --border-color: rgba(255, 255, 255, 0.1); /* Border color */
+  --text-primary-white: #ffffff; /* Primary text color (white) */
+  --text-secondary: #d1d5db; /* Secondary text color (light gray) */
+  --border-color: rgba(255, 255, 255, 0.2); /* Border color (semi-transparent white) */
   --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -18,8 +18,7 @@
 
 /* Unified Panel */
 .panel {
-  /* background: rgba(255, 255, 255, 0.1); Semi-transparent background */
-  background: rgb(12, 11, 58); /* Semi-transparent background */
+  background: rgb(12, 11, 58); /* Dark blue background */
   border-radius: 16px;
   padding: 2rem;
   box-shadow: var(--box-shadow);
@@ -39,7 +38,7 @@
 .userName {
   font-size: 1.125rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text-primary-white); /* White text */
 }
 
 .pnlInfo {
@@ -50,13 +49,13 @@
 
 .pnlLabel {
   font-size: 0.875rem;
-  color: var(--text-secondary);
+  color: var(--text-secondary); /* Light gray text */
 }
 
 .pnlValue {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--primary-color); /* Blue text for P&L value */
 }
 
 /* Brokers Grid */
@@ -72,18 +71,18 @@
 }
 
 .brokersGrid::-webkit-scrollbar-thumb {
-  background: var(--text-primary);
+  background: var(--text-primary-white); /* White scrollbar thumb */
   border-radius: 3px;
 }
 
 .brokersGrid::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent white scrollbar track */
 }
 
 /* Broker Card */
 .brokerCard {
   background: rgba(255, 255, 255, 0.1); /* Semi-transparent card background */
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-color); /* Light border */
   border-radius: 12px;
   padding: 0.75rem;
   width: 180px; /* Fixed width for compact layout */
@@ -94,18 +93,18 @@
 }
 
 .brokerCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateX(4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
 }
 
 .brokerCard.active {
-  border-color: var(--primary-color);
+  border-color: var(--primary-color); /* Blue border for active card */
   box-shadow: 0 0 16px 4px rgba(30, 136, 229, 0.5); /* Glowing effect */
-  background: rgba(30, 136, 229, 0.2); /* Subtle background glow */
+  background: rgba(30, 136, 229, 0.2); /* Subtle blue glow for active card */
 }
 
 .brokerCard.inactive {
-  opacity: 0.8;
+  opacity: 0.8; /* Reduced opacity for inactive cards */
 }
 
 .cardContent {
@@ -126,6 +125,7 @@
   height: 32px;
   border-radius: 4px;
   object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Light border around logo */
 }
 
 .brokerNameStatus {
@@ -137,7 +137,7 @@
 .brokerName {
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--text-primary);
+  color: var(--text-primary-white); /* White text for broker name */
   white-space: nowrap; /* Prevent wrapping */
 }
 
@@ -148,17 +148,25 @@
   font-size: 0.75rem;
 }
 
+.connectionStatus span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.75rem;
+  color: var(--text-primary-white);
+}
+
 .connectedIcon {
-  color: var(--primary-color);
+  color: var(--primary-color); /* Blue icon for connected status */
 }
 
 .disconnectedIcon {
-  color: var(--secondary-color);
+  color: var(--secondary-color); /* Red icon for disconnected status */
 }
 
 /* Broker ID */
 .brokerId {
   font-size: 0.75rem;
-  color: var(--text-secondary);
+  color: var(--text-secondary); /* Light gray text for broker ID */
   text-align: right;
 }
