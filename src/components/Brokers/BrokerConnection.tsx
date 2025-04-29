@@ -83,6 +83,16 @@ const BrokerConnection: React.FC = () => {
             </div>
           ))}
         </div>
+        
+        {/* Action Buttons */}
+        <div className={styles.actionButtons}>
+          <button className={styles.actionButton}>
+            Connect Broker
+          </button>
+          <button className={styles.actionButton}>
+            Execute Trade
+          </button>
+        </div>
       </div>
   );
 };
