@@ -2,12 +2,11 @@
 :root {
   --primary-color: #1e88e5; /* Blue for active items */
   --secondary-color: #f44336; /* Red for inactive items */
-  --background-color: #ffffff; /* Main background */
-  --panel-bg: #f9fafb; /* Panel background */
-  --text-primary: #1f2937; /* Primary text color */
-  --text-secondary: #6b7280; /* Secondary text color */
-  --border-color: #e5e7eb; /* Border color */
-  --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --background-gradient: linear-gradient(135deg, #1e88e5, #6c63ff); /* Gradient background */
+  --text-primary: #ffffff; /* Primary text color */
+  --text-secondary: #d1d5db; /* Secondary text color */
+  --border-color: rgba(255, 255, 255, 0.1); /* Border color */
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Global Reset */
@@ -17,12 +16,16 @@
   box-sizing: border-box;
 }
 
-/* Broker Connection Container */
-.brokerConnection {
-  font-family: 'Inter', sans-serif;
-  background: var(--background-color);
-  min-height: 100vh;
+/* Unified Panel */
+.panel {
+  /* background: rgba(255, 255, 255, 0.1); Semi-transparent background */
+  background: rgb(12, 11, 58); /* Semi-transparent background */
+  border-radius: 16px;
   padding: 2rem;
+  box-shadow: var(--box-shadow);
+  width: 100%;
+  max-width: 1200px; /* Limit width for larger screens */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
 }
 
 /* Header Section */
@@ -30,11 +33,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .userName {
-  font-size: 1rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--text-primary);
 }
@@ -53,22 +56,7 @@
 .pnlValue {
   font-size: 1rem;
   font-weight: 600;
-  color: var(--primary-color);
-}
-
-/* Brokers Panel */
-.brokersPanel {
-  background: var(--panel-bg);
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: var(--box-shadow);
-}
-
-.panelTitle {
-  font-size: 1.25rem;
-  font-weight: 700;
   color: var(--text-primary);
-  margin-bottom: 1.5rem;
 }
 
 /* Brokers Grid */
@@ -84,35 +72,36 @@
 }
 
 .brokersGrid::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
+  background: var(--text-primary);
   border-radius: 3px;
 }
 
 .brokersGrid::-webkit-scrollbar-track {
-  background: var(--background-color);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 /* Broker Card */
 .brokerCard {
-  background: white;
+  background: rgba(255, 255, 255, 0.1); /* Semi-transparent card background */
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 12px;
   padding: 0.75rem;
   width: 180px; /* Fixed width for compact layout */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   flex-shrink: 0; /* Prevent shrinking */
+  position: relative;
 }
 
 .brokerCard:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px -4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .brokerCard.active {
   border-color: var(--primary-color);
-  box-shadow: 0 0 12px 4px rgba(30, 136, 229, 0.3); /* Glowing effect */
-  background: rgba(30, 136, 229, 0.1); /* Subtle background glow */
+  box-shadow: 0 0 16px 4px rgba(30, 136, 229, 0.5); /* Glowing effect */
+  background: rgba(30, 136, 229, 0.2); /* Subtle background glow */
 }
 
 .brokerCard.inactive {

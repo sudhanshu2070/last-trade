@@ -15,14 +15,14 @@ const brokers = [
     name: 'Angel One', 
     connected: false, 
     logo: 'https://robo-matic.com//img/brokerlogo/angelLogo.jpeg',
-    pnl: '+₹92,300', // Default P&L for inactive broker
+    pnl: '+₹512,120', // Default P&L for inactive broker
   },
   { 
     id: 'UP789', 
     name: 'Upstox', 
     connected: false, 
     logo: 'https://robo-matic.com/img/brokerlogo/upstox_logo.png',
-    pnl: '+₹507,350', // Default P&L for inactive broker
+    pnl: '+₹53,920', // Default P&L for inactive broker
   },
 ];
 
@@ -37,21 +37,19 @@ const BrokerConnection: React.FC = () => {
   const activeBroker = brokers.find((broker) => broker.id === activeBrokerId);
 
   return (
-    <div className={styles.brokerConnection}>
-      {/* Header Section */}
-      <div className={styles.header}>
-        <div className={styles.userInfo}>
-          <span className={styles.userName}>Hello, {userName}</span>
+      <div className={styles.panel}>
+        {/* Header Section */}
+        <div className={styles.header}>
+          <div className={styles.userInfo}>
+            <span className={styles.userName}>Hello, {userName}</span>
+          </div>
+          <div className={styles.pnlInfo}>
+            <span className={styles.pnlLabel}>Total P&L:</span>
+            <span className={styles.pnlValue}>{activeBroker?.pnl || '₹0'}</span>
+          </div>
         </div>
-        <div className={styles.pnlInfo}>
-          <span className={styles.pnlLabel}>Total P&L:</span>
-          <span className={styles.pnlValue}>{activeBroker?.pnl || '₹0'}</span>
-        </div>
-      </div>
 
-      {/* Brokers Panel */}
-      <div className={styles.brokersPanel}>
-        <h2 className={styles.panelTitle}>Connected Brokers</h2>
+        {/* Broker Cards */}
         <div className={styles.brokersGrid}>
           {brokers.map((broker) => (
             <div 
@@ -86,7 +84,6 @@ const BrokerConnection: React.FC = () => {
           ))}
         </div>
       </div>
-    </div>
   );
 };
 
