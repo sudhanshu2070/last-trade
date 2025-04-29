@@ -28,7 +28,7 @@ const brokers = [
 
 const BrokerConnection: React.FC = () => {
   const [activeBrokerId, setActiveBrokerId] = useState<string>(brokers.find((broker) => broker.connected)?.id || '');
-  const userName = 'John Doe'; // Replace with dynamic user data if needed
+  const userName = 'Rishi Sunak'; 
 
   const handleBrokerClick = (brokerId: string) => {
     setActiveBrokerId(brokerId);
@@ -41,7 +41,7 @@ const BrokerConnection: React.FC = () => {
         {/* Header Section */}
         <div className={styles.header}>
           <div className={styles.userInfo}>
-            <span className={styles.userName}>Hello, {userName}</span>
+            <span className={styles.userName}>Morning, {userName}</span>
           </div>
           <div className={styles.pnlInfo}>
             <span className={styles.pnlLabel}>Total P&L:</span>
