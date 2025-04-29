@@ -1,62 +1,90 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './BrokerConnection.module.css';
 import { FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
 
 const brokers = [
   { 
+    id: 'ZR123', 
     name: 'Zerodha', 
     connected: true, 
-    logo: 'https://robo-matic.com/img/brokerlogo/broker_ZRLogo.png' 
+    logo: 'https://robo-matic.com/img/brokerlogo/broker_ZRLogo.png',
+    pnl: '+₹12,500', // Dynamic P&L for active broker
   },
   { 
+    id: 'AN456', 
     name: 'Angel One', 
     connected: false, 
-    logo: 'https://robo-matic.com//img/brokerlogo/angelLogo.jpeg'
+    logo: 'https://robo-matic.com//img/brokerlogo/angelLogo.jpeg',
+    pnl: '+₹92,300', // Default P&L for inactive broker
   },
   { 
+    id: 'UP789', 
     name: 'Upstox', 
     connected: false, 
-    logo: 'https://robo-matic.com/img/brokerlogo/upstox_logo.png' 
+    logo: 'https://robo-matic.com/img/brokerlogo/upstox_logo.png',
+    pnl: '+₹507,350', // Default P&L for inactive broker
   },
 ];
 
 const BrokerConnection: React.FC = () => {
+  const [activeBrokerId, setActiveBrokerId] = useState<string>(brokers.find((broker) => broker.connected)?.id || '');
+  const userName = 'John Doe'; // Replace with dynamic user data if needed
+
+  const handleBrokerClick = (brokerId: string) => {
+    setActiveBrokerId(brokerId);
+  };
+
+  const activeBroker = brokers.find((broker) => broker.id === activeBrokerId);
+
   return (
     <div className={styles.brokerConnection}>
-      <div className={styles.brokersGrid}>
-        {brokers.map((broker) => (
-          <div 
-            key={broker.name}
-            className={`${styles.brokerCard} ${broker.connected ? styles.connected : ''}`}
-          >
-            <div className={styles.cardContent}>
-              <div className={styles.brokerHeader}>
-                <img 
-                  src={broker.logo} 
-                  alt={`${broker.name} logo`}
-                  className={styles.brokerLogo}
-                />
-                <div className={styles.brokerNameStatus}>
-                  <span className={styles.brokerName}>{broker.name}</span>
-                  <div className={styles.connectionStatus}>
-                    {broker.connected ? (
-                      <FiCheckCircle className={styles.connectedIcon} />
-                    ) : (
-                      <FiAlertCircle className={styles.disconnectedIcon} />
-                    )}
-                    <span>{broker.connected ? 'Connected' : 'Disconnected'}</span>
+      {/* Header Section */}
+      <div className={styles.header}>
+        <div className={styles.userInfo}>
+          <span className={styles.userName}>Hello, {userName}</span>
+        </div>
+        <div className={styles.pnlInfo}>
+          <span className={styles.pnlLabel}>Total P&L:</span>
+          <span className={styles.pnlValue}>{activeBroker?.pnl || '₹0'}</span>
+        </div>
+      </div>
+
+      {/* Brokers Panel */}
+      <div className={styles.brokersPanel}>
+        <h2 className={styles.panelTitle}>Connected Brokers</h2>
+        <div className={styles.brokersGrid}>
+          {brokers.map((broker) => (
+            <div 
+              key={broker.id}
+              className={`${styles.brokerCard} ${activeBrokerId === broker.id ? styles.active : styles.inactive}`}
+              onClick={() => handleBrokerClick(broker.id)}
+            >
+              <div className={styles.cardContent}>
+                <div className={styles.brokerHeader}>
+                  <img 
+                    src={broker.logo} 
+                    alt={`${broker.name} logo`}
+                    className={styles.brokerLogo}
+                  />
+                  <div className={styles.brokerNameStatus}>
+                    <span className={styles.brokerName}>{broker.name}</span>
+                    <div className={styles.connectionStatus}>
+                      {activeBrokerId === broker.id ? (
+                        <FiCheckCircle className={styles.connectedIcon} />
+                      ) : (
+                        <FiAlertCircle className={styles.disconnectedIcon} />
+                      )}
+                      <span>{activeBrokerId === broker.id ? 'Active' : 'Inactive'}</span>
+                    </div>
                   </div>
                 </div>
+                <div className={styles.brokerId}>
+                  <span>ID: {broker.id}</span>
+                </div>
               </div>
-              <button 
-                className={styles.connectButton}
-                aria-label={broker.connected ? 'Disconnect' : 'Connect'}
-              >
-                {broker.connected ? 'Disconnect' : 'Connect'}
-              </button>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
