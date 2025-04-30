@@ -115,36 +115,50 @@
 }
 
 /* Responsive Design */
+
+/* Mobile Layout Reordering */
 @media (max-width: 1200px) {
-  .topRow {
-    flex-direction: column; /* Stack Connected Brokers and PnL+Buttons vertically */
+  .mainContent {
+    display: flex;
+    flex-direction: column;
   }
 
-  .connectedBrokers,
-  .marketWatch {
-    flex: 1; /* Full width */
+  /* Changing the order using order property */
+  .topRow {
+    order: 1;
+    flex-direction: column;
   }
 
   .bottomRow {
-    flex-direction: column; /* Stack Market Watch and Recent Activity vertically */
+    order: 2;
   }
 
+  .strategyTemplates {
+    order: 3;
+  }
+
+  /* Ensuring full width for mobile */
+  .connectedBrokers,
+  .marketWatch,
+  .strategyGrid > *,
   .recentActivity {
-    flex: 1; /* Full width */
+    width: 100%;
+  }
+
+  .strategyGrid {
+    flex-direction: column;
   }
 }
 
 @media (max-width: 768px) {
-  .mainContent {
-    padding: 16px; /* Reduce padding on smaller screens */
+  .dashboardContainer {
+    padding: 0.5rem;
   }
-
-  .strategyGrid {
-    flex-direction: column; /* Stack strategy cards vertically */
-    gap: 16px;
-  }
-
-  .strategyGrid .strategyCard {
-    flex: 1 1 100%; /* Single column layout */
+  
+  /* spacing for mobile */
+  .topRow,
+  .bottomRow,
+  .strategyTemplates {
+    margin-bottom: 0.5rem;
   }
 }
