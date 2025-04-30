@@ -25,5 +25,5 @@ jobs:
           server: ftp://46.28.45.160
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: build
-          server-dir: public_html
+          local-dir: build/
+          server-dir: public_html/
