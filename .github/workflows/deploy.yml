@@ -13,20 +13,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: List directory contents before install
-        run: ls -la
-
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
-
-      - name: List directory contents after install
-        run: ls -la
+        run: npm install
 
       - name: Build React app
-        run: CI='' npm run build
-
-      - name: List directory contents after build
-        run: ls -la build
+        run: npm run build
 
       - name: Deploy via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -34,5 +25,5 @@ jobs:
           server: ftp://46.28.45.160
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: build/
+          local-dir: dist/
           server-dir: public_html/
