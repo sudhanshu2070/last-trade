@@ -8,7 +8,7 @@ import {
 import logo from '../../assets/logo.jpg';
 
 const userData = {
-  name: 'Rishi Sunak',
+  name: 'Thomas Muller',
 };
 
 const TopNavbar = () => {
