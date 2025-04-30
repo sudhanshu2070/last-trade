@@ -5,6 +5,7 @@ import {
   FiCreditCard as WalletIcon,
   FiStar as SubscribeIcon,
 } from 'react-icons/fi';
+import logo from '../../assets/logo.jpg';
 
 const userData = {
   name: 'Rishi Sunak',
@@ -15,7 +16,7 @@ const TopNavbar = () => {
     <header className={styles.topNavbar}>
       <Link to="/" className={styles.logoLink}>
         <img 
-          src="https://web.algorooms.com/static/media/logo.6bc988bc8808247b91ee.png" 
+          src={logo} 
           alt="Trading Platform" 
           className={styles.logo} 
         />
