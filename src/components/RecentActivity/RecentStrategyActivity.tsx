@@ -1,6 +1,9 @@
 import React from 'react';
 import styles from './RecentStrategyActivity.module.css';
 import { FiCheckCircle, FiXCircle, FiClock } from 'react-icons/fi';
+import { AiOutlineDelete } from 'react-icons/ai'; // Delete icon
+import { IoClose } from 'react-icons/io5'; // X icon
+import { HiOutlineMenuAlt3 } from 'react-icons/hi'; // Three horizontal lines icon
 
 const activities = [
   { id: 1, strategy: 'Nifty 50 Momentum', status: 'completed', time: '10:45 AM', pnl: '+1,250.00' },
@@ -36,6 +39,7 @@ const RecentStrategyActivity: React.FC = () => {
         <div className={styles.tableBody}>
           {activities.map((activity) => (
             <div key={activity.id} className={styles.tableRow}>
+              <div className={styles.tableRowContent}>
               <div className={styles.tableCell}>{activity.strategy}</div>
               <div className={styles.tableCell}>
                 <span className={`${styles.status} ${styles[activity.status]}`}>
@@ -50,6 +54,21 @@ const RecentStrategyActivity: React.FC = () => {
               }`}>
                 {activity.pnl}
               </div>
+              </div>
+
+              {/* Hover Buttons */}
+              <div className={styles.hoverButtons}>
+                <button className={styles.hoverButton}>
+                  <IoClose /> {/* X Icon */}
+                </button>
+                <button className={styles.hoverButton}>
+                  <HiOutlineMenuAlt3 /> {/* Three Horizontal Lines */}
+                </button>
+                <button className={styles.hoverButton}>
+                  <AiOutlineDelete /> {/* Delete Icon */}
+                </button>
+              </div>
+
             </div>
           ))}
         </div>

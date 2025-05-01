@@ -1,130 +1,211 @@
 .activityContainer {
-    background: var(--background-paper);
-    border-radius: 12px;
-    padding: 1.5rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    border: 1px solid var(--divider);
-  }
-  
-  .header {
-    margin-bottom: 1.25rem;
-  }
-  
-  .title {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin: 0 0 0.25rem 0;
-  }
-  
-  .tableContainer {
-    font-size: 0.9rem;
-  }
-  
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  overflow: hidden;
+}
+
+.header {
+  margin-bottom: 16px;
+}
+
+.title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 600;
+  color: #334155;
+}
+
+.tableContainer {
+  width: 100%;
+}
+
+.tableHeader {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 8px 0;
+  border-bottom: 1px solid #e2e8f0;
+  font-weight: 600;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.tableBody {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableRow {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 12px 0;
+  border-bottom: 1px solid #f1f5f9;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.tableRow:hover .tableRowContent {
+  filter: blur(2px);
+  opacity: 0.8;
+}
+
+/* Blur container for table content */
+.tableRowContent {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  transition: filter 0.3s ease;
+}
+
+.tableRow:hover .tableRowContent {
+  filter: blur(2px);
+  opacity: 0.8;
+}
+
+.tableCell {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  color: #334155;
+  padding-right: 8px;
+}
+
+.rightAlign {
+  justify-content: flex-end;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-transform: capitalize;
+}
+
+.successIcon {
+  color: #10b981;
+}
+
+.errorIcon {
+  color: #ef4444;
+}
+
+.warningIcon {
+  color: #f59e0b;
+}
+
+.completed {
+  color: #10b981;
+}
+
+.failed {
+  color: #ef4444;
+}
+
+.pending {
+  color: #f59e0b;
+}
+
+.profit {
+  color: #10b981;
+  font-weight: 500;
+}
+
+.loss {
+  color: #ef4444;
+  font-weight: 500;
+}
+
+/* Hover Buttons */
+/* Hover Buttons - Enhanced */
+.hoverButtons {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 12px;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 2;
+  pointer-events: none; /* Allows clicking through when invisible */
+}
+
+.tableRow:hover .hoverButtons {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05);
+  pointer-events: auto; /* Enable clicking when visible */
+}
+
+.hoverButton {
+  background: rgba(255, 255, 255, 0.95);
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  width: 36px;
+  height: 36px;
+}
+
+.hoverButton:hover {
+  background: #3b82f6;
+  color: white;
+  transform: scale(1.15);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+/* Add this to create a smooth transition for the row content */
+.tableRow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.tableRow:hover::after {
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
   .tableHeader {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 1rem;
-    padding: 0.75rem 1rem;
-    background: var(--background-default);
-    border-radius: 8px;
-    font-weight: 500;
-    color: var(--text-secondary);
+    grid-template-columns: 1.5fr 1fr 1fr;
   }
   
-  .tableBody {
-    margin-top: 0.5rem;
+  .tableRow:hover {
+    filter: none; /* Disable blur on mobile */
   }
   
-  .tableRow {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 1rem;
-    padding: 0.75rem 1rem;
-    align-items: center;
-    border-bottom: 1px solid var(--divider);
+  .hoverButtons {
+    left: auto;
+    right: 8px;
+    transform: translateY(-50%);
+    background: white;
+    padding: 4px;
+    border-radius: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
   
-  .tableRow:last-child {
-    border-bottom: none;
+  .tableRow:hover .hoverButtons {
+    transform: translateY(-50%);
   }
   
-  .tableCell {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .hoverButton {
+    width: 28px;
+    height: 28px;
+    padding: 6px;
   }
-  
-  .headerCell {
-    font-weight: 500;
-  }
-  
-  .rightAlign {
-    text-align: right;
-  }
-  
-  /* Status Styles */
-  .status {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.25rem 0.5rem;
-    border-radius: 12px;
-    font-size: 0.8rem;
-  }
-  
-  .completed {
-    color: var(--success);
-    background: rgba(76, 175, 80, 0.1);
-  }
-  
-  .failed {
-    color: var(--error);
-    background: rgba(244, 67, 54, 0.1);
-  }
-  
-  .pending {
-    color: var(--warning);
-    background: rgba(255, 152, 0, 0.1);
-  }
-  
-  .successIcon {
-    color: var(--success);
-  }
-  
-  .errorIcon {
-    color: var(--error);
-  }
-  
-  .warningIcon {
-    color: var(--warning);
-  }
-  
-  /* PNL Styles */
-  .profit {
-    color: var(--success);
-    font-weight: 500;
-  }
-  
-  .loss {
-    color: var(--error);
-    font-weight: 500;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .activityContainer {
-      padding: 1rem;
-    }
-    
-    .tableHeader,
-    .tableRow {
-      grid-template-columns: 1.5fr 1fr 1fr 1fr;
-      gap: 0.75rem;
-      padding: 0.5rem;
-    }
-    
-    .status {
-      font-size: 0.75rem;
-    }
-  }
+}
