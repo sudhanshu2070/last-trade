@@ -152,6 +152,47 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   width: 36px;
   height: 36px;
+  position: relative;
+}
+
+.hoverButton::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #334155;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  margin-bottom: 8px;
+}
+
+.hoverButton:hover::after {
+  opacity: 1;
+}
+
+.hoverButton::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #334155;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  margin-bottom: -2px;
+}
+
+.hoverButton:hover::before {
+  opacity: 1;
 }
 
 .hoverButton:hover {

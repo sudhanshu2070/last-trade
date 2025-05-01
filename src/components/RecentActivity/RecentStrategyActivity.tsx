@@ -58,13 +58,22 @@ const RecentStrategyActivity: React.FC = () => {
 
               {/* Hover Buttons */}
               <div className={styles.hoverButtons}>
-                <button className={styles.hoverButton}>
+                <button 
+                  className={styles.hoverButton}
+                  data-tooltip="Square off"
+                >
                   <IoClose /> {/* X Icon */}
                 </button>
-                <button className={styles.hoverButton}>
+                <button 
+                  className={styles.hoverButton}
+                  data-tooltip="Details"
+                >
                   <HiOutlineMenuAlt3 /> {/* Three Horizontal Lines */}
                 </button>
-                <button className={styles.hoverButton}>
+                <button 
+                  className={styles.hoverButton}
+                  data-tooltip="Remove deployment"
+                >
                   <AiOutlineDelete /> {/* Delete Icon */}
                 </button>
               </div>
