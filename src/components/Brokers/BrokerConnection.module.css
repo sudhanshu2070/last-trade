@@ -166,9 +166,12 @@
 
 /* Broker ID */
 .brokerId {
-  font-size: 0.75rem;
-  color: var(--text-secondary); /* Light gray text for broker ID */
+  font-size: 0.9rem; /* Slightly larger font size for emphasis */
+  font-weight: 600; /* Bolder font weight for better visibility */
+  color: var(--primary-color); /* Blue text for highlighting */
   text-align: right;
+  text-transform: uppercase; /* Uppercase text for prominence */
+  letter-spacing: 0.05rem; /* Slightly increased letter spacing for readability */
 }
 
 /* Action Buttons */
