@@ -9,6 +9,7 @@ import SignUp from './components/auth/SignUp';
 import './styles/global.css';
 import styles from './App.module.css';
 import BrokerConnection from './components/Brokers/BrokerConnection';
+import StrategyPage from './Pages/Strategy/StrategyPage';
 
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -44,7 +45,7 @@ function App() {
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/portfolio" element={<BrokerConnection />} />
                   <Route path="/orders" element={<TestComp />} />
-                  <Route path="/strategies" element={<TestComp />} />
+                  <Route path="/strategies" element={<StrategyPage />} />
                   <Route path="/settings" element={<TestComp />} />
                 </Routes>
               </main>
