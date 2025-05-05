@@ -11,7 +11,7 @@ import StrategyPreview from './Sections/StrategyPerformancePreview/StrategyPerfo
 const CreateStrategy: React.FC = () => {
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Create New Trading Strategy</h2>
+      <h2 className={styles.title}>Create New Strategy</h2>
       
       <div className={styles.strategySections}>
         <BasicConfiguration />
