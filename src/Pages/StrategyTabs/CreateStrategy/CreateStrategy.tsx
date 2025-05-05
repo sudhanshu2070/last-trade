@@ -3,7 +3,7 @@ import styles from './CreateStrategy.module.css';
 import BasicConfiguration from './Sections/BasicConfiguration/BasicConfiguration';
 import ReadymadeStrategies from './Sections/ReadymadeStrategies/ReadymadeStrategies';
 import OrderLegs from './Sections/OrderLegs/OrderLegs';
-import AdvancedFeatures from './sections/AdvancedFeatures';
+import AdvancedFeatures from './Sections/AdvancedFeatures/AdvancedFeatures';
 import RiskManagement from './sections/RiskManagement';
 import ProfitTrailing from './sections/ProfitTrailing';
 import StrategyPreview from './sections/StrategyPreview';
