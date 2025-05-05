@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './StrategyPage.module.css';
-import CreateStrategy from '../../components/TestComp';
+import CreateStrategy from '../../Pages/StrategyTabs/CreateStrategy/CreateStrategy';
 import MyStrategies from '../../components/TestComp';
 import DeployedStrategies from '../../components/TestComp';
 import StrategyTemplates from '../../components/TestComp';
