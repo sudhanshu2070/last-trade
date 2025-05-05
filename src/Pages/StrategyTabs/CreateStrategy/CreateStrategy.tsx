@@ -4,8 +4,8 @@ import BasicConfiguration from './Sections/BasicConfiguration/BasicConfiguration
 import ReadymadeStrategies from './Sections/ReadymadeStrategies/ReadymadeStrategies';
 import OrderLegs from './Sections/OrderLegs/OrderLegs';
 import AdvancedFeatures from './Sections/AdvancedFeatures/AdvancedFeatures';
-import RiskManagement from './sections/RiskManagement';
-import ProfitTrailing from './sections/ProfitTrailing';
+import RiskManagement from './Sections/RiskManagement/RiskManagement';
+import ProfitTrailing from './Sections/ProfitTrailing/ProfitTrailing';
 import StrategyPreview from './sections/StrategyPreview';
 
 const CreateStrategy: React.FC = () => {
