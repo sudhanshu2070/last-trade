@@ -75,7 +75,7 @@
 
 .strategyGrid {
   display: flex;
-  gap: 24px; /* Space between strategy cards */
+  gap: 10px; /* Space between strategy cards */
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 

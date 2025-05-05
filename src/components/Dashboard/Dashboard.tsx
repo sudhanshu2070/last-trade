@@ -24,6 +24,13 @@ const Dashboard: React.FC = () => {
             <MarketSection />
           </section>
         </div>
+        
+        {/* Recent Activity */}
+        <div className={styles.bottomRow}>
+          <div className={styles.recentActivity}>
+            <RecentActivity />
+          </div>
+        </div>
 
         {/* Strategy Templates */}
         <section className={styles.strategyTemplates}>
@@ -34,12 +41,6 @@ const Dashboard: React.FC = () => {
           </div>
         </section>
 
-        {/* Recent Activity */}
-        <div className={styles.bottomRow}>
-          <div className={styles.recentActivity}>
-            <RecentActivity />
-          </div>
-        </div>
       </div>
     </div>
   );
