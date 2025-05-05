@@ -6,7 +6,7 @@ import OrderLegs from './Sections/OrderLegs/OrderLegs';
 import AdvancedFeatures from './Sections/AdvancedFeatures/AdvancedFeatures';
 import RiskManagement from './Sections/RiskManagement/RiskManagement';
 import ProfitTrailing from './Sections/ProfitTrailing/ProfitTrailing';
-import StrategyPreview from './sections/StrategyPreview';
+import StrategyPreview from './Sections/StrategyPerformancePreview/StrategyPerformancePreview';
 
 const CreateStrategy: React.FC = () => {
   return (
