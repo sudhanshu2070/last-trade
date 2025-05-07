@@ -64,6 +64,7 @@
 /* Strategy Templates */
 .strategyTemplates {
   width: 100%; /* Full width */
+  box-sizing: border-box; /* Include padding in width */
 }
 
 .strategyTemplates .sectionTitle {
@@ -75,8 +76,19 @@
 
 .strategyGrid {
   display: flex;
-  gap: 10px; /* Space between strategy cards */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 24px; /* Space between strategy cards */
   flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  width: 100%; /* Full width of the container */
+}
+
+.strategyCard {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 16px;
+  transition: transform 0.3s ease;
+  width: 100%; /* Ensure full width of grid cell */
 }
 
 .strategyGrid .strategyCard {
@@ -110,8 +122,9 @@
   transition: transform 0.3s ease;
 }
 
-.recentActivity:hover {
-  transform: translateY(-2px); /* Subtle hover effect */
+.strategyCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Design */
@@ -150,6 +163,13 @@
   }
 }
 
+@media (max-width: 900px) {
+  .strategyGrid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 16px;
+  }
+}
+
 @media (max-width: 768px) {
   .dashboardContainer {
     padding: 0.5rem;
@@ -160,5 +180,9 @@
   .bottomRow,
   .strategyTemplates {
     margin-bottom: 0.5rem;
+  }
+
+  .strategyGrid {
+    grid-template-columns: 1fr; /* Single column on mobile */
   }
 }
