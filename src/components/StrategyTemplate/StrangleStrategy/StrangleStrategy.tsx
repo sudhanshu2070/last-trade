@@ -15,10 +15,10 @@ const StrangleStrategy: React.FC = () => {
           datasets: [{
             label: 'Strangle Strategy Returns',
             data: [0.00, 25.00, 9.00, 50.50, 75.00, 100.00, 62, 80],
-            borderColor: '#3b82f6', // same blue as line
-            backgroundColor: 'rgba(59, 130, 246, 0.2)', // light blue fill
+            borderColor: '#3b82f6',
+            backgroundColor: 'rgba(59, 130, 246, 0.2)',
             fill: true,
-            tension: 0.5, // smoother curve
+            tension: 0.5,
             pointBackgroundColor: '#10b981',
             pointBorderColor: '#fff',
             pointRadius: 4,
@@ -55,13 +55,17 @@ const StrangleStrategy: React.FC = () => {
   }, []);
 
   const handleAddStrategy = () => {
-    alert('Mean Reversion Strategy added!');
+    alert('Strangle Strategy added to your strategies!');
+  };
+
+  const handleBacktest = () => {
+    alert('Running backtest for Strangle Strategy...');
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h2 className={styles.title}>1 % SL strangle BNF</h2>
+        <h2 className={styles.title}>1% SL Strangle BNF</h2>
         <div className={styles.metrics}>
           <div className={styles.metric}>
             <span className={styles.metricLabel}>Max DD</span>
@@ -77,8 +81,11 @@ const StrangleStrategy: React.FC = () => {
         <canvas ref={chartRef} className={styles.chart}></canvas>
       </div>
       <div className={styles.buttonContainer}>
-        <button onClick={handleAddStrategy} className={styles.addButton}>
-          + Add to my strategy
+        <button onClick={handleBacktest} className={styles.secondaryButton}>
+          <span className={styles.buttonIcon}>📊</span> Backtest
+        </button>
+        <button onClick={handleAddStrategy} className={styles.primaryButton}>
+          <span className={styles.buttonIcon}>+</span> Add to my strategy
         </button>
       </div>
     </div>

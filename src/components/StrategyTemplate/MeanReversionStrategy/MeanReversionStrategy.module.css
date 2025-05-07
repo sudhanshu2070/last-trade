@@ -57,23 +57,56 @@
 
 .buttonContainer {
   display: flex;
-  justify-content: center;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  border-top: 1px solid #e2e8f0;
 }
 
-.addButton {
-  background: #3b82f6;
-  color: #ffffff;
-  font-weight: 600;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
+.primaryButton {
+  flex: 1;
+  padding: 0.75rem;
+  background-color: #3b82f6;
+  color: white;
   border: none;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
   cursor: pointer;
-  transition: background 0.3s ease;
+  transition: background-color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
-.addButton:hover {
-  background: #2563eb;
+.primaryButton:hover {
+  background-color: #2563eb;
 }
+
+.secondaryButton {
+  flex: 1;
+  padding: 0.75rem;
+  background-color: white;
+  color: #3b82f6;
+  border: 1px solid #3b82f6;
+  border-radius: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.secondaryButton:hover {
+  background-color: #f0f7ff;
+}
+
+.buttonIcon {
+  font-size: 1rem;
+}  
 
 @media (max-width: 768px) {
   .header {
@@ -85,5 +118,20 @@
   .metrics {
     flex-direction: column;
     gap: 0.75rem;
+  }
+
+  .metric {
+    min-width: 70px;
+    padding: 0.4rem 0.6rem;
+  }
+  
+  .buttonContainer {
+    padding: 1rem;
+    flex-direction:row ;
+  }
+  
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
   }
 }

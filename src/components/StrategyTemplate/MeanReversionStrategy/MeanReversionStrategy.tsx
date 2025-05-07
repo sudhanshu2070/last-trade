@@ -58,6 +58,10 @@ const MeanReversionStrategy: React.FC = () => {
     alert('Mean Reversion Strategy added!');
   };
 
+  const handleBacktest = () => {
+    alert('Running backtest for Strangle Strategy...');
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -77,8 +81,11 @@ const MeanReversionStrategy: React.FC = () => {
         <canvas ref={chartRef} className={styles.chart}></canvas>
       </div>
       <div className={styles.buttonContainer}>
-        <button onClick={handleAddStrategy} className={styles.addButton}>
-          + Add to my strategy
+        <button onClick={handleBacktest} className={styles.secondaryButton}>
+          <span className={styles.buttonIcon}>📊</span> Backtest
+        </button>
+        <button onClick={handleAddStrategy} className={styles.primaryButton}>
+          <span className={styles.buttonIcon}>+</span> Add to my strategy
         </button>
       </div>
     </div>
