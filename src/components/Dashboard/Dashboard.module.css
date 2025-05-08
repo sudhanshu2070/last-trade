@@ -67,6 +67,31 @@
   box-sizing: border-box; /* Include padding in width */
 }
 
+.sectionHeader {
+  display: flex;
+  justify-content: space-between; /* Pushes title left & button right */
+  align-items: center; /* Vertically centers items */
+  margin-bottom: 1rem;
+}
+
+.viewMoreButton {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: #0070f3; /* Blue color, adjust as needed */
+  border: 1px solid #0070f3;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.viewMoreButton:hover {
+  background-color: #0061d5;
+}
+
 .strategyTemplates .sectionTitle {
   font-size: 18px;
   font-weight: 600;

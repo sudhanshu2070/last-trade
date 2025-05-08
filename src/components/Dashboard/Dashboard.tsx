@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import BrokerConnection from '../Brokers/BrokerConnection';
 import MarketSection from '../MarketSection/MarketSection';
 import RecentActivity from '../RecentActivity/RecentStrategyActivity';
@@ -7,6 +8,8 @@ import MeanReversionStrategy from '../StrategyTemplate/MeanReversionStrategy/Mea
 import StrangleStrategy from '../StrategyTemplate/StrangleStrategy/StrangleStrategy';
 
 const Dashboard: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.dashboardContainer}>
 
@@ -34,7 +37,15 @@ const Dashboard: React.FC = () => {
 
         {/* Strategy Templates */}
         <section className={styles.strategyTemplates}>
-          <h2 className={styles.sectionTitle}>Strategy Templates</h2>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Strategy Templates</h2>
+            <button 
+              onClick={() => navigate('/strategies')} 
+              className={styles.viewMoreButton}
+            >
+              View more
+            </button>
+          </div>
           <div className={styles.strategyGrid}>
             <StrangleStrategy />
             <MeanReversionStrategy />
