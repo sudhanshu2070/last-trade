@@ -61,13 +61,15 @@
 /* Brokers Grid */
 .brokersGrid {
   display: flex;
-  gap: 1rem;
-  overflow-x: auto; /* Scrollable for smaller screens */
-  padding-bottom: 1rem;
+  gap: 1.5rem;
+  width: 100%;
+  justify-content: center;
+  padding: 1rem 0;
+  overflow: hidden;
 }
 
 .brokersGrid::-webkit-scrollbar {
-  height: 6px;
+  display: none; /* Hide scrollbar for Chrome/Safari */
 }
 
 .brokersGrid::-webkit-scrollbar-thumb {
@@ -77,6 +79,51 @@
 
 .brokersGrid::-webkit-scrollbar-track {
   background: rgba(255, 255, 255, 0.1); /* Semi-transparent white scrollbar track */
+}
+
+/* Brokers Container */
+.brokersContainer {
+  position: relative;
+  margin: 1.5rem 0;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+}
+
+/* Scroll Buttons */
+.scrollLeft,
+.scrollRight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  color: var(--primary-color);
+  padding: 0;
+}
+
+.scrollLeft:hover,
+.scrollRight:hover {
+  background: white;
+  transform: translateY(-50%) scale(1.1);
+}
+
+.scrollLeft {
+  left: 10px;
+}
+
+.scrollRight {
+  right: 10px;
 }
 
 /* Broker Card */
@@ -90,6 +137,7 @@
   cursor: pointer;
   flex-shrink: 0; /* Prevent shrinking */
   position: relative;
+  /* min-width: 280px;  */
 }
 
 .brokerCard:hover {

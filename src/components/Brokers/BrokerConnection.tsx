@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import styles from './BrokerConnection.module.css';
-import { FiCheckCircle, FiAlertCircle } from 'react-icons/fi';
+import { FiCheckCircle, FiAlertCircle, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 const brokers = [
   { 
@@ -24,34 +24,79 @@ const brokers = [
     logo: 'https://robo-matic.com/img/brokerlogo/upstox_logo.png',
     pnl: '+₹53,920', // Default P&L for inactive broker
   },
+  { 
+    id: 'FY101', 
+    name: 'Fyers', 
+    connected: false, 
+    logo: 'https://robo-matic.com/img/brokerlogo/fyers_logo.png',
+    pnl: '+₹8,300', // Default P&L for inactive broker
+  },
+  { 
+    id: 'AB404', 
+    name: 'Alice Blue', 
+    connected: false, 
+    logo: 'https://robo-matic.com/img/brokerlogo/aliceblue-logo.png',
+    pnl: '+₹10,200', // Default P&L for inactive broker
+  },
+  { 
+    id: 'BS505', 
+    name: 'Basan', 
+    connected: false, 
+    logo: 'https://robo-matic.com/img/brokerlogo/basan_logo.png',
+    pnl: '+₹7,800', // Default P&L for inactive broker
+  },
 ];
 
 const BrokerConnection: React.FC = () => {
   const [activeBrokerId, setActiveBrokerId] = useState<string>(brokers.find((broker) => broker.connected)?.id || '');
-  const userName = 'Rishi Sunak'; 
+  const [visibleStartIndex, setVisibleStartIndex] = useState(0);
+  const userName = 'Rishi Sunak';
+  const brokersContainerRef = useRef<HTMLDivElement>(null);
 
   const handleBrokerClick = (brokerId: string) => {
     setActiveBrokerId(brokerId);
   };
 
+  const scrollBrokers = (direction: 'left' | 'right') => {
+    if (direction === 'left' && visibleStartIndex > 0) {
+      setVisibleStartIndex(prev => prev - 1);
+    } else if (direction === 'right' && visibleStartIndex < brokers.length - 2) {
+      setVisibleStartIndex(prev => prev + 1);
+    }
+  };
+
   const activeBroker = brokers.find((broker) => broker.id === activeBrokerId);
+  const visibleBrokers = brokers.slice(visibleStartIndex, visibleStartIndex + 2);
+  const showLeftButton = visibleStartIndex > 0;
+  const showRightButton = visibleStartIndex < brokers.length - 2;
 
   return (
-      <div className={styles.panel}>
-        {/* Header Section */}
-        <div className={styles.header}>
-          <div className={styles.userInfo}>
-            <span className={styles.userName}>Morning, {userName}</span>
-          </div>
-          <div className={styles.pnlInfo}>
-            <span className={styles.pnlLabel}>Total P&L:</span>
-            <span className={styles.pnlValue}>{activeBroker?.pnl || '₹0'}</span>
-          </div>
+    <div className={styles.panel}>
+      {/* Header Section */}
+      <div className={styles.header}>
+        <div className={styles.userInfo}>
+          <span className={styles.userName}>Morning, {userName}</span>
         </div>
+        <div className={styles.pnlInfo}>
+          <span className={styles.pnlLabel}>Total P&L:</span>
+          <span className={styles.pnlValue}>{activeBroker?.pnl || '₹0'}</span>
+        </div>
+      </div>
 
-        {/* Broker Cards */}
-        <div className={styles.brokersGrid}>
-          {brokers.map((broker) => (
+      {/* Broker Cards with Scroll Controls */}
+      <div className={styles.brokersContainer}>
+        {showLeftButton && (
+          <button 
+            className={styles.scrollLeft}
+            onClick={() => scrollBrokers('left')}
+            aria-label="Scroll left"
+          >
+            <FiChevronLeft size={24} />
+          </button>
+        )}
+        
+        <div className={styles.brokersGrid} ref={brokersContainerRef}>
+          {visibleBrokers.map((broker) => (
             <div 
               key={broker.id}
               className={`${styles.brokerCard} ${activeBrokerId === broker.id ? styles.active : styles.inactive}`}
@@ -83,17 +128,28 @@ const BrokerConnection: React.FC = () => {
             </div>
           ))}
         </div>
-        
-        {/* Action Buttons */}
-        <div className={styles.actionButtons}>
-          <button className={styles.actionButton}>
-            Connect Broker
+
+        {showRightButton && (
+          <button 
+            className={styles.scrollRight}
+            onClick={() => scrollBrokers('right')}
+            aria-label="Scroll right"
+          >
+            <FiChevronRight size={24} />
           </button>
-          <button className={styles.actionButton}>
-            Execute Trade
-          </button>
-        </div>
+        )}
       </div>
+      
+      {/* Action Buttons */}
+      <div className={styles.actionButtons}>
+        <button className={styles.actionButton}>
+          Connect Broker
+        </button>
+        <button className={styles.actionButton}>
+          Execute Trade
+        </button>
+      </div>
+    </div>
   );
 };
 
