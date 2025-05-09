@@ -83,63 +83,79 @@ const BrokerConnection: React.FC = () => {
         </div>
       </div>
 
-      {/* Broker Cards with Scroll Controls */}
-      <div className={styles.brokersContainer}>
-        {showLeftButton && (
-          <button 
-            className={styles.scrollLeft}
-            onClick={() => scrollBrokers('left')}
-            aria-label="Scroll left"
-          >
-            <FiChevronLeft size={24} />
-          </button>
-        )}
-        
-        <div className={styles.brokersGrid} ref={brokersContainerRef}>
-          {visibleBrokers.map((broker) => (
-            <div 
-              key={broker.id}
-              className={`${styles.brokerCard} ${activeBrokerId === broker.id ? styles.active : styles.inactive}`}
-              onClick={() => handleBrokerClick(broker.id)}
+      <div className={styles.brokersWrapper}>
+
+        {/* Broker Cards with Scroll Controls */}
+        <div className={styles.brokersContainer}>
+          {showLeftButton && (
+            <button 
+              className={styles.scrollLeft}
+              onClick={() => scrollBrokers('left')}
+              aria-label="Scroll left"
             >
-              <div className={styles.cardContent}>
-                <div className={styles.brokerHeader}>
-                  <img 
-                    src={broker.logo} 
-                    alt={`${broker.name} logo`}
-                    className={styles.brokerLogo}
-                  />
-                  <div className={styles.brokerNameStatus}>
-                    <span className={styles.brokerName}>{broker.name}</span>
-                    <div className={styles.connectionStatus}>
-                      {activeBrokerId === broker.id ? (
-                        <FiCheckCircle className={styles.connectedIcon} />
-                      ) : (
-                        <FiAlertCircle className={styles.disconnectedIcon} />
-                      )}
-                      <span>{activeBrokerId === broker.id ? 'Active' : 'Inactive'}</span>
+              <FiChevronLeft size={24} />
+            </button>
+          )}
+          
+          <div className={styles.brokersGrid} ref={brokersContainerRef}>
+            {visibleBrokers.map((broker) => (
+              <div 
+                key={broker.id}
+                className={`${styles.brokerCard} ${activeBrokerId === broker.id ? styles.active : styles.inactive}`}
+                onClick={() => handleBrokerClick(broker.id)}
+              >
+                <div className={styles.cardContent}>
+                  <div className={styles.brokerHeader}>
+                    <img 
+                      src={broker.logo} 
+                      alt={`${broker.name} logo`}
+                      className={styles.brokerLogo}
+                    />
+                    <div className={styles.brokerNameStatus}>
+                      <span className={styles.brokerName}>{broker.name}</span>
+                      <div className={styles.connectionStatus}>
+                        {activeBrokerId === broker.id ? (
+                          <FiCheckCircle className={styles.connectedIcon} />
+                        ) : (
+                          <FiAlertCircle className={styles.disconnectedIcon} />
+                        )}
+                        <span>{activeBrokerId === broker.id ? 'Active' : 'Inactive'}</span>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div className={styles.brokerId}>
-                  <span>ID: {broker.id}</span>
+                  <div className={styles.brokerId}>
+                    <span>ID: {broker.id}</span>
+                  </div>
                 </div>
               </div>
-            </div>
+            ))}
+          </div>
+
+          {showRightButton && (
+            <button 
+              className={styles.scrollRight}
+              onClick={() => scrollBrokers('right')}
+              aria-label="Scroll right"
+            >
+              <FiChevronRight size={24} />
+            </button>
+          )}
+
+        </div>
+        
+        {/* Dot Indicators - Positioned beneath cards */}
+        <div className={styles.dotsContainer}>
+          {Array.from({ length: Math.ceil(brokers.length / 2) }).map((_, index) => (
+            <div 
+              key={index}
+              className={`${styles.dot} ${
+                index === Math.floor(visibleStartIndex / 2) ? styles.activeDot : ''
+              }`}
+              onClick={() => setVisibleStartIndex(index * 2)}
+            />
           ))}
         </div>
-
-        {showRightButton && (
-          <button 
-            className={styles.scrollRight}
-            onClick={() => scrollBrokers('right')}
-            aria-label="Scroll right"
-          >
-            <FiChevronRight size={24} />
-          </button>
-        )}
       </div>
-      
       {/* Action Buttons */}
       <div className={styles.actionButtons}>
         <button className={styles.actionButton}>

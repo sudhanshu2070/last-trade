@@ -84,7 +84,7 @@
 /* Brokers Container */
 .brokersContainer {
   position: relative;
-  margin: 1.5rem 0;
+  margin: 1rem 0;
   padding: 0 2rem;
   display: flex;
   align-items: center;
@@ -124,6 +124,41 @@
 
 .scrollRight {
   right: 10px;
+}
+
+/* Wrapper for cards + dots */
+.brokersWrapper {
+  position: relative;
+  margin: 1rem 0;
+  padding: 0 2rem;
+}
+
+/* Dot container styling */
+.dotsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+/* Individual dot styling */
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Active dot styling */
+.activeDot {
+  background: var(--primary-color);
+  transform: scale(1.3);
+}
+
+/* Hover effect */
+.dot:hover {
+  background: rgba(255, 255, 255, 0.6);
 }
 
 /* Broker Card */
