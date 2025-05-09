@@ -90,6 +90,11 @@
 
 .viewMoreButton:hover {
   background-color: #0061d5;
+  color: #ffffff;
+  border-color: #0061d5;
+  transform: translateY(-2px); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
 }
 
 .strategyTemplates .sectionTitle {
@@ -101,11 +106,11 @@
 
 .strategyGrid {
   display: flex;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-  gap: 24px; /* Space between strategy cards */
+  /* grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); */
+  gap: 12px; /* Space between strategy cards */
   flex-wrap: nowrap; /* Prevent wrapping */
-  justify-content: space-between; /* Space between cards */
   width: 100%; /* Full width of the container */
+  justify-content: flex-start;
 }
 
 .strategyCard {
