@@ -261,7 +261,7 @@
 .actionButtons {
   display: flex;
   gap: 1rem;
-  margin-top: 1.5rem;
+  /* margin-top: 1.5rem; */
   justify-content: center; /* Center buttons horizontally */
 }
 
