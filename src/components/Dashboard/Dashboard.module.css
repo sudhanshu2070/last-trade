@@ -103,7 +103,8 @@
   display: flex;
   grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   gap: 24px; /* Space between strategy cards */
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  justify-content: space-between; /* Space between cards */
   width: 100%; /* Full width of the container */
 }
 
