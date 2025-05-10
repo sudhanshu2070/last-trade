@@ -3,8 +3,10 @@
   border-radius: 16px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   padding: 2rem;
-  width: 600px;             /* fixed width ensures stable layout */
-  flex: 0 0 auto;           /* prevents resizing by flexbox */
+ width: 90%;               /* Relative to parent width */
+  max-width: 500px;         /* Maximum width on large screens */
+  min-width: 300px;         /* Minimum width on small screens */
+  margin: 0 auto;           /* Center horizontally */
   box-sizing: border-box;
 }
 

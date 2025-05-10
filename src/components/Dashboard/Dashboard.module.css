@@ -63,8 +63,11 @@
 
 /* Strategy Templates */
 .strategyTemplates {
-  width: 100%; /* Full width */
-  box-sizing: border-box; /* Include padding in width */
+  width: 100%;                /* Full width of the parent container */
+  box-sizing: border-box;     /* Include padding in width */
+  min-width: 320px;           /* Prevent shrinking too small (optional, change to your needs) */
+  max-width: 1200px;          /* Maximum width for larger screens */
+  margin: 0 auto;             /* Center the container horizontally */
 }
 
 .sectionHeader {
@@ -106,34 +109,22 @@
 
 .strategyGrid {
   display: flex;
-  /* grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); */
-  gap: 12px; /* Space between strategy cards */
-  flex-wrap: nowrap; /* Prevent wrapping */
-  width: 100%; /* Full width of the container */
+  gap: 12px;                  /* Space between strategy cards */
+  flex-wrap: wrap;            /* Allow wrapping based on space */
+  width: 100%;                /* Full width of the container */
+  min-width: 80vw;
   justify-content: flex-start;
 }
 
-.strategyCard {
+.strategyGrid > .container {
   background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  padding: 16px;
-  transition: transform 0.3s ease;
-  width: 100%; /* Ensure full width of grid cell */
-}
-
-.strategyGrid .strategyCard {
-  flex: 1 1 calc(50% - 24px); /* Two cards per row with spacing */
-  min-width: 300px; /* Minimum width for each card */
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  padding: 16px;
-  transition: transform 0.3s ease;
-}
-
-.strategyGrid .strategyCard:hover {
-  transform: translateY(-4px); /* Hover effect */
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  width: 100%;                /* Full width within available space */
+  max-width: 500px;           /* Prevent containers from exceeding 500px */
+  flex: 1 1 45%;              /* Allow containers to grow/shrink and take 45% of the width */
+  box-sizing: border-box;
 }
 
 /* Bottom Row: Market Watch + Recent Activity */
@@ -151,11 +142,6 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   padding: 16px;
   transition: transform 0.3s ease;
-}
-
-.strategyCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsive Design */
