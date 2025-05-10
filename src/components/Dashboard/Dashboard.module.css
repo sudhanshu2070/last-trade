@@ -65,7 +65,7 @@
 .strategyTemplates {
   width: 100%;                /* Full width of the parent container */
   box-sizing: border-box;     /* Include padding in width */
-  min-width: 320px;           /* Prevent shrinking too small (optional, change to your needs) */
+  min-width: 80vw;
   max-width: 1200px;          /* Maximum width for larger screens */
   margin: 0 auto;             /* Center the container horizontally */
 }
@@ -112,8 +112,8 @@
   gap: 12px;                  /* Space between strategy cards */
   flex-wrap: wrap;            /* Allow wrapping based on space */
   width: 100%;                /* Full width of the container */
-  min-width: 80vw;
-  justify-content: flex-start;
+  min-width: 75vw;
+  justify-content: center;
 }
 
 .strategyGrid > .container {
