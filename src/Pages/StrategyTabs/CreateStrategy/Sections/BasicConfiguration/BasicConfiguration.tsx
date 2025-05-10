@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './BasicConfiguration.module.css';
 
 const BasicConfiguration: React.FC = () => {
+  const [orderType, setOrderType] = useState('MIS'); 
+
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>
@@ -9,18 +11,7 @@ const BasicConfiguration: React.FC = () => {
       </h3>
       
       <div className={styles.formGrid}>
-        <div className={styles.formGroup}>
-          <label htmlFor="strategyName" className={styles.label}>
-            Strategy Name
-          </label>
-          <input
-            id="strategyName"
-            type="text"
-            className={styles.input}
-            placeholder="Golden Cross Momentum"
-          />
-        </div>
-        
+
         <div className={styles.formGroup}>
           <label htmlFor="strategyType" className={styles.label}>
             Strategy Type
@@ -33,7 +24,7 @@ const BasicConfiguration: React.FC = () => {
             <option value="arbitrage">Arbitrage</option>
           </select>
         </div>
-        
+
         <div className={styles.formGroup}>
           <label htmlFor="instrument" className={styles.label}>
             Instrument
@@ -45,6 +36,67 @@ const BasicConfiguration: React.FC = () => {
             <option value="finnifty">FINNIFTY</option>
           </select>
         </div>
+
+        <div className={styles.formGroup}>
+          <label className={styles.label}>Order Type</label>
+          <div className={styles.radioGroup}>
+            <label className={styles.radioLabel}>
+              <input
+                type="radio"
+                name="orderType"
+                value="MIS"
+                checked={orderType === 'MIS'}
+                onChange={(e) => setOrderType(e.target.value)}
+                className={styles.radioInput}
+              />
+              <span className={styles.radioCustom}></span>
+              MIS
+            </label>
+            
+            <label className={styles.radioLabel}>
+              <input
+                type="radio"
+                name="orderType"
+                value="CNC"
+                checked={orderType === 'CNC'}
+                onChange={(e) => setOrderType(e.target.value)}
+                className={styles.radioInput}
+              />
+              <span className={styles.radioCustom}></span>
+              CNC
+            </label>
+            
+            <label className={styles.radioLabel}>
+              <input
+                type="radio"
+                name="orderType"
+                value="BTST"
+                checked={orderType === 'BTST'}
+                onChange={(e) => setOrderType(e.target.value)}
+                className={styles.radioInput}
+              />
+              <span className={styles.radioCustom}></span>
+              BTST
+            </label>
+          </div>
+        </div>
+
+
+        <div className={styles.formGroup}>
+          <label htmlFor="strategyName" className={styles.label}>
+            Strategy Name
+          </label>
+          <input
+            id="strategyName"
+            type="text"
+            className={styles.input}
+            placeholder="Golden Cross Momentum"
+          />
+        </div>
+        
+        
+        
+
         
         <div className={styles.formGroup}>
           <label htmlFor="timeframe" className={styles.label}>

@@ -55,6 +55,57 @@
     resize: vertical;
   }
   
+  /* Radio Group Styles */
+  .radioGroup {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .radioLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    background-color: rgb(17 24 39);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .radioInput {
+    position: absolute;
+    opacity: 0;
+  }
+
+  .radioCustom {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #1e88e5;
+    border-radius: 50%;
+    position: relative;
+  }
+
+  .radioInput:checked + .radioCustom::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: #1e88e5;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .radioInput:focus + .radioCustom {
+    box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.3);
+  }
+
+
   @media (max-width: 768px) {
     .section {
       padding: 1rem;
