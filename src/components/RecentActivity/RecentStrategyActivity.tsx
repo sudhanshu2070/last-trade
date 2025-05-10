@@ -6,28 +6,28 @@ import { IoClose } from 'react-icons/io5'; // X icon
 // import { HiOutlineMenuAlt3 } from 'react-icons/hi'; // Three horizontal lines icon
 
 const activities = [
-  { id: 1, strategy: 'Nifty 50 Momentum', status: 'completed', time: '10:45 AM', pnl: '+1,250.00', details: {
+  { id: 1, strategy: 'Nifty 50 Momentum', status: 'completed', tradeType: 'Paper trade', pnl: '+1,250.00', details: {
     entry: '18,250',
     exit: '18,450',
     quantity: 50,
     brokerage: '₹20.00',
     duration: '2 hours 15 mins'
   } },
-  { id: 2, strategy: 'Bank Nifty Mean Reversion', status: 'failed', time: '11:30 AM', pnl: '-850.50', details: {
+  { id: 2, strategy: 'Bank Nifty Mean Reversion', status: 'failed', tradeType: 'Live trade', pnl: '-850.50', details: {
     entry: '42,000',
     exit: '41,800',
     quantity: 30,
     brokerage: '₹15.00',
     duration: '1 hour 45 mins'
   } },
-  { id: 3, strategy: 'IT Sector Breakout', status: 'pending', time: '12:15 PM', pnl: '0.00', details: {
+  { id: 3, strategy: 'IT Sector Breakout', status: 'pending', tradeType: 'Paper trade', pnl: '0.00', details: {
     entry: '28,500',
     exit: '-',
     quantity: 20,
     brokerage: '₹10.00',
     duration: '-'
   } },
-  { id: 4, strategy: 'FMCG Trend Following', status: 'completed', time: '1:45 PM', pnl: '+2,100.75', details: {
+  { id: 4, strategy: 'FMCG Trend Following', status: 'completed', tradeType: 'Live trade', pnl: '+2,100.75', details: {
     entry: '35,600',
     exit: '37,700',
     quantity: 40,
@@ -64,7 +64,7 @@ const RecentStrategyActivity: React.FC = () => {
         <div className={styles.tableHeader}>
           <div className={styles.headerCell}>Strategy</div>
           <div className={styles.headerCell}>Status</div>
-          <div className={styles.headerCell}>Time</div>
+          <div className={styles.headerCell}>Trade Type</div>
           <div className={`${styles.headerCell} ${styles.rightAlign}`}>PNL</div>
         </div>
         
@@ -80,8 +80,8 @@ const RecentStrategyActivity: React.FC = () => {
                       {activity.status}
                     </span>
                   </div>
-                  <div className={styles.tableCell}>{activity.time}</div>
-                  <div className={`${styles.tableCell} ${styles.rightAlign} ${
+                  <div className={styles.tableCell}>{activity.tradeType}</div>
+                  <div className={`${styles.tableCell}} ${
                     activity.pnl.startsWith('+') ? styles.profit : 
                     activity.pnl.startsWith('-') ? styles.loss : ''
                   }`}>
