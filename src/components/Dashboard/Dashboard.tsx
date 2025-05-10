@@ -38,7 +38,7 @@ const Dashboard: React.FC = () => {
         {/* Strategy Templates */}
         <section className={styles.strategyTemplates}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>Strategy Templates</h2>
+            <h2 className={styles.sectionTitleStrategyTemplate}>Strategy Templates</h2>
             <button 
               onClick={() => navigate('/strategies')} 
               className={styles.viewMoreButton}
