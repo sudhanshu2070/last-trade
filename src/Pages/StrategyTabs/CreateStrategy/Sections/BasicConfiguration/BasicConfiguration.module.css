@@ -32,16 +32,23 @@
 .timeInputsRow {
   grid-column: 1 / -1; /* Span all columns */
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 5px;
+  width: 90%;
 }
   
   .formGroup {
     margin-bottom: 1rem;
   }
+
+   .formGroupTradingDays {
+    margin-bottom: 1rem;
+    width: 100%;
+  }
+
   .timeInputsRow .formGroup {
     margin-bottom: 1rem;
-    width: 70%;
+    width: 80%;
   }
   
   .label {
@@ -123,20 +130,6 @@
     box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.3);
   }
 
-/* .formGroupTime {
-    margin-bottom: 1rem;
-    width: 70%;
-  }
-
-.formGroupTime .label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #d1d5db;
-    width: 70%;
-  }   */
-
 /* Time Picker Container */
 .timePickerContainer {
   position: relative;
@@ -203,6 +196,52 @@
   margin: 0 5px;
 }
 
+/* Trading Days styles */
+.daysContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.dayCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.checkboxInput {
+  opacity: 0;
+  position: absolute;
+}
+
+.checkboxCustom {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  position: relative;
+  background-color: white;
+}
+
+.checkboxInput:checked + .checkboxCustom {
+  background-color: #4CAF50;
+  border-color: #4CAF50;
+}
+
+.checkboxInput:checked + .checkboxCustom::after {
+  content: '✓';
+  position: absolute;
+  color: white;
+  font-size: 12px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
   @media (max-width: 768px) {
     .section {

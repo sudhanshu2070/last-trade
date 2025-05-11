@@ -143,6 +143,7 @@ const BasicConfiguration: React.FC = () => {
   const [noTradeAfterTime, setNoTradeAfterTime] = useState('15:30');
   const [selectedNoTradeAfterHour, setSelectedNoTradeAfterHour] = useState('15');
   const [selectedNoTradeAfterMinute, setSelectedNoTradeAfterMinute] = useState('30');
+  const [selectedDays, setSelectedDays] = useState<string[]>(['Mon', 'Tue', 'Wed', 'Thu', 'Fri']);
 
   // Sync executionTime with selectedHour and selectedMinute
   useEffect(() => {
@@ -152,6 +153,15 @@ const BasicConfiguration: React.FC = () => {
       setSelectedMinute(minute.padStart(2, '0'));
     }
   }, [executionTime]);
+
+  // Trading days toggle function
+  const toggleDay = (day: string) => {
+    if (selectedDays.includes(day)) {
+      setSelectedDays(selectedDays.filter(d => d !== day));
+    } else {
+      setSelectedDays([...selectedDays, day]);
+    }
+  };
 
   return (
     <div className={styles.section}>
@@ -261,6 +271,25 @@ const BasicConfiguration: React.FC = () => {
           onHourChange={setSelectedNoTradeAfterHour}
           onMinuteChange={setSelectedNoTradeAfterMinute}
         />
+
+        {/* Trading Days Selector*/}
+        <div className={styles.formGroupTradingDays}>
+          <label className={styles.label}>Trading Days</label>
+          <div className={styles.daysContainer}>
+            {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map(day => (
+              <label key={day} className={styles.dayCheckbox}>
+                <input
+                  type="checkbox"
+                  checked={selectedDays.includes(day)}
+                  onChange={() => toggleDay(day)}
+                  className={styles.checkboxInput}
+                />
+                <span className={styles.checkboxCustom}></span>
+                {day}
+              </label>
+            ))}
+          </div>
+        </div>    
       </div>
       </div>
     </div>
