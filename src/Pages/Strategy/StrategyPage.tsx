@@ -1,23 +1,24 @@
 import React, { useState } from 'react';
 import styles from './StrategyPage.module.css';
 import CreateStrategy from '../../Pages/StrategyTabs/CreateStrategy/CreateStrategy';
-import MyStrategies from '../../components/TestComp';
-import DeployedStrategies from '../../components/TestComp';
-import StrategyTemplates from '../../components/TestComp';
+import TestComponet from '../../components/TestComp';
+// import { useNavigate } from 'react-router-dom';
 
 const StrategyPage: React.FC = () => {
   const [activeTab, setActiveTab] = useState('create');
+    // const navigate = useNavigate();
+
 
   const renderTabContent = () => {
     switch (activeTab) {
       case 'create':
         return <CreateStrategy />;
       case 'my':
-        return <MyStrategies />;
+        return <TestComponet name={'My Strategies'} />;
       case 'deployed':
-        return <DeployedStrategies />;
+        return <TestComponet name={'Deployed Strategies'} />;
       case 'templates':
-        return <StrategyTemplates />;
+        return <TestComponet name={'All template'} />;
       default:
         return <CreateStrategy />;
     }

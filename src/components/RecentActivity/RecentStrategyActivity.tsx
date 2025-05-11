@@ -64,7 +64,7 @@ const RecentStrategyActivity: React.FC = () => {
         <div className={styles.tableHeader}>
           <div className={styles.headerCell}>Strategy</div>
           <div className={styles.headerCell}>Status</div>
-          <div className={styles.headerCell}>Trade Type</div>
+          <div className={styles.headerCell}>Deployment Type</div>
           <div className={`${styles.headerCell} ${styles.rightAlign}`}>PNL</div>
         </div>
         

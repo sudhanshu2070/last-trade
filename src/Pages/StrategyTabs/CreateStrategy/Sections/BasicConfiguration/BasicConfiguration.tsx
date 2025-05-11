@@ -1,8 +1,83 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './BasicConfiguration.module.css';
+
 
 const BasicConfiguration: React.FC = () => {
   const [orderType, setOrderType] = useState('MIS'); 
+  const [executionTime, setExecutionTime] = useState('');
+  const [selectedHour, setSelectedHour] = useState('00');
+  const [selectedMinute, setSelectedMinute] = useState('00');
+  const [showTimeDropdown, setShowTimeDropdown] = useState(false);
+
+  // Sync executionTime with selectedHour and selectedMinute
+  useEffect(() => {
+    if (executionTime.includes(':')) {
+      const [hour, minute] = executionTime.split(':');
+      setSelectedHour(hour.padStart(2, '0'));
+      setSelectedMinute(minute.padStart(2, '0'));
+    }
+  }, [executionTime]);
+
+    // Handle manual input for executionTime
+    const handleTimeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value.replace(/[^0-9]/g, ''); // numbers only
+      
+      // If empty, clear everything
+      if (value === '') {
+        setExecutionTime('');
+        setSelectedHour('00');
+        setSelectedMinute('00');
+        return;
+      }
+
+      // Limit to 4 digits
+      const digits = value.slice(0, 4);
+      
+      // Determine hour and minute parts
+      let hour = digits.slice(0, 2);
+      let minute = digits.slice(2, 4);
+
+      // Validate hours (00-23)
+      if (hour.length === 2) {
+        const hourNum = parseInt(hour, 10);
+        if (hourNum > 23) {
+          hour = '23';
+        } else if (hourNum < 0) {
+          hour = '00';
+        }
+      }
+
+      // Validate minutes (00-59)
+      if (minute.length === 2) {
+        const minuteNum = parseInt(minute, 10);
+        if (minuteNum > 59) {
+          minute = '59';
+        } else if (minuteNum < 0) {
+          minute = '00';
+        }
+      }
+
+      // Format the time string
+      let formattedTime = '';
+      if (digits.length > 0) {
+        formattedTime = hour.padStart(2, '0');
+        if (digits.length > 2) {
+          formattedTime += `:${minute.padStart(2, '0')}`;
+        }
+      }
+
+      // Update states
+      setExecutionTime(formattedTime);
+      setSelectedHour(hour.padStart(2, '0'));
+      setSelectedMinute(minute.padStart(2, '0'));
+
+      // Auto-move cursor to end after formatting
+      const inputElement = e.target;
+      setTimeout(() => {
+        inputElement.setSelectionRange(formattedTime.length, formattedTime.length);
+      }, 0);
+    };
+
 
   return (
     <div className={styles.section}>
@@ -17,7 +92,9 @@ const BasicConfiguration: React.FC = () => {
             Strategy Type
           </label>
           <select id="strategyType" className={styles.input}>
-            <option value="">Select strategy type</option>
+            {/* <option value="">Select strategy type</option> */}
+            <option value="momentum">Time Based</option>
+            <option value="momentum">Indicator</option>
             <option value="momentum">Momentum</option>
             <option value="mean-reversion">Mean Reversion</option>
             <option value="breakout">Breakout</option>
@@ -30,7 +107,7 @@ const BasicConfiguration: React.FC = () => {
             Instrument
           </label>
           <select id="instrument" className={styles.input}>
-            <option value="">Select instrument</option>
+            {/* <option value="">Select instrument</option> */}
             <option value="nifty50">NIFTY 50</option>
             <option value="banknifty">BANKNIFTY</option>
             <option value="finnifty">FINNIFTY</option>
@@ -81,47 +158,56 @@ const BasicConfiguration: React.FC = () => {
           </div>
         </div>
 
-
+        {/* New Time Picker Field */}
         <div className={styles.formGroup}>
-          <label htmlFor="strategyName" className={styles.label}>
-            Strategy Name
+          <label htmlFor="executionTime" className={styles.label}>
+            Execution Time
           </label>
-          <input
-            id="strategyName"
-            type="text"
-            className={styles.input}
-            placeholder="Golden Cross Momentum"
-          />
+            <div className={styles.timePickerContainer}>
+            <input
+              id="executionTime"
+              type="text"
+              // pattern="^([01]\d|2[0-3]):([0-5]\d)$"
+              value={executionTime}
+              placeholder="HH:MM"
+              onChange={handleTimeInput}
+              className={styles.input}
+            />
+            <span
+              className={styles.clockIcon}
+              onClick={() => setShowTimeDropdown(!showTimeDropdown)}
+            >
+              🕒
+            </span>
+            {showTimeDropdown && (
+              <div className={styles.timeDropdown}>
+              <select
+                className={styles.timeSelect}
+                value={selectedHour}
+                onChange={(e) => setSelectedHour(e.target.value)}
+              >
+                {Array.from({ length: 24 }, (_, i) => (
+                <option key={i} value={String(i).padStart(2, '0')}>
+                  {String(i).padStart(2, '0')}
+                </option>
+                ))}
+              </select>
+              <span className={styles.timeSeparator}>:</span>
+              <select
+                className={styles.timeSelect}
+                value={selectedMinute}
+                onChange={(e) => setSelectedMinute(e.target.value)}
+              >
+                {Array.from({ length: 60 }, (_, i) => (
+                <option key={i} value={String(i).padStart(2, '0')}>
+                  {String(i).padStart(2, '0')}
+                </option>
+                ))}
+              </select>
+              </div>
+            )}
+            </div>
         </div>
-        
-        
-        
-
-        
-        <div className={styles.formGroup}>
-          <label htmlFor="timeframe" className={styles.label}>
-            Timeframe
-          </label>
-          <select id="timeframe" className={styles.input}>
-            <option value="">Select timeframe</option>
-            <option value="5min">5 Minute</option>
-            <option value="15min">15 Minute</option>
-            <option value="1hour">1 Hour</option>
-            <option value="1day">1 Day</option>
-          </select>
-        </div>
-      </div>
-      
-      <div className={styles.formGroup}>
-        <label htmlFor="description" className={styles.label}>
-          Description
-        </label>
-        <textarea
-          id="description"
-          className={`${styles.input} ${styles.textarea}`}
-          placeholder="Describe your strategy rules and objectives..."
-          rows={4}
-        />
       </div>
     </div>
   );

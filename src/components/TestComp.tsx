@@ -1,10 +1,10 @@
 import React from 'react';
 
-const TestComp: React.FC = () => {
+const TestComp: React.FC<{ name: string }> = ({ name }) => {
     return (
         <div>
-            <h1>Test Component</h1>
-            <p>This is a sample component.</p>
+            <p>Test Component</p>
+            <h1>This is a {name} component.</h1>
         </div>
     );
 };

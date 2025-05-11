@@ -44,9 +44,9 @@ function App() {
                 <Routes>
                   <Route path="/" element={<Dashboard />} />
                   <Route path="/portfolio" element={<BrokerConnection />} />
-                  <Route path="/orders" element={<TestComp />} />
+                  <Route path="/orders" element={<TestComp name={'Orders'}/>} />
                   <Route path="/strategies" element={<StrategyPage />} />
-                  <Route path="/settings" element={<TestComp />} />
+                  <Route path="/settings" element={<TestComp name={'Setting'}/>} />
                 </Routes>
               </main>
             </div>

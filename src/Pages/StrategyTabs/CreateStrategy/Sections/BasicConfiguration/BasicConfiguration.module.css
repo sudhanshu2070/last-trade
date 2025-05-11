@@ -105,6 +105,74 @@
     box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.3);
   }
 
+  /* Existing styles assumed to be present for section, sectionTitle, formGrid, formGroup, label, input, radioGroup, radioLabel, radioInput, radioCustom */
+
+/* Time Picker Container */
+.timePickerContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 70%;
+}
+
+/* Clock Icon (right side) */
+.clockIcon {
+  position: absolute;
+  right: 10px;
+  font-size: 18px;
+  color: #666;
+  cursor: pointer;
+  z-index: 1;
+}
+
+/* Adjust input padding to accommodate icons */
+.timePickerContainer .input {
+  padding-left: 10px; 
+  padding-right: 35px; /* Space for clock icon */
+  cursor: pointer;
+}
+
+/* Time Dropdown */
+.timeDropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #333; /* Dark background */
+  border: 1px solid #444;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  z-index: 10;
+}
+
+/* Time Select */
+.timeSelect {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #555;
+  border-radius: 4px;
+  background: #444; /* Slightly lighter dark for contrast */
+  color: #fff; /* White text for readability */
+  font-size: 14px;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.timeSelect:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Time Separator */
+.timeSeparator {
+  font-size: 16px;
+  color: #fff;
+  margin: 0 5px;
+}
+
 
   @media (max-width: 768px) {
     .section {
