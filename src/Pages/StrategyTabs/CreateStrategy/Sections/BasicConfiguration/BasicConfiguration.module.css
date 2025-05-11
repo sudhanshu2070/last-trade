@@ -41,7 +41,7 @@
 
   .timeInputsRow .formGroup {
     margin-bottom: 1rem;
-    width: 80%;
+    width: 70%;
   }
   
   .label {
@@ -130,7 +130,7 @@
   position: relative;
   display: flex;
   align-items: center;
-  width: 80%;
+  width: 100%;
 }
 
 /* Clock Icon (right side) */

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styles from './BasicConfiguration.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSliders } from '@fortawesome/free-solid-svg-icons';
@@ -25,6 +25,21 @@ const TimeInput: React.FC<TimeInputProps> = ({
   label,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null); 
+
+  // Hide dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleTimeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/[^0-9]/g, '');
@@ -73,7 +88,7 @@ const TimeInput: React.FC<TimeInputProps> = ({
   };
 
   return (
-    <div className={styles.formGroup}>
+    <div className={styles.formGroup} ref={containerRef}>
       <label htmlFor={`${label.toLowerCase().replace(' ', '-')}-time`} className={styles.label}>
         {label}
       </label>
@@ -134,12 +149,10 @@ const BasicConfiguration: React.FC = () => {
   const [orderType, setOrderType] = useState('MIS'); 
   const [executionTime, setExecutionTime] = useState('09:20');
   const [selectedHour, setSelectedHour] = useState('09');
-  const [selectedMinute, setSelectedMinute] = useState('20');
-  
+  const [selectedMinute, setSelectedMinute] = useState('20');  
   const [squareOffTime, setSquareOffTime] = useState('15:30');
   const [selectedSquareOffHour, setSelectedSquareOffHour] = useState('15');
   const [selectedSquareOffMinute, setSelectedSquareOffMinute] = useState('30');
-  
   const [noTradeAfterTime, setNoTradeAfterTime] = useState('15:30');
   const [selectedNoTradeAfterHour, setSelectedNoTradeAfterHour] = useState('15');
   const [selectedNoTradeAfterMinute, setSelectedNoTradeAfterMinute] = useState('30');
