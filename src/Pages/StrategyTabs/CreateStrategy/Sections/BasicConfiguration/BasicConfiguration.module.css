@@ -15,15 +15,33 @@
     gap: 0.5rem;
   }
   
-  .formGrid {
+  /* .formGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 3rem;
     margin-bottom: 1rem;
-  }
+  } */
+
+  .formGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 columns */
+  grid-template-rows: auto auto; /* 2 rows */
+  gap: 16px;
+}
+
+.timeInputsRow {
+  grid-column: 1 / -1; /* Span all columns */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+}
   
   .formGroup {
     margin-bottom: 1rem;
+  }
+  .timeInputsRow .formGroup {
+    margin-bottom: 1rem;
+    width: 70%;
   }
   
   .label {
@@ -105,12 +123,26 @@
     box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.3);
   }
 
+/* .formGroupTime {
+    margin-bottom: 1rem;
+    width: 70%;
+  }
+
+.formGroupTime .label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #d1d5db;
+    width: 70%;
+  }   */
+
 /* Time Picker Container */
 .timePickerContainer {
   position: relative;
   display: flex;
   align-items: center;
-  width: 70%;
+  width: 80%;
 }
 
 /* Clock Icon (right side) */
