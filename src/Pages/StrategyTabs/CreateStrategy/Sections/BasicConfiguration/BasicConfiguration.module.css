@@ -18,8 +18,8 @@
   .formGrid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 1.5rem;
+    gap: 3rem;
+    margin-bottom: 1rem;
   }
   
   .formGroup {
@@ -104,8 +104,6 @@
   .radioInput:focus + .radioCustom {
     box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.3);
   }
-
-  /* Existing styles assumed to be present for section, sectionTitle, formGrid, formGroup, label, input, radioGroup, radioLabel, radioInput, radioCustom */
 
 /* Time Picker Container */
 .timePickerContainer {

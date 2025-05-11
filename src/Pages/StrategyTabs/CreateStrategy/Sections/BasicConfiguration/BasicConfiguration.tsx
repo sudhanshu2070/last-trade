@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styles from './BasicConfiguration.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSliders } from '@fortawesome/free-solid-svg-icons';
 
 
 const BasicConfiguration: React.FC = () => {
   const [orderType, setOrderType] = useState('MIS'); 
   const [executionTime, setExecutionTime] = useState('');
-  const [selectedHour, setSelectedHour] = useState('00');
-  const [selectedMinute, setSelectedMinute] = useState('00');
+  const [selectedHour, setSelectedHour] = useState('09');
+  const [selectedMinute, setSelectedMinute] = useState('20');
   const [showTimeDropdown, setShowTimeDropdown] = useState(false);
 
   // Sync executionTime with selectedHour and selectedMinute
@@ -82,7 +84,8 @@ const BasicConfiguration: React.FC = () => {
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>
-        <span>⚙️</span> Basic Configuration
+        <FontAwesomeIcon icon={faSliders} />      
+        Basic Configuration
       </h3>
       
       <div className={styles.formGrid}>
