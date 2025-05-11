@@ -26,9 +26,6 @@ const StrategyPage: React.FC = () => {
 
   return (
     <div className={styles.strategyPage}>
-      <div className={styles.header}>
-        <h1>Strategy Management</h1>
-      </div>
       
       <div className={styles.tabContainer}>
         <button
