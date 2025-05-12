@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styles from './OrderLegs.module.css';
-import { FiPlus, FiX } from 'react-icons/fi';
+import { FiPlus } from 'react-icons/fi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLayerGroup } from '@fortawesome/free-solid-svg-icons';
+import { faLayerGroup, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const OrderLegs: React.FC = () => {
   const [legs, setLegs] = useState([
@@ -51,7 +51,7 @@ const OrderLegs: React.FC = () => {
                   className={styles.removeLegButton}
                   onClick={() => removeLeg(leg.id)}
                 >
-                  <FiX />
+                  <FontAwesomeIcon icon={faTrash} />
                 </button>
               )}
             </div>

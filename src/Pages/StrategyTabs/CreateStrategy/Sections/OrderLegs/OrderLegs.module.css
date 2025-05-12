@@ -44,9 +44,9 @@
   }
   
   .removeLegButton {
-    background-color: rgba(239, 68, 68, 0.1);
-    color: #ef4444;
-    border: none;
+    /* background-color: rgba(239, 68, 68, 0.8); deeper red */
+    color: #ffffff; /* white for contrast */
+    /* border: 1px solid #ef4444; */
     border-radius: 0.25rem;
     width: 1.75rem;
     height: 1.75rem;
@@ -54,12 +54,14 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
   }
-  
+
   .removeLegButton:hover {
-    background-color: rgba(239, 68, 68, 0.2);
+    background-color: #ef4444; 
+    border-color: #ef4444;
   }
+
   
   .legForm {
     display: grid;
