@@ -11,7 +11,7 @@ const OrderLegs: React.FC = () => {
 
   const addLeg = () => {
     setLegs([...legs, { 
-      id: Date.now(), 
+      id: legs.length > 0 ? legs[legs.length - 1].id + 1 : 1, 
       type: 'BUY', 
       instrument: '', 
       quantity: 1, 
