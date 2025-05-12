@@ -6,7 +6,7 @@ import { faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 
 const OrderLegs: React.FC = () => {
   const [legs, setLegs] = useState([
-    { id: 1, type: 'BUY', instrument: 'NIFTY 50', quantity: 50, orderType: 'MARKET' }
+    { id: 1, type: 'BUY', instrument: 'NIFTY 50', quantity: 50, orderType: 'MARKET', optionType: 'CALL', stopLoss: 30, target: 60 }
   ]);
 
   const addLeg = () => {
@@ -15,7 +15,10 @@ const OrderLegs: React.FC = () => {
       type: 'BUY', 
       instrument: '', 
       quantity: 1, 
-      orderType: 'LIMIT' 
+      orderType: 'LIMIT',
+      optionType: 'CALL',
+      stopLoss: 30,
+      target: 60
     }]);
   };
 
@@ -56,28 +59,22 @@ const OrderLegs: React.FC = () => {
             <div className={styles.legForm}>
               <div className={styles.formGroup}>
                 <label className={styles.label}>Type</label>
-                <select
-                  value={leg.type}
-                  onChange={(e) => updateLeg(leg.id, 'type', e.target.value)}
-                  className={styles.input}
-                >
-                  <option value="BUY">BUY</option>
-                  <option value="SELL">SELL</option>
-                </select>
-              </div>
-              
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Instrument</label>
-                <select
-                  value={leg.instrument}
-                  onChange={(e) => updateLeg(leg.id, 'instrument', e.target.value)}
-                  className={styles.input}
-                >
-                  <option value="">Select instrument</option>
-                  <option value="NIFTY 50">NIFTY 50</option>
-                  <option value="BANKNIFTY">BANKNIFTY</option>
-                  <option value="FINNIFTY">FINNIFTY</option>
-                </select>
+                <div className={styles.actionButtonGroup}>
+                  <button
+                    type="button"
+                    className={`${styles.actionButton} ${styles.buyButton} ${leg.type === 'BUY' ? styles.active : ''}`}
+                    onClick={() => updateLeg(leg.id, 'type', 'BUY')}
+                  >
+                    ↑ BUY
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.actionButton} ${styles.sellButton} ${leg.type === 'SELL' ? styles.active : ''}`}
+                    onClick={() => updateLeg(leg.id, 'type', 'SELL')}
+                  >
+                    ↓ SELL
+                  </button>
+                </div>
               </div>
               
               <div className={styles.formGroup}>
@@ -90,20 +87,64 @@ const OrderLegs: React.FC = () => {
                   className={styles.input}
                 />
               </div>
-              
+
               <div className={styles.formGroup}>
-                <label className={styles.label}>Order Type</label>
+                <label className={styles.label}>Option Type</label>
+                <div className={styles.actionButtonGroup}>
+                  <button
+                    type="button"
+                    className={`${styles.actionButton} ${styles.callButton} ${leg.optionType === 'CALL' ? styles.active : ''}`}
+                    onClick={() => updateLeg(leg.id, 'optionType', 'CALL')}
+                  >
+                    CALL
+                  </button>
+                  <button
+                    type="button"
+                    className={`${styles.actionButton} ${styles.putButton} ${leg.optionType === 'PUT' ? styles.active : ''}`}
+                    onClick={() => updateLeg(leg.id, 'optionType', 'PUT')}
+                  >
+                    PUT
+                  </button>
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Strike Selection</label>
                 <select
-                  value={leg.orderType}
-                  onChange={(e) => updateLeg(leg.id, 'orderType', e.target.value)}
+                  value={leg.instrument}
+                  onChange={(e) => updateLeg(leg.id, 'instrument', e.target.value)}
                   className={styles.input}
                 >
-                  <option value="MARKET">MARKET</option>
-                  <option value="LIMIT">LIMIT</option>
-                  <option value="SL">STOP LOSS</option>
-                  <option value="SL-M">SL-MARKET</option>
+                    <option value="ATM">ATM</option>
+                    <option value="ITM1">ITM1</option>
+                    <option value="ITM2">ITM2</option>
+                    <option value="OTM1">OTM1</option>
+                    <option value="OTM2">OTM2</option>
                 </select>
               </div>
+              
+                <div className={styles.formGroup}>
+                <label className={styles.label}>Stop Loss (Points)</label>
+                <input
+                  type="number"
+                  min="1"
+                  value={leg.stopLoss || ''}
+                  onChange={(e) => updateLeg(leg.id, 'stopLoss', e.target.value)}
+                  className={styles.input}
+                />
+                </div>
+
+                <div className={styles.formGroup}>
+                <label className={styles.label}>Target (Points)</label>
+                <input
+                  type="number"
+                  min="1"
+                  value={leg.target || ''}
+                  onChange={(e) => updateLeg(leg.id, 'target', e.target.value)}
+                  className={styles.input}
+                />
+                </div>
+
             </div>
           </div>
         ))}
