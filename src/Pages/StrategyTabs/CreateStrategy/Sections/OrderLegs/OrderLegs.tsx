@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import styles from './OrderLegs.module.css';
 import { FiPlus, FiX } from 'react-icons/fi';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLayerGroup } from '@fortawesome/free-solid-svg-icons';
 
 const OrderLegs: React.FC = () => {
   const [legs, setLegs] = useState([
@@ -32,7 +34,8 @@ const OrderLegs: React.FC = () => {
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>
-        <span>🧩</span> Order Legs
+        <FontAwesomeIcon icon={faLayerGroup} />
+        Order Legs
       </h3>
       
       <div className={styles.legsContainer}>

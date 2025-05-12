@@ -184,6 +184,7 @@ const BasicConfiguration: React.FC = () => {
       </h3>
       
       <div className={styles.formGrid}>
+        
         <div className={styles.formGroup}>
           <label htmlFor="strategyType" className={styles.label}>
             Strategy Type
