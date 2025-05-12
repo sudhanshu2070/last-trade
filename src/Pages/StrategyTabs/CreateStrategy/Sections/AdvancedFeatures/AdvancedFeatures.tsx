@@ -1,34 +1,39 @@
 import React, { useState } from 'react';
 import styles from './AdvancedFeatures.module.css';
 
-const options = [
-  'Combined Premium',
-  'Move SL to Cost',
-  'Exit All on SL/Target',
-  'Pre-punch SL',
-  'Wait & Trade',
-  'Premium Difference',
-  'Re-entry/Execute',
-  'Trail SL',
-];
-
 const AdvancedFeatures: React.FC = () => {
-  const [selectedFeature, setSelectedFeature] = useState('');
+  const [selectedOption, setSelectedOption] = useState<string>('');
+
+  const handleOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSelectedOption(e.target.value);
+  };
+
+  const options = [
+    'Combined Premium',
+    'Move SL to Cost',
+    'Exit All on SL/Target',
+    'Pre-punch SL',
+    'Wait & Trade',
+    'Premium Difference',
+    'Re-entry/Execute',
+    'Trail SL'
+  ];
 
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>
-        <span>⚙️</span> Advanced Features
+        <span>🔧</span> Advanced Features
       </h3>
-      <div className={styles.radioGroup}>
+      
+      <div className={styles.radioGrid}>
         {options.map((option) => (
           <label key={option} className={styles.radioLabel}>
             <input
               type="radio"
-              name="advancedFeature"
+              name="advancedFeatures"
               value={option}
-              checked={selectedFeature === option}
-              onChange={(e) => setSelectedFeature(e.target.value)}
+              checked={selectedOption === option}
+              onChange={handleOptionChange}
               className={styles.radioInput}
             />
             <span className={styles.radioText}>{option}</span>
