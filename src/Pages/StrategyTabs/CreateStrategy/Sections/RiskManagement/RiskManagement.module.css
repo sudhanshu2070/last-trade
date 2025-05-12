@@ -9,48 +9,81 @@
   font-size: 1.25rem;
   font-weight: 500;
   margin-top: 0;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   color: #f9fafb;
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-.strategyContainer {
+.optionsRow {
   display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
-.strategyBox {
-  background-color: rgb(55 65 81);
-  border-radius: 0.5rem;
-  padding: 1.25rem;
+.optionContainer {
+  flex: 1;
 }
 
-.radioLabel {
+.optionHeader {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-  cursor: pointer;
+  margin-bottom: 0.75rem;
 }
 
-.radioInput {
-  width: 1.25rem;
-  height: 1.25rem;
-  accent-color: #2563eb;
-  cursor: pointer;
-}
-
-.radioText {
+.optionLabel {
   color: #f9fafb;
   font-size: 0.95rem;
   font-weight: 500;
-  user-select: none;
 }
 
-.inputGroup {
+.checkboxContainer {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+}
+
+.checkboxInput {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.checkmark {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(75 85 99);
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.checkboxInput:checked ~ .checkmark {
+  background-color: #2563eb;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.checkboxInput:checked ~ .checkmark:after {
+  display: block;
+}
+
+.inputContainer {
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -60,17 +93,21 @@
   background-color: rgb(75 85 99);
   border: 1px solid rgb(107 114 128);
   border-radius: 0.375rem;
-  padding: 0.5rem 0.75rem;
+  padding: 0.6rem 0.75rem;
   color: #f9fafb;
   font-size: 1rem;
-  width: 100%;
-  max-width: 120px;
-  transition: border-color 0.2s;
+  width: 400px;
+  transition: all 0.2s;
 }
 
 .valueInput:focus {
   outline: none;
   border-color: #2563eb;
+}
+
+.valueInput.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .currency {
