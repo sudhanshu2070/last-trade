@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faGear } from '@fortawesome/free-solid-svg-icons';
 import styles from './AdvancedFeatures.module.css';
 
 const AdvancedFeatures: React.FC = () => {
@@ -34,7 +34,8 @@ const AdvancedFeatures: React.FC = () => {
     <div className={styles.section}>
       <div className={styles.sectionHeader} onClick={toggleExpand}>
         <h3 className={styles.sectionTitle}>
-          <span>🔧</span> Advanced Features
+            <FontAwesomeIcon icon={faGear} />
+          Advanced Features
         </h3>
         <FontAwesomeIcon 
           icon={faChevronDown} 
