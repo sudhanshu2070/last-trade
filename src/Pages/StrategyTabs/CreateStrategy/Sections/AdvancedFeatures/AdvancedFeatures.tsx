@@ -1,11 +1,22 @@
 import React, { useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import styles from './AdvancedFeatures.module.css';
 
 const AdvancedFeatures: React.FC = () => {
-  const [selectedOption, setSelectedOption] = useState<string>('');
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
+  const [isExpanded, setIsExpanded] = useState(true);
 
-  const handleOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedOption(e.target.value);
+  const handleOptionChange = (option: string) => {
+    setSelectedOptions(prev => 
+      prev.includes(option) 
+        ? prev.filter(item => item !== option)
+        : [...prev, option]
+    );
+  };
+
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
   };
 
   const options = [
@@ -21,25 +32,31 @@ const AdvancedFeatures: React.FC = () => {
 
   return (
     <div className={styles.section}>
-      <h3 className={styles.sectionTitle}>
-        <span>🔧</span> Advanced Features
-      </h3>
-      
-      <div className={styles.radioGrid}>
-        {options.map((option) => (
-          <label key={option} className={styles.radioLabel}>
-            <input
-              type="radio"
-              name="advancedFeatures"
-              value={option}
-              checked={selectedOption === option}
-              onChange={handleOptionChange}
-              className={styles.radioInput}
-            />
-            <span className={styles.radioText}>{option}</span>
-          </label>
-        ))}
+      <div className={styles.sectionHeader} onClick={toggleExpand}>
+        <h3 className={styles.sectionTitle}>
+          <span>🔧</span> Advanced Features
+        </h3>
+        <FontAwesomeIcon 
+          icon={faChevronDown} 
+          className={`${styles.chevron} ${isExpanded ? styles.expanded : ''}`}
+        />
       </div>
+      
+      {isExpanded && (
+        <div className={styles.checkboxGrid}>
+          {options.map((option) => (
+            <label key={option} className={styles.checkboxLabel}>
+              <input
+                type="checkbox"
+                checked={selectedOptions.includes(option)}
+                onChange={() => handleOptionChange(option)}
+                className={styles.checkboxInput}
+              />
+              <span className={styles.checkboxText}>{option}</span>
+            </label>
+          ))}
+        </div>
+      )}
     </div>
   );
 };
