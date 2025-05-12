@@ -1,114 +1,39 @@
 import React, { useState } from 'react';
 import styles from './AdvancedFeatures.module.css';
 
-const AdvancedFeatures: React.FC = () => {
-  const [settings, setSettings] = useState({
-    trailingStopLoss: false,
-    autoHedge: false,
-    priceDeviation: '2',
-    timeRestriction: false,
-    startTime: '09:15',
-    endTime: '15:15'
-  });
+const options = [
+  'Combined Premium',
+  'Move SL to Cost',
+  'Exit All on SL/Target',
+  'Pre-punch SL',
+  'Wait & Trade',
+  'Premium Difference',
+  'Re-entry/Execute',
+  'Trail SL',
+];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value, type, checked } = e.target;
-    setSettings({
-      ...settings,
-      [name]: type === 'checkbox' ? checked : value
-    });
-  };
+const AdvancedFeatures: React.FC = () => {
+  const [selectedFeature, setSelectedFeature] = useState('');
 
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>
-        <span>🔧</span> Advanced Features
+        <span>⚙️</span> Advanced Features
       </h3>
-      
-      <div className={styles.featuresGrid}>
-        <div className={styles.featureToggle}>
-          <label className={styles.toggleLabel}>
+      <div className={styles.radioGroup}>
+        {options.map((option) => (
+          <label key={option} className={styles.radioLabel}>
             <input
-              type="checkbox"
-              name="trailingStopLoss"
-              checked={settings.trailingStopLoss}
-              onChange={handleChange}
-              className={styles.toggleInput}
+              type="radio"
+              name="advancedFeature"
+              value={option}
+              checked={selectedFeature === option}
+              onChange={(e) => setSelectedFeature(e.target.value)}
+              className={styles.radioInput}
             />
-            <span className={styles.toggleSlider}></span>
-            <span className={styles.toggleText}>Trailing Stop Loss</span>
+            <span className={styles.radioText}>{option}</span>
           </label>
-          {settings.trailingStopLoss && (
-            <div className={styles.toggleContent}>
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Activation Price (%)</label>
-                <input
-                  type="number"
-                  name="priceDeviation"
-                  value={settings.priceDeviation}
-                  onChange={handleChange}
-                  className={styles.input}
-                  min="0.1"
-                  step="0.1"
-                />
-              </div>
-            </div>
-          )}
-        </div>
-        
-        <div className={styles.featureToggle}>
-          <label className={styles.toggleLabel}>
-            <input
-              type="checkbox"
-              name="autoHedge"
-              checked={settings.autoHedge}
-              onChange={handleChange}
-              className={styles.toggleInput}
-            />
-            <span className={styles.toggleSlider}></span>
-            <span className={styles.toggleText}>Auto Hedge Positions</span>
-          </label>
-        </div>
-        
-        <div className={styles.featureToggle}>
-          <label className={styles.toggleLabel}>
-            <input
-              type="checkbox"
-              name="timeRestriction"
-              checked={settings.timeRestriction}
-              onChange={handleChange}
-              className={styles.toggleInput}
-            />
-            <span className={styles.toggleSlider}></span>
-            <span className={styles.toggleText}>Time Restriction</span>
-          </label>
-          {settings.timeRestriction && (
-            <div className={styles.toggleContent}>
-              <div className={styles.timeRange}>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>From</label>
-                  <input
-                    type="time"
-                    name="startTime"
-                    value={settings.startTime}
-                    onChange={handleChange}
-                    className={styles.input}
-                  />
-                </div>
-                <div className={styles.formGroup}>
-                  <label className={styles.label}>To</label>
-                  <input
-                    type="time"
-                    name="endTime"
-                    value={settings.endTime}
-                    onChange={handleChange}
-                    className={styles.input}
-                  />
-                </div>
-              </div>
-            </div>
-          )}
-        </div>
+        ))}
       </div>
     </div>
   );

@@ -15,114 +15,23 @@
     gap: 0.5rem;
   }
   
-  .featuresGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1.5rem;
-  }
-  
-  .featureToggle {
-    background-color: rgb(17 24 39);
-    border-radius: 0.5rem;
-    padding: 1.25rem;
-    border: 1px solid rgb(55 65 81);
-  }
-  
-  .toggleLabel {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    cursor: pointer;
-    margin-bottom: 1rem;
-  }
-  
-  .toggleInput {
-    position: absolute;
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  .toggleSlider {
-    position: relative;
-    display: inline-block;
-    width: 2.75rem;
-    height: 1.5rem;
-    background-color: rgb(55 65 81);
-    border-radius: 1.5rem;
-    transition: background-color 0.2s ease;
-  }
-  
-  .toggleInput:checked + .toggleSlider {
-    background-color: #3b82f6;
-  }
-  
-  .toggleSlider:before {
-    content: '';
-    position: absolute;
-    width: 1.25rem;
-    height: 1.25rem;
-    left: 0.125rem;
-    bottom: 0.125rem;
-    background-color: white;
-    border-radius: 50%;
-    transition: transform 0.2s ease;
-  }
-  
-  .toggleInput:checked + .toggleSlider:before {
-    transform: translateX(1.25rem);
-  }
-  
-  .toggleText {
-    font-size: 0.95rem;
-    font-weight: 500;
-    color: #f9fafb;
-  }
-  
-  .toggleContent {
-    padding-top: 1rem;
-    border-top: 1px solid rgb(55 65 81);
-    margin-top: 1rem;
-  }
-  
-  .timeRange {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-  }
-  
-  .formGroup {
-    margin-bottom: 0;
-  }
-  
-  .label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #d1d5db;
-  }
-  
-  .input {
-    width: 100%;
-    padding: 0.5rem 0.75rem;
-    background-color: rgb(31 41 55);
-    border: 1px solid rgb(55 65 81);
-    border-radius: 0.375rem;
-    color: #f3f4f6;
-    font-size: 0.875rem;
-  }
-  
-  @media (max-width: 768px) {
-    .section {
-      padding: 1rem;
-    }
-    
-    .featuresGrid {
-      grid-template-columns: 1fr;
-    }
-    
-    .timeRange {
-      grid-template-columns: 1fr;
-    }
-  }
+  .radioGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.radioLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.radioInput {
+  accent-color: #2563eb; /* Tailwind blue-600 */
+}
+
+.radioText {
+  user-select: none;
+}
