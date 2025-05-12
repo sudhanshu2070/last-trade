@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styles from './RiskManagement.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faShieldHalved } from '@fortawesome/free-solid-svg-icons';
 
 const RiskManagement: React.FC = () => {
   const [lossEnabled, setLossEnabled] = useState<boolean>(true);
@@ -10,7 +12,8 @@ const RiskManagement: React.FC = () => {
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>
-        <span>🛡️</span> Risk Management
+        <FontAwesomeIcon icon={faShieldHalved} />
+        Risk Management
       </h3>
       
       <div className={styles.optionsRow}>
