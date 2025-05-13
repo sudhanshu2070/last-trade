@@ -1,11 +1,14 @@
 import React from 'react';
 import styles from './StrategyPerformancePreview.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChartPie } from '@fortawesome/free-solid-svg-icons';
 
 const StrategyPerformancePreview: React.FC = () => {
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>
-        <span>🔍</span> Strategy Performance Preview
+        <FontAwesomeIcon icon={faChartPie} /> 
+        Strategy Performance Preview
       </h3>
       
       <div className={styles.previewContainer}>
