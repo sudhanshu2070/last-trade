@@ -78,14 +78,13 @@
 }
 
 .strategyControls {
-  
   background-color: rgb(17 24 39);
   border-radius: 0.5rem;
   padding: 1.25rem;
   display: flex;
   align-items: flex-end;
   gap: 1.5rem;
-  margin-top: 1.5rem;
+  /* margin-top: 1.5rem; */
 }
 
 .strategyNameGroup {
