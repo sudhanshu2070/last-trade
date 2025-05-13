@@ -5,11 +5,35 @@
   margin-bottom: 1.5rem;
 }
 
+.headerRow {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.backtestButton {
+  background-color: rgb(75 85 99);
+  color: white;
+  border: none;
+  border-radius: 0.375rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  margin-left: auto; /* Pushes the button to the rightmost side */
+}
+
+.backtestButton:hover {
+  background-color: #1d4ed8;
+}
+
 .sectionTitle {
   font-size: 1.25rem;
   font-weight: 500;
-  margin-top: 0;
-  margin-bottom: 1.25rem;
+  margin: 0;
   color: #f9fafb;
   display: flex;
   align-items: center;

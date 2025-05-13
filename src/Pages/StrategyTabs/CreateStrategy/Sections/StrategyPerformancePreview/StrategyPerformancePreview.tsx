@@ -6,10 +6,16 @@ import { faChartPie } from '@fortawesome/free-solid-svg-icons';
 const StrategyPerformancePreview: React.FC = () => {
   return (
     <div className={styles.section}>
-      <h3 className={styles.sectionTitle}>
-        <FontAwesomeIcon icon={faChartPie} /> 
-        Strategy Performance Preview
-      </h3>
+      <div className={styles.headerRow}>
+        <h3 className={styles.sectionTitle}>
+          <FontAwesomeIcon icon={faChartPie} /> 
+          Strategy Performance Preview
+        </h3>
+
+        <button className={styles.backtestButton}>
+          Run Full Backtest
+        </button>
+      </div>
       
       <div className={styles.previewContainer}>
         <div className={styles.metricsGrid}>
