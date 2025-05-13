@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import styles from './ProfitTrailing.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChartLine } from '@fortawesome/free-solid-svg-icons';
 
 const ProfitTrailing: React.FC = () => {
   const [trailBy, setTrailBy] = useState<'points' | 'profit'>('points');
@@ -10,7 +12,8 @@ const ProfitTrailing: React.FC = () => {
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>
-        <span>📈</span> Profit Trailing
+        <FontAwesomeIcon icon={faChartLine} /> 
+        Profit Trailing
       </h3>
       
       <div className={styles.controlsContainer}>
