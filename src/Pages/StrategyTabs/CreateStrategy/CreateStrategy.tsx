@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaPrint } from 'react-icons/fa';
 import styles from './CreateStrategy.module.css';
 import BasicConfiguration from './Sections/BasicConfiguration/BasicConfiguration';
 import ReadymadeStrategies from './Sections/ReadymadeStrategies/ReadymadeStrategies';
@@ -9,6 +10,8 @@ import ProfitTrailing from './Sections/ProfitTrailing/ProfitTrailing';
 import StrategyPreview from './Sections/StrategyPerformancePreview/StrategyPerformancePreview';
 
 const CreateStrategy: React.FC = () => {
+  const [strategyName, setStrategyName] = useState<string>('');
+
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Create New Strategy</h2>
@@ -21,14 +24,27 @@ const CreateStrategy: React.FC = () => {
         <RiskManagement />
         <ProfitTrailing />
         
-        <div className={styles.actionButtons}>
-          <button className={`${styles.button} ${styles.secondaryButton}`}>
-            Save Draft
-          </button>
-          <button className={`${styles.button} ${styles.primaryButton}`}>
-            Deploy Strategy
-          </button>
-        </div>
+        <div className={styles.strategyControls}>
+            <div className={styles.strategyNameGroup}>
+              <label className={styles.strategyLabel}>Strategy Name</label>
+              <input
+                type="text"
+                value={strategyName}
+                onChange={(e) => setStrategyName(e.target.value)}
+                className={styles.strategyInput}
+                placeholder="Enter strategy name"
+              />
+            </div>
+        
+            <div className={styles.actionButtons}>
+              <button className={`${styles.button} ${styles.saveButton}`}>
+                Save Draft
+              </button>
+              <button className={styles.printButton}>
+                <FaPrint className={styles.printIcon} />
+              </button>
+            </div>
+          </div>
         <StrategyPreview />
       </div>
     </div>

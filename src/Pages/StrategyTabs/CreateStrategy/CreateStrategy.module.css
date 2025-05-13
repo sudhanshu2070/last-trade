@@ -77,45 +77,94 @@
   resize: vertical;
 }
 
-/* Buttons */
+.strategyControls {
+  
+  background-color: rgb(17 24 39);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  display: flex;
+  align-items: flex-end;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.strategyNameGroup {
+  flex: 1;
+}
+
+.strategyLabel {
+  display: block;
+  font-size: 0.95rem;
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+}
+
+.strategyInput {
+  width: 100%;
+  background-color: rgb(55 65 81);
+  border: 1px solid rgb(75 85 99);
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+  color: #f9fafb;
+  font-size: 1rem;
+  transition: all 0.2s;
+  height: 44px;
+}
+
+.strategyInput:focus {
+  outline: none;
+  border-color: #2563eb;
+}
+
 .actionButtons {
   display: flex;
-  justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 1rem;
-  padding: 1rem 0;
-  position: sticky;
-  bottom: 0;
-  background-color: rgb(31 41 55);
+  gap: 0.75rem;
+  align-items: center;
 }
 
 .button {
   padding: 0.75rem 1.5rem;
   border-radius: 0.375rem;
+  font-size: 1rem;
   font-weight: 500;
-  font-size: 0.875rem;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.primaryButton {
-  background-color: rgb(59 130 246);
-  color: white;
-  border: none;
+.saveButton {
+  background-color: rgb(55 65 81);
+  border: 1px solid rgb(75 85 99);
+  color: #f9fafb;
 }
 
-.primaryButton:hover {
-  background-color: rgb(37 99 235);
+.saveButton:hover {
+  background-color: rgb(75 85 99);
 }
 
-.secondaryButton {
-  background-color: transparent;
-  color: rgb(59 130 246);
-  border: 1px solid rgb(59 130 246);
+.printButton {
+  background-color: rgb(55 65 81);
+  border: 1px solid rgb(75 85 99);
+  border-radius: 0.375rem;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
 }
 
-.secondaryButton:hover {
-  background-color: rgb(59 130 246 / 0.1);
+.printButton:hover {
+  background-color: rgb(75 85 99);
+}
+
+.printIcon {
+  color: #f9fafb;
+  font-size: 1.25rem;
 }
 
 /* Grid Layout */
