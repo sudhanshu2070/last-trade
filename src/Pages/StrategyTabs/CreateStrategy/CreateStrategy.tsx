@@ -20,7 +20,6 @@ const CreateStrategy: React.FC = () => {
         <AdvancedFeatures />
         <RiskManagement />
         <ProfitTrailing />
-        <StrategyPreview />
         
         <div className={styles.actionButtons}>
           <button className={`${styles.button} ${styles.secondaryButton}`}>
@@ -30,6 +29,7 @@ const CreateStrategy: React.FC = () => {
             Deploy Strategy
           </button>
         </div>
+        <StrategyPreview />
       </div>
     </div>
   );

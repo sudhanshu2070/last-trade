@@ -27,23 +27,6 @@ const StrategyPerformancePreview: React.FC = () => {
             <div className={styles.metricLabel}>Max Drawdown</div>
           </div>
         </div>
-        
-        <div className={styles.chartPlaceholder}>
-          <div className={styles.chartNote}>
-            Performance chart will be displayed here
-          </div>
-        </div>
-        
-        <div className={styles.summary}>
-          <h4 className={styles.summaryTitle}>Strategy Summary</h4>
-          <ul className={styles.summaryList}>
-            <li>Mean reversion strategy on NIFTY 50 5min chart</li>
-            <li>Enters when RSI crosses below 30 with volume confirmation</li>
-            <li>2% stop loss, 4% take profit</li>
-            <li>Maximum 3 concurrent positions</li>
-            <li>Active only between 9:30 AM to 2:30 PM</li>
-          </ul>
-        </div>
       </div>
     </div>
   );
