@@ -8,9 +8,11 @@ import AdvancedFeatures from './Sections/AdvancedFeatures/AdvancedFeatures';
 import RiskManagement from './Sections/RiskManagement/RiskManagement';
 import ProfitTrailing from './Sections/ProfitTrailing/ProfitTrailing';
 import StrategyPreview from './Sections/StrategyPerformancePreview/StrategyPerformancePreview';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 
 const CreateStrategy: React.FC = () => {
-  const [strategyName, setStrategyName] = useState<string>('');
+  const [strategyName, setStrategyName] = useState<string>('ORB with Trailing SL');
 
   return (
     <div className={styles.container}>
@@ -38,7 +40,8 @@ const CreateStrategy: React.FC = () => {
         
             <div className={styles.actionButtons}>
               <button className={`${styles.button} ${styles.saveButton}`}>
-                Save Draft
+                <FontAwesomeIcon icon={faFloppyDisk} />
+                Save & Create
               </button>
               <button className={styles.printButton}>
                 <FaPrint className={styles.printIcon} />
