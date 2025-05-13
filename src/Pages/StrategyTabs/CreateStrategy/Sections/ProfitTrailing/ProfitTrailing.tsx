@@ -1,62 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ProfitTrailing.module.css';
 
 const ProfitTrailing: React.FC = () => {
+  const [trailBy, setTrailBy] = useState<'points' | 'profit'>('points');
+  const [trailingMethod, setTrailingMethod] = useState<string>('trail');
+  const [trailStart, setTrailStart] = useState<number>(0);
+  const [trailByValue, setTrailByValue] = useState<number>(0);
+
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>
         <span>📈</span> Profit Trailing
       </h3>
       
-      <div className={styles.trailingGrid}>
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Enable Trailing</label>
-          <select className={styles.input}>
-            <option value="none">Disabled</option>
-            <option value="percentage">Percentage Based</option>
-            <option value="points">Points Based</option>
+      <div className={styles.controlsContainer}>
+        {/* Trail By Selection */}
+        <div className={styles.controlGroup}>
+          <h4 className={styles.controlTitle}>Trail By</h4>
+          <div className={styles.buttonGroup}>
+            <button
+              className={`${styles.trailButton} ${trailBy === 'points' ? styles.active : ''}`}
+              onClick={() => setTrailBy('points')}
+            >
+              Points
+            </button>
+            <button
+              className={`${styles.trailButton} ${trailBy === 'profit' ? styles.active : ''}`}
+              onClick={() => setTrailBy('profit')}
+            >
+              Profit
+            </button>
+          </div>
+        </div>
+        
+        {/* Trailing Method Dropdown */}
+        <div className={styles.controlGroup}>
+          <h4 className={styles.controlTitle}>Trailing Method</h4>
+          <select
+            className={styles.methodSelect}
+            value={trailingMethod}
+            onChange={(e) => setTrailingMethod(e.target.value)}
+          >
+            <option value="no">No Trailing</option>
+            <option value="lock">Lock Fixed Profit</option>
+            <option value="trail">Trail Profit By</option>
+            <option value="lock-trail">Lock and Trail</option>
           </select>
         </div>
-        
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Trigger Percentage</label>
+      </div>
+      
+      {/* Trail Parameters */}
+      <div className={styles.parametersRow}>
+        <div className={styles.parameterGroup}>
+          <label className={styles.parameterLabel}>Trail Start After ({trailBy === 'points' ? 'Points' : 'Profit'})</label>
           <input
             type="number"
-            min="0.1"
-            step="0.1"
-            defaultValue="5"
-            className={styles.input}
-            placeholder="e.g. 5"
+            value={trailStart}
+            onChange={(e) => setTrailStart(Number(e.target.value))}
+            className={styles.parameterInput}
+            min="0"
           />
         </div>
         
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Trail Percentage</label>
+        <div className={styles.parameterGroup}>
+          <label className={styles.parameterLabel}>Trail By ({trailBy === 'points' ? 'Points' : 'Profit'})</label>
           <input
             type="number"
-            min="0.1"
-            step="0.1"
-            defaultValue="1"
-            className={styles.input}
-            placeholder="e.g. 1"
-          />
-        </div>
-        
-        <div className={styles.formGroup}>
-          <label className={styles.label}>Min Profit Lock (%)</label>
-          <input
-            type="number"
-            min="0.1"
-            step="0.1"
-            defaultValue="2"
-            className={styles.input}
-            placeholder="e.g. 2"
+            value={trailByValue}
+            onChange={(e) => setTrailByValue(Number(e.target.value))}
+            className={styles.parameterInput}
+            min="0"
           />
         </div>
       </div>
       
       <div className={styles.note}>
-        <p>Trailing will activate when profit reaches the trigger percentage, then adjust stop loss to lock in minimum profit while allowing position to run.</p>
+        <p>Trailing will activate when profit reaches the trigger value, then adjust stop loss to lock in profits while allowing position to run.</p>
       </div>
     </div>
   );
