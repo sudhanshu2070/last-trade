@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { FaPrint } from 'react-icons/fa';
 import styles from './CreateStrategy.module.css';
 import BasicConfiguration from './Sections/BasicConfiguration/BasicConfiguration';
 import ReadymadeStrategies from './Sections/ReadymadeStrategies/ReadymadeStrategies';
@@ -9,7 +8,7 @@ import RiskManagement from './Sections/RiskManagement/RiskManagement';
 import ProfitTrailing from './Sections/ProfitTrailing/ProfitTrailing';
 import StrategyPreview from './Sections/StrategyPerformancePreview/StrategyPerformancePreview';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+import { faFloppyDisk, faPrint } from '@fortawesome/free-solid-svg-icons';
 
 const CreateStrategy: React.FC = () => {
   const [strategyName, setStrategyName] = useState<string>('ORB with Trailing SL');
@@ -44,7 +43,7 @@ const CreateStrategy: React.FC = () => {
                 Save & Create
               </button>
               <button className={styles.printButton}>
-                <FaPrint className={styles.printIcon} />
+                <FontAwesomeIcon icon={faPrint} />
               </button>
             </div>
           </div>

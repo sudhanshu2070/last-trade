@@ -1,70 +1,56 @@
 .section {
-    background-color: rgb(31 41 55);
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  
-  .sectionTitle {
-    font-size: 1.25rem;
-    font-weight: 600;
-    margin: 0 0 1.5rem 0;
-    color: #f9fafb;
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  
-  .previewContainer {
-    background-color: rgb(17 24 39);
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    border: 1px solid rgb(55 65 81);
-  }
-  
-  .metricsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1.25rem;
-    margin-bottom: 2rem;
-  }
-  
-  .metricCard {
-    background-color: rgb(31 41 55);
-    border-radius: 0.5rem;
-    padding: 1.25rem;
-    text-align: center;
-    border: 1px solid rgb(55 65 81);
-    transition: transform 0.2s ease;
-  }
-  
-  .metricCard:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .metricValue {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #f9fafb;
-    margin-bottom: 0.5rem;
-    line-height: 1;
-  }
-  
-  .metricValue:before {
-    content: '+';
-    display: inline;
-  }
-  
-  .metricCard:nth-child(4) .metricValue:before {
-    content: '-';
-  }
-  
-  .metricLabel {
-    font-size: 0.875rem;
-    color: #9ca3af;
-    font-weight: 500;
-  }
+  background-color: rgb(31 41 55);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin-top: 0;
+  margin-bottom: 1.25rem;
+  color: #f9fafb;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.previewContainer {
+  margin-top: 1rem;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.metricCard {
+  background-color: rgb(17 24 39);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+}
+
+.metricLabel {
+  font-size: 0.9rem;
+  color: #d1d5db;
+  margin-bottom: 0.5rem;
+}
+
+.metricValue {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #f9fafb;
+  margin-bottom: 0.25rem;
+}
+
+.metricNote {
+  font-size: 0.75rem;
+  color: #9ca3af;
+  line-height: 1.4;
+}
   
   /* Responsive Design */
   @media (max-width: 768px) {
