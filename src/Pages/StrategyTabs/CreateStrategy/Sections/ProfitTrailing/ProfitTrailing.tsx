@@ -73,10 +73,6 @@ const ProfitTrailing: React.FC = () => {
           />
         </div>
       </div>
-      
-      <div className={styles.note}>
-        <p>Trailing will activate when profit reaches the trigger value, then adjust stop loss to lock in profits while allowing position to run.</p>
-      </div>
     </div>
   );
 };
