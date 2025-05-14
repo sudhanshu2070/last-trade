@@ -34,11 +34,21 @@ const marketData = {
     { name: '15:00', value: 65400 },
     { name: '15:30', value: 65500 },
   ],
+  nasdaq: [
+    { name: '9:15', value: 35000 },
+    { name: '10:00', value: 36950 },
+    { name: '11:00', value: 34900 },
+    { name: '12:00', value: 37850 },
+    { name: '13:00', value: 34800 },
+    { name: '14:00', value: 35750 },
+    { name: '15:00', value: 36700 },
+    { name: '15:30', value: 34650 },
+  ],
 };
 
 const MarketSection: React.FC = () => {
   // State for Selected Index
-  const [selectedIndex, setSelectedIndex] = useState<'nifty' | 'banknifty' | 'sensex'>('nifty');
+  const [selectedIndex, setSelectedIndex] = useState<'nifty' | 'banknifty' | 'sensex' | 'nasdaq'>('nifty');
 
   // Get Current Data Based on Selected Index
   const currentData = marketData[selectedIndex];
@@ -57,11 +67,12 @@ const MarketSection: React.FC = () => {
           <select
             className={styles.indexDropdown}
             value={selectedIndex}
-            onChange={(e) => setSelectedIndex(e.target.value as 'nifty' | 'banknifty' | 'sensex')}
+            onChange={(e) => setSelectedIndex(e.target.value as 'nifty' | 'banknifty' | 'sensex' | 'nasdaq')}
           >
             <option value="nifty">Nifty 50</option>
             <option value="banknifty">Bank Nifty</option>
             <option value="sensex">Sensex</option>
+            <option value="nasdaq">Nasdaq</option>
           </select>
           <span className={styles.currentPrice}>{currentValue.toLocaleString('en-IN')}</span>
           <span className={`${styles.change} ${isPositive ? styles.positive : styles.negative}`}>
