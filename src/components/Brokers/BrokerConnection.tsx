@@ -60,15 +60,15 @@ const BrokerConnection: React.FC = () => {
   const scrollBrokers = (direction: 'left' | 'right') => {
     if (direction === 'left' && visibleStartIndex > 0) {
       setVisibleStartIndex(prev => prev - 1);
-    } else if (direction === 'right' && visibleStartIndex < brokers.length - 2) {
+    } else if (direction === 'right' && visibleStartIndex < brokers.length - 3) {
       setVisibleStartIndex(prev => prev + 1);
     }
   };
 
   const activeBroker = brokers.find((broker) => broker.id === activeBrokerId);
-  const visibleBrokers = brokers.slice(visibleStartIndex, visibleStartIndex + 2);
+  const visibleBrokers = brokers.slice(visibleStartIndex, visibleStartIndex + 3);
   const showLeftButton = visibleStartIndex > 0;
-  const showRightButton = visibleStartIndex < brokers.length - 2;
+  const showRightButton = visibleStartIndex < brokers.length - 3;
 
   return (
     <div className={styles.panel}>

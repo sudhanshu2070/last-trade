@@ -20,7 +20,7 @@
 .panel {
   background: rgb(12, 11, 58); /* Dark blue background */
   border-radius: 16px;
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: var(--box-shadow);
   width: 100%;
   max-width: 1200px; /* Limit width for larger screens */
@@ -61,11 +61,12 @@
 /* Brokers Grid */
 .brokersGrid {
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
   width: 100%;
   justify-content: center;
   padding: 1rem 0;
-  overflow: hidden;
+  /* overflow: hidden; */
+  /* margin: 0 1rem; */
 }
 
 .brokersGrid::-webkit-scrollbar {
@@ -85,7 +86,7 @@
 .brokersContainer {
   position: relative;
   margin: 1rem 0;
-  padding: 0 2rem;
+  padding: 0 3rem;
   display: flex;
   align-items: center;
 }
@@ -163,11 +164,12 @@
 
 /* Broker Card */
 .brokerCard {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent card background */
+  background: rgba(255, 255, 255, 0.1); 
   border: 1px solid var(--border-color); /* Light border */
   border-radius: 12px;
   padding: 0.5rem;
-  width: 165px; /* Fixed width for compact layout */
+  /* width: 165px;  */
+  min-width: calc(33.33% - 0.66rem);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   cursor: pointer;
   flex-shrink: 0; /* Prevent shrinking */
@@ -181,9 +183,9 @@
 }
 
 .brokerCard.active {
-  border-color: var(--primary-color); /* Blue border for active card */
+  border-color: var(--primary-color); 
   box-shadow: 0 0 16px 4px rgba(30, 136, 229, 0.5); /* Glowing effect */
-  background: rgba(30, 136, 229, 0.2); /* Subtle blue glow for active card */
+  background: rgba(30, 136, 229, 0.2); 
 }
 
 .brokerCard.inactive {
@@ -249,12 +251,12 @@
 
 /* Broker ID */
 .brokerId {
-  font-size: 0.9rem; /* Slightly larger font size for emphasis */
-  font-weight: 600; /* Bolder font weight for better visibility */
-  color: var(--primary-color); /* Blue text for highlighting */
+  font-size: 0.9rem; 
+  font-weight: 600; 
+  color: var(--primary-color); 
   text-align: right;
-  text-transform: uppercase; /* Uppercase text for prominence */
-  letter-spacing: 0.05rem; /* Slightly increased letter spacing for readability */
+  text-transform: uppercase; 
+  letter-spacing: 0.05rem; 
 }
 
 /* Action Buttons */
@@ -266,20 +268,20 @@
 }
 
 .actionButton {
-  background: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
-  border: 1px solid var(--border-color); /* Light border */
+  background: rgba(255, 255, 255, 0.1); 
+  border: 1px solid var(--border-color); 
   border-radius: 8px;
   padding: 0.75rem 1.5rem;
   font-size: 0.875rem;
   font-weight: 600;
-  color: var(--text-primary-white); /* White text */
+  color: var(--text-primary-white); 
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .actionButton:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
 }
 
 .actionButton:active {
