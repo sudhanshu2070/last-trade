@@ -36,10 +36,15 @@ const OrderLegs: React.FC = () => {
 
   return (
     <div className={styles.section}>
-      <h3 className={styles.sectionTitle}>
-        <FontAwesomeIcon icon={faLayerGroup} />
-        Order Legs
-      </h3>
+      <div className={styles.sectionHeader}>
+        <h3 className={styles.sectionTitle}>
+          <FontAwesomeIcon icon={faLayerGroup} />
+          Order Legs
+        </h3>
+        <button className={styles.addLegButton} onClick={addLeg}>
+          <FiPlus /> Add Leg
+        </button>
+      </div>
       
       <div className={styles.legsContainer}>
         {legs.map((leg) => (
@@ -123,7 +128,7 @@ const OrderLegs: React.FC = () => {
                 </select>
               </div>
               
-                <div className={styles.formGroup}>
+              <div className={styles.formGroup}>
                 <label className={styles.label}>Stop Loss (Points)</label>
                 <input
                   type="number"
@@ -132,9 +137,9 @@ const OrderLegs: React.FC = () => {
                   onChange={(e) => updateLeg(leg.id, 'stopLoss', e.target.value)}
                   className={styles.input}
                 />
-                </div>
+              </div>
 
-                <div className={styles.formGroup}>
+              <div className={styles.formGroup}>
                 <label className={styles.label}>Target (Points)</label>
                 <input
                   type="number"
@@ -143,16 +148,11 @@ const OrderLegs: React.FC = () => {
                   onChange={(e) => updateLeg(leg.id, 'target', e.target.value)}
                   className={styles.input}
                 />
-                </div>
-
+              </div>
             </div>
           </div>
         ))}
       </div>
-      
-      <button className={styles.addLegButton} onClick={addLeg}>
-        <FiPlus /> Add Order Leg
-      </button>
     </div>
   );
 };
