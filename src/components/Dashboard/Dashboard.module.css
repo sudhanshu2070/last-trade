@@ -27,7 +27,7 @@
 .topRow {
   display: flex;
   gap: 24px; /* Space between Connected Brokers and PnL+Buttons */
-  height: 80vh;
+  height: fit-content;
 }
 
 .connectedBrokers {
