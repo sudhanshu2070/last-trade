@@ -50,8 +50,8 @@ const MarketSection: React.FC = () => {
 
   return (
     <div className={styles.marketContainer}>
+      {/* <h3 className={styles.title}>Market Watch</h3> */}
       <div className={styles.header}>
-        <h3 className={styles.title}>Market Watch</h3>
         <div className={styles.priceInfo}>
           {/* Dropdown for Index Selection */}
           <select

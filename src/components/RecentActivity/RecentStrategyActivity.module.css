@@ -8,14 +8,36 @@
 }
 
 .header {
-  margin-bottom: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
 }
 
 .title {
   margin: 0;
-  font-size: 16px;
+  font-size: 1.5rem;
   font-weight: 600;
   color: #334155;
+}
+
+.viewMoreButton {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  color: #0070f3;
+  border: 1px solid #0070f3;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+}
+
+.viewMoreButton:hover {
+  /* background-color: rgba(96, 165, 250, 0.1); */
+  background-color:rgb(12, 11, 58);
+  color: #ffffff;
 }
 
 .tableContainer {

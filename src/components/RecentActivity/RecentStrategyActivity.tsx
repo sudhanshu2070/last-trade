@@ -3,6 +3,7 @@ import styles from './RecentStrategyActivity.module.css';
 import { FiCheckCircle, FiXCircle, FiClock, FiChevronUp, FiChevronDown } from 'react-icons/fi';
 import { AiOutlineDelete } from 'react-icons/ai'; // Delete icon
 import { IoClose } from 'react-icons/io5'; // X icon
+import { useNavigate } from 'react-router-dom';
 // import { HiOutlineMenuAlt3 } from 'react-icons/hi'; // Three horizontal lines icon
 
 const activities = [
@@ -37,6 +38,7 @@ const activities = [
 ];
 
 const RecentStrategyActivity: React.FC = () => {
+  const navigate = useNavigate();
   const [expandedId, setExpandedId] = useState<number | null>(null);
 
 
@@ -58,6 +60,12 @@ const RecentStrategyActivity: React.FC = () => {
     <div className={styles.activityContainer}>
       <div className={styles.header}>
         <h3 className={styles.title}>Recent Strategy Activity</h3>
+        <button 
+          className={styles.viewMoreButton}
+          onClick={() => navigate('/strategies')}
+        >
+          View More
+        </button>
       </div>
       
       <div className={styles.tableContainer}>
