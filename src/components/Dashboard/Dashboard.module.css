@@ -26,6 +26,7 @@
 /* Top Row: Connected Brokers + PnL + Trade Buttons */
 .topRow {
   display: flex;
+  align-items: center;
   gap: 24px; /* Space between Connected Brokers and PnL+Buttons */
   height: fit-content;
 }
