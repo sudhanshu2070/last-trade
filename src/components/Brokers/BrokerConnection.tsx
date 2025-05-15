@@ -50,7 +50,7 @@ const brokers = [
 const BrokerConnection: React.FC = () => {
   const [activeBrokerId, setActiveBrokerId] = useState<string>(brokers.find((broker) => broker.connected)?.id || '');
   const [visibleStartIndex, setVisibleStartIndex] = useState(0);
-  const userName = 'Rishi Sunak';
+  const userName = 'Thomas Muller';
   const brokersContainerRef = useRef<HTMLDivElement>(null);
 
   const handleBrokerClick = (brokerId: string) => {
