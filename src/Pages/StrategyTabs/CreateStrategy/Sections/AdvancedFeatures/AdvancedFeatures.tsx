@@ -34,7 +34,7 @@ const AdvancedFeatures: React.FC = () => {
     <div className={styles.section}>
       <div className={styles.sectionHeader} onClick={toggleExpand}>
         <h3 className={styles.sectionTitle}>
-            <FontAwesomeIcon icon={faGear} />
+          <FontAwesomeIcon icon={faGear} />
           Advanced Features
         </h3>
         <FontAwesomeIcon 
@@ -44,17 +44,20 @@ const AdvancedFeatures: React.FC = () => {
       </div>
       
       {isExpanded && (
-        <div className={styles.checkboxGrid}>
+        <div className={styles.toggleGrid}>
           {options.map((option) => (
-            <label key={option} className={styles.checkboxLabel}>
-              <input
-                type="checkbox"
-                checked={selectedOptions.includes(option)}
-                onChange={() => handleOptionChange(option)}
-                className={styles.checkboxInput}
-              />
-              <span className={styles.checkboxText}>{option}</span>
-            </label>
+            <div key={option} className={styles.toggleContainer}>
+              <span className={styles.toggleText}>{option}</span>
+              <label className={styles.toggleSwitch}>
+                <input
+                  type="checkbox"
+                  checked={selectedOptions.includes(option)}
+                  onChange={() => handleOptionChange(option)}
+                  className={styles.toggleInput}
+                />
+                <span className={styles.toggleSlider}></span>
+              </label>
+            </div>
           ))}
         </div>
       )}
