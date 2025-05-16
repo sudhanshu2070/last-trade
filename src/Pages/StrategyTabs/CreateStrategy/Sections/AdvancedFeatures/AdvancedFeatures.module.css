@@ -30,61 +30,72 @@
   transform: rotate(180deg);
 }
 
-.checkboxGrid {
+.toggleGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 0.75rem;
-  margin-top: 1.25rem;
+  margin-top: 0.5rem;
 }
 
-.checkboxLabel {
+.toggleContainer {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  font-size: 0.875rem;
-  color: #e5e7eb;
+  justify-content: space-between;
   padding: 0.5rem;
-  border-radius: 0.25rem;
-  transition: all 0.2s;
-  cursor: pointer;
 }
 
-.checkboxLabel:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+.toggleText {
+  font-size: 0.9rem;
+  color: #e5e7eb;
+  margin-right: 0.75rem;
 }
 
-.checkboxInput {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  width: 1.25rem;
-  height: 1.25rem;
-  border: 2px solid #6b7280;
-  border-radius: 0.25rem;
-  margin: 0;
-  cursor: pointer;
+.toggleSwitch {
   position: relative;
-  transition: all 0.2s;
-  flex-shrink: 0;
+  display: inline-block;
+  width: 42px;
+  height: 22px;
 }
 
-.checkboxInput:checked {
-  background-color: #2563eb;
-  border-color: #2563eb;
+.toggleInput {
+  opacity: 0;
+  width: 0;
+  height: 0;
 }
 
-.checkboxInput:checked::after {
-  content: '✓';
+.toggleSlider {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 0.875rem;
-  font-weight: bold;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #6b7280;
+  transition: .3s;
+  border-radius: 24px;
 }
 
-.checkboxText {
-  user-select: none;
-  line-height: 1.4;
+.toggleSlider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 2px;
+  bottom: 2px;
+  background-color: white;
+  transition: .3s;
+  border-radius: 50%;
+}
+
+.toggleInput:checked + .toggleSlider {
+  background-color: #2563eb;
+}
+
+.toggleInput:checked + .toggleSlider:before {
+  transform: translateX(20px);
+}
+
+/* Focus states for accessibility */
+.toggleInput:focus + .toggleSlider {
+  box-shadow: 0 0 1px #2563eb;
 }
