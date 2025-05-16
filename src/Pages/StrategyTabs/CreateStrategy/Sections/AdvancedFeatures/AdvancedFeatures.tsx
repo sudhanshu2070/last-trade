@@ -48,18 +48,20 @@ const AdvancedFeatures: React.FC = () => {
           Advanced Features
         </h3>
         <div className={styles.headerControls}>
-          <div className={styles.enableAllContainer}>
-            <span className={styles.enableAllText}>Enable All</span>
-            <label className={styles.toggleSwitch}>
-              <input
-                type="checkbox"
-                checked={enableAll}
-                onChange={toggleEnableAll}
-                className={styles.toggleInput}
-              />
-              <span className={styles.toggleSlider}></span>
-            </label>
-          </div>
+          {isExpanded && (
+            <div className={styles.enableAllContainer} onClick={(e) => e.stopPropagation()}>
+              <span className={styles.enableAllText}>Enable All</span>
+              <label className={styles.toggleSwitch}>
+                <input
+                  type="checkbox"
+                  checked={enableAll}
+                  onChange={toggleEnableAll}
+                  className={styles.toggleInput}
+                />
+                <span className={styles.toggleSlider}></span>
+              </label>
+            </div>
+          )}
           <FontAwesomeIcon 
             icon={faChevronDown} 
             className={`${styles.chevron} ${isExpanded ? styles.expanded : ''}`}
