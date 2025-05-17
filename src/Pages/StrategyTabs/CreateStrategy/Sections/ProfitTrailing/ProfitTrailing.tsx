@@ -8,6 +8,8 @@ const ProfitTrailing: React.FC = () => {
   const [trailingMethod, setTrailingMethod] = useState<string>('trail');
   const [trailStart, setTrailStart] = useState<number>(0);
   const [trailByValue, setTrailByValue] = useState<number>(0);
+  const [increaseBy, setIncreaseBy] = useState<number>(0);
+  const [trailProfitBy, setTrailProfitBy] = useState<number>(0);
 
   return (
     <div className={styles.section}>
@@ -75,6 +77,31 @@ const ProfitTrailing: React.FC = () => {
             min="0"
           />
         </div>
+
+        {trailingMethod === 'lock-trail' && (
+          <>
+            <div className={styles.parameterGroup}>
+              <label className={styles.parameterLabel}>Every Increase In Profit By</label>
+              <input
+                type="number"
+                value={increaseBy}
+                onChange={(e) => setIncreaseBy(Number(e.target.value))}
+                className={styles.parameterInput}
+                min="0"
+              />
+            </div>
+            <div className={styles.parameterGroup}>
+              <label className={styles.parameterLabel}>Trail Profit By</label>
+              <input
+                type="number"
+                value={trailProfitBy}
+                onChange={(e) => setTrailProfitBy(Number(e.target.value))}
+                className={styles.parameterInput}
+                min="0"
+              />
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
