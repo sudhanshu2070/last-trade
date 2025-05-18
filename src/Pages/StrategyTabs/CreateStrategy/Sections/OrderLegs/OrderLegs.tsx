@@ -6,7 +6,7 @@ import { faLayerGroup, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const OrderLegs: React.FC = () => {
   const [legs, setLegs] = useState([
-    { id: 1, type: 'BUY', instrument: 'NIFTY 50', quantity: 50, expiryType : 'weekly',  orderType: 'MARKET', optionType: 'CALL', slType: 'points', stopLoss: 30, targetType: 'points', target: 60 }
+    { id: 1, type: 'BUY', instrument: 'NIFTY 50', quantity: 50, expiryType : 'weekly',  orderType: 'MARKET', optionType: 'CALL', strikeType: '', slType: 'points', stopLoss: 30, targetType: 'points', target: 60 }
   ]);
 
   const addLeg = () => {
@@ -18,6 +18,7 @@ const OrderLegs: React.FC = () => {
       quantity: 1, 
       orderType: 'LIMIT',
       optionType: 'CALL',
+      strikeType: '',
       slType: 'points',
       stopLoss: 30,
       targetType: 'points',
@@ -35,6 +36,48 @@ const OrderLegs: React.FC = () => {
     setLegs(legs.map(leg => 
       leg.id === id ? { ...leg, [field]: value } : leg
     ));
+  };
+
+  const strikeData = {
+    ITM: [
+      { value: "ITM2000", label: "ITM 2000" },
+      { value: "ITM1950", label: "ITM 1950" },
+      { value: "ITM1900", label: "ITM 1900" },
+      { value: "ITM1850", label: "ITM 1850" },
+      { value: "ITM1800", label: "ITM 1800" },
+      { value: "ITM1750", label: "ITM 1750" },
+      { value: "ITM1700", label: "ITM 1700" },
+      { value: "ITM1650", label: "ITM 1650" },
+      { value: "ITM1600", label: "ITM 1600" },
+      { value: "ITM1550", label: "ITM 1550" },
+      { value: "ITM1500", label: "ITM 1500" },
+      { value: "ITM1450", label: "ITM 1450" },
+      { value: "ITM1400", label: "ITM 1400" },
+      { value: "ITM1350", label: "ITM 1350" },
+      { value: "ITM1300", label: "ITM 1300" },
+      { value: "ITM1250", label: "ITM 1250" }
+    ],
+    ATM: [
+      { value: "ATM", label: "At The Money" }
+    ],
+    OTM: [
+      { value: "OTM100", label: "OTM 100" },
+      { value: "OTM150", label: "OTM 150" },
+      { value: "OTM200", label: "OTM 200" },
+      { value: "OTM250", label: "OTM 250" },
+      { value: "OTM300", label: "OTM 300" },
+      { value: "OTM350", label: "OTM 350" },
+      { value: "OTM400", label: "OTM 400" },
+      { value: "OTM450", label: "OTM 450" },
+      { value: "OTM500", label: "OTM 500" },
+      { value: "OTM550", label: "OTM 550" },
+      { value: "OTM600", label: "OTM 600" },
+      { value: "OTM650", label: "OTM 650" },
+      { value: "OTM700", label: "OTM 700" },
+      { value: "OTM750", label: "OTM 750" },
+      { value: "OTM800", label: "OTM 800" },
+      { value: "OTM850", label: "OTM 850" },
+    ]
   };
 
   return (
@@ -129,17 +172,43 @@ const OrderLegs: React.FC = () => {
               </div>
 
               <div className={styles.formGroup}>
+                <label className={styles.label}>Strike Type</label>
+                <select
+                  value={leg.strikeType}
+                  onChange={(e) => updateLeg(leg.id, 'strikeType', e.target.value)}
+                  className={styles.input}
+                >
+                  <option value="">Select Strike Type</option>
+                  <option value="ITM">ITM (In The Money)</option>
+                  <option value="ATM">ATM (At The Money)</option>
+                  <option value="OTM">OTM (Out of Money)</option>
+                </select>
+              </div>
+
+              <div className={styles.formGroup}>
                 <label className={styles.label}>Strike Selection</label>
                 <select
                   value={leg.instrument}
                   onChange={(e) => updateLeg(leg.id, 'instrument', e.target.value)}
                   className={styles.input}
+                  disabled={!leg.strikeType}
                 >
-                    <option value="ATM">ATM</option>
-                    <option value="ITM1">ITM1</option>
-                    <option value="ITM2">ITM2</option>
-                    <option value="OTM1">OTM1</option>
-                    <option value="OTM2">OTM2</option>
+                  <option value="">Select {leg.strikeType} Strike</option>
+                  {leg.strikeType === 'ITM' && strikeData.ITM.map((strike) => (
+                    <option key={strike.value} value={strike.value}>
+                      {strike.label}
+                    </option>
+                  ))}
+                  {leg.strikeType === 'ATM' && strikeData.ATM.map((strike) => (
+                    <option key={strike.value} value={strike.value}>
+                      {strike.label}
+                    </option>
+                  ))}
+                  {leg.strikeType === 'OTM' && strikeData.OTM.map((strike) => (
+                    <option key={strike.value} value={strike.value}>
+                      {strike.label}
+                    </option>
+                  ))}
                 </select>
               </div>
               
