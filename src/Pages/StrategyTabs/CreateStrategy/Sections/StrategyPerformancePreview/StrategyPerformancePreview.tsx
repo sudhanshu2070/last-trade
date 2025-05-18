@@ -2,8 +2,15 @@ import React from 'react';
 import styles from './StrategyPerformancePreview.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartPie } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
 
 const StrategyPerformancePreview: React.FC = () => {
+  const navigate = useNavigate();
+  
+  function handleBacktestClick() {
+    navigate('/backtest');
+  }
+
   return (
     <div className={styles.section}>
       <div className={styles.headerRow}>
@@ -12,7 +19,7 @@ const StrategyPerformancePreview: React.FC = () => {
           Strategy Performance Preview
         </h3>
 
-        <button className={styles.backtestButton}>
+        <button className={styles.backtestButton} onClick={handleBacktestClick}>
           Run Full Backtest
         </button>
       </div>
