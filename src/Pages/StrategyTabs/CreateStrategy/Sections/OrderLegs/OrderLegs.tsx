@@ -6,18 +6,21 @@ import { faLayerGroup, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const OrderLegs: React.FC = () => {
   const [legs, setLegs] = useState([
-    { id: 1, type: 'BUY', instrument: 'NIFTY 50', quantity: 50, orderType: 'MARKET', optionType: 'CALL', stopLoss: 30, target: 60 }
+    { id: 1, type: 'BUY', instrument: 'NIFTY 50', quantity: 50, expiryType : 'weekly',  orderType: 'MARKET', optionType: 'CALL', slType: 'points', stopLoss: 30, targetType: 'points', target: 60 }
   ]);
 
   const addLeg = () => {
     setLegs([...legs, { 
       id: legs.length > 0 ? legs[legs.length - 1].id + 1 : 1, 
       type: 'BUY', 
-      instrument: '', 
+      instrument: '',
+      expiryType: 'weekly', 
       quantity: 1, 
       orderType: 'LIMIT',
       optionType: 'CALL',
+      slType: 'points',
       stopLoss: 30,
+      targetType: 'points',
       target: 60
     }]);
   };
@@ -83,6 +86,18 @@ const OrderLegs: React.FC = () => {
               </div>
               
               <div className={styles.formGroup}>
+                <label className={styles.label}>Expiry</label>
+                <select
+                  value={leg.expiryType || 'weekly'}
+                  onChange={(e) => updateLeg(leg.id, 'expiryType', e.target.value)}
+                  className={styles.input}
+                >
+                  <option value="weekly">Weekly</option>
+                  <option value="monthly">Monthly</option>
+                </select>
+              </div>
+
+              <div className={styles.formGroup}>
                 <label className={styles.label}>Quantity</label>
                 <input
                   type="number"
@@ -129,25 +144,49 @@ const OrderLegs: React.FC = () => {
               </div>
               
               <div className={styles.formGroup}>
-                <label className={styles.label}>Stop Loss (Points)</label>
-                <input
-                  type="number"
-                  min="1"
-                  value={leg.stopLoss || ''}
-                  onChange={(e) => updateLeg(leg.id, 'stopLoss', e.target.value)}
-                  className={styles.input}
-                />
+                <label className={styles.label}>Stop Loss</label>
+                <div className={styles.slTargetWrapper}>
+                  <div className={styles.slTargetContainer}>
+                    <select
+                      value={leg.slType || 'points'}
+                      onChange={(e) => updateLeg(leg.id, 'slType', e.target.value)}
+                      className={styles.slTargetSelect}
+                    >
+                      <option value="points">Points</option>
+                      <option value="percent">%</option>
+                    </select>
+                    <input
+                      type="number"
+                      min="1"
+                      value={leg.stopLoss || ''}
+                      onChange={(e) => updateLeg(leg.id, 'stopLoss', e.target.value)}
+                      className={styles.slTargetInput}
+                    />
+                  </div>
+                </div>
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.label}>Target (Points)</label>
-                <input
-                  type="number"
-                  min="1"
-                  value={leg.target || ''}
-                  onChange={(e) => updateLeg(leg.id, 'target', e.target.value)}
-                  className={styles.input}
-                />
+                <label className={styles.label}>Target</label>
+                <div className={styles.slTargetWrapper}>
+                  <div className={styles.slTargetContainer}>
+                    <select
+                      value={leg.targetType || 'points'}
+                      onChange={(e) => updateLeg(leg.id, 'targetType', e.target.value)}
+                      className={styles.slTargetSelect}
+                    >
+                      <option value="points">Points</option>
+                      <option value="percent">%</option>
+                    </select>
+                    <input
+                      type="number"
+                      min="1"
+                      value={leg.target || ''}
+                      onChange={(e) => updateLeg(leg.id, 'target', e.target.value)}
+                      className={styles.slTargetInput}
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>

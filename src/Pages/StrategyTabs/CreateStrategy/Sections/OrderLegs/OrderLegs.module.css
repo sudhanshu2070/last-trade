@@ -177,6 +177,42 @@
   border-color: #0d6efd;
 }
 
+
+/* Add these to your CSS module */
+
+.slTargetWrapper {
+  width: 100%;
+}
+
+.slTargetContainer {
+  display: flex;
+  width: 100%;
+  gap: 0.5rem;
+}
+
+.slTargetSelect {
+  width: 30%;
+  min-width: 80px;
+  background-color: rgb(55 65 81);
+  border: 1px solid rgb(75 85 99);
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  color: #f9fafb;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.slTargetInput {
+  width: 70%;
+  flex-grow: 1;
+  background-color: rgb(55 65 81);
+  border: 1px solid rgb(75 85 99);
+  border-radius: 0.375rem;
+  padding: 0.5rem;
+  color: #f9fafb;
+  font-size: 0.9rem;
+}
+
   @media (max-width: 768px) {
     .section {
       padding: 1rem;
