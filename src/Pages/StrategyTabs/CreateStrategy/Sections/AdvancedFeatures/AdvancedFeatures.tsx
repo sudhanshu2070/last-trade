@@ -119,8 +119,8 @@ const AdvancedFeatures: React.FC = () => {
         onClose={handleClosePopup}
         PaperProps={{
           style: {
-            width: '500px', // Reduced width
-            borderRadius: '16px', // Increased border radius
+            width: '500px', 
+            borderRadius: '16px', 
           }
         }}
       >
@@ -142,13 +142,13 @@ const AdvancedFeatures: React.FC = () => {
             {/* <span style={{ fontWeight: '500' }}>Execution Type</span> */}
             <div className={styles.toggleButtonGroup}>
               <button
-                className={`${styles.toggleButton} ${executionType === 'combined' ? styles.active : ''}`}
+                className={`${styles.toggleButton} ${styles.leftButton} ${executionType === 'combined' ? styles.active : ''}`}
                 onClick={() => setExecutionType('combined')}
               >
                 Combined
               </button>
               <button
-                className={`${styles.toggleButton} ${executionType === 'legwise' ? styles.active : ''}`}
+                className={`${styles.toggleButton} ${styles.rightButton} ${executionType === 'legwise' ? styles.active : ''}`}
                 onClick={() => setExecutionType('legwise')}
               >
                 Leg Wise
@@ -159,7 +159,7 @@ const AdvancedFeatures: React.FC = () => {
           <TextField
             fullWidth
             label="Re-Entry/Execute cycles"
-            placeholder="Enter number of cycles"
+            placeholder="Re-Entry/Execute cycles"
             value={reEntryCycles}
             onChange={(e) => setReEntryCycles(e.target.value)}
             sx={{ 
