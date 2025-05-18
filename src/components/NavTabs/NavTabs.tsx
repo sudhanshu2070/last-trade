@@ -4,7 +4,6 @@ import styles from './NavTabs.module.css';
 import {
   FiHome as DashboardIcon,
   FiPieChart as PortfolioIcon,
-  FiList as OrdersIcon,
   FiTrendingUp as StrategiesIcon,
   FiSettings as SettingsIcon,
   FiTwitter as TwitterIcon,
@@ -15,10 +14,9 @@ import {
 // Navigation Items
 const navItems = [
   { label: 'Dashboard', path: '/', icon: <DashboardIcon /> },
-  { label: 'Portfolio', path: '/portfolio', icon: <PortfolioIcon /> },
-  { label: 'Orders', path: '/orders', icon: <OrdersIcon /> },
+  { label: 'Brokers', path: '/brokers', icon: <PortfolioIcon /> },
   { label: 'Strategies', path: '/strategies', icon: <StrategiesIcon /> },
-  { label: 'Settings', path: '/settings', icon: <SettingsIcon /> },
+  { label: 'Backtest', path: '/backtest', icon: <SettingsIcon /> },
 ];
 
 // Social/Contact Links
