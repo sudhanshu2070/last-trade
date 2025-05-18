@@ -1,12 +1,23 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown, faGear } from '@fortawesome/free-solid-svg-icons';
+
+import Alert from '@mui/material/Alert';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
 import styles from './AdvancedFeatures.module.css';
 
 const AdvancedFeatures: React.FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [enableAll, setEnableAll] = useState(false);
+  const [currentPopupOption, setCurrentPopupOption] = useState<string | null>(null);
+  const [reEntryCycles, setReEntryCycles] = useState('');
+  const [executionType, setExecutionType] = useState<'combined' | 'legwise'>('combined');
 
   const options = [
     'Combined Premium',
@@ -20,11 +31,17 @@ const AdvancedFeatures: React.FC = () => {
   ];
 
   const handleOptionChange = (option: string) => {
-    setSelectedOptions(prev => 
-      prev.includes(option) 
-        ? prev.filter(item => item !== option)
-        : [...prev, option]
-    );
+    const newSelected = selectedOptions.includes(option)
+      ? selectedOptions.filter(item => item !== option)
+      : [...selectedOptions, option];
+
+    setSelectedOptions(newSelected);
+    setEnableAll(newSelected.length === options.length);
+
+    // Show popup when enabling certain options
+    if (!selectedOptions.includes(option) && ['Wait & Trade', 'Re-entry/Execute'].includes(option)) {
+      setCurrentPopupOption(option);
+    }
   };
 
   const toggleExpand = () => {
@@ -32,12 +49,20 @@ const AdvancedFeatures: React.FC = () => {
   };
 
   const toggleEnableAll = () => {
-    if (enableAll) {
-      setSelectedOptions([]);
-    } else {
-      setSelectedOptions([...options]);
-    }
-    setEnableAll(!enableAll);
+     const newEnableAll = !enableAll;
+    setEnableAll(newEnableAll);
+    setSelectedOptions(newEnableAll ? [...options] : []);
+  };
+
+  const handleClosePopup = () => {
+    setCurrentPopupOption(null);
+  };
+
+  const handleSave = () => {
+    // Handle save logic here
+    console.log('Saved settings for', currentPopupOption);
+    console.log('Re-Entry/Execute cycles:', reEntryCycles);
+    handleClosePopup();
   };
 
   return (
@@ -87,6 +112,90 @@ const AdvancedFeatures: React.FC = () => {
           ))}
         </div>
       )}
+
+       {/* Popup Dialog */}
+      <Dialog 
+        open={!!currentPopupOption} 
+        onClose={handleClosePopup}
+        PaperProps={{
+          style: {
+            width: '500px', // Reduced width
+            borderRadius: '16px', // Increased border radius
+          }
+        }}
+      >
+        <DialogTitle sx={{ fontSize: '1.2rem', fontWeight: '600' }}>
+          {currentPopupOption}
+        </DialogTitle>
+        
+        <DialogContent>
+          <Alert severity="info" sx={{ mb: 2, borderRadius: '8px' }}>
+            Execute combined executes all strategy components as a single order. Execute leg-wise executes each component separately. Choices depend on strategy complexity and market conditions, affecting execution and risk management.
+          </Alert>
+
+          <div style={{ 
+            display: 'flex', 
+            justifyContent: 'flex-end', 
+            marginBottom: '10px',
+            padding: '8px 0'
+          }}>
+            {/* <span style={{ fontWeight: '500' }}>Execution Type</span> */}
+            <div className={styles.toggleButtonGroup}>
+              <button
+                className={`${styles.toggleButton} ${executionType === 'combined' ? styles.active : ''}`}
+                onClick={() => setExecutionType('combined')}
+              >
+                Combined
+              </button>
+              <button
+                className={`${styles.toggleButton} ${executionType === 'legwise' ? styles.active : ''}`}
+                onClick={() => setExecutionType('legwise')}
+              >
+                Leg Wise
+              </button>
+            </div>
+          </div>
+
+          <TextField
+            fullWidth
+            label="Re-Entry/Execute cycles"
+            placeholder="Enter number of cycles"
+            value={reEntryCycles}
+            onChange={(e) => setReEntryCycles(e.target.value)}
+            sx={{ 
+              mt: 2,
+              '& .MuiOutlinedInput-root': {
+                borderRadius: '8px',
+              }
+            }}
+          />
+        </DialogContent>
+        
+        <DialogActions sx={{ padding: '16px 24px' }}>
+          <Button 
+            onClick={handleClosePopup} 
+            sx={{ 
+              borderRadius: '8px',
+              padding: '8px 16px',
+              textTransform: 'none'
+            }}
+          >
+            Cancel
+          </Button>
+          <Button 
+            onClick={handleSave} 
+            variant="contained" 
+            sx={{ 
+              borderRadius: '8px',
+              padding: '8px 16px',
+              textTransform: 'none'
+            }}
+          >
+            Save
+          </Button>
+        </DialogActions>
+      </Dialog>
+
     </div>
   );
 };
