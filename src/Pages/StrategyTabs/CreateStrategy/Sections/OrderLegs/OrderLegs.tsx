@@ -2,12 +2,50 @@ import React, { useState } from 'react';
 import styles from './OrderLegs.module.css';
 import { FiPlus } from 'react-icons/fi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLayerGroup, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faCogs, faLayerGroup, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-const OrderLegs: React.FC = () => {
+interface AdvancedFeature {
+  enabled: boolean;
+  value: string;
+  type: string;
+}
+
+interface AdvancedSettings {
+  enabled: boolean;
+  feature1: AdvancedFeature;
+}
+
+interface OrderLegsProps {
+  showAdvancedFeatures: boolean;
+}
+
+const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures }) => {
+
   const [legs, setLegs] = useState([
-    { id: 1, type: 'BUY', instrument: 'NIFTY 50', quantity: 50, expiryType : 'weekly',  orderType: 'MARKET', optionType: 'CALL', strikeType: '', slType: 'points', stopLoss: 30, targetType: 'points', target: 60 }
+    { 
+      id: 1,
+      type: 'BUY', 
+      instrument: 'NIFTY 50', 
+      quantity: 50, 
+      expiryType : 'weekly',  
+      orderType: 'MARKET', 
+      optionType: 'CALL', 
+      strikeType: '', 
+      slType: 'points', 
+      stopLoss: 30, 
+      targetType: 'points', 
+      target: 60,
+    }
   ]);
+
+  const [advancedSettings, setAdvancedSettings] = useState<AdvancedSettings>({
+    enabled: true,
+    feature1: {
+      enabled: true,
+      value: '',
+      type: 'percentage'
+    }
+  });
 
   const addLeg = () => {
     setLegs([...legs, { 
@@ -22,7 +60,7 @@ const OrderLegs: React.FC = () => {
       slType: 'points',
       stopLoss: 30,
       targetType: 'points',
-      target: 60
+      target: 60,
     }]);
   };
 
@@ -36,6 +74,27 @@ const OrderLegs: React.FC = () => {
     setLegs(legs.map(leg => 
       leg.id === id ? { ...leg, [field]: value } : leg
     ));
+  };
+
+  const updateAdvancedSettings = (
+    field: keyof AdvancedSettings, 
+    value: any, 
+    nestedField?: keyof AdvancedFeature
+  ) => {
+    if (nestedField && field !== 'enabled') {
+      setAdvancedSettings({
+        ...advancedSettings,
+        [field]: {
+          ...advancedSettings[field],
+          [nestedField]: value
+        }
+      });
+    } else {
+      setAdvancedSettings({
+        ...advancedSettings,
+        [field]: value
+      });
+    }
   };
 
   const strikeData = {
@@ -258,6 +317,61 @@ const OrderLegs: React.FC = () => {
                 </div>
               </div>
             </div>
+
+             {showAdvancedFeatures && (
+              <div className={styles.advancedFeaturesContainer}>
+                <div className={styles.advancedHeaderContainer}>
+                  <h3 className={styles.advanceSectionTitle}>
+                    Advanced Features
+                    <FontAwesomeIcon icon={faCogs} />
+                  </h3>
+                </div>
+
+                {/* Feature 1 */}
+                <div className={styles.advancedFeature}>
+                  <div className={styles.featureHeader}>
+                    <label className={styles.label}>Wait & Trade</label>
+                    <div className={styles.toggleSwitch}>
+                      <input 
+                        type="checkbox" 
+                        checked={advancedSettings.feature1.enabled}
+                        onChange={(e) => updateAdvancedSettings('feature1', e.target.checked, 'enabled')}
+                      />
+                      <span className={styles.slider}></span>
+                    </div>
+                  </div>
+
+                  {advancedSettings.feature1.enabled && (
+                    <div className={styles.featureControls}>
+                      <div className={styles.formGroup}>
+                        <select
+                          value={advancedSettings.feature1.type}
+                          onChange={(e) => updateAdvancedSettings('feature1', e.target.value, 'type')}
+                          className={styles.input}
+                        >
+                          <option value="wtpr_-">⏰ % ↓</option>
+                          <option value="wtpr_+">⏰ % ↑</option>
+                          <option value="wtpt_+">⏰ pt ↑</option>
+                          <option value="wtpt_-">⏰ pt ↓</option>
+                          <option value="wt_eq">⏰ Equal</option>
+                        </select>
+                      </div>
+                      <div className={styles.formGroup}>
+                        <input
+                          type="text"
+                          value={advancedSettings.feature1.value}
+                          onChange={(e) => updateAdvancedSettings('feature1', e.target.value, 'value')}
+                          className={styles.input}
+                          placeholder="0"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Can add more features here later */}
+              </div>
+            )}
           </div>
         ))}
       </div>

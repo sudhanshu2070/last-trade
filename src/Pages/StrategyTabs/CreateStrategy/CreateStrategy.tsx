@@ -12,6 +12,7 @@ import { faFloppyDisk, faPrint } from '@fortawesome/free-solid-svg-icons';
 
 const CreateStrategy: React.FC = () => {
   const [strategyName, setStrategyName] = useState<string>('ORB with Trailing SL');
+  const [showAdvancedFeatures, setShowAdvancedFeatures] = useState(false);
 
   return (
     <div className={styles.container}>
@@ -20,8 +21,10 @@ const CreateStrategy: React.FC = () => {
       <div className={styles.strategySections}>
         <BasicConfiguration />
         <ReadymadeStrategies />
-        <OrderLegs />
-        <AdvancedFeatures />
+        <OrderLegs showAdvancedFeatures={showAdvancedFeatures} />
+        <AdvancedFeatures 
+          onSave={() => setShowAdvancedFeatures(true)} 
+        />
         <RiskManagement />
         <ProfitTrailing />
         

@@ -11,7 +11,11 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import styles from './AdvancedFeatures.module.css';
 
-const AdvancedFeatures: React.FC = () => {
+interface AdvancedFeaturesProps {
+  onSave: () => void;
+}
+
+const AdvancedFeatures: React.FC<AdvancedFeaturesProps> = ({ onSave }) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [isExpanded, setIsExpanded] = useState(true);
   const [enableAll, setEnableAll] = useState(false);
@@ -63,9 +67,7 @@ const AdvancedFeatures: React.FC = () => {
   };
 
   const handleSave = () => {
-    // Handle save logic here
-    console.log('Saved settings for', currentPopupOption);
-    console.log('Re-Entry/Execute cycles:', reEntryCycles);
+    onSave();
     handleClosePopup();
   };
 
