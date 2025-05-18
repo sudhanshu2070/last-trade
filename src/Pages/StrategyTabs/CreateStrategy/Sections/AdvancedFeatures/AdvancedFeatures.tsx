@@ -30,6 +30,10 @@ const AdvancedFeatures: React.FC = () => {
     'Trail SL'
   ];
 
+  const popUpData = {
+    alertInfo : 'Execute combined executes all strategy components as a single order. Execute leg-wise executes each component separately. Choices depend on strategy complexity and market conditions, affecting execution and risk management.'
+  }
+
   const handleOptionChange = (option: string) => {
     const newSelected = selectedOptions.includes(option)
       ? selectedOptions.filter(item => item !== option)
@@ -65,6 +69,7 @@ const AdvancedFeatures: React.FC = () => {
     handleClosePopup();
   };
 
+  
   return (
     <div className={styles.section}>
       <div className={styles.sectionHeader} onClick={toggleExpand}>
@@ -130,7 +135,7 @@ const AdvancedFeatures: React.FC = () => {
         
         <DialogContent>
           <Alert severity="info" sx={{ mb: 2, borderRadius: '8px' }}>
-            Execute combined executes all strategy components as a single order. Execute leg-wise executes each component separately. Choices depend on strategy complexity and market conditions, affecting execution and risk management.
+            {popUpData.alertInfo}
           </Alert>
 
           <div style={{ 
@@ -139,7 +144,6 @@ const AdvancedFeatures: React.FC = () => {
             marginBottom: '10px',
             padding: '8px 0'
           }}>
-            {/* <span style={{ fontWeight: '500' }}>Execution Type</span> */}
             <div className={styles.toggleButtonGroup}>
               <button
                 className={`${styles.toggleButton} ${styles.leftButton} ${executionType === 'combined' ? styles.active : ''}`}
