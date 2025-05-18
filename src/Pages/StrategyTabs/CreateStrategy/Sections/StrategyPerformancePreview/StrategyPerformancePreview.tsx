@@ -27,6 +27,12 @@ const StrategyPerformancePreview: React.FC = () => {
       <div className={styles.previewContainer}>
         <div className={styles.metricsGrid}>
           <div className={styles.metricCard}>
+            <div className={styles.metricLabel}>Margin Required</div>
+            <div className={styles.metricValue}>₹70,000</div>
+            <div className={styles.metricNote}>Based on similar strategies</div>
+          </div>
+
+          <div className={styles.metricCard}>
             <div className={styles.metricLabel}>Win Rate</div>
             <div className={styles.metricValue}>78.5%</div>
             <div className={styles.metricNote}>Based on similar strategies</div>
@@ -38,12 +44,12 @@ const StrategyPerformancePreview: React.FC = () => {
           </div>
           <div className={styles.metricCard}>
             <div className={styles.metricLabel}>Max Drawdown</div>
-            <div className={styles.metricValue}>-12.5%</div>
+            <div className={styles.metricValue}>12.5%</div>
             <div className={styles.metricNote}>Based on similar strategies</div>
           </div>
           <div className={styles.metricCard}>
             <div className={styles.metricLabel}>Avg. Trade</div>
-            <div className={styles.metricValue}>₹1,240</div>
+            <div className={styles.metricValue}>120</div>
             <div className={styles.metricNote}>Based on similar strategies</div>
           </div>
         </div>
