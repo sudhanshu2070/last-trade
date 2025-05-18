@@ -40,7 +40,7 @@ const Dashboard: React.FC = () => {
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitleStrategyTemplate}>Strategy Templates</h2>
             <button 
-              onClick={() => navigate('/strategies')} 
+              onClick={() => navigate('/strategies/templates')} 
               className={styles.viewMoreButton}
             >
               View more

@@ -1,13 +1,21 @@
 import React, { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from './StrategyPage.module.css';
 import CreateStrategy from '../../Pages/StrategyTabs/CreateStrategy/CreateStrategy';
 import TestComponet from '../../components/TestComp';
-// import { useNavigate } from 'react-router-dom';
 
 const StrategyPage: React.FC = () => {
-  const [activeTab, setActiveTab] = useState('create');
-    // const navigate = useNavigate();
+  const { tab } = useParams(); // Getting the tab parameter from URL
+  const navigate = useNavigate();
 
+    // Set initial activeTab based on URL parameter or default to 'create'
+  const [activeTab, setActiveTab] = useState(tab || 'create');
+
+  // Update both state and URL when tab changes
+  const handleTabChange = (newTab: string) => {
+    setActiveTab(newTab);
+    navigate(`/strategies/${newTab}`);
+  };
 
   const renderTabContent = () => {
     switch (activeTab) {
@@ -30,25 +38,25 @@ const StrategyPage: React.FC = () => {
       <div className={styles.tabContainer}>
         <button
           className={`${styles.tabButton} ${activeTab === 'create' ? styles.active : ''}`}
-          onClick={() => setActiveTab('create')}
+          onClick={() => handleTabChange('create')}
         >
           Create Strategy
         </button>
         <button
           className={`${styles.tabButton} ${activeTab === 'my' ? styles.active : ''}`}
-          onClick={() => setActiveTab('my')}
+          onClick={() => handleTabChange('my')}
         >
           My Strategies
         </button>
         <button
           className={`${styles.tabButton} ${activeTab === 'deployed' ? styles.active : ''}`}
-          onClick={() => setActiveTab('deployed')}
+          onClick={() => handleTabChange('deployed')}
         >
           Deployed Strategies
         </button>
         <button
           className={`${styles.tabButton} ${activeTab === 'templates' ? styles.active : ''}`}
-          onClick={() => setActiveTab('templates')}
+          onClick={() => handleTabChange('templates')}
         >
           Templates
         </button>

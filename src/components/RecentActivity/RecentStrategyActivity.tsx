@@ -62,7 +62,7 @@ const RecentStrategyActivity: React.FC = () => {
         <h3 className={styles.title}>Recent Strategy Activity</h3>
         <button 
           className={styles.viewMoreButton}
-          onClick={() => navigate('/strategies')}
+          onClick={() => navigate('/strategies/deployed')}
         >
           View More
         </button>
