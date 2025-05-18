@@ -58,7 +58,7 @@ const OrderLegs: React.FC = () => {
       { value: "ITM1250", label: "ITM 1250" }
     ],
     ATM: [
-      { value: "ATM", label: "At The Money" }
+      { value: "ATM", label: "ATM" }
     ],
     OTM: [
       { value: "OTM100", label: "OTM 100" },
