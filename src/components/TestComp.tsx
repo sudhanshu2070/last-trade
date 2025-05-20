@@ -59,7 +59,7 @@ const TestComp: React.FC<{ name: string }> = ({ name }) => {
             mb: 4
           }}
         >
-          We appreciate your patience as we work to bring you this feature.
+          We appreciate your patience as we work to bring you this feature. Thank you for your understanding!
         </Typography>
         
         <Typography 
