@@ -10,6 +10,17 @@
   --icon-hover-bg: var(--background-default);
   --avatar-border: var(--divider);
   --topnav-border: var(--divider);
+  
+  --background-primary: #ffffff;
+  --background-secondary: #f5f7fa;
+  --text-primary: #1a202c;
+  --text-secondary: #718096;
+  --primary-accent: #3b82f6;
+  --avatar-border: #e2e8f0;
+  --border-color: #e2e8f0;
+  --notification-color: #ef4444;
+  --topnav-text: #2d3748;
+  --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 .topNavbar {
@@ -138,33 +149,261 @@
   font-weight: 500;
   font-size: 0.95rem;
 }
-/* Profile Section */
+
 .profileSection {
-  display: flex; /* Use flexbox for horizontal alignment */
-  align-items: center; /* Vertically align items */
-  gap: 8px; /* Space between greeting and avatar */
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
 }
 
 .greeting {
   color: var(--topnav-text);
-  font-weight: 700;
-  font-size: 1.1rem;
-  font-family: 'Poppins', sans-serif; /* Modern font */
-  white-space: nowrap; /* Prevent text wrapping */
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2); /* Add subtle shadow */
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
+  white-space: nowrap;
+  text-shadow: 0.5px 0.5px 1px var(--shadow-color);
 }
 
 .avatarButton {
-  padding: 0; /* Remove padding for the avatar button */
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.avatarButton:hover {
+  transform: scale(1.08);
+}
+
+.avatarButton:focus {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 2px;
 }
 
 .avatar {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid var(--avatar-border);
-  transition: all 0.3s ease;
+  border: 2px solid var(--primary-accent);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.avatar:hover {
+  border-color: var(--text-primary);
+}
+
+.avatarStatus {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background-color: #4CAF50;
+  border-radius: 50%;
+  border: 2px solid var(--background-primary);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  transform: translateX(0);
+  width: 280px;
+  background: linear-gradient(135deg, var(--background-primary) 0%, #f8fafc 100%);
+  border-radius: 16px;
+  box-shadow: 0 12px 40px var(--shadow-color);
+  z-index: 1000;
+  overflow: hidden;
+  transform-origin: top right;
+  border: 1px solid var(--border-color);
+}
+
+.dropdownArrow {
+  position: absolute;
+  top: -6px;
+  right: 20px;
+  width: 12px;
+  height: 12px;
+  background: var(--background-primary);
+  transform: rotate(45deg);
+  box-shadow: -2px -2px 5px var(--shadow-color);
+}
+
+.dropdownHeader {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  gap: 12px;
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, transparent 100%);
+}
+
+.dropdownAvatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--primary-accent);
+  transition: transform 0.3s ease;
+}
+
+.dropdownAvatar:hover {
+  transform: scale(1.05);
+}
+
+.dropdownName {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
+}
+
+.dropdownEmail {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-family: 'Poppins', sans-serif;
+}
+
+.dropdownDivider {
+  height: 1px;
+  background: var(--border-color);
+  margin: 10px 0;
+}
+
+.dropdownList {
+  list-style: none;
+  padding: 8px 0;
+  margin: 0;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px 16px;
+  background: none;
+  border: none;
+  text-align: left;
+  cursor: pointer;
+  gap: 12px;
+  color: var(--text-primary);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.dropdownItem:hover {
+  background: var(--background-secondary);
+  transform: translateX(5px);
+}
+
+.dropdownItem:focus {
+  outline: none;
+  background: var(--background-secondary);
+}
+
+.itemIcon {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+
+.notificationBadge {
+  margin-left: auto;
+  width: 8px;
+  height: 8px;
+  background: var(--notification-color);
+  border-radius: 50%;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Animation styles */
+.dropdown-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.dropdown-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
+}
+
+.dropdown-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.dropdown-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 250ms ease-in-out, transform 250ms ease-in-out;
+}
+
+/* Pulse animation for status and notification */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .dropdownMenu {
+    width: 240px;
+    right: -10px;
+  }
+
+  .greeting {
+    font-size: 0.9rem;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+  }
+
+  .dropdownAvatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .dropdownName {
+    font-size: 1rem;
+  }
+
+  .dropdownEmail {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .profileSection {
+    gap: 6px;
+  }
+
+  .dropdownMenu {
+    width: 200px;
+    top: calc(100% + 8px);
+  }
+
+  .dropdownItem {
+    padding: 10px 12px;
+    font-size: 0.9rem;
+  }
 }
 
 /* Responsive Design */
