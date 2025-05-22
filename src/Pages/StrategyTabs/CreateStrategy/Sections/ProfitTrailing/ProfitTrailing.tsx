@@ -47,7 +47,6 @@ const ProfitTrailing: React.FC = () => {
             onChange={(e) => setTrailingMethod(e.target.value)}
           >
             <option value="no">No Trailing</option>
-            <option value="lock">Lock Fixed Profit</option>
             <option value="trail">Trail Profit By</option>
             <option value="lock-trail">Lock and Trail</option>
           </select>
