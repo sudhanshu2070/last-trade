@@ -44,7 +44,6 @@ const ChartSettings = () => {
               <option key={option} value={option}>{option}</option>
             ))}
           </select>
-          <div className={styles.dropdownArrow}>▼</div>
         </div>
 
         {/* Chart Type Dropdown */}
@@ -59,7 +58,6 @@ const ChartSettings = () => {
               <option key={option} value={option}>{option}</option>
             ))}
           </select>
-          <div className={styles.dropdownArrow}>▼</div>
         </div>
 
         {/* Time Frame Dropdown */}
@@ -74,7 +72,6 @@ const ChartSettings = () => {
               <option key={option} value={option}>{option}</option>
             ))}
           </select>
-          <div className={styles.dropdownArrow}>▼</div>
         </div>
       </div>
     </div>
