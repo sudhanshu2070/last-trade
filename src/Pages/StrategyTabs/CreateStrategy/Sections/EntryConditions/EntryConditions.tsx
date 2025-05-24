@@ -31,9 +31,9 @@ const EntryConditions = () => {
     }
   }]);
 
-  const indicators = ['RSI', 'MACD', 'SMA', 'EMA', 'Bollinger Bands', 'Stochastic'];
-  const operators = ['Crosses Above', 'Crosses Below', 'Greater Than', 'Less Than'];
-  const valueOptions = ['0', '20', '50', '80', '100', 'Custom...'];
+  const indicators = ['RSI', 'MACD', 'Moving Average', 'Supertrend', 'Volume'];
+  const operators = ['Crosses Above', 'Crosses Below', 'Greater Than', 'Less Than', 'Equal To'];
+  const valueOptions = ['RSI', 'MACD', 'Moving Average', 'Fixed Value'];
 
   const addConditionGroup = () => {
     const newGroup = {
