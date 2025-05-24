@@ -1,5 +1,4 @@
-// EntryConditions.tsx
-import React, { useState } from 'react';
+import { useState } from 'react';
 import styles from './EntryConditions.module.css';
 import { FaTrash } from 'react-icons/fa';
 
@@ -78,13 +77,6 @@ const EntryConditions = () => {
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>Entry Conditions</h3>
       
-      <button 
-        onClick={addConditionGroup}
-        className={styles.addButton}
-      >
-        Add Condition Group
-      </button>
-
       {/* Condition Groups */}
       {conditionGroups.map((group) => (
         <div key={group.id} className={styles.conditionGroup}>
@@ -185,6 +177,13 @@ const EntryConditions = () => {
           </div>
         </div>
       ))}
+
+      <button 
+        onClick={addConditionGroup}
+        className={styles.addButton}
+      >
+        Add Condition +
+      </button>
     </div>
   );
 };
