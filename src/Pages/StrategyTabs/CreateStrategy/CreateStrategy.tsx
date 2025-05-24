@@ -9,6 +9,7 @@ import ProfitTrailing from './Sections/ProfitTrailing/ProfitTrailing';
 import StrategyPreview from './Sections/StrategyPerformancePreview/StrategyPerformancePreview';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFloppyDisk, faPrint } from '@fortawesome/free-solid-svg-icons';
+import ChartSettings from './Sections/ChartSettings/ChartSettings';
 
 const CreateStrategy: React.FC = () => {
   const [strategyName, setStrategyName] = useState<string>('ORB with Trailing SL');
@@ -20,6 +21,7 @@ const CreateStrategy: React.FC = () => {
       
       <div className={styles.strategySections}>
         <BasicConfiguration />
+        <ChartSettings />
         <ReadymadeStrategies />
         <OrderLegs showAdvancedFeatures={showAdvancedFeatures} />
         <AdvancedFeatures 
