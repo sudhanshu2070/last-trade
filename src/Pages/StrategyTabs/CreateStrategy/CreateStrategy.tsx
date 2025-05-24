@@ -12,6 +12,7 @@ import { faFloppyDisk, faPrint } from '@fortawesome/free-solid-svg-icons';
 import ChartSettings from './Sections/ChartSettings/ChartSettings';
 import EntryConditions from './Sections/EntryConditions/EntryConditions';
 import ExitConditions from './Sections/ExitConditions/ExitConditions';
+import PositionBuilder from './Sections/PositionBuilder/PositionBuilder';
 
 const CreateStrategy: React.FC = () => {
   const [strategyName, setStrategyName] = useState<string>('ORB with Trailing SL');
@@ -23,9 +24,12 @@ const CreateStrategy: React.FC = () => {
       
       <div className={styles.strategySections}>
         <BasicConfiguration />
+
         <ChartSettings />
         <EntryConditions />
         <ExitConditions />
+        <PositionBuilder />
+
         <ReadymadeStrategies />
         <OrderLegs showAdvancedFeatures={showAdvancedFeatures} />
         <AdvancedFeatures 
