@@ -19,17 +19,11 @@ interface ConditionGroup {
 const EntryConditions = () => {
   const [conditionGroups, setConditionGroups] = useState<ConditionGroup[]>([{
     id: 'initial-group',
-    longCondition: {
-      indicator: '',
-      operator: 'Crosses Above',
-      value: '',
-    },
-    shortCondition: {
-      indicator: '',
-      operator: 'Crosses Above',
-      value: '',
-    }
+    longCondition: { indicator: '', operator: 'Crosses Above', value: '' },
+    shortCondition: { indicator: '', operator: 'Crosses Above', value: '' }
   }]);
+
+  const [toggles, setToggles] = useState<string[]>([]); // holds "AND"/"OR" strings between condition groups
 
   const indicators = ['RSI', 'MACD', 'Moving Average', 'Supertrend', 'Volume'];
   const operators = ['Crosses Above', 'Crosses Below', 'Greater Than', 'Less Than', 'Equal To'];
@@ -38,150 +32,180 @@ const EntryConditions = () => {
   const addConditionGroup = () => {
     const newGroup = {
       id: `group-${Date.now()}`,
-      longCondition: {
-        indicator: '',
-        operator: 'Crosses Above',
-        value: '',
-      },
-      shortCondition: {
-        indicator: '',
-        operator: 'Crosses Above',
-        value: '',
-      }
+      longCondition: { indicator: '', operator: 'Crosses Above', value: '' },
+      shortCondition: { indicator: '', operator: 'Crosses Above', value: '' }
     };
-    setConditionGroups([...conditionGroups, newGroup]);
+    setConditionGroups(prev => [...prev, newGroup]);
+    setToggles(prev => [...prev, 'AND']); // Default toggle
+  };
+
+  const updateToggleValue = (index: number, value: 'AND' | 'OR') => {
+    const newToggles = [...toggles];
+    newToggles[index] = value;
+    setToggles(newToggles);
   };
 
   const updateConditionGroup = (id: string, field: string, value: string, conditionType: 'long' | 'short') => {
-    setConditionGroups(conditionGroups.map(group => {
-      if (group.id === id) {
-        return {
-          ...group,
-          [conditionType === 'long' ? 'longCondition' : 'shortCondition']: {
-            ...group[conditionType === 'long' ? 'longCondition' : 'shortCondition'],
-            [field]: value
-          }
-        };
-      }
-      return group;
-    }));
+    setConditionGroups(groups =>
+      groups.map(group =>
+        group.id === id
+          ? {
+              ...group,
+              [conditionType === 'long' ? 'longCondition' : 'shortCondition']: {
+                ...group[conditionType === 'long' ? 'longCondition' : 'shortCondition'],
+                [field]: value
+              }
+            }
+          : group
+      )
+    );
   };
 
   const removeConditionGroup = (id: string) => {
+    const index = conditionGroups.findIndex(group => group.id === id);
     if (conditionGroups.length > 1) {
-      setConditionGroups(conditionGroups.filter(group => group.id !== id));
+      const newGroups = conditionGroups.filter(group => group.id !== id);
+      const newToggles = [...toggles];
+      if (index > 0) {
+        newToggles.splice(index - 1, 1);
+      } else {
+        newToggles.splice(0, 1);
+      }
+      setConditionGroups(newGroups);
+      setToggles(newToggles);
     }
   };
 
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>Entry Conditions</h3>
-      
-      {/* Condition Groups */}
-      {conditionGroups.map((group) => (
-        <div key={group.id} className={styles.conditionGroup}>
-          {conditionGroups.length > 1 && (
-            <button 
-              onClick={() => removeConditionGroup(group.id)}
-              className={styles.deleteButton}
-              aria-label="Delete condition group"
-            >
-              <FaTrash className={styles.trashIcon} />
-            </button>
-          )}
-          
-          <div className={styles.conditionPair}>
-            <h4 className={styles.conditionTitle}>Long Entry Condition</h4>
-            <div className={styles.dropdownGroup}>
-              <div className={styles.dropdown}>
-                <select
-                  value={group.longCondition.indicator}
-                  onChange={(e) => updateConditionGroup(group.id, 'indicator', e.target.value, 'long')}
-                  className={styles.dropdownSelect}
+
+      {conditionGroups.map((group, index) => (
+        <div key={group.id}>
+          {index > 0 && (
+            <div className={styles.toggleWrapper}>
+              <div className={styles.toggleContainer}>
+                <button
+                  className={`${styles.toggleButton} ${styles.leftButton} ${
+                    toggles[index - 1] === 'AND' ? styles.selected : ''
+                  }`}
+                  onClick={() => updateToggleValue(index - 1, 'AND')}
                 >
-                  <option value="">Select Indicator</option>
-                  {indicators.map(ind => (
-                    <option key={`${group.id}-long-ind-${ind}`} value={ind}>{ind}</option>
-                  ))}
-                </select>
-              </div>
-              
-              <div className={styles.dropdown}>
-                <select
-                  value={group.longCondition.operator}
-                  onChange={(e) => updateConditionGroup(group.id, 'operator', e.target.value, 'long')}
-                  className={styles.dropdownSelect}
+                  AND
+                </button>
+                <button
+                  className={`${styles.toggleButton} ${styles.rightButton} ${
+                    toggles[index - 1] === 'OR' ? styles.selected : ''
+                  }`}
+                  onClick={() => updateToggleValue(index - 1, 'OR')}
                 >
-                  {operators.map(op => (
-                    <option key={`${group.id}-long-op-${op}`} value={op}>{op}</option>
-                  ))}
-                </select>
-              </div>
-              
-              <div className={styles.dropdown}>
-                <select
-                  value={group.longCondition.value}
-                  onChange={(e) => updateConditionGroup(group.id, 'value', e.target.value, 'long')}
-                  className={styles.dropdownSelect}
-                >
-                  <option value="">Select Value</option>
-                  {valueOptions.map(val => (
-                    <option key={`${group.id}-long-val-${val}`} value={val}>{val}</option>
-                  ))}
-                </select>
+                  OR
+                </button>
               </div>
             </div>
-          </div>
-          
-          <div className={styles.conditionPair}>
-            <h4 className={styles.conditionTitle}>Short Entry Condition</h4>
-            <div className={styles.dropdownGroup}>
-              <div className={styles.dropdown}>
-                <select
-                  value={group.shortCondition.indicator}
-                  onChange={(e) => updateConditionGroup(group.id, 'indicator', e.target.value, 'short')}
-                  className={styles.dropdownSelect}
-                >
-                  <option value="">Select Indicator</option>
-                  {indicators.map(ind => (
-                    <option key={`${group.id}-short-ind-${ind}`} value={ind}>{ind}</option>
-                  ))}
-                </select>
+          )}
+
+          <div className={styles.conditionGroup}>
+            {conditionGroups.length > 1 && (
+              <button
+                onClick={() => removeConditionGroup(group.id)}
+                className={styles.deleteButton}
+                aria-label="Delete condition group"
+              >
+                <FaTrash className={styles.trashIcon} />
+              </button>
+            )}
+
+            <div className={styles.conditionPair}>
+              <h4 className={styles.conditionTitle}>Long Entry Condition</h4>
+              <div className={styles.dropdownGroup}>
+                <div className={styles.dropdown}>
+                  <select
+                    value={group.longCondition.indicator}
+                    onChange={(e) => updateConditionGroup(group.id, 'indicator', e.target.value, 'long')}
+                    className={styles.dropdownSelect}
+                  >
+                    <option value="">Select Indicator</option>
+                    {indicators.map(ind => (
+                      <option key={ind} value={ind}>{ind}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className={styles.dropdown}>
+                  <select
+                    value={group.longCondition.operator}
+                    onChange={(e) => updateConditionGroup(group.id, 'operator', e.target.value, 'long')}
+                    className={styles.dropdownSelect}
+                  >
+                    {operators.map(op => (
+                      <option key={op} value={op}>{op}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className={styles.dropdown}>
+                  <select
+                    value={group.longCondition.value}
+                    onChange={(e) => updateConditionGroup(group.id, 'value', e.target.value, 'long')}
+                    className={styles.dropdownSelect}
+                  >
+                    <option value="">Select Value</option>
+                    {valueOptions.map(val => (
+                      <option key={val} value={val}>{val}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
-              
-              <div className={styles.dropdown}>
-                <select
-                  value={group.shortCondition.operator}
-                  onChange={(e) => updateConditionGroup(group.id, 'operator', e.target.value, 'short')}
-                  className={styles.dropdownSelect}
-                >
-                  {operators.map(op => (
-                    <option key={`${group.id}-short-op-${op}`} value={op}>{op}</option>
-                  ))}
-                </select>
-              </div>
-              
-              <div className={styles.dropdown}>
-                <select
-                  value={group.shortCondition.value}
-                  onChange={(e) => updateConditionGroup(group.id, 'value', e.target.value, 'short')}
-                  className={styles.dropdownSelect}
-                >
-                  <option value="">Select Value</option>
-                  {valueOptions.map(val => (
-                    <option key={`${group.id}-short-val-${val}`} value={val}>{val}</option>
-                  ))}
-                </select>
+            </div>
+
+            <div className={styles.conditionPair}>
+              <h4 className={styles.conditionTitle}>Short Entry Condition</h4>
+              <div className={styles.dropdownGroup}>
+                <div className={styles.dropdown}>
+                  <select
+                    value={group.shortCondition.indicator}
+                    onChange={(e) => updateConditionGroup(group.id, 'indicator', e.target.value, 'short')}
+                    className={styles.dropdownSelect}
+                  >
+                    <option value="">Select Indicator</option>
+                    {indicators.map(ind => (
+                      <option key={ind} value={ind}>{ind}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className={styles.dropdown}>
+                  <select
+                    value={group.shortCondition.operator}
+                    onChange={(e) => updateConditionGroup(group.id, 'operator', e.target.value, 'short')}
+                    className={styles.dropdownSelect}
+                  >
+                    {operators.map(op => (
+                      <option key={op} value={op}>{op}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className={styles.dropdown}>
+                  <select
+                    value={group.shortCondition.value}
+                    onChange={(e) => updateConditionGroup(group.id, 'value', e.target.value, 'short')}
+                    className={styles.dropdownSelect}
+                  >
+                    <option value="">Select Value</option>
+                    {valueOptions.map(val => (
+                      <option key={val} value={val}>{val}</option>
+                    ))}
+                  </select>
+                </div>
               </div>
             </div>
           </div>
         </div>
       ))}
 
-      <button 
-        onClick={addConditionGroup}
-        className={styles.addButton}
-      >
+      <button onClick={addConditionGroup} className={styles.addButton}>
         Add Condition +
       </button>
     </div>

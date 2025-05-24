@@ -100,6 +100,52 @@
   border-color: rgb(59 130 246);
 }
 
+
+.toggleWrapper {
+  display: flex;
+  justify-content: center;
+  margin: 1.25rem 0;
+}
+
+.toggleContainer {
+  display: inline-flex;
+  border: 2px solid rgb(55 65 81);
+  border-radius: 999px;
+  overflow: hidden;
+  background-color: rgb(31 41 55);
+}
+
+.toggleButton {
+  padding: 0.5rem 1.25rem;
+  background: transparent;
+  color: #f9fafb;
+  border: none;
+  font-weight: 500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.leftButton {
+  border-right: 1px solid rgb(55 65 81);
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
+}
+
+.rightButton {
+  border-top-right-radius: 999px;
+  border-bottom-right-radius: 999px;
+}
+
+.toggleButton:hover {
+  background-color: rgb(55 65 81);
+}
+
+.selected {
+  background-color: rgb(59 130 246); /* Tailwind blue-500 */
+  color: white;
+}
+
 @media (max-width: 768px) {
   .dropdownGroup {
     flex-direction: column;

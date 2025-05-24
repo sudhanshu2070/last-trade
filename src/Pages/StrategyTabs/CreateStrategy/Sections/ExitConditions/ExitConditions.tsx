@@ -105,8 +105,6 @@ const ExitConditions = () => {
             </div>
             )}
 
-
-
           <div className={styles.conditionGroup}>
             {conditionGroups.length > 1 && (
               <button
