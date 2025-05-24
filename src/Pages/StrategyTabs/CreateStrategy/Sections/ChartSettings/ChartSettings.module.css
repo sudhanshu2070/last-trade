@@ -1,8 +1,9 @@
 .settingsContainer {
   padding: 12px;
-  background-color: #1e1e1e;
+  background-color: rgb(31 41 55); /* bg-gray-800 */
   border-radius: 8px;
   margin-bottom: 16px;
+  border: 1px solid rgb(55 65 81); /* border-gray-700 */
 }
 
 .dropdownGroup {
@@ -21,7 +22,7 @@
   display: block;
   margin-bottom: 6px;
   font-size: 0.8rem;
-  color: #b0b0b0;
+  color: rgb(156 163 175); /* text-gray-400 */
   font-weight: 500;
 }
 
@@ -29,10 +30,10 @@
   width: 100%;
   padding: 10px 12px;
   padding-right: 32px;
-  background-color: #2d2d2d;
-  border: 1px solid #3d3d3d;
+  background-color: rgb(17 24 39); /* bg-gray-900 */
+  border: 1px solid rgb(55 65 81); /* border-gray-700 */
   border-radius: 6px;
-  color: #ffffff;
+  color: rgb(243 244 246); /* text-gray-100 */
   font-size: 0.9rem;
   appearance: none;
   cursor: pointer;
@@ -40,14 +41,14 @@
 }
 
 .dropdownSelect:hover {
-  background-color: #333333;
-  border-color: #4d4d4d;
+  background-color: rgb(29 39 55); /* darker gray-800 */
+  border-color: rgb(75 85 99); /* border-gray-600 */
 }
 
 .dropdownSelect:focus {
   outline: none;
-  border-color: #5d8aff;
-  box-shadow: 0 0 0 2px rgba(93, 138, 255, 0.2);
+  border-color: rgb(59 130 246); /* border-blue-500 */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
 }
 
 .dropdownArrow {
@@ -55,8 +56,20 @@
   right: 12px;
   bottom: 12px;
   pointer-events: none;
-  color: #b0b0b0;
+  color: rgb(156 163 175); /* text-gray-400 */
   font-size: 0.7rem;
+}
+
+/* Active selection highlight */
+.dropdownSelect option:checked {
+  background-color: rgb(55 65 81); /* bg-gray-700 */
+  color: rgb(243 244 246); /* text-gray-100 */
+}
+
+/* Dropdown options */
+.dropdownSelect option {
+  background-color: rgb(17 24 39); /* bg-gray-900 */
+  color: rgb(243 244 246); /* text-gray-100 */
 }
 
 @media (max-width: 768px) {
@@ -67,5 +80,9 @@
   
   .dropdown {
     width: 100%;
+  }
+  
+  .dropdownSelect {
+    padding: 12px 16px;
   }
 }
