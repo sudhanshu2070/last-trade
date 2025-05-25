@@ -145,7 +145,11 @@ const TimeInput: React.FC<TimeInputProps> = ({
   );
 };
 
-const BasicConfiguration: React.FC = () => {
+interface BasicConfigurationProps {
+  onChange: (value: string) => void;
+}
+
+const BasicConfiguration: React.FC<BasicConfigurationProps> = ({onChange}) => {
   const [orderType, setOrderType] = useState('MIS'); 
   const [executionTime, setExecutionTime] = useState('09:20');
   const [selectedHour, setSelectedHour] = useState('09');
@@ -189,7 +193,7 @@ const BasicConfiguration: React.FC = () => {
           <label htmlFor="strategyType" className={styles.label}>
             Strategy Type
           </label>
-          <select id="strategyType" className={styles.input}>
+          <select id="strategyType" className={styles.input} onChange={(e) => {onChange(e.target.value)}}>
             <option value="time-based">Time Based</option>
             <option value="indicator">Indicator</option>
             <option value="momentum">Momentum</option>

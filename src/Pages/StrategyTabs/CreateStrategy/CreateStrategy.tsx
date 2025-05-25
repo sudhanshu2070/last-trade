@@ -17,18 +17,24 @@ import PositionBuilder from './Sections/PositionBuilder/PositionBuilder';
 const CreateStrategy: React.FC = () => {
   const [strategyName, setStrategyName] = useState<string>('ORB with Trailing SL');
   const [showAdvancedFeatures, setShowAdvancedFeatures] = useState(false);
+  const [strategyType, setStrategyType] = useState<string>('time-based'); 
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Create New Strategy</h2>
       
       <div className={styles.strategySections}>
-        <BasicConfiguration />
+        <BasicConfiguration onChange={setStrategyType}/>
 
-        <ChartSettings />
-        <EntryConditions />
-        <ExitConditions />
-        <PositionBuilder />
+        {/* hide/show in the case of Strategy Type */}
+        {strategyType === 'indicator' && (
+          <>
+            <ChartSettings />
+            <EntryConditions />
+            <ExitConditions />
+            <PositionBuilder />
+          </>
+        )}
 
         <ReadymadeStrategies />
         <OrderLegs showAdvancedFeatures={showAdvancedFeatures} />
