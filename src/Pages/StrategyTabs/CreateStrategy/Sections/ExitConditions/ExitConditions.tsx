@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './ExitConditions.module.css';
 import { FaTrash } from 'react-icons/fa';
 
@@ -33,6 +33,16 @@ const ExitConditions:React.FC<ExitConditionsProps> = ({showLong = true, showShor
   const indicators = ['RSI', 'MACD', 'Moving Average', 'Supertrend', 'Volume'];
   const operators = ['Crosses Above', 'Crosses Below', 'Greater Than', 'Less Than', 'Equal To'];
   const valueOptions = ['RSI', 'MACD', 'Moving Average', 'Fixed Value'];
+
+  // Resetting condition groups when any of the props change
+  useEffect(() => {
+    setConditionGroups([{
+      id: 'initial-group',
+      longCondition: { indicator: '', operator: 'Crosses Above', value: '' },
+      shortCondition: { indicator: '', operator: 'Crosses Above', value: '' }
+    }]);
+    setToggles([]);
+  }, [showLong, showShort]);
 
   const addConditionGroup = () => {
     const newGroup = {
