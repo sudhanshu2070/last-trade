@@ -190,8 +190,8 @@ const BasicConfiguration: React.FC = () => {
             Strategy Type
           </label>
           <select id="strategyType" className={styles.input}>
-            <option value="momentum">Time Based</option>
-            <option value="momentum">Indicator</option>
+            <option value="time-based">Time Based</option>
+            <option value="indicator">Indicator</option>
             <option value="momentum">Momentum</option>
             <option value="mean-reversion">Mean Reversion</option>
             <option value="breakout">Breakout</option>
