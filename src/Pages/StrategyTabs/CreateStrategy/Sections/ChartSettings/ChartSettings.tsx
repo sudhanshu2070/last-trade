@@ -1,33 +1,43 @@
 import { useState } from 'react';
 import styles from './ChartSettings.module.css';
 
-const ChartSettings = () => {
-  const [transactionType, setTransactionType] = useState('Both Side (Long & Short)');
-  const [chartType, setChartType] = useState('Candle');
-  const [timeFrame, setTimeFrame] = useState('1 minute');
+interface ChartSettingsProps {
+  onChange: (value: string) => void;
+}
+
+const ChartSettings:React.FC<ChartSettingsProps> = ({onChange}) => {
+  const [transactionType, setTransactionType] = useState('bothLongAndShort');
+  const [chartType, setChartType] = useState('candle');
+  const [timeFrame, setTimeFrame] = useState('1m');
 
   const transactionOptions = [
-    'Both Side (Long & Short)',
-    'Long Only',
-    'Short Only'
+    { label: 'Both Side (Long & Short)', value: 'bothLongAndShort' },
+    { label: 'Long Only', value: 'long' },
+    { label: 'Short Only', value: 'short' }
   ];
 
   const chartOptions = [
-    'Candle',
-    'Line',
-    'Area',
-    'Heikin Ashi',
-    'Renko'
+    { label: 'Candle', value: 'candle' },
+    { label: 'Line', value: 'line' },
+    { label: 'Area', value: 'area' },
+    { label: 'Heikin Ashi', value: 'heikin_ashi' },
+    { label: 'Renko', value: 'renko' }
   ];
 
   const timeOptions = [
-    '1 minute',
-    '5 minutes',
-    '15 minutes',
-    '1 hour',
-    '4 hours',
-    '1 day'
+    { label: '1 minute', value: '1m' },
+    { label: '5 minutes', value: '5m' },
+    { label: '15 minutes', value: '15m' },
+    { label: '1 hour', value: '1h' },
+    { label: '4 hours', value: '4h' },
+    { label: '1 day', value: '1d' }
   ];
+
+  const handleTransactionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value; 
+    setTransactionType(value);
+    onChange(value); // Notify parent component of the change
+  }
 
   return (
     <div className={styles.settingsContainer}>
@@ -37,11 +47,11 @@ const ChartSettings = () => {
           <label className={styles.dropdownLabel}>Transaction Type</label>
           <select
             value={transactionType}
-            onChange={(e) => setTransactionType(e.target.value)}
+            onChange={handleTransactionChange}
             className={styles.dropdownSelect}
           >
             {transactionOptions.map((option) => (
-              <option key={option} value={option}>{option}</option>
+              <option key={option.value} value={option.value}>{option.label}</option>
             ))}
           </select>
         </div>
@@ -55,7 +65,7 @@ const ChartSettings = () => {
             className={styles.dropdownSelect}
           >
             {chartOptions.map((option) => (
-              <option key={option} value={option}>{option}</option>
+              <option key={option.value} value={option.value}>{option.label}</option>
             ))}
           </select>
         </div>
@@ -69,7 +79,7 @@ const ChartSettings = () => {
             className={styles.dropdownSelect}
           >
             {timeOptions.map((option) => (
-              <option key={option} value={option}>{option}</option>
+              <option key={option.value} value={option.value}>{option.label}</option>
             ))}
           </select>
         </div>

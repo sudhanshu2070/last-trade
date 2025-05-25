@@ -16,7 +16,12 @@ interface ConditionGroup {
   };
 }
 
-const EntryConditions = () => {
+interface EntryConditionsProps {
+  showLong?: boolean;
+  showShort?: boolean;
+}
+
+const EntryConditions:React.FC<EntryConditionsProps> = ({ showLong = true, showShort = true }) => {
   const [conditionGroups, setConditionGroups] = useState<ConditionGroup[]>([{
     id: 'initial-group',
     longCondition: { indicator: '', operator: 'Crosses Above', value: '' },
@@ -116,6 +121,7 @@ const EntryConditions = () => {
               </button>
             )}
 
+          {showLong && (
             <div className={styles.conditionPair}>
               <h4 className={styles.conditionTitle}>Long Entry Condition</h4>
               <div className={styles.dropdownGroup}>
@@ -158,7 +164,9 @@ const EntryConditions = () => {
                 </div>
               </div>
             </div>
+          )}
 
+          {showShort && (
             <div className={styles.conditionPair}>
               <h4 className={styles.conditionTitle}>Short Entry Condition</h4>
               <div className={styles.dropdownGroup}>
@@ -201,6 +209,8 @@ const EntryConditions = () => {
                 </div>
               </div>
             </div>
+          )}
+
           </div>
         </div>
       ))}

@@ -18,6 +18,10 @@ const CreateStrategy: React.FC = () => {
   const [strategyName, setStrategyName] = useState<string>('ORB with Trailing SL');
   const [showAdvancedFeatures, setShowAdvancedFeatures] = useState(false);
   const [strategyType, setStrategyType] = useState<string>('time-based'); 
+  const [transactionType, setTransactionType] = useState<string>('bothLongAndShort'); 
+
+  const showLong = transactionType === 'bothLongAndShort' || transactionType === 'long';
+  const showShort = transactionType === 'bothLongAndShort' || transactionType === 'short';
 
   return (
     <div className={styles.container}>
@@ -26,12 +30,12 @@ const CreateStrategy: React.FC = () => {
       <div className={styles.strategySections}>
         <BasicConfiguration onChange={setStrategyType}/>
 
-        {/* hide/show in the case of Strategy Type */}
+        {/* hide/show in the case of change in Strategy Type */}
         {strategyType === 'indicator' && (
           <>
-            <ChartSettings />
-            <EntryConditions />
-            <ExitConditions />
+            <ChartSettings onChange ={setTransactionType}/>
+            <EntryConditions showLong={showLong} showShort={showShort}/>
+            <ExitConditions showLong={showLong} showShort={showShort}/>
             <PositionBuilder />
           </>
         )}

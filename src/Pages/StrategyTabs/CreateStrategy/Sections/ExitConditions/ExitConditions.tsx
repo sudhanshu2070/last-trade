@@ -16,7 +16,12 @@ interface ConditionGroup {
   };
 }
 
-const ExitConditions = () => {
+interface ExitConditionsProps {
+  showLong?: boolean;
+  showShort?: boolean;
+}
+
+const ExitConditions:React.FC<ExitConditionsProps> = ({showLong = true, showShort=true}) => {
   const [conditionGroups, setConditionGroups] = useState<ConditionGroup[]>([{
     id: 'initial-exit-group',
     longCondition: { indicator: '', operator: 'Crosses Above', value: '' },
@@ -116,6 +121,7 @@ const ExitConditions = () => {
               </button>
             )}
 
+            {showLong && (
             <div className={styles.conditionPair}>
               <h4 className={styles.conditionTitle}>Long Exit Condition</h4>
               <div className={styles.dropdownGroup}>
@@ -158,7 +164,9 @@ const ExitConditions = () => {
                 </div>
               </div>
             </div>
+            )}  
 
+            {showShort && (
             <div className={styles.conditionPair}>
               <h4 className={styles.conditionTitle}>Short Exit Condition</h4>
               <div className={styles.dropdownGroup}>
@@ -201,6 +209,8 @@ const ExitConditions = () => {
                 </div>
               </div>
             </div>
+            )}
+
           </div>
         </div>
       ))}
