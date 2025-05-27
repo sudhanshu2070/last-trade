@@ -11,12 +11,15 @@ import {
   FiPhone as ContactIcon,
 } from 'react-icons/fi';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChartLine } from '@fortawesome/free-solid-svg-icons';
+
 // Navigation Items
 const navItems = [
   { label: 'Dashboard', path: '/', icon: <DashboardIcon /> },
   { label: 'Brokers', path: '/brokers', icon: <PortfolioIcon /> },
   { label: 'Strategies', path: '/strategies', icon: <StrategiesIcon /> },
-  { label: 'Backtest', path: '/backtest', icon: <SettingsIcon /> },
+  { label: 'Backtest', path: '/backtest', icon: <FontAwesomeIcon icon={faChartLine} /> },
 ];
 
 // Social/Contact Links
