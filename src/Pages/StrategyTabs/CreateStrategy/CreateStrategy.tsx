@@ -36,7 +36,7 @@ const CreateStrategy: React.FC = () => {
             <ChartSettings onChange ={setTransactionType}/>
             <EntryConditions showLong={showLong} showShort={showShort}/>
             <ExitConditions showLong={showLong} showShort={showShort}/>
-            <PositionBuilder />
+            <PositionBuilder showLong={showLong} showShort={showShort}/>
           </>
         )}
 

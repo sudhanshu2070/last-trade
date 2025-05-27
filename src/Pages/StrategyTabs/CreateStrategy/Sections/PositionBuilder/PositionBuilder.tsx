@@ -1,7 +1,12 @@
 import { useState } from 'react';
 import styles from './PositionBuilder.module.css';
 
-const PositionBuilder = () => {
+interface PositionBuilderProps {
+showLong?: boolean;
+showShort?: boolean;
+}
+
+const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showShort= true}) => {
   // State for Long Position
   const [longPosition, setLongPosition] = useState({
     action: 'Buy',
@@ -44,6 +49,7 @@ const PositionBuilder = () => {
       
       <div className={styles.columnsContainer}>
         {/* Column 1: Long Position */}
+        {showLong && (
         <div className={styles.column}>
           <h4 className={styles.columnTitle}>When Long Condition Met</h4>
           
@@ -167,8 +173,10 @@ const PositionBuilder = () => {
             </div>
           </div>
         </div>
+        )}
         
         {/* Column 2: Short Position */}
+        {showShort &&(
         <div className={styles.column}>
           <h4 className={styles.columnTitle}>When Short Condition Met</h4>
           
@@ -292,6 +300,8 @@ const PositionBuilder = () => {
             </div>
           </div>
         </div>
+        )}
+        
       </div>
     </div>
   );
