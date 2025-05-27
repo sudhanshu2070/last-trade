@@ -3,9 +3,6 @@ import { useMediaQuery } from 'react-responsive';
 import styles from './NavTabs.module.css';
 import {
   FiHome as DashboardIcon,
-  FiPieChart as PortfolioIcon,
-  FiTrendingUp as StrategiesIcon,
-  FiSettings as SettingsIcon,
   FiTwitter as TwitterIcon,
   FiMail as MailIcon,
   FiPhone as ContactIcon,
@@ -13,12 +10,22 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
+import strategyIcon from '../../assets/strategy_icon.png'; 
 
 // Navigation Items
 const navItems = [
   { label: 'Dashboard', path: '/', icon: <DashboardIcon /> },
-  { label: 'Brokers', path: '/brokers', icon: <PortfolioIcon /> },
-  { label: 'Strategies', path: '/strategies', icon: <StrategiesIcon /> },
+  { label: 'Brokers', path: '/brokers', icon: <FontAwesomeIcon icon={faBriefcase} /> },
+  { 
+    label: 'Strategies', 
+    path: '/strategies', 
+    icon: <img
+          src={strategyIcon}
+          alt="strategy"
+          style={{ width: '20px', height: '20px', objectFit: 'contain' }}
+        /> 
+  },
   { label: 'Backtest', path: '/backtest', icon: <FontAwesomeIcon icon={faChartLine} /> },
 ];
 
