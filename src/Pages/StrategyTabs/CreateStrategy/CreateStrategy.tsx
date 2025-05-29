@@ -40,11 +40,16 @@ const CreateStrategy: React.FC = () => {
           </>
         )}
 
-        <ReadymadeStrategies />
-        <OrderLegs showAdvancedFeatures={showAdvancedFeatures} />
-        <AdvancedFeatures 
-          onSave={() => setShowAdvancedFeatures(true)} 
-        />
+        {strategyType === 'time-based' && (
+          <>
+            <ReadymadeStrategies />
+            <OrderLegs showAdvancedFeatures={showAdvancedFeatures} />
+            <AdvancedFeatures 
+              onSave={() => setShowAdvancedFeatures(true)} 
+            />
+          </>
+        )}
+        
         <RiskManagement />
         <ProfitTrailing />
         
