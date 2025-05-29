@@ -132,7 +132,7 @@ const ExitConditions:React.FC<ExitConditionsProps> = ({showLong = true, showShor
             )}
 
             {showLong && (
-            <div className={styles.conditionPair}>
+            <div className={`${styles.conditionPair} ${styles.longCondition}`}>
               <h4 className={styles.conditionTitle}>Long Exit Condition</h4>
               <div className={styles.dropdownGroup}>
                 <div className={styles.dropdown}>
@@ -177,7 +177,7 @@ const ExitConditions:React.FC<ExitConditionsProps> = ({showLong = true, showShor
             )}  
 
             {showShort && (
-            <div className={styles.conditionPair}>
+            <div className={`${styles.conditionPair} ${styles.shortCondition}`}>
               <h4 className={styles.conditionTitle}>Short Exit Condition</h4>
               <div className={styles.dropdownGroup}>
                 <div className={styles.dropdown}>

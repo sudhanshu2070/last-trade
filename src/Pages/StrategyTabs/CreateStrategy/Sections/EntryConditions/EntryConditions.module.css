@@ -89,6 +89,55 @@
   color: #f9fafb;
 }
 
+.conditionPair {
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+}
+
+/* Long Condition - Bullish (Blue Theme) */
+.longCondition {
+  background-color: rgba(29, 78, 216, 0.1);  /* blue-700 with 10% opacity */
+  border-left: 3px solid rgb(59, 130, 246);  /* blue-500 */
+  border-color: rgba(59, 130, 246, 0.3);
+}
+
+.longCondition .conditionTitle {
+  color: rgb(96, 165, 250);  /* blue-400 */
+}
+
+.longCondition .dropdownSelect {
+  background-color: rgba(30, 58, 138, 0.3);  /* blue-900 with 30% opacity */
+  border-color: rgba(59, 130, 246, 0.4);
+}
+
+.longCondition .dropdownSelect:focus {
+  border-color: rgb(147, 197, 253);  /* blue-300 */
+  box-shadow: 0 0 0 1px rgba(147, 197, 253, 0.5);
+}
+
+/* Short Condition - Bearish (Orange Theme) */
+.shortCondition {
+  background-color: rgba(234, 88, 12, 0.1);  /* orange-600 with 10% opacity */
+  border-left: 3px solid rgb(249, 115, 22);  /* orange-500 */
+  border-color: rgba(249, 115, 22, 0.3);
+}
+
+.shortCondition .conditionTitle {
+  color: rgb(251, 146, 60);  /* orange-400 */
+}
+
+.shortCondition .dropdownSelect {
+  background-color: rgba(154, 52, 18, 0.3);  /* orange-900 with 30% opacity */
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+.shortCondition .dropdownSelect:focus {
+  border-color: rgb(253, 186, 116);  /* orange-300 */
+  box-shadow: 0 0 0 1px rgba(253, 186, 116, 0.5);
+}
+
 /* Specific colors for long/short titles */
 .conditionPair:nth-child(1) .conditionTitle {
   color: rgb(74, 222, 128); /* Light green for long */
