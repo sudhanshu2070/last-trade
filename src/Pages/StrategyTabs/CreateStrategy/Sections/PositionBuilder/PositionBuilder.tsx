@@ -50,7 +50,7 @@ const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showSh
       <div className={styles.columnsContainer}>
         {/* Column 1: Long Position */}
         {showLong && (
-        <div className={styles.column}>
+        <div className={`${styles.column} ${styles.longColumn}`}>
           <h4 className={styles.columnTitle}>When Long Condition Met</h4>
           
           <div className={styles.formRow}>
@@ -177,7 +177,7 @@ const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showSh
         
         {/* Column 2: Short Position */}
         {showShort &&(
-        <div className={styles.column}>
+        <div className={`${styles.column} ${styles.shortColumn}`}>
           <h4 className={styles.columnTitle}>When Short Condition Met</h4>
           
           <div className={styles.formRow}>
