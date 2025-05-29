@@ -61,10 +61,24 @@
 
 .conditionPair {
   margin-bottom: 1rem;
+  padding: 0.75rem;
+  border-radius: 0.25rem;
 }
 
 .conditionPair:last-child {
   margin-bottom: 0;
+}
+
+/* Long condition styling */
+.conditionPair:nth-child(1) {
+  background-color: rgba(22, 101, 52, 0.2); /* Dark green background */
+  border-left: 3px solid rgb(74, 222, 128); /* Light green accent */
+}
+
+/* Short condition styling */
+.conditionPair:nth-child(2) {
+  background-color: rgba(153, 27, 27, 0.2); /* Dark red background */
+  border-left: 3px solid rgb(248, 113, 113); /* Light red accent */
 }
 
 .conditionTitle {
@@ -73,6 +87,15 @@
   margin-top: 0;
   margin-bottom: 0.5rem;
   color: #f9fafb;
+}
+
+/* Specific colors for long/short titles */
+.conditionPair:nth-child(1) .conditionTitle {
+  color: rgb(74, 222, 128); /* Light green for long */
+}
+
+.conditionPair:nth-child(2) .conditionTitle {
+  color: rgb(248, 113, 113); /* Light red for short */
 }
 
 .dropdownGroup {
@@ -99,7 +122,6 @@
   outline: none;
   border-color: rgb(59 130 246);
 }
-
 
 .toggleWrapper {
   display: flex;

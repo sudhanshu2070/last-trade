@@ -132,7 +132,7 @@ const EntryConditions:React.FC<EntryConditionsProps> = ({ showLong = true, showS
             )}
 
           {showLong && (
-            <div className={styles.conditionPair}>
+            <div className={`${styles.conditionPair} ${styles.longCondition}`}>
               <h4 className={styles.conditionTitle}>Long Entry Condition</h4>
               <div className={styles.dropdownGroup}>
                 <div className={styles.dropdown}>
@@ -177,7 +177,7 @@ const EntryConditions:React.FC<EntryConditionsProps> = ({ showLong = true, showS
           )}
 
           {showShort && (
-            <div className={styles.conditionPair}>
+            <div className={`${styles.conditionPair} ${styles.shortCondition}`}>
               <h4 className={styles.conditionTitle}>Short Entry Condition</h4>
               <div className={styles.dropdownGroup}>
                 <div className={styles.dropdown}>
