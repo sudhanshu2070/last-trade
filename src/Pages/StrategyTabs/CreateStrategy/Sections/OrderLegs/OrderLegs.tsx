@@ -241,6 +241,9 @@ const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures }) => {
                   <option value="ITM">ITM (In The Money)</option>
                   <option value="ATM">ATM (At The Money)</option>
                   <option value="OTM">OTM (Out of Money)</option>
+                  <option value="CP">Current Price</option>
+                  <option value="CPgreater">Current Price (&gt;= )</option>
+                  <option value="CPless">Current Price (&lt;= )</option>
                 </select>
               </div>
 
