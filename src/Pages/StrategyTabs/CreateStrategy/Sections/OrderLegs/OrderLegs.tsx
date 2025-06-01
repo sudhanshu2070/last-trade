@@ -249,29 +249,41 @@ const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures }) => {
 
               <div className={styles.formGroup}>
                 <label className={styles.label}>Strike Selection</label>
-                <select
-                  value={leg.instrument}
-                  onChange={(e) => updateLeg(leg.id, 'instrument', e.target.value)}
-                  className={styles.input}
-                  disabled={!leg.strikeType}
-                >
-                  <option value="">Select {leg.strikeType} Strike</option>
-                  {leg.strikeType === 'ITM' && strikeData.ITM.map((strike) => (
-                    <option key={strike.value} value={strike.value}>
-                      {strike.label}
-                    </option>
-                  ))}
-                  {leg.strikeType === 'ATM' && strikeData.ATM.map((strike) => (
-                    <option key={strike.value} value={strike.value}>
-                      {strike.label}
-                    </option>
-                  ))}
-                  {leg.strikeType === 'OTM' && strikeData.OTM.map((strike) => (
-                    <option key={strike.value} value={strike.value}>
-                      {strike.label}
-                    </option>
-                  ))}
-                </select>
+
+                {/* If strikeType is CP/CPgreater/CPless, showing input instead of select */}
+                {['CP', 'CPgreater', 'CPless'].includes(leg.strikeType) ? (
+                  <input
+                    type="number"
+                    value={leg.instrument}
+                    onChange={(e) => updateLeg(leg.id, 'instrument', e.target.value)}
+                    className={styles.input}
+                    placeholder="Enter strike price"
+                  />
+                ) : (
+                  <select
+                    value={leg.instrument}
+                    onChange={(e) => updateLeg(leg.id, 'instrument', e.target.value)}
+                    className={styles.input}
+                    disabled={!leg.strikeType}
+                  >
+                    <option value="">Select {leg.strikeType} Strike</option>
+                    {leg.strikeType === 'ITM' && strikeData.ITM.map((strike) => (
+                      <option key={strike.value} value={strike.value}>
+                        {strike.label}
+                      </option>
+                    ))}
+                    {leg.strikeType === 'ATM' && strikeData.ATM.map((strike) => (
+                      <option key={strike.value} value={strike.value}>
+                        {strike.label}
+                      </option>
+                    ))}
+                    {leg.strikeType === 'OTM' && strikeData.OTM.map((strike) => (
+                      <option key={strike.value} value={strike.value}>
+                        {strike.label}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
               
               <div className={styles.formGroup}>
