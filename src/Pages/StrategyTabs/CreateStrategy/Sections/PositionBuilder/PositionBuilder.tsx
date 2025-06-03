@@ -112,22 +112,36 @@ const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showSh
                 onChange={(e) => handleLongChange('strikeType', e.target.value)}
                 className={styles.dropdown}
               >
-                <option>ATM</option>
-                <option>ITM</option>
-                <option>OTM</option>
+                <option value="ITM">ITM (In The Money)</option>
+                <option value="ATM">ATM (At The Money)</option>
+                <option value="OTM">OTM (Out of Money)</option>
+                <option value="CP">Current Price</option>
+                <option value="CPgreater">Current Price (&gt;= )</option>
+                <option value="CPless">Current Price (&lt;= )</option>
               </select>
             </div>
             
             <div className={styles.formGroup}>
               <label className={styles.label}>Strike Selection</label>
-              <select
-                value={longPosition.strikeSelection}
-                onChange={(e) => handleLongChange('strikeSelection', e.target.value)}
-                className={styles.dropdown}
-              >
-                <option>Automatic</option>
-                <option>Manual</option>
-              </select>
+
+              {['CP', 'CPgreater', 'CPless'].includes(longPosition.strikeType) ? (
+                <input
+                  type="number"
+                  value={longPosition.strikeSelection}
+                  onChange={(e) => handleLongChange('strikeSelection', e.target.value)}
+                  className={styles.input}
+                  placeholder="Enter strike price"
+                />
+              ) : (
+                <select
+                  value={longPosition.strikeSelection}
+                  onChange={(e) => handleLongChange('strikeSelection', e.target.value)}
+                  className={styles.dropdown}
+                >
+                  <option>Automatic</option>
+                  <option>Manual</option>
+                </select>
+              )}
             </div>
           </div>
           
@@ -239,22 +253,36 @@ const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showSh
                 onChange={(e) => handleShortChange('strikeType', e.target.value)}
                 className={styles.dropdown}
               >
-                <option>ATM</option>
-                <option>ITM</option>
-                <option>OTM</option>
+                <option value="ITM">ITM (In The Money)</option>
+                <option value="ATM">ATM (At The Money)</option>
+                <option value="OTM">OTM (Out of Money)</option>
+                <option value="CP">Current Price</option>
+                <option value="CPgreater">Current Price (&gt;= )</option>
+                <option value="CPless">Current Price (&lt;= )</option>
               </select>
             </div>
             
             <div className={styles.formGroup}>
               <label className={styles.label}>Strike Selection</label>
-              <select
-                value={shortPosition.strikeSelection}
-                onChange={(e) => handleShortChange('strikeSelection', e.target.value)}
-                className={styles.dropdown}
-              >
-                <option>Automatic</option>
-                <option>Manual</option>
-              </select>
+
+              {['CP', 'CPgreater', 'CPless'].includes(shortPosition.strikeType) ? (
+                <input
+                  type="number"
+                  value={shortPosition.strikeSelection}
+                  onChange={(e) => handleShortChange('strikeSelection', e.target.value)}
+                  className={styles.input}
+                  placeholder="Enter strike price"
+                />
+              ) : (
+                <select
+                  value={shortPosition.strikeSelection}
+                  onChange={(e) => handleShortChange('strikeSelection', e.target.value)}
+                  className={styles.dropdown}
+                >
+                  <option>Automatic</option>
+                  <option>Manual</option>
+                </select>
+              )}
             </div>
           </div>
           
