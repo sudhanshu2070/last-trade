@@ -29,6 +29,7 @@ const ExitConditions:React.FC<ExitConditionsProps> = ({showLong = true, showShor
   }]);
 
   const [toggles, setToggles] = useState<string[]>([]); // holds "AND"/"OR" strings between condition groups
+  const [showAdditionalExit, setShowAdditionalExit] = useState(false);
 
   const indicators = ['RSI', 'MACD', 'Moving Average', 'Supertrend', 'Volume'];
   const operators = ['Crosses Above', 'Crosses Below', 'Greater Than', 'Less Than', 'Equal To'];
@@ -94,6 +95,26 @@ const ExitConditions:React.FC<ExitConditionsProps> = ({showLong = true, showShor
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>Exit Conditions</h3>
+      {/* New toggle buttons */}
+    <div className={styles.conditionToggleButtons}>
+      <button 
+        className={`${styles.conditionToggleButton} ${!showAdditionalExit ? styles.activeToggle : ''}`}
+        onClick={() => setShowAdditionalExit(false)}
+      >
+        On Reversal Setup
+      </button>
+      <button 
+        className={`${styles.conditionToggleButton} ${showAdditionalExit ? styles.activeToggle : ''}`}
+        onClick={() => setShowAdditionalExit(true)}
+      >
+        Additional Exit Conditions
+      </button>
+    </div>
+
+    {!showAdditionalExit ? (
+      null
+    ) : (
+      <>
 
       {conditionGroups.map((group, index) => (
         <div key={group.id}>
@@ -228,7 +249,9 @@ const ExitConditions:React.FC<ExitConditionsProps> = ({showLong = true, showShor
       <button onClick={addConditionGroup} className={styles.addButton}>
         Add Condition +
       </button>
-    </div>
+       </>
+  )}
+</div>
   );
 };
 

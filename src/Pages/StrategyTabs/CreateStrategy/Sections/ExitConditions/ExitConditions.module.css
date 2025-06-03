@@ -210,6 +210,53 @@
   color: white;
 }
 
+.conditionToggleButtons {
+  display: flex;
+  justify-content: flex-start; /* Align to the left */
+  gap: 8px; /* Space between buttons */
+  margin-bottom: 16px;
+}
+
+.conditionToggleButton {
+  padding: 10px 20px;
+  min-width: 180px;
+  font-size: 14px;
+  text-align: center;
+  background-color: #2a2a2a; /* Dark background */
+  color: #e0e0e0; /* Light text */
+  border: 1px solid #444; /* Subtle border */
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border-radius: 6px;
+}
+
+.conditionToggleButton:hover {
+  background-color: #3a3a3a;
+}
+
+.activeToggle {
+  background-color: #007bff; /* Accent color */
+  color: #ffffff;
+  border-color: #007bff;
+}
+
+.activeToggle::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: rgb(59 130 246);
+}
+
+.reversalSetup {
+  padding: 1rem;
+  background-color: rgba(17, 24, 39, 0.5);
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+}
+
 @media (max-width: 768px) {
   .dropdownGroup {
     flex-direction: column;
