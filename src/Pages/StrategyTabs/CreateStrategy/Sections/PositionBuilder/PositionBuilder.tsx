@@ -158,7 +158,7 @@ const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showSh
                 <select
                   value={longPosition.targetType}
                   onChange={(e) => handleLongChange('targetType', e.target.value)}
-                  className={styles.smallDropdown}
+                  className={styles.smallDropdownLong}
                 >
                   <option>Points</option>
                   <option>Percent</option>
@@ -178,7 +178,7 @@ const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showSh
                 <select
                   value={longPosition.stopLossType}
                   onChange={(e) => handleLongChange('stopLossType', e.target.value)}
-                  className={styles.smallDropdown}
+                  className={styles.smallDropdownLong}
                 >
                   <option>Points</option>
                   <option>Percent</option>
@@ -299,7 +299,7 @@ const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showSh
                 <select
                   value={shortPosition.targetType}
                   onChange={(e) => handleShortChange('targetType', e.target.value)}
-                  className={styles.smallDropdown}
+                  className={styles.smallDropdownShort}
                 >
                   <option>Points</option>
                   <option>Percent</option>
@@ -319,7 +319,7 @@ const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showSh
                 <select
                   value={shortPosition.stopLossType}
                   onChange={(e) => handleShortChange('stopLossType', e.target.value)}
-                  className={styles.smallDropdown}
+                  className={styles.smallDropdownShort}
                 >
                   <option>Points</option>
                   <option>Percent</option>
