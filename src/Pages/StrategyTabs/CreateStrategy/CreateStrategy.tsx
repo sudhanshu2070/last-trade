@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './CreateStrategy.module.css';
 import BasicConfiguration from './Sections/BasicConfiguration/BasicConfiguration';
 import ReadymadeStrategies from './Sections/ReadymadeStrategies/ReadymadeStrategies';
@@ -19,6 +19,13 @@ const CreateStrategy: React.FC = () => {
   const [showAdvancedFeatures, setShowAdvancedFeatures] = useState(false);
   const [strategyType, setStrategyType] = useState<string>('time-based'); 
   const [transactionType, setTransactionType] = useState<string>('bothLongAndShort'); 
+
+  // Resetting to 'bothLongAndShort'(initial value) when strategy becomes indicator-based
+  useEffect(() => {
+    if (strategyType === 'indicator') {
+      setTransactionType('bothLongAndShort');
+    }
+  }, [strategyType]);
 
   const showLong = transactionType === 'bothLongAndShort' || transactionType === 'long';
   const showShort = transactionType === 'bothLongAndShort' || transactionType === 'short';
