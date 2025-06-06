@@ -20,7 +20,7 @@ const CreateStrategy: React.FC = () => {
   const [strategyType, setStrategyType] = useState<string>('time-based'); 
   const [transactionType, setTransactionType] = useState<string>('bothLongAndShort'); 
 
-  // Resetting to 'bothLongAndShort'(initial value) when strategy becomes indicator-based
+  // Resetting to 'bothLongAndShort'(initial value) when strategy becomes "indicator-based"
   useEffect(() => {
     if (strategyType === 'indicator') {
       setTransactionType('bothLongAndShort');
