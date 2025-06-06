@@ -1,0 +1,114 @@
+.container {
+  padding: 24px;
+  color: #e0e0e0;
+  background-color: #121212;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.createButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #1e88e5;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.searchBox {
+  display: flex;
+  align-items: center;
+  background-color: #1f1f1f;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.searchIcon {
+  margin-right: 8px;
+  color: #aaa;
+}
+
+.searchInput {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  width: 100%;
+}
+
+.strategyList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.strategyCard {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.strategyInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.icon {
+  font-size: 28px;
+  color: #03dac6;
+}
+
+.strategyTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.strategyDescription {
+  font-size: 14px;
+  color: #aaa;
+  margin: 4px 0 0;
+}
+
+.strategyActions {
+  display: flex;
+  gap: 12px;
+}
+
+.backtestButton,
+.deployButton {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.backtestButton {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.deployButton {
+  background-color: #4caf50;
+  color: white;
+}
