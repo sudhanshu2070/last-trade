@@ -125,14 +125,28 @@
   margin-bottom: 16px;
 }
 
-.strategyGrid {
+/* .strategyGrid {
   display: flex;
-  gap: 12px;                  /* Space between strategy cards */
-  flex-wrap: wrap;            /* Allow wrapping based on space */
-  width: 100%;                /* Full width of the container */
+  gap: 12px;                  
+  flex-wrap: wrap;            
+  width: 100%;                
   min-width: 75vw;
   justify-content: center;
+} */
+
+.strategyGrid {
+  display: flex;
+  gap: 24px;                  /* Increased gap for better spacing */
+  width: 100%;
+  justify-content: flex-start; /* Align items to the start */
 }
+
+.strategyGrid > * {
+  flex: 1;                    /* Each card takes equal space */
+  min-width: 350px;           /* Minimum width for each card */
+  max-width: calc(50% - 12px); /* Calculate max width accounting for gap */
+}
+
 
 .strategyGrid > .container {
   background: #ffffff;
@@ -194,7 +208,12 @@
   }
 
   .strategyGrid {
-    flex-direction: column;
+    flex-wrap: wrap;          /* Allow wrapping when needed */
+  }
+  
+  /* On smaller desktop/tablet, ensure full width when wrapped */
+  .strategyGrid > * {
+    max-width: 100%;
   }
 }
 
@@ -218,6 +237,11 @@
   }
 
   .strategyGrid {
-    grid-template-columns: 1fr; /* Single column on mobile */
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .strategyGrid > * {
+    min-width: 100%;          /* Full width on mobile */
   }
 }
