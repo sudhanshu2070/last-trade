@@ -18,7 +18,7 @@ interface AdvancedFeaturesProps {
 const AdvancedFeatures: React.FC<AdvancedFeaturesProps> = ({ onSave }) => {
   const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const [isExpanded, setIsExpanded] = useState(true);
-  const [enableAll, setEnableAll] = useState(false);
+  // const [enableAll, setEnableAll] = useState(false);// For future use, currently not implemented
   const [currentPopupOption, setCurrentPopupOption] = useState<string | null>(null);
   const [reEntryCycles, setReEntryCycles] = useState('');
   const [executionType, setExecutionType] = useState<'combined' | 'legwise'>('combined');
@@ -44,7 +44,7 @@ const AdvancedFeatures: React.FC<AdvancedFeaturesProps> = ({ onSave }) => {
       : [...selectedOptions, option];
 
     setSelectedOptions(newSelected);
-    setEnableAll(newSelected.length === options.length);
+    // setEnableAll(newSelected.length === options.length);// For future use, currently not implemented
 
     // Show popup when enabling certain options
     if (!selectedOptions.includes(option) && ['Wait & Trade', 'Re-entry/Execute'].includes(option)) {
@@ -56,11 +56,13 @@ const AdvancedFeatures: React.FC<AdvancedFeaturesProps> = ({ onSave }) => {
     setIsExpanded(!isExpanded);
   };
 
-  const toggleEnableAll = () => {
-     const newEnableAll = !enableAll;
-    setEnableAll(newEnableAll);
-    setSelectedOptions(newEnableAll ? [...options] : []);
-  };
+  {/* Enable All Options(for future) */}
+
+  // const toggleEnableAll = () => {
+  //    const newEnableAll = !enableAll;
+  //   setEnableAll(newEnableAll);
+  //   setSelectedOptions(newEnableAll ? [...options] : []);
+  // };
 
   const handleClosePopup = () => {
     setCurrentPopupOption(null);
@@ -82,7 +84,9 @@ const AdvancedFeatures: React.FC<AdvancedFeaturesProps> = ({ onSave }) => {
         <div className={styles.headerControls}>
           {isExpanded && (
             <div className={styles.enableAllContainer} onClick={(e) => e.stopPropagation()}>
-              <span className={styles.enableAllText}>Enable All</span>
+              
+              {/* Enable All Options(for future) */}
+              {/* <span className={styles.enableAllText}>Enable All</span>
               <label className={styles.toggleSwitch}>
                 <input
                   type="checkbox"
@@ -91,7 +95,8 @@ const AdvancedFeatures: React.FC<AdvancedFeaturesProps> = ({ onSave }) => {
                   className={styles.toggleInput}
                 />
                 <span className={styles.toggleSlider}></span>
-              </label>
+              </label> */}
+
             </div>
           )}
           <FontAwesomeIcon 
