@@ -144,6 +144,7 @@ const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures }) => {
       { value: "ATM", label: "ATM" }
     ],
     OTM: [
+      { value: "OTM50", label: "OTM 50" },
       { value: "OTM100", label: "OTM 100" },
       { value: "OTM150", label: "OTM 150" },
       { value: "OTM200", label: "OTM 200" },

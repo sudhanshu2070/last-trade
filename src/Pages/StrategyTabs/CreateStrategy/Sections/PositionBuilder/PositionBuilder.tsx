@@ -90,6 +90,7 @@ const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showSh
       { value: "ATM", label: "ATM" }
     ],
     OTM: [
+      { value: "OTM50", label: "OTM 50" },
       { value: "OTM100", label: "OTM 100" },
       { value: "OTM150", label: "OTM 150" },
       { value: "OTM200", label: "OTM 200" },
@@ -381,8 +382,21 @@ const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showSh
                   onChange={(e) => handleShortChange('strikeSelection', e.target.value)}
                   className={styles.dropdown}
                 >
-                  <option>Automatic</option>
-                  <option>Manual</option>
+                  {shortPosition.strikeType === 'ITM' && strikeData.ITM.map((strike) => (
+                      <option key={strike.value} value={strike.value}>
+                        {strike.label}
+                      </option>
+                    ))}
+                    {shortPosition.strikeType === 'ATM' && strikeData.ATM.map((strike) => (
+                      <option key={strike.value} value={strike.value}>
+                        {strike.label}
+                      </option>
+                    ))}
+                    {shortPosition.strikeType === 'OTM' && strikeData.OTM.map((strike) => (
+                      <option key={strike.value} value={strike.value}>
+                        {strike.label}
+                      </option>
+                    ))}
                 </select>
               )}
             </div>
