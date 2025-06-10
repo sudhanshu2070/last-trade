@@ -70,9 +70,9 @@
   }
   
   .removeLegButton {
-    /* background-color: rgba(239, 68, 68, 0.8); deeper red */
+    background-color: rgba(239, 68, 68, 0.8); 
     color: #ffffff; /* white for contrast */
-    /* border: 1px solid #ef4444; */
+    border: 1px solid #ef4444; 
     border-radius: 0.25rem;
     width: 1.75rem;
     height: 1.75rem;
