@@ -97,24 +97,48 @@ const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures }) => {
     }
   };
 
-  const strikeData = {
+    const strikeData = {
     ITM: [
-      { value: "ITM2000", label: "ITM 2000" },
-      { value: "ITM1950", label: "ITM 1950" },
-      { value: "ITM1900", label: "ITM 1900" },
-      { value: "ITM1850", label: "ITM 1850" },
-      { value: "ITM1800", label: "ITM 1800" },
-      { value: "ITM1750", label: "ITM 1750" },
-      { value: "ITM1700", label: "ITM 1700" },
-      { value: "ITM1650", label: "ITM 1650" },
-      { value: "ITM1600", label: "ITM 1600" },
-      { value: "ITM1550", label: "ITM 1550" },
-      { value: "ITM1500", label: "ITM 1500" },
-      { value: "ITM1450", label: "ITM 1450" },
-      { value: "ITM1400", label: "ITM 1400" },
-      { value: "ITM1350", label: "ITM 1350" },
+      { value: "ITM50", label: "ITM 50" },
+      { value: "ITM100", label: "ITM 100" },
+      { value: "ITM150", label: "ITM 150" },
+      { value: "ITM200", label: "ITM 200" },
+      { value: "ITM250", label: "ITM 250" },
+      { value: "ITM300", label: "ITM 300" },
+      { value: "ITM350", label: "ITM 350" },
+      { value: "ITM400", label: "ITM 400" },
+      { value: "ITM450", label: "ITM 450" },
+      { value: "ITM500", label: "ITM 500" },
+      { value: "ITM550", label: "ITM 550" },
+      { value: "ITM600", label: "ITM 600" },
+      { value: "ITM650", label: "ITM 650" },
+      { value: "ITM700", label: "ITM 700" },
+      { value: "ITM750", label: "ITM 750" },
+      { value: "ITM800", label: "ITM 800" },
+      { value: "ITM850", label: "ITM 850" },
+      { value: "ITM900", label: "ITM 900" },
+      { value: "ITM950", label: "ITM 950" },
+      { value: "ITM1000", label: "ITM 1000" },
+      { value: "ITM1050", label: "ITM 1050" },
+      { value: "ITM1100", label: "ITM 1100" },
+      { value: "ITM1150", label: "ITM 1150" },
+      { value: "ITM1200", label: "ITM 1200" },
+      { value: "ITM1250", label: "ITM 1250" },
       { value: "ITM1300", label: "ITM 1300" },
-      { value: "ITM1250", label: "ITM 1250" }
+      { value: "ITM1350", label: "ITM 1350" },
+      { value: "ITM1400", label: "ITM 1400" },
+      { value: "ITM1450", label: "ITM 1450" },
+      { value: "ITM1500", label: "ITM 1500" },
+      { value: "ITM1550", label: "ITM 1550" },
+      { value: "ITM1600", label: "ITM 1600" },
+      { value: "ITM1650", label: "ITM 1650" },
+      { value: "ITM1700", label: "ITM 1700" },
+      { value: "ITM1750", label: "ITM 1750" },
+      { value: "ITM1800", label: "ITM 1800" },
+      { value: "ITM1850", label: "ITM 1850" },
+      { value: "ITM1900", label: "ITM 1900" },
+      { value: "ITM1950", label: "ITM 1950" },
+      { value: "ITM2000", label: "ITM 2000" }
     ],
     ATM: [
       { value: "ATM", label: "ATM" }
@@ -136,6 +160,29 @@ const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures }) => {
       { value: "OTM750", label: "OTM 750" },
       { value: "OTM800", label: "OTM 800" },
       { value: "OTM850", label: "OTM 850" },
+      { value: "OTM900", label: "OTM 900" },
+      { value: "OTM950", label: "OTM 950" },
+      { value: "OTM1000", label: "OTM 1000" },
+      { value: "OTM1050", label: "OTM 1050" },
+      { value: "OTM1100", label: "OTM 1100" },
+      { value: "OTM1150", label: "OTM 1150" },
+      { value: "OTM1200", label: "OTM 1200" },
+      { value: "OTM1250", label: "OTM 1250" },
+      { value: "OTM1300", label: "OTM 1300" },
+      { value: "OTM1350", label: "OTM 1350" },
+      { value: "OTM1400", label: "OTM 1400" },
+      { value: "OTM1450", label: "OTM 1450" },
+      { value: "OTM1500", label: "OTM 1500" },
+      { value: "OTM1550", label: "OTM 1550" },
+      { value: "OTM1600", label: "OTM 1600" },
+      { value: "OTM1650", label: "OTM 1650" },
+      { value: "OTM1700", label: "OTM 1700" },
+      { value: "OTM1750", label: "OTM 1750" },
+      { value: "OTM1800", label: "OTM 1800" },
+      { value: "OTM1850", label: "OTM 1850" },
+      { value: "OTM1900", label: "OTM 1900" },
+      { value: "OTM1950", label: "OTM 1950" },
+      { value: "OTM2000", label: "OTM 2000" }
     ]
   };
 
@@ -266,7 +313,7 @@ const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures }) => {
                     className={styles.input}
                     disabled={!leg.strikeType}
                   >
-                    <option value="">Select {leg.strikeType} Strike</option>
+                  <option value="">Select {leg.strikeType} Strike</option>
                     {leg.strikeType === 'ITM' && strikeData.ITM.map((strike) => (
                       <option key={strike.value} value={strike.value}>
                         {strike.label}
