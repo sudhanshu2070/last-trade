@@ -170,7 +170,7 @@
   border-color: #3b82f666;
   font-size: 0.875rem;
   font-weight: 600; /* Added boldness */
-  color: #1e40af; /* Darker text color for better contrast */
+  color: rgb(147, 197, 253);
   appearance: none;
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%231e40af' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); /* Changed arrow color to match text */
   background-repeat: no-repeat;
@@ -183,16 +183,10 @@
   min-width: 0;
   padding: 0.5rem 0.5rem;
   border-radius: 0.25rem;
-  background-color: rgba(154, 52, 18, 0.3);
-  border-color: rgba(249, 115, 22, 0.4);
+  background-color: rgb(154, 52, 18);
+  color: rgb(253, 186, 116);
   font-size: 0.875rem;
-  font-weight: 600; /* Added boldness */
-  color: #9a3412; /* Darker text color for better contrast */
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%239a3412' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); /* Changed arrow color to match text */
-  background-repeat: no-repeat;
-  background-position: right 0.25rem center;
-  background-size: 1em 1em;
+  color: rgb(253, 186, 116);
 }
 
 
