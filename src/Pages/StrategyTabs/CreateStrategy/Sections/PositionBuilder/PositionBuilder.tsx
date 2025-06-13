@@ -2,8 +2,8 @@ import { useState } from 'react';
 import styles from './PositionBuilder.module.css';
 
 interface PositionBuilderProps {
-showLong?: boolean;
-showShort?: boolean;
+  showLong?: boolean;
+  showShort?: boolean;
 }
 
 const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showShort= true}) => {
