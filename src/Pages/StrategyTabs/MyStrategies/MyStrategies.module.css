@@ -150,7 +150,7 @@
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   z-index: 10;
   min-width: 120px;
-  padding: 4px 0; /* Added some vertical padding */
+  padding: 4px 0; 
 }
 
 .menuPopup button {
@@ -163,18 +163,17 @@
   color: #374151;
   cursor: pointer;
   font-size: 0.875rem;
-  gap: 8px; /* This ensures consistent spacing between icon and text */
+  gap: 8px; 
 }
 
 .menuPopup button:hover {
   background-color: #f3f4f6;
 }
 
-/* Specific icon styling */
 .menuIcon {
   font-size: 0.9rem;
-  color: inherit; /* Makes icons match the text color */
-  flex-shrink: 0; /* Prevents icons from shrinking */
+  color: inherit; 
+  flex-shrink: 0; 
 }
 
 .strategyActions {
