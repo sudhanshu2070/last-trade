@@ -181,3 +181,10 @@
   align-items: center;
   gap: 8px;
 }
+
+.noResults {
+  padding: 20px;
+  text-align: center;
+  color: #6b7280;
+  width: 100%;
+}
