@@ -120,3 +120,55 @@
   background-color: #4caf50;
   color: white;
 }
+
+.menuContainer {
+  position: relative;
+  display: inline-block;
+}
+
+.menuButton {
+  background: none;
+  border: none;
+  color: #6b7280;
+  cursor: pointer;
+  padding: 8px;
+  font-size: 1rem;
+  border-radius: 4px;
+}
+
+.menuButton:hover {
+  background-color: #f3f4f6;
+}
+
+.menuPopup {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  min-width: 120px;
+}
+
+.menuPopup button {
+  display: block;
+  width: 100%;
+  padding: 8px 16px;
+  text-align: left;
+  background: none;
+  border: none;
+  color: #374151;
+  cursor: pointer;
+}
+
+.menuPopup button:hover {
+  background-color: #f3f4f6;
+}
+
+.strategyActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
