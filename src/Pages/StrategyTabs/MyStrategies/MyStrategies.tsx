@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import styles from './MyStrategies.module.css'; 
 import { FaPlay, FaPlus, FaSearch, FaEllipsisV } from 'react-icons/fa';
 import { FaClock, FaChartLine, FaCogs, FaBolt } from 'react-icons/fa';
+import { FaEdit, FaCopy, FaTrash } from 'react-icons/fa';
 
 const strategies = [
   {
@@ -102,9 +103,15 @@ const MyStrategies: React.FC = () => {
                 </button>
                 {openMenuId === strategy.id && (
                   <div className={styles.menuPopup}>
-                    <button onClick={() => handleAction('Edit', strategy.id)}>Edit</button>
-                    <button onClick={() => handleAction('Duplicate', strategy.id)}>Duplicate</button>
-                    <button onClick={() => handleAction('Delete', strategy.id)}>Delete</button>
+                    <button onClick={() => handleAction('Edit', strategy.id)}>
+                      <FaEdit className={styles.menuIcon} /> Edit
+                    </button>
+                    <button onClick={() => handleAction('Duplicate', strategy.id)}>
+                      <FaCopy className={styles.menuIcon} /> Duplicate
+                    </button>
+                    <button onClick={() => handleAction('Delete', strategy.id)}>
+                      <FaTrash className={styles.menuIcon} /> Delete
+                    </button>
                   </div>
                 )}
               </div>
