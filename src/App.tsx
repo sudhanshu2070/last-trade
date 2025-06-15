@@ -46,7 +46,8 @@ function App() {
                   <Route path="/portfolio" element={<BrokerConnection />} />
                   <Route path="/brokers" element={<TestComp name={'Brokers'}/>} />
                   <Route path="/strategies" element={<StrategyPage />} />
-                  <Route path="/strategies/:tab" element={<StrategyPage />} />
+                  {/* <Route path="/strategies/:tab" element={<StrategyPage />} /> */}
+                  <Route path="/strategies/:tab" element={<StrategyPage key={location.pathname} />} />                  
                   <Route path="/backtest" element={<TestComp name={'Backtest'}/>} />
                 </Routes>
               </main>

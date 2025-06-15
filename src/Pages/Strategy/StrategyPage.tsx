@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './StrategyPage.module.css';
 import CreateStrategy from '../../Pages/StrategyTabs/CreateStrategy/CreateStrategy';
@@ -9,8 +9,14 @@ const StrategyPage: React.FC = () => {
   const { tab } = useParams(); // Getting the tab parameter from URL
   const navigate = useNavigate();
 
-    // Set initial activeTab based on URL parameter or default to 'create'
+  // Set initial activeTab based on URL parameter or default to 'create'
   const [activeTab, setActiveTab] = useState(tab || 'create');
+
+  useEffect(() => {
+    if (tab && tab !== activeTab) {
+      setActiveTab(tab);
+    }
+  }, [tab]);
 
   // Update both state and URL when tab changes
   const handleTabChange = (newTab: string) => {

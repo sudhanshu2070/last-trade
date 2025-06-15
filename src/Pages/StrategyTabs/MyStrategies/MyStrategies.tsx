@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import styles from './MyStrategies.module.css'; 
 import { FaPlay, FaPlus, FaSearch, FaEllipsisV, FaEdit, FaCopy, FaTrash } from 'react-icons/fa';
 import { FaClock, FaChartLine, FaCogs, FaBolt } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const initialStrategies = [
   {
@@ -35,6 +36,7 @@ const MyStrategies: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [strategies, setStrategies] = useState(initialStrategies);
   const menuRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -73,13 +75,20 @@ const MyStrategies: React.FC = () => {
     // Add your action handlers here
   };
 
+  const handleCreateClick = () => {
+    navigate('/strategies/create');
+    // window.location.reload();
+  };
+
   return (
     <div className={styles.container}>
       {/* Header */}
       <div className={styles.header}>
         <h2 className={styles.title}>My Strategies</h2>
-        <button className={styles.createButton}>
-          <FaPlus /> Create Strategy
+        <button 
+          className={styles.createButton}    
+          onClick={handleCreateClick}>
+            <FaPlus /> Create Strategy
         </button>
       </div>
 
