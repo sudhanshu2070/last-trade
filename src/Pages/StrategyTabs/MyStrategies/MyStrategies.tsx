@@ -117,7 +117,7 @@ const MyStrategies: React.FC = () => {
                 </div>
               </div>
               <div className={styles.strategyActions}>
-                <button className={styles.backtestButton}><FaPlay /> Backtest</button>
+                <button className={styles.backtestButton} onClick={() => navigate('/backtest')}><FaPlay /> Backtest</button>
                 <button className={styles.deployButton}>Deploy</button>
                 <div className={styles.menuContainer} ref={el => { menuRefs.current[strategy.id] = el; }}>
                   <button 
