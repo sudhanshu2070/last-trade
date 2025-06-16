@@ -189,14 +189,14 @@
   width: 100%;
 }
 
-/* Deploy Popup Styles */
+/* Deploy Popup Styles - Dark Theme */
 .deployPopupOverlay {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -204,12 +204,13 @@
 }
 
 .deployPopup {
-  background-color: white;
+  background-color: #1a1a1a;
   border-radius: 8px;
   width: 500px;
   max-width: 90%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   overflow: hidden;
+  border: 1px solid #2d2d2d;
 }
 
 .popupHeader {
@@ -217,25 +218,38 @@
   justify-content: space-between;
   align-items: center;
   padding: 16px 24px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid #2d2d2d;
+  background-color: #121212;
 }
 
 .popupHeader h3 {
   margin: 0;
   font-size: 1.25rem;
   font-weight: 600;
+  color: #e0e0e0;
 }
 
 .closeButton {
   background: none;
   border: none;
   cursor: pointer;
-  color: #6b7280;
+  color: #aaa;
   font-size: 1.25rem;
+  transition: color 0.2s;
+}
+
+.closeButton:hover {
+  color: #fff;
 }
 
 .popupContent {
   padding: 24px;
+  color: #e0e0e0;
+}
+
+.popupContent p {
+  margin-bottom: 24px;
+  color: #aaa;
 }
 
 .formGroup {
@@ -246,15 +260,24 @@
   display: block;
   margin-bottom: 8px;
   font-weight: 500;
+  color: #e0e0e0;
 }
 
 .formGroup input[type="number"],
 .formGroup select {
   width: 100%;
-  padding: 8px 12px;
-  border: 1px solid #d1d5db;
-  border-radius: 4px;
+  padding: 10px 12px;
+  border: 1px solid #2d2d2d;
+  border-radius: 6px;
   font-size: 1rem;
+  background-color: #1f1f1f;
+  color: #fff;
+  outline: none;
+}
+
+.formGroup input[type="number"]:focus,
+.formGroup select:focus {
+  border-color: #3b82f6;
 }
 
 .helperText {
@@ -275,13 +298,18 @@
   gap: 8px;
   font-weight: normal;
   cursor: pointer;
+  color: #e0e0e0;
+}
+
+.radioGroup input[type="radio"] {
+  accent-color: #3b82f6;
 }
 
 .termsCheckbox {
   margin: 24px 0;
-  padding: 12px;
-  background-color: #f9fafb;
-  border-radius: 4px;
+  padding: 16px;
+  background-color: #1f1f1f;
+  border-radius: 6px;
 }
 
 .termsCheckbox label {
@@ -289,6 +317,13 @@
   align-items: flex-start;
   gap: 8px;
   cursor: pointer;
+  color: #e0e0e0;
+  font-size: 0.875rem;
+}
+
+.termsCheckbox input[type="checkbox"] {
+  accent-color: #3b82f6;
+  margin-top: 2px;
 }
 
 .popupFooter {
@@ -296,27 +331,40 @@
   justify-content: flex-end;
   gap: 12px;
   padding: 16px 24px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid #2d2d2d;
+  background-color: #121212;
 }
 
 .cancelButton {
-  padding: 8px 16px;
-  background-color: #f3f4f6;
+  padding: 10px 16px;
+  background-color: #2d2d2d;
+  color: #e0e0e0;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.cancelButton:hover {
+  background-color: #3d3d3d;
 }
 
 .confirmButton {
-  padding: 8px 16px;
-  background-color: #3b82f6;
+  padding: 10px 16px;
+  background-color: #4caf50;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.confirmButton:hover:not(:disabled) {
+  background-color: #5cbf60;
 }
 
 .confirmButton:disabled {
-  background-color: #9ca3af;
+  background-color: #2d4b2f;
   cursor: not-allowed;
+  opacity: 0.7;
 }
