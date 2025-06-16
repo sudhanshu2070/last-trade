@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './MyStrategies.module.css'; 
-import { FaPlay, FaPlus, FaSearch, FaEllipsisV, FaEdit, FaCopy, FaTrash } from 'react-icons/fa';
+import { FaPlay, FaPlus, FaSearch, FaEllipsisV, FaEdit, FaCopy, FaTrash, FaTimes } from 'react-icons/fa';
 import { FaClock, FaChartLine, FaCogs, FaBolt } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
@@ -37,6 +37,13 @@ const MyStrategies: React.FC = () => {
   const [strategies, setStrategies] = useState(initialStrategies);
   const menuRefs = useRef<(HTMLDivElement | null)[]>([]);
   const navigate = useNavigate();
+  const [deployPopup, setDeployPopup] = useState<{open: boolean, strategy: any}>({open: false, strategy: null});
+  const [formData, setFormData] = useState({
+    quantityMultiplier: 1,
+    broker: 'Zerodha',
+    deploymentType: 'Live Trading',
+    acceptTerms: false
+  });
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -80,6 +87,30 @@ const MyStrategies: React.FC = () => {
     // window.location.reload();
   };
 
+    const handleDeployClick = (strategy: typeof initialStrategies[number]) => {
+    setDeployPopup({open: true, strategy});
+  };
+
+  const handleClosePopup = () => {
+    setDeployPopup({open: false, strategy: null});
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    const target = e.target as HTMLInputElement | HTMLSelectElement;
+    const { name, value, type } = target;
+    const checked = (target as HTMLInputElement).checked;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleDeploySubmit = () => {
+    console.log('Deploying:', deployPopup.strategy.title, 'with options:', formData);
+    handleClosePopup();
+    // Add your actual deployment logic here
+  };
+
   return (
     <div className={styles.container}>
       {/* Header */}
@@ -118,7 +149,10 @@ const MyStrategies: React.FC = () => {
               </div>
               <div className={styles.strategyActions}>
                 <button className={styles.backtestButton} onClick={() => navigate('/backtest')}><FaPlay /> Backtest</button>
-                <button className={styles.deployButton}>Deploy</button>
+                <button 
+                  className={styles.deployButton}
+                  onClick={() => handleDeployClick(strategy)}
+                  >Deploy</button>
                 <div className={styles.menuContainer} ref={el => { menuRefs.current[strategy.id] = el; }}>
                   <button 
                     className={styles.menuButton}
@@ -149,6 +183,100 @@ const MyStrategies: React.FC = () => {
           </div>
         )}
       </div>
+
+      {/* Deploy Popup */}
+      {deployPopup.open && (
+        <div className={styles.deployPopupOverlay}>
+          <div className={styles.deployPopup}>
+            <div className={styles.popupHeader}>
+              <h3>Deploy Strategy</h3>
+              <button className={styles.closeButton} onClick={handleClosePopup}>
+                <FaTimes />
+              </button>
+            </div>
+            
+            <div className={styles.popupContent}>
+              <p>Deploy "{deployPopup.strategy.title}" to market</p>
+              
+              <div className={styles.formGroup}>
+                <label>Quantity Multiplier</label>
+                <input
+                  type="number"
+                  name="quantityMultiplier"
+                  value={formData.quantityMultiplier}
+                  onChange={handleInputChange}
+                  min="1"
+                />
+                <p className={styles.helperText}>Multiplies the base quantity defined in the strategy</p>
+              </div>
+              
+              <div className={styles.formGroup}>
+                <label>Select Broker</label>
+                <select 
+                  name="broker"
+                  value={formData.broker}
+                  onChange={handleInputChange}
+                >
+                  <option value="Zerodha">Zerodha</option>
+                  <option value="AngelOne">AngelOne</option>
+                  <option value="Upstox">Upstox</option>
+                </select>
+              </div>
+              
+              <div className={styles.formGroup}>
+                <label>Deployment Type</label>
+                <div className={styles.radioGroup}>
+                  <label>
+                    <input
+                      type="radio"
+                      name="deploymentType"
+                      value="Live Trading"
+                      checked={formData.deploymentType === 'Live Trading'}
+                      onChange={handleInputChange}
+                    />
+                    Live Trading
+                  </label>
+                  <label>
+                    <input
+                      type="radio"
+                      name="deploymentType"
+                      value="Paper Trading"
+                      checked={formData.deploymentType === 'Paper Trading'}
+                      onChange={handleInputChange}
+                    />
+                    Paper Trading
+                  </label>
+                </div>
+              </div>
+              
+              <div className={styles.termsCheckbox}>
+                <label>
+                  <input
+                    type="checkbox"
+                    name="acceptTerms"
+                    checked={formData.acceptTerms}
+                    onChange={handleInputChange}
+                  />
+                  I accept the terms and conditions and understand the risks involved in algorithmic trading
+                </label>
+              </div>
+            </div>
+            
+            <div className={styles.popupFooter}>
+              <button className={styles.cancelButton} onClick={handleClosePopup}>
+                Cancel
+              </button>
+              <button 
+                className={styles.confirmButton}
+                onClick={handleDeploySubmit}
+                disabled={!formData.acceptTerms}
+              >
+                Deploy Strategy
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
