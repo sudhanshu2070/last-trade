@@ -37,6 +37,8 @@ const CreateStrategy: React.FC = () => {
       <div className={styles.strategySections}>
         <BasicConfiguration onChange={setStrategyType}/>
 
+        <ReadymadeStrategies />
+
         {/* hide/show in the case of change in Strategy Type */}
         {strategyType === 'indicator' && (
           <>
@@ -49,7 +51,6 @@ const CreateStrategy: React.FC = () => {
 
         {strategyType === 'time-based' && (
           <>
-            <ReadymadeStrategies />
             <OrderLegs showAdvancedFeatures={showAdvancedFeatures} />
             <AdvancedFeatures 
               onSave={() => setShowAdvancedFeatures(true)} 
