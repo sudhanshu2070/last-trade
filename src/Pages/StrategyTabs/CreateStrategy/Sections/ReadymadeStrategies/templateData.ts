@@ -30,6 +30,16 @@ interface BasicConfig {
   instrument: string;
   orderType: string;
 }
+interface OrderLeg {
+  legType: 'buy' | 'sell';  
+  quantity: number;
+  expiry: string; 
+  optionType: 'call' | 'put' | ' '; // ' ' for non-option instruments 
+  strikeType: 'ATM' | 'OTM' | 'ITM' | ' '; // ' ' for non-option instruments
+  strikeSelection: 'manual' | 'auto' | ' '; // ' ' for non-option instruments
+  stopLoss: number; // in percentage
+  target: number; // in percentage
+}
 
 interface StrategyTemplate {
   strategyType: 'time-based' | 'indicator';
@@ -39,6 +49,7 @@ interface StrategyTemplate {
   exitConditions: ExitConditions;
   positionBuilder: PositionBuilder;
   basicConfig: BasicConfig;
+  orderLegs?: OrderLeg[]; // Optional, only for time-based strategies
 }
 
 interface StrategyTemplates {
@@ -74,7 +85,13 @@ const strategyTemplates: StrategyTemplates = {
       strategyName: "RSI Oversold Strategy",
       instrument: "nifty50",
       orderType: "MIS"
-    }
+    },
+    orderLegs: [
+      { legType: "buy", expiry:" ", quantity: 2, optionType: " ", strikeType:" ", strikeSelection:" ", stopLoss: 2, target:5 },
+      { legType: "buy", expiry:" ", quantity: 2, optionType: " ", strikeType:" ", strikeSelection:" ", stopLoss: 2, target:5 },
+      { legType: "buy", expiry:" ", quantity: 2, optionType: " ", strikeType:" ", strikeSelection:" ", stopLoss: 2, target:5 },
+      { legType: "buy", expiry:" ", quantity: 2, optionType: " ", strikeType:" ", strikeSelection:" ", stopLoss: 2, target:5 },
+    ], 
   },
   goldenCross: {
     strategyType: "time-based",
