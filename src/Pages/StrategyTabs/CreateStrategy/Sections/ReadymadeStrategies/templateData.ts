@@ -24,6 +24,8 @@ interface PositionBuilder {
 
 interface BasicConfig {
   strategyType: string;
+  executionTime?: string;
+  noTradeAfterTime?: string;
   strategyName: string;
   instrument: string;
   orderType: string;
@@ -67,6 +69,8 @@ const strategyTemplates: StrategyTemplates = {
     },
     basicConfig: {
       strategyType: "indicator",
+      executionTime: "09:45",
+      noTradeAfterTime: "15:15",
       strategyName: "RSI Oversold Strategy",
       instrument: "nifty50",
       orderType: "MIS"
@@ -92,6 +96,8 @@ const strategyTemplates: StrategyTemplates = {
     },
     basicConfig: {
       strategyType: "indicator",
+      executionTime: "09:45",
+      noTradeAfterTime: "15:15",
       strategyName: "Golden Cross Strategy",
       instrument: "nifty50",
       orderType: "MIS"
