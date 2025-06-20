@@ -48,8 +48,6 @@ const CreateStrategy: React.FC = () => {
           onChange={setStrategyType}
           initialValues={templateConfig?.basicConfig}/>
 
-        <ReadymadeStrategies onTemplateSelect={handleTemplateSelect} />
-
         {/* hide/show in the case of change in Strategy Type */}
         {strategyType === 'indicator' && (
          <>
@@ -77,6 +75,7 @@ const CreateStrategy: React.FC = () => {
 
         {strategyType === 'time-based' && (
           <>
+            <ReadymadeStrategies onTemplateSelect={handleTemplateSelect} />
             <OrderLegs showAdvancedFeatures={showAdvancedFeatures} />
             <AdvancedFeatures 
               onSave={() => setShowAdvancedFeatures(true)} 

@@ -5,7 +5,7 @@ import strategyTemplatesData from './templateData';
 const strategyTemplates = [
   {
     id: 'goldenCross',
-    name: 'Golden Cross',
+    name: 'Iron Condor',
     type: 'Trend Following',
     description: '50EMA crosses above 200EMA for long entry',
     complexity: 'Beginner'
@@ -19,7 +19,7 @@ const strategyTemplates = [
   },
   {
     id: 'breakoutTrading',
-    name: 'Breakout Trading',
+    name: 'Bull Call Spread',
     type: 'Breakout',
     description: 'Enter when price breaks resistance with volume',
     complexity: 'Advanced'
