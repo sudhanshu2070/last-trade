@@ -49,7 +49,7 @@ interface StrategyTemplates {
 
 const strategyTemplates: StrategyTemplates = {
   rsiOversold: {
-    strategyType: "indicator",
+    strategyType: "time-based",
     transactionType: "bothLongAndShort",
     chartSettings: {
       indicators: ["RSI"],
@@ -68,7 +68,7 @@ const strategyTemplates: StrategyTemplates = {
       positionSize: 2
     },
     basicConfig: {
-      strategyType: "indicator",
+      strategyType: "time-based",
       executionTime: "09:45",
       noTradeAfterTime: "15:15",
       strategyName: "RSI Oversold Strategy",
@@ -77,7 +77,7 @@ const strategyTemplates: StrategyTemplates = {
     }
   },
   goldenCross: {
-    strategyType: "indicator",
+    strategyType: "time-based",
     transactionType: "long",
     chartSettings: {
       indicators: ["EMA_50", "EMA_200"]
@@ -95,7 +95,7 @@ const strategyTemplates: StrategyTemplates = {
       positionSize: 1
     },
     basicConfig: {
-      strategyType: "indicator",
+      strategyType: "time-based",
       executionTime: "09:45",
       noTradeAfterTime: "15:15",
       strategyName: "Golden Cross Strategy",
