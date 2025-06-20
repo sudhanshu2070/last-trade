@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styles from './ChartSettings.module.css';
 
 interface ChartSettingsProps {
@@ -10,7 +10,7 @@ const ChartSettings: React.FC<ChartSettingsProps> = ({ onChange, initialValues }
   const [transactionType, setTransactionType] = useState('bothLongAndShort');
   const [chartType, setChartType] = useState('candle');
   const [timeFrame, setTimeFrame] = useState('1m');
-  const [setSettings] = useState(initialValues || {});
+  console.log('ChartSettings initialValues:', initialValues);
   // const [settings, setSettings] = useState(initialValues || {});
 
 
@@ -37,11 +37,11 @@ const ChartSettings: React.FC<ChartSettingsProps> = ({ onChange, initialValues }
     { label: '1 day', value: '1d' }
   ];
 
-  useEffect(() => {
-    if (initialValues) {
-      setSettings(initialValues);
-    }
-  }, [initialValues]);
+  // useEffect(() => {
+  //   if (initialValues) {
+  //     setSettings(initialValues);
+  //   }
+  // }, [initialValues]);
 
   const handleTransactionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value; 
