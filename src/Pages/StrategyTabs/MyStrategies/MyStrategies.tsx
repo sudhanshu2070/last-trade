@@ -108,7 +108,6 @@ const MyStrategies: React.FC = () => {
   const handleDeploySubmit = () => {
     console.log('Deploying:', deployPopup.strategy.title, 'with options:', formData);
     handleClosePopup();
-    // Add your actual deployment logic here
   };
 
   return (

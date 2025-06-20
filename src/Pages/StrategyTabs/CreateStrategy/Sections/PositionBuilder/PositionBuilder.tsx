@@ -1,9 +1,26 @@
 import { useState } from 'react';
 import styles from './PositionBuilder.module.css';
 
+interface Position {
+  action: string;
+  optionType: string;
+  quantity: string;
+  expiry: string;
+  strikeType: string;
+  strikeSelection: string;
+  target: string;
+  targetType: string;
+  stopLoss: string;
+  stopLossType: string;
+}
+
 interface PositionBuilderProps {
   showLong?: boolean;
   showShort?: boolean;
+  initialValues?: {
+    longPosition?: Partial<Position>;
+    shortPosition?: Partial<Position>;
+  };
 }
 
 const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showShort= true}) => {
@@ -43,7 +60,7 @@ const PositionBuilder:React.FC<PositionBuilderProps> = ({showLong = true, showSh
     setShortPosition(prev => ({ ...prev, [field]: value }));
   };
 
-    const strikeData = {
+  const strikeData = {
     ITM: [
       { value: "ITM50", label: "ITM 50" },
       { value: "ITM100", label: "ITM 100" },

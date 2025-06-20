@@ -19,6 +19,15 @@ const CreateStrategy: React.FC = () => {
   const [showAdvancedFeatures, setShowAdvancedFeatures] = useState(false);
   const [strategyType, setStrategyType] = useState<string>('time-based'); 
   const [transactionType, setTransactionType] = useState<string>('bothLongAndShort'); 
+  const [templateConfig, setTemplateConfig] = useState<any>(null);
+  
+  const handleTemplateSelect = (config: any) => {
+    console.log('Selected Template Config:', config);
+    setTemplateConfig(config);
+    setStrategyType(config.strategyType);
+    setTransactionType(config.transactionType);
+    // Set other initial values as needed
+  };
 
   // Resetting to 'bothLongAndShort'(initial value) when strategy becomes "indicator-based"
   useEffect(() => {
@@ -35,17 +44,34 @@ const CreateStrategy: React.FC = () => {
       <h2 className={styles.title}>Create New Strategy</h2>
       
       <div className={styles.strategySections}>
-        <BasicConfiguration onChange={setStrategyType}/>
+        <BasicConfiguration 
+          onChange={setStrategyType}
+          initialValues={templateConfig?.basicConfig}/>
 
-        <ReadymadeStrategies />
+        <ReadymadeStrategies onTemplateSelect={handleTemplateSelect} />
 
         {/* hide/show in the case of change in Strategy Type */}
         {strategyType === 'indicator' && (
-          <>
-            <ChartSettings onChange ={setTransactionType}/>
-            <EntryConditions showLong={showLong} showShort={showShort}/>
-            <ExitConditions showLong={showLong} showShort={showShort}/>
-            <PositionBuilder showLong={showLong} showShort={showShort}/>
+         <>
+            <ChartSettings 
+              onChange={setTransactionType}
+              initialValues={templateConfig?.chartSettings}
+            />
+            <EntryConditions 
+              showLong={showLong}
+              showShort={showShort}
+              initialValues={templateConfig?.entryConditions}
+            />
+            <ExitConditions 
+              showLong={showLong}
+              showShort={showShort} 
+              initialValues={templateConfig?.exitConditions}
+            />
+            <PositionBuilder
+              showLong={showLong}
+              showShort={showShort}
+              initialValues={templateConfig?.positionBuilder}
+            />
           </>
         )}
 

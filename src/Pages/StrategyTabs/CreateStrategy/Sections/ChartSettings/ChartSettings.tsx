@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './ChartSettings.module.css';
 
 interface ChartSettingsProps {
   onChange: (value: string) => void;
+  initialValues?: any;
 }
 
-const ChartSettings:React.FC<ChartSettingsProps> = ({onChange}) => {
+const ChartSettings: React.FC<ChartSettingsProps> = ({ onChange, initialValues }) => {
   const [transactionType, setTransactionType] = useState('bothLongAndShort');
   const [chartType, setChartType] = useState('candle');
   const [timeFrame, setTimeFrame] = useState('1m');
+  const [setSettings] = useState(initialValues || {});
+  // const [settings, setSettings] = useState(initialValues || {});
+
 
   const transactionOptions = [
     { label: 'Both Side (Long & Short)', value: 'bothLongAndShort' },
@@ -32,6 +36,12 @@ const ChartSettings:React.FC<ChartSettingsProps> = ({onChange}) => {
     { label: '4 hours', value: '4h' },
     { label: '1 day', value: '1d' }
   ];
+
+  useEffect(() => {
+    if (initialValues) {
+      setSettings(initialValues);
+    }
+  }, [initialValues]);
 
   const handleTransactionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const value = e.target.value; 

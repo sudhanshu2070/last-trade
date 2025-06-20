@@ -12,6 +12,7 @@ interface TimeInputProps {
   onMinuteChange: (minute: string) => void;
   placeholder?: string;
   label: string;
+  disabled?: boolean; 
 }
 
 const TimeInput: React.FC<TimeInputProps> = ({
@@ -23,6 +24,7 @@ const TimeInput: React.FC<TimeInputProps> = ({
   onMinuteChange,
   placeholder = 'HH:MM',
   label,
+  disabled = false,
 }) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null); 
@@ -42,6 +44,9 @@ const TimeInput: React.FC<TimeInputProps> = ({
   }, []);
 
   const handleTimeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    
+    if (disabled) return; // Early return if disabled
+
     const value = e.target.value.replace(/[^0-9]/g, '');
     
     if (value === '') {
@@ -89,7 +94,10 @@ const TimeInput: React.FC<TimeInputProps> = ({
 
   return (
     <div className={styles.formGroup} ref={containerRef}>
-      <label htmlFor={`${label.toLowerCase().replace(' ', '-')}-time`} className={styles.label}>
+      <label 
+        htmlFor={`${label.toLowerCase().replace(' ', '-')}-time`} 
+        className={`${styles.label} ${disabled ? styles.disabledLabel : ''}`}
+      >
         {label}
       </label>
       <div className={styles.timePickerContainer}>
@@ -99,7 +107,8 @@ const TimeInput: React.FC<TimeInputProps> = ({
           value={timeValue}
           placeholder={placeholder}
           onChange={handleTimeInput}
-          className={styles.input}
+          className={`${styles.input} ${disabled ? styles.disabledInput : ''}`}
+          disabled={disabled}
         />
         <span
           className={styles.clockIcon}
@@ -147,20 +156,33 @@ const TimeInput: React.FC<TimeInputProps> = ({
 
 interface BasicConfigurationProps {
   onChange: (value: string) => void;
+  initialValues?: {
+    strategyType?: string;
+    instrument?: string;
+    orderType?: string;
+    executionTime?: string;
+    squareOffTime?: string;
+    noTradeAfterTime?: string;
+    tradingDays?: string[];
+  };
 }
 
-const BasicConfiguration: React.FC<BasicConfigurationProps> = ({onChange}) => {
-  const [orderType, setOrderType] = useState('MIS'); 
-  const [executionTime, setExecutionTime] = useState('09:20');
-  const [selectedHour, setSelectedHour] = useState('09');
-  const [selectedMinute, setSelectedMinute] = useState('20');  
-  const [squareOffTime, setSquareOffTime] = useState('15:30');
-  const [selectedSquareOffHour, setSelectedSquareOffHour] = useState('15');
-  const [selectedSquareOffMinute, setSelectedSquareOffMinute] = useState('30');
-  const [noTradeAfterTime, setNoTradeAfterTime] = useState('15:30');
-  const [selectedNoTradeAfterHour, setSelectedNoTradeAfterHour] = useState('15');
-  const [selectedNoTradeAfterMinute, setSelectedNoTradeAfterMinute] = useState('30');
-  const [selectedDays, setSelectedDays] = useState<string[]>(['Mon', 'Tue', 'Wed', 'Thu', 'Fri']);
+const BasicConfiguration: React.FC<BasicConfigurationProps> = ({onChange, initialValues}) => {
+  console.log('BasicConfiguration initialValues:', initialValues);
+  const [orderType, setOrderType] = useState(initialValues?.orderType || 'MIS');
+  const [executionTime, setExecutionTime] = useState(initialValues?.executionTime || '09:20');
+  const [selectedHour, setSelectedHour] = useState(initialValues?.executionTime?.split(':')[0] || '09');
+  const [selectedMinute, setSelectedMinute] = useState(initialValues?.executionTime?.split(':')[1] || '20');
+  const [squareOffTime, setSquareOffTime] = useState(initialValues?.squareOffTime || '15:30');
+  const [selectedSquareOffHour, setSelectedSquareOffHour] = useState(initialValues?.squareOffTime?.split(':')[0] || '15');
+  const [selectedSquareOffMinute, setSelectedSquareOffMinute] = useState(initialValues?.squareOffTime?.split(':')[1] || '30');
+  const [noTradeAfterTime, setNoTradeAfterTime] = useState(initialValues?.noTradeAfterTime || '15:30');
+  const [selectedNoTradeAfterHour, setSelectedNoTradeAfterHour] = useState(initialValues?.noTradeAfterTime?.split(':')[0] || '15');
+  const [selectedNoTradeAfterMinute, setSelectedNoTradeAfterMinute] = useState(initialValues?.noTradeAfterTime?.split(':')[1] || '30');
+  const [selectedDays, setSelectedDays] = useState<string[]>(initialValues?.tradingDays || ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']);
+  const [instrument, setInstrument] = useState(initialValues?.instrument || 'nifty50');
+  const [strategyType, setStrategyType] = useState(initialValues?.strategyType || 'time-based');
+  console.log('strategyType:', initialValues?.strategyType);
 
   // Sync executionTime with selectedHour and selectedMinute
   useEffect(() => {
@@ -180,6 +202,34 @@ const BasicConfiguration: React.FC<BasicConfigurationProps> = ({onChange}) => {
     }
   };
 
+  useEffect(() => {
+    if (initialValues) {
+      setOrderType(initialValues.orderType || 'MIS');
+      setExecutionTime(initialValues.executionTime || '09:20');
+      setSelectedHour(initialValues.executionTime?.split(':')[0] || '09');
+      setSelectedMinute(initialValues.executionTime?.split(':')[1] || '20');
+
+      setSquareOffTime(initialValues.squareOffTime || '15:30');
+      setSelectedSquareOffHour(initialValues.squareOffTime?.split(':')[0] || '15');
+      setSelectedSquareOffMinute(initialValues.squareOffTime?.split(':')[1] || '30');
+
+      setNoTradeAfterTime(initialValues.noTradeAfterTime || '15:30');
+      setSelectedNoTradeAfterHour(initialValues.noTradeAfterTime?.split(':')[0] || '15');
+      setSelectedNoTradeAfterMinute(initialValues.noTradeAfterTime?.split(':')[1] || '30');
+
+      setSelectedDays(initialValues.tradingDays || ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']);
+
+      setStrategyType(initialValues.strategyType || 'time-based');
+      setInstrument(initialValues.instrument || 'nifty50');
+    }
+  }, [initialValues]);
+
+  // Handle strategy type change
+  const handleStrategyTypeChange = (value: string) => {
+    setStrategyType(value);
+    onChange(value);
+  };
+
   return (
     <div className={styles.section}>
       <h3 className={styles.sectionTitle}>
@@ -193,7 +243,13 @@ const BasicConfiguration: React.FC<BasicConfigurationProps> = ({onChange}) => {
           <label htmlFor="strategyType" className={styles.label}>
             Strategy Type
           </label>
-          <select id="strategyType" className={styles.input} onChange={(e) => {onChange(e.target.value)}}>
+          <select 
+            id="strategyType" 
+            className={styles.input} 
+            // onChange={(e) => {onChange(e.target.value)}}
+            value={strategyType}
+            onChange={(e) => handleStrategyTypeChange(e.target.value)}
+          >
             <option value="time-based">Time Based</option>
             <option value="indicator">Indicator</option>
             <option value="momentum">Momentum</option>
@@ -207,7 +263,7 @@ const BasicConfiguration: React.FC<BasicConfigurationProps> = ({onChange}) => {
           <label htmlFor="instrument" className={styles.label}>
             Instrument
           </label>
-          <select id="instrument" className={styles.input}>
+          <select id="instrument" className={styles.input} value={instrument} onChange={(e) => setInstrument(e.target.value)}>
             <option value="nifty50">NIFTY 50</option>
             <option value="banknifty">BANKNIFTY</option>
             <option value="finnifty">FINNIFTY</option>

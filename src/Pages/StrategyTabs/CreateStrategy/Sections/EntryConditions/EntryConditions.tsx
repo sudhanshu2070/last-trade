@@ -19,9 +19,13 @@ interface ConditionGroup {
 interface EntryConditionsProps {
   showLong?: boolean;
   showShort?: boolean;
+  initialValues?: {
+    conditionGroups?: ConditionGroup[];
+    toggles?: string[];
+  };
 }
 
-const EntryConditions:React.FC<EntryConditionsProps> = ({ showLong = true, showShort = true }) => {
+const EntryConditions:React.FC<EntryConditionsProps> = ({ showLong = true, showShort = true, initialValues }) => {
   const [conditionGroups, setConditionGroups] = useState<ConditionGroup[]>([{
     id: 'initial-group',
     longCondition: { indicator: '', operator: 'Crosses Above', value: '' },
@@ -34,6 +38,18 @@ const EntryConditions:React.FC<EntryConditionsProps> = ({ showLong = true, showS
   const operators = ['Crosses Above', 'Crosses Below', 'Greater Than', 'Less Than', 'Equal To'];
   const valueOptions = ['RSI', 'MACD', 'Moving Average', 'Fixed Value'];
 
+   // Initialize from template if provided
+  useEffect(() => {
+    if (initialValues) {
+      if (initialValues.conditionGroups && initialValues.conditionGroups.length > 0) {
+        setConditionGroups(initialValues.conditionGroups);
+      }
+      if (initialValues.toggles) {
+        setToggles(initialValues.toggles);
+      }
+    }
+  }, [initialValues]);
+
   // Resetting condition groups when any of the props change
   useEffect(() => {
     setConditionGroups([{
@@ -42,7 +58,7 @@ const EntryConditions:React.FC<EntryConditionsProps> = ({ showLong = true, showS
       shortCondition: { indicator: '', operator: 'Crosses Above', value: '' }
     }]);
     setToggles([]);
-  }, [showLong, showShort]);
+  }, [showLong, showShort, initialValues]);
 
   const addConditionGroup = () => {
     const newGroup = {
