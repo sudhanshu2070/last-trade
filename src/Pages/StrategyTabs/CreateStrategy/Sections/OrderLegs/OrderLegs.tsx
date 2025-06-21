@@ -16,30 +16,23 @@ interface AdvancedSettings {
 }
 
 interface OrderLegsProps {
-  showAdvancedFeatures: boolean;
+  showAdvancedFeatures?: boolean;
   initialValues?: {
-    legs?: any[];
+    legs?: Array<{
+      legType: string;
+      expiry: string;
+      optionType: string;
+      quantity: number;
+      strikeType: string;
+      strikeSelection: string;
+      stopLoss: number;
+      target: number;
+      targetType: string;
+    }>;
   };
 }
 
 const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures, initialValues }) => {
-
-  const [legs, setLegs] = useState([
-    { 
-      id: 1,
-      type: 'BUY', 
-      instrument: 'NIFTY 50', 
-      quantity: 50, 
-      expiryType : 'weekly',  
-      orderType: 'MARKET', 
-      optionType: 'CALL', 
-      strikeType: '', 
-      slType: 'points', 
-      stopLoss: 30, 
-      targetType: 'points', 
-      target: 60,
-    }
-  ]);
 
   const [advancedSettings, setAdvancedSettings] = useState<AdvancedSettings>({
     enabled: true,
@@ -50,13 +43,77 @@ const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures, initialValu
     }
   });
 
+  const [legs, setLegs] = useState<Array<{
+    id: number;
+    type: string;
+    instrument: string;
+    quantity: number;
+    expiryType: string;
+    orderType: string;
+    optionType: string;
+    strikeType: string;
+    slType: string;
+    stopLoss: number;
+    targetType: string;
+    target: number;
+  }>>([]);
+
   useEffect(() => {
-    if (initialValues && initialValues.legs && initialValues.legs.length > 0) {
-      setLegs(initialValues.legs);
+    // Case where initialValues IS the legs array
+    if (Array.isArray(initialValues) && initialValues.length > 0) {
+      console.log('Processing array format'); // Debug log
+      const transformedLegs = initialValues.map((leg, index) => ({
+        id: index + 1,
+        type: leg.legType || 'BUY',
+        instrument: leg.strikeSelection || '',
+        quantity: leg.quantity || 1,
+        expiryType: leg.expiry || 'weekly',
+        orderType: 'MARKET',
+        optionType: leg.optionType || 'CALL',
+        strikeType: leg.strikeType || '',
+        slType: leg.slType || 'points',
+        stopLoss: leg.stopLoss || 30,
+        targetType: leg.targetType || 'points',
+        target: leg.target || 60,
+      }));
+      setLegs(transformedLegs);
+    } 
+    // Case where legs are nested under initialValues.legs
+    else if ((initialValues?.legs ?? []).length > 0) {
+      const transformedLegs = (initialValues?.legs ?? []).map((leg, index) => ({
+        id: index + 1,
+        type: leg.legType || 'BUY',
+        instrument: leg.strikeSelection || '',
+        quantity: leg.quantity || 1,
+        expiryType: leg.expiry || 'weekly',
+        orderType: 'MARKET',
+        optionType: leg.optionType || 'CALL',
+        strikeType: leg.strikeType || '',
+        slType: 'points',
+        stopLoss: leg.stopLoss || 30,
+        targetType: leg.targetType || 'points',
+        target: leg.target || 60,
+      }));
+      setLegs(transformedLegs);
+    }
+    // Default case
+    else {
+      setLegs([{
+        id: 1,
+        type: 'BUY',
+        instrument: 'NIFTY 50',
+        quantity: 50,
+        expiryType: 'weekly',
+        orderType: 'MARKET',
+        optionType: 'CALL',
+        strikeType: '',
+        slType: 'points',
+        stopLoss: 30,
+        targetType: 'points',
+        target: 60,
+      }]);
     }
   }, [initialValues]);
-
-  console.log('OrderLegs initialValues:', initialValues);
 
 
   const addLeg = () => {

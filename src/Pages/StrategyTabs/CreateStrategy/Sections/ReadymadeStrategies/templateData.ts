@@ -36,7 +36,7 @@ interface OrderLeg {
   expiry: string; 
   optionType: 'CALL' | 'PUT' | ' '; // ' ' for non-option instruments 
   strikeType: 'ATM' | 'OTM' | 'ITM' | ' '; // ' ' for non-option instruments
-  strikeSelection: 'ITM200' | 'auto' | ' '; // ' ' for non-option instruments
+  strikeSelection: string; 
   stopLoss: number; // in percentage
   targetType: 'percent' | 'points'; 
   target: number; // in percentage
@@ -88,16 +88,47 @@ const strategyTemplates: StrategyTemplates = {
       orderType: "MIS"
     },
     orderLegs: [
-      { legType: "BUY", expiry:" ", quantity: 2, optionType: " ", strikeType:" ", strikeSelection:" ", stopLoss: 2, targetType: "percent",target:5 },
-
+      {
+        legType: "SELL",
+        expiry: "weekly",
+        quantity: 75,
+        optionType: "CALL",
+        strikeType: "OTM",
+        strikeSelection: "OTM200",
+        stopLoss: 25,
+        targetType: "percent",
+        target: 60
+      },
+      {
+        legType: "SELL",
+        expiry: "weekly",
+        quantity: 75,
+        optionType: "PUT",
+        strikeType: "OTM",
+        strikeSelection: "OTM200",
+        stopLoss: 25,
+        targetType: "percent",
+        target: 60
+      },
       {
         legType: "BUY",
         expiry: "weekly",
-        quantity: 50,
+        quantity: 75,
         optionType: "CALL",
-        strikeType: "ITM",
-        strikeSelection: "ITM200",
-        stopLoss: 30,
+        strikeType: "OTM",
+        strikeSelection: "OTM400",
+        stopLoss: 0,
+        targetType: "percent",
+        target: 60
+      },
+      {
+        legType: "BUY",
+        expiry: "weekly",
+        quantity: 75,
+        optionType: "PUT",
+        strikeType: "OTM",
+        strikeSelection: "OTM400",
+        stopLoss: 0,
         targetType: "percent",
         target: 60
       }
