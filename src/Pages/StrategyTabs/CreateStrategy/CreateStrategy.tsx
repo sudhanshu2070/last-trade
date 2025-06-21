@@ -20,18 +20,20 @@ const CreateStrategy: React.FC = () => {
   const [strategyType, setStrategyType] = useState<string>('time-based'); 
   const [transactionType, setTransactionType] = useState<string>('bothLongAndShort'); 
   const [templateConfig, setTemplateConfig] = useState<any>(null);
+  const [templateConfigOrderLegData, setTemplateConfigOrderLegData] = useState<any>(templateConfig?.orderLegs);
   
   const handleTemplateSelect = (config: any) => {
     setTemplateConfig(config);
     setStrategyType(config.strategyType);
     setTransactionType(config.transactionType);
-    // Set other initial values as needed
+    setTemplateConfigOrderLegData(config.orderLegs);
   };
 
   // Resetting to 'bothLongAndShort'(initial value) when strategy becomes "indicator-based"
   useEffect(() => {
     if (strategyType === 'indicator') {
       setTransactionType('bothLongAndShort');
+      setTemplateConfigOrderLegData({}); // Reset order legs data
     }
   }, [strategyType]);
 
@@ -75,7 +77,7 @@ const CreateStrategy: React.FC = () => {
         {strategyType === 'time-based' && (
           <>
             <ReadymadeStrategies onTemplateSelect={handleTemplateSelect} />
-            <OrderLegs showAdvancedFeatures={showAdvancedFeatures} initialValues={templateConfig?.orderLegs}/>
+            <OrderLegs showAdvancedFeatures={showAdvancedFeatures} initialValues={templateConfigOrderLegData}/>
             <AdvancedFeatures 
               onSave={() => setShowAdvancedFeatures(true)} 
             />
