@@ -31,13 +31,14 @@ interface BasicConfig {
   orderType: string;
 }
 interface OrderLeg {
-  legType: 'buy' | 'sell';  
+  legType: 'BUY' | 'SELL';  
   quantity: number;
   expiry: string; 
-  optionType: 'call' | 'put' | ' '; // ' ' for non-option instruments 
+  optionType: 'CALL' | 'PUT' | ' '; // ' ' for non-option instruments 
   strikeType: 'ATM' | 'OTM' | 'ITM' | ' '; // ' ' for non-option instruments
-  strikeSelection: 'manual' | 'auto' | ' '; // ' ' for non-option instruments
+  strikeSelection: 'ITM200' | 'auto' | ' '; // ' ' for non-option instruments
   stopLoss: number; // in percentage
+  targetType: 'percent' | 'points'; 
   target: number; // in percentage
 }
 
@@ -87,10 +88,19 @@ const strategyTemplates: StrategyTemplates = {
       orderType: "MIS"
     },
     orderLegs: [
-      { legType: "buy", expiry:" ", quantity: 2, optionType: " ", strikeType:" ", strikeSelection:" ", stopLoss: 2, target:5 },
-      { legType: "buy", expiry:" ", quantity: 2, optionType: " ", strikeType:" ", strikeSelection:" ", stopLoss: 2, target:5 },
-      { legType: "buy", expiry:" ", quantity: 2, optionType: " ", strikeType:" ", strikeSelection:" ", stopLoss: 2, target:5 },
-      { legType: "buy", expiry:" ", quantity: 2, optionType: " ", strikeType:" ", strikeSelection:" ", stopLoss: 2, target:5 },
+      { legType: "BUY", expiry:" ", quantity: 2, optionType: " ", strikeType:" ", strikeSelection:" ", stopLoss: 2, targetType: "percent",target:5 },
+
+      {
+        legType: "BUY",
+        expiry: "weekly",
+        quantity: 50,
+        optionType: "CALL",
+        strikeType: "ITM",
+        strikeSelection: "ITM200",
+        stopLoss: 30,
+        targetType: "percent",
+        target: 60
+      }
     ], 
   },
   goldenCross: {

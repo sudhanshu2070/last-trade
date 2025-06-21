@@ -17,9 +17,13 @@ interface AdvancedSettings {
 
 interface OrderLegsProps {
   showAdvancedFeatures: boolean;
+  initialValues?: {
+    legs?: any[];
+  };
 }
 
-const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures }) => {
+const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures, initialValues }) => {
+  console.log('OrderLegs initialValues:', initialValues);
 
   const [legs, setLegs] = useState([
     { 
@@ -432,7 +436,6 @@ const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures }) => {
                   )}
                 </div>
 
-                {/* Can add more features here later */}
               </div>
             )}
           </div>
