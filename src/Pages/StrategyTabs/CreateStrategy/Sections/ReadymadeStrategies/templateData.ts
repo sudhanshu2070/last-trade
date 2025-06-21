@@ -128,7 +128,21 @@ const strategyTemplates: StrategyTemplates = {
       strategyName: "Golden Cross Strategy",
       instrument: "nifty50",
       orderType: "MIS"
-    }
+    },
+    orderLegs: [
+      { legType: "BUY", expiry:" ", quantity: 2, optionType: " ", strikeType:" ", strikeSelection:" ", stopLoss: 2, targetType: "percent",target:5 },
+      {
+        legType: "BUY",
+        expiry: "weekly",
+        quantity: 50,
+        optionType: "CALL",
+        strikeType: "ITM",
+        strikeSelection: "ITM200",
+        stopLoss: 30,
+        targetType: "percent",
+        target: 60
+      }
+    ],
   }
 };
 

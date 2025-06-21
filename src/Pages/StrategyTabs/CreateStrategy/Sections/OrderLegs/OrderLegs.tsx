@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './OrderLegs.module.css';
 import { FiPlus } from 'react-icons/fi';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,7 +23,6 @@ interface OrderLegsProps {
 }
 
 const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures, initialValues }) => {
-  console.log('OrderLegs initialValues:', initialValues);
 
   const [legs, setLegs] = useState([
     { 
@@ -50,6 +49,15 @@ const OrderLegs: React.FC<OrderLegsProps> = ({ showAdvancedFeatures, initialValu
       type: 'percentage'
     }
   });
+
+  useEffect(() => {
+    if (initialValues && initialValues.legs && initialValues.legs.length > 0) {
+      setLegs(initialValues.legs);
+    }
+  }, [initialValues]);
+
+  console.log('OrderLegs initialValues:', initialValues);
+
 
   const addLeg = () => {
     setLegs([...legs, { 

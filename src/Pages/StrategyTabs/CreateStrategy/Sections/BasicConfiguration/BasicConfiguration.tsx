@@ -168,7 +168,6 @@ interface BasicConfigurationProps {
 }
 
 const BasicConfiguration: React.FC<BasicConfigurationProps> = ({onChange, initialValues}) => {
-  console.log('BasicConfiguration initialValues:', initialValues);
   const [orderType, setOrderType] = useState(initialValues?.orderType || 'MIS');
   const [executionTime, setExecutionTime] = useState(initialValues?.executionTime || '09:20');
   const [selectedHour, setSelectedHour] = useState(initialValues?.executionTime?.split(':')[0] || '09');
@@ -182,7 +181,6 @@ const BasicConfiguration: React.FC<BasicConfigurationProps> = ({onChange, initia
   const [selectedDays, setSelectedDays] = useState<string[]>(initialValues?.tradingDays || ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']);
   const [instrument, setInstrument] = useState(initialValues?.instrument || 'nifty50');
   const [strategyType, setStrategyType] = useState(initialValues?.strategyType || 'time-based');
-  console.log('strategyType:', initialValues?.strategyType);
 
   // Sync executionTime with selectedHour and selectedMinute
   useEffect(() => {

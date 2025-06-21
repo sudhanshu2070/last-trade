@@ -22,7 +22,6 @@ const CreateStrategy: React.FC = () => {
   const [templateConfig, setTemplateConfig] = useState<any>(null);
   
   const handleTemplateSelect = (config: any) => {
-    console.log('Selected Template Config:', config);
     setTemplateConfig(config);
     setStrategyType(config.strategyType);
     setTransactionType(config.transactionType);
@@ -76,7 +75,7 @@ const CreateStrategy: React.FC = () => {
         {strategyType === 'time-based' && (
           <>
             <ReadymadeStrategies onTemplateSelect={handleTemplateSelect} />
-            <OrderLegs showAdvancedFeatures={showAdvancedFeatures} />
+            <OrderLegs showAdvancedFeatures={showAdvancedFeatures} initialValues={templateConfig?.orderLegs}/>
             <AdvancedFeatures 
               onSave={() => setShowAdvancedFeatures(true)} 
             />
