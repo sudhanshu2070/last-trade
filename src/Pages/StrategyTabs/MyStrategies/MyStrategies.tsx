@@ -197,6 +197,19 @@ const MyStrategies: React.FC = () => {
             <div className={styles.popupContent}>
               <p>Deploy "{deployPopup.strategy.title}" to market</p>
               
+               {/* Add Margin Required section here */}
+              <div className={styles.marginInfo}>
+                <div className={styles.marginRow}>
+                  <span className={styles.marginLabel}>Margin Required:</span>
+                  <span className={styles.marginValue}>
+                    ₹{25000 * formData.quantityMultiplier}
+                  </span>
+                </div>
+                <p className={styles.helperText}>
+                  This is the estimated margin required for deployment
+                </p>
+              </div>
+
               <div className={styles.formGroup}>
                 <label>Quantity Multiplier</label>
                 <input
