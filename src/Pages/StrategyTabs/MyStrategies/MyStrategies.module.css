@@ -213,11 +213,17 @@
   border: 1px solid #2d2d2d;
 }
 
+.popupContent {
+  padding: 24px;
+  color: #e0e0e0;
+}
+
 .popupHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 24px;
+  padding: 5px 10px;
+  min-height: 44px;
   border-bottom: 1px solid #2d2d2d;
   background-color: #121212;
 }
@@ -245,11 +251,6 @@
 .popupContent {
   padding: 24px;
   color: #e0e0e0;
-}
-
-.popupContent p {
-  margin-bottom: 24px;
-  color: #aaa;
 }
 
 .formGroup {
@@ -306,8 +307,8 @@
 }
 
 .termsCheckbox {
-  margin: 24px 0;
-  padding: 16px;
+  /* margin: 24px 0;
+  padding: 16px; */
   background-color: #1f1f1f;
   border-radius: 6px;
 }
@@ -330,7 +331,8 @@
   display: flex;
   justify-content: flex-end;
   gap: 12px;
-  padding: 16px 24px;
+  padding: 5px 10px;
+  min-height: 44px;
   border-top: 1px solid #2d2d2d;
   background-color: #121212;
 }
@@ -367,4 +369,29 @@
   background-color: #2d4b2f;
   cursor: not-allowed;
   opacity: 0.7;
+}
+
+.marginInfo {
+  background-color: #1f1f1f;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+.marginRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.marginLabel {
+  color: #e0e0e0;
+  font-weight: 500;
+}
+
+.marginValue {
+  color: #4caf50;
+  font-weight: bold;
+  font-size: 1.1rem;
 }
