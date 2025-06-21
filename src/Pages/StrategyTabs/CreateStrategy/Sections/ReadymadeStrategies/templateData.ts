@@ -54,13 +54,13 @@ interface StrategyTemplate {
 }
 
 interface StrategyTemplates {
-  rsiOversold: StrategyTemplate;
-  goldenCross: StrategyTemplate;
+  ironCondor: StrategyTemplate;
+  bullCallSpread: StrategyTemplate;
   // Add more template keys here as needed
 }
 
 const strategyTemplates: StrategyTemplates = {
-  rsiOversold: {
+  ironCondor: {
     strategyType: "time-based",
     transactionType: "bothLongAndShort",
     chartSettings: {
@@ -134,7 +134,7 @@ const strategyTemplates: StrategyTemplates = {
       }
     ], 
   },
-  goldenCross: {
+  bullCallSpread: {
     strategyType: "time-based",
     transactionType: "long",
     chartSettings: {
@@ -161,17 +161,27 @@ const strategyTemplates: StrategyTemplates = {
       orderType: "MIS"
     },
     orderLegs: [
-      { legType: "BUY", expiry:" ", quantity: 2, optionType: " ", strikeType:" ", strikeSelection:" ", stopLoss: 2, targetType: "percent",target:5 },
+      {
+        legType: "SELL",
+        expiry: "monthly",
+        quantity: 30,
+        optionType: "CALL",
+        strikeType: "OTM",
+        strikeSelection: "OTM200",
+        stopLoss: 0,
+        targetType: "percent",
+        target: 50
+      },
       {
         legType: "BUY",
-        expiry: "weekly",
-        quantity: 50,
+        expiry: "monthly",
+        quantity: 30,
         optionType: "CALL",
-        strikeType: "ITM",
-        strikeSelection: "ITM200",
-        stopLoss: 30,
+        strikeType: "OTM",
+        strikeSelection: "OTM200",
+        stopLoss: 0,
         targetType: "percent",
-        target: 60
+        target: 50
       }
     ],
   }

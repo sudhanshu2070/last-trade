@@ -4,25 +4,25 @@ import strategyTemplatesData from './templateData';
 
 const strategyTemplates = [
   {
-    id: 'goldenCross',
+    id: 'ironCondor',
     name: 'Iron Condor',
     type: 'Trend Following',
     description: '50EMA crosses above 200EMA for long entry',
     complexity: 'Beginner'
   },
-  {
-    id: 'rsiOversold',
-    name: 'RSI Oversold',
-    type: 'Mean Reversion',
-    description: 'Enter when RSI crosses below 30',
-    complexity: 'Intermediate'
-  },
-  {
-    id: 'breakoutTrading',
+    {
+    id: 'bullCallSpread',
     name: 'Bull Call Spread',
     type: 'Breakout',
     description: 'Enter when price breaks resistance with volume',
     complexity: 'Advanced'
+  },
+  {
+    id: 'goldenCross',
+    name: 'RSI Oversold',
+    type: 'Mean Reversion',
+    description: 'Enter when RSI crosses below 30',
+    complexity: 'Intermediate'
   },
   {
     id: 'macdCrossover',
