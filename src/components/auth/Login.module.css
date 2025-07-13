@@ -259,6 +259,38 @@
     object-fit: contain;
   }
   
+  .googleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 10px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  width: 100%;
+  font-size: 16px;
+  font-weight: 500;
+  color: #555;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.googleButton:hover {
+  background-color: #f7f7f7;
+}
+
+.googleLogo {
+  width: 20px;
+  height: 20px;
+}
+
+.googleText {
+  flex: 1;
+  text-align: center;
+}
+
   /* Responsive Design */
   @media (max-width: 600px) {
     .loginContainer {

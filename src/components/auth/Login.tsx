@@ -92,9 +92,14 @@ const Login = () => {
           <div className={styles.socialIcons}>
             <a
               href="https://wheat-chinchilla-956240.hostingersite.com/api/auth/google"
-              className={styles.socialButton}
+              className={styles.googleButton}
             >
-              <img src="/icons/google.svg" alt="Sign in with Google" />
+              <img
+                src="https://developers.google.com/identity/images/g-logo.png"
+                alt="Google logo"
+                className={styles.googleLogo}
+              />
+              <span className={styles.googleText}>Sign in with Google</span>
             </a>
             <button type="button" className={styles.socialButton}>
               <img src="/icons/apple.svg" alt="Apple" />
