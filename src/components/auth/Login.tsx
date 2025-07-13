@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect  } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
 const Logo = 'https://1000logos.net/wp-content/uploads/2021/05/Google-logo.png';
 
@@ -7,6 +7,18 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const token = params.get('token');
+
+    if (token) {
+      localStorage.setItem('jwt', token);
+      navigate('/dashboard'); 
+    }
+  }, [location, navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -78,9 +90,12 @@ const Login = () => {
             <span>or continue with</span>
           </div>
           <div className={styles.socialIcons}>
-            <button type="button" className={styles.socialButton}>
-              <img src="/icons/google.svg" alt="Google" />
-            </button>
+            <a
+              href="https://wheat-chinchilla-956240.hostingersite.com/api/auth/google"
+              className={styles.socialButton}
+            >
+              <img src="/icons/google.svg" alt="Sign in with Google" />
+            </a>
             <button type="button" className={styles.socialButton}>
               <img src="/icons/apple.svg" alt="Apple" />
             </button>
