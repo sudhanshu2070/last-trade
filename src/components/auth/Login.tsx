@@ -91,7 +91,7 @@ const Login = () => {
           </div>
           <div className={styles.socialIcons}>
             <a
-              href="https://wheat-chinchilla-956240.hostingersite.com/api/auth/google"
+              href="http://localhost:3000/api/auth/google"
               className={styles.googleButton}
             >
               <img
