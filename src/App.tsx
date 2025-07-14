@@ -10,6 +10,7 @@ import './styles/global.css';
 import styles from './App.module.css';
 import BrokerConnection from './components/Brokers/BrokerConnection';
 import StrategyPage from './Pages/Strategy/StrategyPage';
+import VerifyLogin from './components/auth/VerifyLogin';
 
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -27,6 +28,11 @@ function App() {
         <Route path="/signup" element={
           <div className={styles.authContainer}>
             <SignUp />
+          </div>
+        } />
+        <Route path="/verify" element={
+          <div className={styles.authContainer}>
+            <VerifyLogin />
           </div>
         } />
 
