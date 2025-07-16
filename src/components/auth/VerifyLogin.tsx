@@ -24,18 +24,16 @@ const VerifyLogin = () => {
           { withCredentials: true }
         );
 
-        // for debugging and testing purposes
-        console.log(response.data);
-        if (response.data.success) {    
-            alert('Verification successful! You can now log in.');
-        } else {    
-            setStatus('Verification failed. Please try again.');
-            return;
-        }
+        console.log('✅ Verified:', response.data);
 
-        setStatus('Login successful! Redirecting...');
+        setStatus('Login verified successfully! Redirecting...');
         setTimeout(() => navigate('/dashboard'), 2000);
       } catch (error) {
+        if (axios.isAxiosError(error)) {
+          console.error('❌ Verification Error:', error.response?.data || error.message);
+        } else {
+          console.error('❌ Verification Error:', (error as Error).message);
+        }
         setStatus('Verification failed. The link may be expired or invalid.');
       }
     };
