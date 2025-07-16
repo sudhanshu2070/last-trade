@@ -11,6 +11,7 @@ import styles from './App.module.css';
 import BrokerConnection from './components/Brokers/BrokerConnection';
 import StrategyPage from './Pages/Strategy/StrategyPage';
 import VerifyLogin from './components/auth/VerifyLogin';
+import VerifyPrompt from './components/auth/VerifyPrompt';
 
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -55,6 +56,7 @@ function App() {
                   {/* <Route path="/strategies/:tab" element={<StrategyPage />} /> */}
                   <Route path="/strategies/:tab" element={<StrategyPage key={location.pathname} />} />                  
                   <Route path="/backtest" element={<TestComp name={'Backtest'}/>} />
+                  <Route path="/verify-prompt" element={<VerifyPrompt />} />
                 </Routes>
               </main>
             </div>
