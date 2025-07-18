@@ -36,6 +36,8 @@ function App() {
             <VerifyLogin />
           </div>
         } />
+        <Route path="/verify-prompt" element={<VerifyPrompt />} />
+
 
         {/* Protected routes (with navbar layout) */}
         <Route path="/*" element={
@@ -56,7 +58,6 @@ function App() {
                   {/* <Route path="/strategies/:tab" element={<StrategyPage />} /> */}
                   <Route path="/strategies/:tab" element={<StrategyPage key={location.pathname} />} />                  
                   <Route path="/backtest" element={<TestComp name={'Backtest'}/>} />
-                  <Route path="/verify-prompt" element={<VerifyPrompt />} />
                 </Routes>
               </main>
             </div>
