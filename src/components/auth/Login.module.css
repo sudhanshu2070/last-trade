@@ -19,14 +19,24 @@
 
 /* Login Card */
 .loginCard {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(14px);
   border-radius: 20px;
-  padding: 2.5rem;
   width: 100%;
-  max-width: 420px;
+  max-width: 400px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  animation: fadeSlideIn 0.5s ease-out;
+  animation: fadeSlideIn 0.4s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  max-height: calc(100vh - 40px);
+  box-sizing: border-box; 
+}
+
+/* Optional: Add smooth scrolling for touch devices */
+.loginCard {
+  -webkit-overflow-scrolling: touch;
 }
 
 @keyframes fadeSlideIn {
@@ -225,35 +235,10 @@
   text-align: center;
 }
 
-.socialButton {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  border: 1px solid #e2e8f0;
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: background 0.25s ease, transform 0.2s ease;
-}
-
-.socialButton:hover {
-  background: #f3f4f6;
-  transform: scale(1.05);
-}
-
-.socialButton img {
-  width: 22px;
-  height: 22px;
-  object-fit: contain;
-}
-
 /* Responsive */
 @media (max-height: 700px) {
   .loginContainer {
     align-items: flex-start;
-    padding-top: 4rem;
   }
 
   .loginCard {

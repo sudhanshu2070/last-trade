@@ -101,9 +101,6 @@ const Login = () => {
               />
               <span className={styles.googleText}>Sign in with Google</span>
             </a>
-            <button type="button" className={styles.socialButton}>
-              <img src="/icons/apple.svg" alt="Apple" />
-            </button>
           </div>
         </div>
       </div>

@@ -21,11 +21,7 @@ function App() {
       {/* Main app container - only for authenticated routes */}
       <Routes>
         {/* Auth routes (full-screen layout) */}
-        <Route path="/login" element={
-          <div className={styles.authContainer}>
-            <Login />
-          </div>
-        } />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={
           <div className={styles.authContainer}>
             <SignUp />
