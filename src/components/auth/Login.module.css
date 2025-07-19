@@ -1,40 +1,38 @@
-/* Font for the entire page (modern aesthetic) */
 :root {
   font-family: 'Inter', 'Segoe UI', sans-serif;
 }
 
-/* Container */
+/* Entire Page */
 .loginContainer {
-  min-height: 100vh;
+  height: 100vh;
   width: 100vw;
-  background: #f4f6f8;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  background: linear-gradient(135deg, #e3eaf6, #f4f6fb);
   background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1920&q=80');
   background-size: cover;
   background-position: center;
   background-blend-mode: overlay;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 /* Login Card */
 .loginCard {
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: 18px;
-  padding: 2.5rem 2rem;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  padding: 2.5rem;
   width: 100%;
-  max-width: 440px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
-  backdrop-filter: blur(10px);
-  transition: transform 0.3s ease;
-  animation: slideFadeIn 0.4s ease;
+  max-width: 420px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  animation: fadeSlideIn 0.5s ease-out;
 }
 
-@keyframes slideFadeIn {
+@keyframes fadeSlideIn {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -45,7 +43,7 @@
 /* Header */
 .loginHeader {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 2.25rem;
 }
 
 .logo {
@@ -58,6 +56,7 @@
   font-size: 1.75rem;
   font-weight: 700;
   color: #1e293b;
+  letter-spacing: -0.5px;
 }
 
 .welcomeText {
@@ -80,15 +79,15 @@
 
 .inputLabel {
   font-size: 0.9rem;
-  color: #334155;
   font-weight: 500;
+  color: #334155;
 }
 
 .inputField {
-  padding: 0.85rem 1rem;
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
   border-radius: 12px;
   border: 1px solid #e2e8f0;
-  font-size: 1rem;
   background: #f9fafb;
   transition: all 0.2s ease;
 }
@@ -96,7 +95,7 @@
 .inputField:focus {
   outline: none;
   border-color: #3b82f6;
-  background: #fff;
+  background-color: #fff;
   box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
 }
 
@@ -119,13 +118,14 @@
   width: 16px;
   height: 16px;
   accent-color: #3b82f6;
+  border-radius: 4px;
 }
 
 .forgotPassword {
   color: #3b82f6;
-  text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s;
+  text-decoration: none;
+  transition: color 0.2s ease;
 }
 
 .forgotPassword:hover {
@@ -138,30 +138,30 @@
   color: #fff;
   border: none;
   padding: 0.9rem;
-  border-radius: 12px;
   font-size: 1rem;
   font-weight: 600;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
-  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.1);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.15);
 }
 
 .loginButton:hover {
   background-color: #2563eb;
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.2);
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
 }
 
-/* Signup Prompt */
+/* Sign Up Prompt */
 .signupPrompt {
+  margin-top: 1.75rem;
   text-align: center;
-  margin-top: 2rem;
-  color: #64748b;
   font-size: 0.95rem;
+  color: #64748b;
 }
 
 .signupLink {
-  color: #3b82f6;
   font-weight: 600;
+  color: #3b82f6;
   text-decoration: none;
   margin-left: 0.3rem;
 }
@@ -189,7 +189,7 @@
   margin: 0 1rem;
 }
 
-/* Social Buttons */
+/* Social Logins */
 .socialIcons {
   display: flex;
   flex-direction: column;
@@ -200,20 +200,19 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: #ffffff;
+  background: #fff;
   border: 1px solid #e2e8f0;
   padding: 0.8rem 1rem;
-  border-radius: 10px;
+  border-radius: 12px;
   font-size: 0.95rem;
   font-weight: 500;
-  cursor: pointer;
-  transition: background 0.2s ease;
   color: #374151;
   text-decoration: none;
+  transition: all 0.25s ease;
 }
 
 .googleButton:hover {
-  background: #f3f4f6;
+  background: #f1f5f9;
 }
 
 .googleLogo {
@@ -226,7 +225,6 @@
   text-align: center;
 }
 
-/* Apple Icon Button */
 .socialButton {
   width: 48px;
   height: 48px;
@@ -237,11 +235,12 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: background 0.25s ease, transform 0.2s ease;
 }
 
 .socialButton:hover {
   background: #f3f4f6;
+  transform: scale(1.05);
 }
 
 .socialButton img {
@@ -251,18 +250,26 @@
 }
 
 /* Responsive */
-@media (max-width: 480px) {
+@media (max-height: 700px) {
+  .loginContainer {
+    align-items: flex-start;
+    padding-top: 4rem;
+  }
+
   .loginCard {
     padding: 2rem 1.25rem;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .loginCard {
+    padding: 2rem 1.5rem;
   }
 
   .optionsRow {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
-  }
-
-  .forgotPassword {
-    margin-left: 0.25rem;
   }
 }
