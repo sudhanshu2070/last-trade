@@ -22,11 +22,7 @@ function App() {
       <Routes>
         {/* Auth routes (full-screen layout) */}
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={
-          <div className={styles.authContainer}>
-            <SignUp />
-          </div>
-        } />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/verify" element={
           <div className={styles.authContainer}>
             <VerifyLogin />

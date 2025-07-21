@@ -1,108 +1,120 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './SignUp.module.css';
-const Logo = 'https://1000logos.net/wp-content/uploads/2021/05/Google-logo.png';
 
-const SignUp = () => {
-  const [formData, setFormData] = useState({
-    name: '',
+const SignUp: React.FC = () => {
+  const [form, setForm] = useState({
+    username: '',
     email: '',
     password: '',
-    confirmPassword: ''
+    confirmPassword: '',
+    agreed: false
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
+    const { name, value, type, checked } = e.target;
+    setForm(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (form.password !== form.confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    }
+    if (!form.agreed) {
+      alert("You must agree to the terms");
+      return;
+    }
     // Handle signup logic
+    console.log("Form submitted", form);
   };
 
   return (
-    <div className={styles.signupContainer}>
-      <div className={styles.signupCard}>
-        <div className={styles.signupHeader}>
-          <img src={Logo} alt="TradePulse Logo" className={styles.logo} />
-          <h1 className={styles.companyName}>TradePulse</h1>
-          <p className={styles.welcomeText}>Create your trading account</p>
+    <div className={styles.loginContainer}>
+      <div className={styles.loginCard}>
+        <div className={styles.loginHeader}>
+          <img className={styles.logo} src="https://www.svgrepo.com/show/354380/trade.svg" alt="Logo" />
+          <div className={styles.companyName}>TradeSphere</div>
+          <div className={styles.welcomeText}>Create your account</div>
         </div>
 
-        <form onSubmit={handleSubmit} className={styles.signupForm}>
+        <form className={styles.loginForm} onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
-            <label htmlFor="name" className={styles.inputLabel}>Full Name</label>
+            <label className={styles.inputLabel} htmlFor="username">Username</label>
             <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
               className={styles.inputField}
-              placeholder="John Doe"
+              type="text"
+              id="username"
+              name="username"
+              value={form.username}
+              onChange={handleChange}
               required
             />
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="email" className={styles.inputLabel}>Email</label>
+            <label className={styles.inputLabel} htmlFor="email">Email</label>
             <input
+              className={styles.inputField}
               type="email"
               id="email"
               name="email"
-              value={formData.email}
+              value={form.email}
               onChange={handleChange}
-              className={styles.inputField}
-              placeholder="your@email.com"
               required
             />
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="password" className={styles.inputLabel}>Password</label>
+            <label className={styles.inputLabel} htmlFor="password">Password</label>
             <input
+              className={styles.inputField}
               type="password"
               id="password"
               name="password"
-              value={formData.password}
+              value={form.password}
               onChange={handleChange}
-              className={styles.inputField}
-              placeholder="••••••••"
               required
             />
           </div>
 
           <div className={styles.inputGroup}>
-            <label htmlFor="confirmPassword" className={styles.inputLabel}>Confirm Password</label>
+            <label className={styles.inputLabel} htmlFor="confirmPassword">Confirm Password</label>
             <input
+              className={styles.inputField}
               type="password"
               id="confirmPassword"
               name="confirmPassword"
-              value={formData.confirmPassword}
+              value={form.confirmPassword}
               onChange={handleChange}
-              className={styles.inputField}
-              placeholder="••••••••"
               required
             />
           </div>
 
-          <div className={styles.terms}>
-            <input type="checkbox" id="terms" className={styles.checkbox} required />
-            <label htmlFor="terms">
-              I agree to the <Link to="/terms" className={styles.link}>Terms of Service</Link> and <Link to="/privacy" className={styles.link}>Privacy Policy</Link>
+          <div className={styles.optionsRow}>
+            <label className={styles.rememberMe}>
+              <input
+                className={styles.checkbox}
+                type="checkbox"
+                name="agreed"
+                checked={form.agreed}
+                onChange={handleChange}
+              />
+              I agree to the <a href="#">Terms of Service</a> & <a href="#">Privacy Policy</a>
             </label>
           </div>
 
-          <button type="submit" className={styles.signupButton}>
+          <button type="submit" className={styles.loginButton}>
             Create Account
           </button>
         </form>
 
-        <div className={styles.loginPrompt}>
-          <p>Already have an account? <Link to="/login" className={styles.loginLink}>Sign in</Link></p>
+        <div className={styles.signupPrompt}>
+          Already have an account?
+          <a href="/login" className={styles.signupLink}>Sign in</a>
         </div>
       </div>
     </div>

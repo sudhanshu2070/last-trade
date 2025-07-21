@@ -1,158 +1,169 @@
-.signupContainer {
-    min-height: 100vh;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(
-      135deg, 
-      rgba(245, 247, 250, 0.95) 0%, 
-      rgba(228, 232, 240, 0.95) 100%
-    );
-    background-image: url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-    background-size: cover;
-    background-position: center;
-    background-blend-mode: overlay;
-    padding: 1rem;
+:root {
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+.loginContainer {
+  height: 100vh;
+  width: 100vw;
+  background: linear-gradient(135deg, #e3eaf6, #f4f6fb);
+  background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1920&q=80');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.loginCard {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  border-radius: 20px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  animation: fadeSlideIn 0.4s ease-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  max-height: calc(100vh - 40px);
+  padding: 2.5rem 2rem;
+  box-sizing: border-box;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
   }
-  
-  .signupCard {
-    background: white;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    padding: 1.5rem;
-    width: 100%;
-    max-width: 500px;
-    border: 1px solid #e1e5eb;
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .signupHeader {
-    text-align: center;
-    margin-bottom: 2.5rem;
-  }
-  
-  .logo {
-    height: 40px;
-    width: auto;
-    /* margin-bottom: 1rem; */
-  }
-  
-  .companyName {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: #2a3f9d;
-    margin: 0.5rem 0;
-    letter-spacing: -0.5px;
-  }
-  
-  .welcomeText {
-    color: #6b7280;
-    font-size: 1rem;
-    margin: 0;
-  }
-  
-  .signupForm {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  
-  .inputGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .inputLabel {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #374151;
-  }
-  
-  .inputField {
-    padding: 0.9rem 1rem;
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-    font-size: 1rem;
-    transition: all 0.2s ease;
-  }
-  
-  .inputField:focus {
-    outline: none;
-    border-color: #4f46e5;
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
-  }
-  
-  .terms {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-    font-size: 0.85rem;
-    color: #4b5563;
-    margin: 0.5rem 0;
-  }
-  
-  .terms label {
-    cursor: pointer;
-  }
-  
-  .link {
-    color: #4f46e5;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  
-  .link:hover {
-    color: #4338ca;
-  }
-  
-  .signupButton {
-    background: #4f46e5;
-    color: white;
-    border: none;
-    padding: 1rem;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    margin-top: 0.5rem;
-  }
-  
-  .signupButton:hover {
-    background: #4338ca;
-    transform: translateY(-1px);
-  }
-  
-  .loginPrompt {
-    text-align: center;
-    margin-top: 2rem;
-    color: #6b7280;
-    font-size: 0.95rem;
-  }
-  
-  .loginLink {
-    color: #4f46e5;
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  
-  .loginLink:hover {
-    color: #4338ca;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 600px) {
-    .signupContainer {
-      padding: 1rem;
-    }
-    
-    .signupCard {
-      padding: 2rem 1.5rem;
-    }
-    
-    .companyName {
-      font-size: 1.5rem;
-    }
-  }
+}
+
+.loginHeader {
+  text-align: center;
+  margin-bottom: 2.25rem;
+}
+
+.logo {
+  width: 48px;
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+.companyName {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1e293b;
+  letter-spacing: -0.5px;
+}
+
+.welcomeText {
+  font-size: 1rem;
+  color: #64748b;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.inputLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #334155;
+}
+
+.inputField {
+  padding: 0.9rem 1rem;
+  font-size: 1rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #f9fafb;
+  transition: all 0.2s ease;
+}
+
+.inputField:focus {
+  outline: none;
+  border-color: #3b82f6;
+  background-color: #fff;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+}
+
+.optionsRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.rememberMe {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.rememberMe a {
+  color: #3b82f6;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.rememberMe a:hover {
+  text-decoration: underline;
+}
+
+.checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: #3b82f6;
+  border-radius: 4px;
+}
+
+.loginButton {
+  background-color: #3b82f6;
+  color: #fff;
+  border: none;
+  padding: 0.9rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.15);
+}
+
+.loginButton:hover {
+  background-color: #2563eb;
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
+}
+
+.signupPrompt {
+  margin-top: 1.75rem;
+  text-align: center;
+  font-size: 0.95rem;
+  color: #64748b;
+}
+
+.signupLink {
+  font-weight: 600;
+  color: #3b82f6;
+  text-decoration: none;
+  margin-left: 0.3rem;
+}
+
+.signupLink:hover {
+  text-decoration: underline;
+}
