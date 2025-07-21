@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from './TopNavbar.module.css';
 import {
   FiBell as NotificationsIcon,
@@ -14,7 +14,9 @@ const userData = {
   email: 'thomasMuller@bayern.com',
 };
 
+
 const TopNavbar = () => {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dropdownNodeRef = useRef<HTMLDivElement>(null);
@@ -109,7 +111,14 @@ const TopNavbar = () => {
               <ul className={styles.dropdownList}>
                 {menuItems.map((item, index) => (
                   <li key={index}>
-                    <button className={styles.dropdownItem}>
+                    <button
+                      className={styles.dropdownItem}
+                      onClick={() => {
+                        if (item.label === 'Logout') {
+                          navigate('/login');
+                        }
+                      }}
+                      >
                       <span className={styles.itemIcon}>{item.icon}</span>
                       <span>{item.label}</span>
                       {item.hasNotification && (

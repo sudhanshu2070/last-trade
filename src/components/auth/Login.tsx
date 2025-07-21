@@ -1,7 +1,7 @@
 import React, { useState, useEffect  } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import styles from './Login.module.css';
-const Logo = 'https://1000logos.net/wp-content/uploads/2021/05/Google-logo.png';
+import Logo from '../../assets/logo.jpg';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -30,8 +30,8 @@ const Login = () => {
       <div className={styles.loginCard}>
         <div className={styles.loginHeader}>
           <img src={Logo} alt="TradePulse Logo" className={styles.logo} />
-          <h1 className={styles.companyName}>TradePulse</h1>
-          <p className={styles.welcomeText}>Welcome back to your trading dashboard</p>
+          <h1 className={styles.companyName}>Profit With Precision</h1>
+          <p className={styles.welcomeText}>Welcome back</p>
         </div>
 
         <form onSubmit={handleSubmit} className={styles.loginForm}>

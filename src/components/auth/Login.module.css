@@ -1,16 +1,24 @@
-/* Entire Page */
 .loginContainer {
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(135deg, #e3eaf6, #f4f6fb);
-  background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1920&q=80');
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: overlay;
+  background: linear-gradient(135deg, #f9fafb, #e2e8f0); /* Light, soft gray-blue gradient */
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  position: relative;
+}
+
+.loginContainer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* Login Card */
@@ -30,7 +38,6 @@
   box-sizing: border-box; 
 }
 
-/* Optional: Add smooth scrolling for touch devices */
 .loginCard {
   -webkit-overflow-scrolling: touch;
 }
@@ -123,7 +130,7 @@
 .checkbox {
   width: 16px;
   height: 16px;
-  accent-color: #3b82f6;
+  accent-color: aqua;
   border-radius: 4px;
 }
 
