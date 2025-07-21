@@ -1,12 +1,3 @@
-/* Ensure zero margin & no default scroll */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Inter', 'Segoe UI', sans-serif;
-}
-
 .container {
   width: 100vw;
   height: 100dvh; /* better than 100vh on mobile */
