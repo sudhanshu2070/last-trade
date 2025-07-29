@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useAuth } from '../Context/AuthContext';
 import styles from './Login.module.css';
 import Logo from '../../assets/logo.jpg';
 import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const location = useLocation();
   const navigate = useNavigate();
+  const [error, setError] = useState('');
+  const { login } = useAuth();
+
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
@@ -22,7 +26,15 @@ const Login = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic
+    setError('');
+
+    // Hardcoded credentials check
+    if (email === 'admin@pwp.com' && password === '123') {
+      login(); // Set authenticated state
+      navigate('/dashboard'); // Redirect to dashboard
+    } else {
+      setError('Invalid username or password');
+    }
   };
 
   return (
@@ -37,6 +49,8 @@ const Login = () => {
         {/* Form */}
         <form onSubmit={handleSubmit} className={styles.loginForm}>
           <h2 className={styles.welcomeText}>Welcome back!</h2>
+
+          {error && <div className={styles.errorMessage}>{error}</div>}
           
           {/* Email */}
           <div className={styles.inputGroup}>

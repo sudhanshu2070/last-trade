@@ -183,6 +183,16 @@
   text-decoration: none;
 }
 
+.errorMessage {
+  color: #ef4444;
+  background-color: #fee2e2;
+  padding: 0.75rem;
+  border-radius: 0.375rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+}
+
 @media (max-width: 480px) {
   .loginCard {
     padding: 1.5rem;
