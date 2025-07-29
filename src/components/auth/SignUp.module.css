@@ -1,179 +1,172 @@
-.container {
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(135deg, #f9fafb, #e2e8f0); /* Light, soft gray-blue gradient */
+.signupContainer {
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
-  position: relative;
+  padding: 1rem;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
-.container::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.02) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.02) 1px, transparent 1px);
-  background-size: 40px 40px;
-  z-index: 0;
-  pointer-events: none;
-}
-
-.card {
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(14px);
-  border-radius: 20px;
+.signupCard {
   width: 100%;
-  max-width: 420px;
-  height: auto;
-  max-height: 100%;
-  padding: 2.25rem;
-  overflow-y: auto;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
+  max-width: 450px;
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 16px;
+  padding: 2.5rem;
+  box-shadow: 0 8px 32px rgba(31, 38, 135, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-/* Hide scrollbar on WebKit (Chrome, Safari) */
-.card::-webkit-scrollbar {
-  display: none;
-}
-.card {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.header {
+.brandContainer {
   text-align: center;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1rem;
 }
 
-.logo {
-  width: 48px;
-  height: 48px;
-  object-fit: contain;
-  margin: 0 auto 1rem auto;
-  display: block;
-}
-
-.title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: #1e293b;
-  margin: 0;
-}
-
-.subtitle {
-  font-size: 1rem;
-  color: #64748b;
-  margin-top: 0.25rem;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem;
+.welcomeText {
+  font-size: 1.25rem;
+  color: #4a5568;
+  text-align: center;
+  margin-bottom: 1.5rem;
 }
 
 .inputGroup {
-  display: flex;
-  flex-direction: column;
-}
-
-.inputGroup label {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #334155;
-  margin-bottom: 0.3rem;
+  position: relative;
+  margin-bottom: 1.25rem;
 }
 
 .inputGroup input {
-  padding: 0.9rem 1rem;
-  font-size: 1rem;
-  border-radius: 12px;
+  width: 100%;
+  padding: 0.875rem 1rem 0.875rem 2.5rem;
   border: 1px solid #e2e8f0;
-  background: #f9fafb;
-  transition: border 0.2s ease, box-shadow 0.2s ease;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  transition: all 0.2s;
 }
 
 .inputGroup input:focus {
   outline: none;
-  border-color: #3b82f6;
-  background-color: #fff;
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
 }
 
-.checkboxGroup {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.5rem;
-  font-size: 0.85rem;
-  color: #475569;
-  line-height: 1.4;
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0aec0;
+  font-size: 1.1rem;
 }
 
-.checkboxGroup input {
-  width: 16px;
-  height: 16px;
-  margin-top: 0.2rem;
-  accent-color: #3b82f6;
-}
-
-.checkboxGroup a {
-  color: #3b82f6;
-  text-decoration: none;
+.verifyButton {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #667eea;
+  font-size: 0.8125rem;
   font-weight: 500;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
 }
 
-.checkboxGroup a:hover {
-  text-decoration: underline;
+.verifyButton:hover {
+  background-color: rgba(102, 126, 234, 0.1);
 }
 
-.submitButton {
-  background-color: #3b82f6;
+.termsGroup {
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+.termsGroup input {
+  margin-right: 0.75rem;
+  width: 1rem;
+  height: 1rem;
+}
+
+.termsGroup label {
+  font-size: 0.875rem;
+  color: #4a5568;
+}
+
+.termsGroup a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+.primaryButton {
+  width: 100%;
+  padding: 0.875rem;
+  background-color: #667eea;
   color: white;
   border: none;
-  padding: 0.9rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 6px 12px rgba(59, 130, 246, 0.15);
-}
-
-.submitButton:hover {
-  background-color: #2563eb;
-  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.2);
-}
-
-.footer {
-  text-align: center;
-  margin-top: 1.5rem;
-  font-size: 0.95rem;
-  color: #64748b;
-}
-
-.footer a {
-  color: #3b82f6;
-  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.9375rem;
   font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
-.footer a:hover {
-  text-decoration: underline;
+.primaryButton:hover {
+  background-color: #5a67d8;
+}
+
+.switchAuthText {
+  text-align: center;
+  font-size: 0.875rem;
+  color: #718096;
+  margin-top: 1.5rem;
+}
+
+.switchAuthText a {
+  color: #667eea;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+/* Logo Styles */
+.logo {
+  height: 45px;
+  width: auto;
+  margin-bottom: 0.5rem;
+  border-radius: 8px;
+  object-fit: contain;
+}
+
+.brandName {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin: 0;
+}
+
+.primaryButton:disabled {
+  background-color: #c3cfe2;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Optional: Add transition for smoother state changes */
+.primaryButton {
+  transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
 @media (max-width: 480px) {
-  .card {
-    padding: 2rem 1.5rem;
+  .signupCard {
+    padding: 1.5rem;
   }
-
-  .logo {
-    width: 40px;
-    height: 40px;
+  
+  .brandName {
+    font-size: 1.5rem;
+  }
+  
+  .inputGroup input {
+    padding: 0.75rem 1rem 0.75rem 2.25rem;
   }
 }

@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import styles from './SignUp.module.css';
+import Logo from '../../assets/logo.jpg';
+import { FiUser, FiMail, FiPhone, FiLock } from 'react-icons/fi';
 
-const SignUp: React.FC = () => {
+const SignUp = () => {
   const [formData, setFormData] = useState({
-    username: '',
+    fullName: '',
     email: '',
+    phone: '',
     password: '',
     confirmPassword: '',
-    agreed: false
+    agreeTerms: false
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -20,102 +23,117 @@ const SignUp: React.FC = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match.');
-      return;
-    }
-    if (!formData.agreed) {
-      alert('You must agree to the terms.');
-      return;
-    }
-    // Submit form logic
-    console.log('Submitted:', formData);
+    // Handle signup logic
+    console.log(formData);
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>
-        <div className={styles.header}>
-          <img
-            src="https://www.svgrepo.com/show/354380/trade.svg"
-            alt="Logo"
-            className={styles.logo}
-          />
-          <h2 className={styles.title}>Create Your Account</h2>
-          <p className={styles.subtitle}>Join TradeSphere today</p>
+    <div className={styles.signupContainer}>
+      <div className={styles.signupCard}>
+        {/* Logo & Brand */}
+        <div className={styles.brandContainer}>
+          <img src={Logo} alt="Profit With Precision" className={styles.logo} />
+          <h1 className={styles.brandName}>Profit With Precision</h1>
         </div>
 
-        <form onSubmit={handleSubmit} className={styles.form}>
+        {/* Form */}
+        <form onSubmit={handleSubmit} className={styles.signupForm}>
+          <h2 className={styles.welcomeText}>Create your account</h2>
+          
+          {/* Full Name */}
           <div className={styles.inputGroup}>
-            <label htmlFor="username">Username</label>
+            <FiUser className={styles.inputIcon} />
             <input
               type="text"
-              id="username"
-              name="username"
-              value={formData.username}
+              name="fullName"
+              placeholder="Full Name"
+              value={formData.fullName}
               onChange={handleChange}
               required
             />
           </div>
 
+          {/* Email */}
           <div className={styles.inputGroup}>
-            <label htmlFor="email">Email</label>
+            <FiMail className={styles.inputIcon} />
             <input
               type="email"
-              id="email"
               name="email"
+              placeholder="Email"
               value={formData.email}
               onChange={handleChange}
               required
             />
           </div>
 
+          {/* Phone */}
           <div className={styles.inputGroup}>
-            <label htmlFor="password">Password</label>
+            <FiPhone className={styles.inputIcon} />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone Number"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+            />
+            <button type="button" className={styles.verifyButton}>Verify</button>
+          </div>
+
+          {/* Password */}
+          <div className={styles.inputGroup}>
+            <FiLock className={styles.inputIcon} />
             <input
               type="password"
-              id="password"
               name="password"
+              placeholder="Password"
               value={formData.password}
               onChange={handleChange}
               required
             />
           </div>
 
+          {/* Confirm Password */}
           <div className={styles.inputGroup}>
-            <label htmlFor="confirmPassword">Confirm Password</label>
+            <FiLock className={styles.inputIcon} />
             <input
               type="password"
-              id="confirmPassword"
               name="confirmPassword"
+              placeholder="Confirm Password"
               value={formData.confirmPassword}
               onChange={handleChange}
               required
             />
           </div>
 
-          <div className={styles.checkboxGroup}>
+          {/* Terms Checkbox */}
+          <div className={styles.termsGroup}>
             <input
               type="checkbox"
-              id="agreed"
-              name="agreed"
-              checked={formData.agreed}
+              id="agreeTerms"
+              name="agreeTerms"
+              checked={formData.agreeTerms}
               onChange={handleChange}
               required
             />
-            <label htmlFor="agreed">
-              I agree to the <a href="#">Terms of Service</a> & <a href="#">Privacy Policy</a>
+            <label htmlFor="agreeTerms">
+              I agree to the <a href="/terms">Terms of Service</a> & <a href="/privacy">Privacy Policy</a>
             </label>
           </div>
 
-          <button type="submit" className={styles.submitButton}>
-            Create Account
+          <button 
+            type="submit" 
+            className={styles.primaryButton}
+            disabled={!formData.agreeTerms}
+            >
+              Create Account
           </button>
-        </form>
 
-        <p className={styles.footer}>
-          Already have an account? <a href="/login">Sign in</a>
-        </p>
+          {/* Sign In Link */}
+          <p className={styles.switchAuthText}>
+            Already have an account? <a href="/login">Sign in</a>
+          </p>
+        </form>
       </div>
     </div>
   );

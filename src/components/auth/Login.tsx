@@ -1,12 +1,12 @@
-import React, { useState, useEffect  } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import styles from './Login.module.css';
 import Logo from '../../assets/logo.jpg';
+import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -28,81 +28,66 @@ const Login = () => {
   return (
     <div className={styles.loginContainer}>
       <div className={styles.loginCard}>
-        <div className={styles.loginHeader}>
-          <img src={Logo} alt="TradePulse Logo" className={styles.logo} />
-          <h1 className={styles.companyName}>Profit With Precision</h1>
-          <p className={styles.welcomeText}>Welcome back</p>
+        {/* Logo & Brand */}
+        <div className={styles.brandContainer}>
+          <img src={Logo} alt="Profit With Precision" className={styles.logo} />
+          <h1 className={styles.brandName}>Profit With Precision</h1>
         </div>
 
+        {/* Form */}
         <form onSubmit={handleSubmit} className={styles.loginForm}>
+          <h2 className={styles.welcomeText}>Welcome back!</h2>
+          
+          {/* Email */}
           <div className={styles.inputGroup}>
-            <label htmlFor="email" className={styles.inputLabel}>Email</label>
+            <AiOutlineMail className={styles.inputIcon} />
             <input
               type="email"
-              id="email"
+              placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className={styles.inputField}
-              placeholder="your@email.com"
               required
             />
           </div>
 
+          {/* Password */}
           <div className={styles.inputGroup}>
-            <label htmlFor="password" className={styles.inputLabel}>Password</label>
+            <AiOutlineLock className={styles.inputIcon} />
             <input
               type="password"
-              id="password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={styles.inputField}
-              placeholder="••••••••"
               required
             />
+            <a href="/forgot-password" className={styles.forgotPassword}>Forgot?</a>
           </div>
 
-          <div className={styles.optionsRow}>
-            <label className={styles.rememberMe}>
-              <input
-                type="checkbox"
-                checked={rememberMe}
-                onChange={() => setRememberMe(!rememberMe)}
-                className={styles.checkbox}
-              />
-              <span>Remember me</span>
-            </label>
-            <Link to="/forgot-password" className={styles.forgotPassword}>
-              Forgot password?
-            </Link>
-          </div>
+          <button type="submit" className={styles.primaryButton}>Sign In</button>
 
-          <button type="submit" className={styles.loginButton}>
-            Sign In
-          </button>
-        </form>
-
-        <div className={styles.signupPrompt}>
-          <p>New to TradePulse? <Link to="/signup" className={styles.signupLink}>Create account</Link></p>
-        </div>
-
-        <div className={styles.socialLogin}>
+          {/* Divider */}
           <div className={styles.divider}>
             <span>or continue with</span>
           </div>
-          <div className={styles.socialIcons}>
-            <a
-              href="http://51-20-41-6.nip.io:3000/api/auth/google"
-              className={styles.googleButton}
-            >
-              <img
-                src="https://developers.google.com/identity/images/g-logo.png"
-                alt="Google logo"
-                className={styles.googleLogo}
-              />
-              <span className={styles.googleText}>Sign in with Google</span>
-            </a>
-          </div>
-        </div>
+
+          {/* Google Sign In */}
+          <a
+            href="http://51-20-41-6.nip.io:3000/api/auth/google"
+            className={styles.googleButton}
+          >
+            <img
+              src="https://developers.google.com/identity/images/g-logo.png"
+              alt="Google logo"
+              className={styles.googleLogo}
+            />
+            Sign in with Google
+          </a>
+
+          {/* Sign Up Link */}
+          <p className={styles.switchAuthText}>
+            New to TradeWorld? <a href="/signup">Sign up</a>
+          </p>
+        </form>
       </div>
     </div>
   );
