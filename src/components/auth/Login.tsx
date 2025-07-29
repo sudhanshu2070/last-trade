@@ -3,21 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 import styles from './Login.module.css';
 import Logo from '../../assets/logo.jpg';
-import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
+import { AiOutlineMail, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  // const location = useLocation();
-  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
-  const { login } = useAuth();
-  const { isAuthenticated } = useAuth(); // Hook to check auth status
+  const [isLoading, setIsLoading] = useState(false);
+  const { login, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   // useEffect(() => {
   //   const params = new URLSearchParams(location.search);
   //   const token = params.get('token');
-
   //   if (token) {
   //     localStorage.setItem('jwt', token);
   //     navigate('/dashboard'); 
@@ -30,17 +29,28 @@ const Login = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setIsLoading(true);
 
-    // Hardcoded credentials check
-    if (email === 'admin@pwp.com' && password === '123') {
-      login(); // Set authenticated state
-      navigate('/dashboard'); // Redirect to dashboard
-    } else {
-      setError('Invalid username or password');
+    try {
+      // Hardcoded credentials check
+      if (email === 'admin@pwp.com' && password === '123') {
+        await login(); // Set authenticated state
+        navigate('/dashboard');
+      } else {
+        setError('Invalid username or password');
+      }
+    } catch (err) {
+      setError('An error occurred during login');
+    } finally {
+      setIsLoading(false);
     }
+  };
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -67,23 +77,41 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              autoComplete="username"
             />
           </div>
 
-          {/* Password */}
+          {/* Password Field */}
           <div className={styles.inputGroup}>
             <AiOutlineLock className={styles.inputIcon} />
             <input
-              type="password"
+              type={showPassword ? "text" : "password"}
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              autoComplete="current-password"
             />
-            <a href="/forgot-password" className={styles.forgotPassword}>Forgot?</a>
+            <div className={styles.passwordActions}>
+              <button 
+                type="button" 
+                className={styles.passwordToggle}
+                onClick={togglePasswordVisibility}
+                aria-label={showPassword ? "Hide password" : "Show password"}
+              >
+                {showPassword ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
+              </button>
+            </div>
           </div>
+          <a href="/forgot-password" className={styles.forgotPassword}>Forgot password?</a>
 
-          <button type="submit" className={styles.primaryButton}>Sign In</button>
+          <button 
+            type="submit" 
+            className={styles.primaryButton}
+            disabled={isLoading}
+          >
+            {isLoading ? 'Signing In...' : 'Sign In'}
+          </button>
 
           {/* Divider */}
           <div className={styles.divider}>
