@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import Dashboard from './components/Dashboard/Dashboard';
 import TestComp from './components/TestComp';
@@ -12,14 +12,21 @@ import BrokerConnection from './components/Brokers/BrokerConnection';
 import StrategyPage from './Pages/Strategy/StrategyPage';
 import VerifyLogin from './components/auth/VerifyLogin';
 import VerifyPrompt from './components/auth/VerifyPrompt';
+import { useAuth } from './components/Context/AuthContext'; 
 
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
+  const { isAuthenticated } = useAuth(); // Hook to check auth status
 
   return (
     <BrowserRouter>
-      {/* Main app container - only for authenticated routes */}
       <Routes>
+        {/* Redirecting root to login if not authenticated */}
+        <Route 
+          path="/" 
+          element={isAuthenticated ? <Navigate to="/dashboard" /> : <Navigate to="/login" />} 
+        />
+
         {/* Auth routes (full-screen layout) */}
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
@@ -30,31 +37,37 @@ function App() {
         } />
         <Route path="/verify-prompt" element={<VerifyPrompt />} />
 
-
         {/* Protected routes (with navbar layout) */}
         <Route path="/*" element={
-          <div className={styles.appContainer}>
-            <TopNavbar />
-            <div className={styles.contentWrapper}>
-              {!isMobile && (
-                <div className={styles.desktopNavContainer}>
-                  <NavTabs />
-                </div>
-              )}
-              <main className={`${styles.mainContent} ${!isMobile ? styles.withNav : ''}`}>
-                <Routes>
-                  <Route path="/" element={<Dashboard />} />
-                  <Route path="/portfolio" element={<BrokerConnection />} />
-                  <Route path="/brokers" element={<TestComp name={'Brokers'}/>} />
-                  <Route path="/strategies" element={<StrategyPage />} />
-                  {/* <Route path="/strategies/:tab" element={<StrategyPage />} /> */}
-                  <Route path="/strategies/:tab" element={<StrategyPage key={location.pathname} />} />                  
-                  <Route path="/backtest" element={<TestComp name={'Backtest'}/>} />
-                </Routes>
-              </main>
+          isAuthenticated ? (
+            <div className={styles.appContainer}>
+              <TopNavbar />
+              <div className={styles.contentWrapper}>
+                {!isMobile && (
+                  <div className={styles.desktopNavContainer}>
+                    <NavTabs />
+                  </div>
+                )}
+                <main className={`${styles.mainContent} ${!isMobile ? styles.withNav : ''}`}>
+                  <Routes>
+                    <Route path="/dashboard" element={<Dashboard />} />
+                    <Route path="/portfolio" element={<BrokerConnection />} />
+                    <Route path="/brokers" element={<TestComp name={'Brokers'}/>} />
+                    <Route path="/strategies" element={<StrategyPage />} />
+                     {/* <Route path="/strategies/:tab" element={<StrategyPage />} /> */}
+                    <Route path="/strategies/:tab" element={<StrategyPage key={location.pathname} />} />                  
+                    <Route path="/backtest" element={<TestComp name={'Backtest'}/>} />
+
+                    {/* Redirect any unknown paths to dashboard */}
+                    <Route path="*" element={<Navigate to="/dashboard" />} />
+                  </Routes>
+                </main>
+              </div>
+              {isMobile && <NavTabs />}
             </div>
-            {isMobile && <NavTabs />}
-          </div>
+          ) : (
+            <Navigate to="/login" />
+          )
         } />
       </Routes>
     </BrowserRouter>
