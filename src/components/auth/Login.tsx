@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
 import styles from './Login.module.css';
 import Logo from '../../assets/logo.jpg';
@@ -8,21 +8,27 @@ import { AiOutlineMail, AiOutlineLock } from 'react-icons/ai';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const location = useLocation();
+  // const location = useLocation();
   const navigate = useNavigate();
   const [error, setError] = useState('');
   const { login } = useAuth();
+  const { isAuthenticated } = useAuth(); // Hook to check auth status
 
+  // useEffect(() => {
+  //   const params = new URLSearchParams(location.search);
+  //   const token = params.get('token');
+
+  //   if (token) {
+  //     localStorage.setItem('jwt', token);
+  //     navigate('/dashboard'); 
+  //   }
+  // }, [location, navigate]);
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const token = params.get('token');
-
-    if (token) {
-      localStorage.setItem('jwt', token);
-      navigate('/dashboard'); 
+    if (isAuthenticated) {
+      navigate('/dashboard');
     }
-  }, [location, navigate]);
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();

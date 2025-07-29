@@ -28,8 +28,13 @@ function App() {
         />
 
         {/* Auth routes (full-screen layout) */}
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={
+          !isAuthenticated ? <Login /> : <Navigate to="/dashboard" />
+        } />
+        <Route path="/signup" element={
+          !isAuthenticated ? <SignUp /> : <Navigate to="/dashboard" />
+        } />
+
         <Route path="/verify" element={
           <div className={styles.authContainer}>
             <VerifyLogin />

@@ -8,19 +8,19 @@ import {
 } from 'react-icons/fi';
 import { CSSTransition } from 'react-transition-group';
 import logo from '../../assets/logo.jpg';
+import { useAuth } from '../Context/AuthContext'; // Import the auth context
 
 const userData = {
   name: 'Thomas Muller',
   email: 'thomasMuller@bayern.com',
 };
 
-
 const TopNavbar = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dropdownNodeRef = useRef<HTMLDivElement>(null);
-
+  const { logout } = useAuth(); // Get the logout function from auth context
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -34,15 +34,19 @@ const TopNavbar = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  const handleLogout = () => {
+    logout(); // Call the logout function from auth context
+    navigate('/login'); // Redirect to login page
+    setIsOpen(false); // Close the dropdown
+  };
 
   const menuItems = [
-    { icon: '👤', label: 'Profile' },
-    { icon: '💎', label: 'Subscription' },
-    { icon: '🔑', label: 'Change Password' },
-    { icon: '🆕', label: "What's New", hasNotification: true },
-    { icon: '🚪', label: 'Logout' }
+    { icon: '👤', label: 'Profile', action: () => navigate('/profile') },
+    { icon: '💎', label: 'Subscription', action: () => navigate('/subscription') },
+    { icon: '🔑', label: 'Change Password', action: () => navigate('/change-password') },
+    { icon: '🆕', label: "What's New", action: () => navigate('/whats-new'), hasNotification: true },
+    { icon: '🚪', label: 'Logout', action: handleLogout }
   ];
-
 
   return (
     <header className={styles.topNavbar}>
@@ -92,7 +96,7 @@ const TopNavbar = () => {
             unmountOnExit
             nodeRef={dropdownNodeRef} 
           >
-            <div className={styles.dropdownMenu}>
+            <div className={styles.dropdownMenu} ref={dropdownNodeRef}>
               <div className={styles.dropdownArrow}></div>
               <div className={styles.dropdownHeader}>
                 <img 
@@ -113,12 +117,8 @@ const TopNavbar = () => {
                   <li key={index}>
                     <button
                       className={styles.dropdownItem}
-                      onClick={() => {
-                        if (item.label === 'Logout') {
-                          navigate('/login');
-                        }
-                      }}
-                      >
+                      onClick={item.action}
+                    >
                       <span className={styles.itemIcon}>{item.icon}</span>
                       <span>{item.label}</span>
                       {item.hasNotification && (
