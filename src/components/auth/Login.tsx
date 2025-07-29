@@ -105,7 +105,7 @@ const Login = () => {
 
           {/* Sign Up Link */}
           <p className={styles.switchAuthText}>
-            New to TradeWorld? <a href="/signup">Sign up</a>
+            New to Profit With Precision? <a href="/signup">Sign up</a>
           </p>
         </form>
       </div>
