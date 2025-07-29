@@ -91,7 +91,7 @@ const Login = () => {
           </div>
           <div className={styles.socialIcons}>
             <a
-              href="http://localhost:3000/api/auth/google"
+              href="http://51-20-41-6.nip.io:3000/api/auth/google"
               className={styles.googleButton}
             >
               <img
