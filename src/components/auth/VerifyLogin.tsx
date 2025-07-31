@@ -11,6 +11,7 @@ const VerifyLogin = () => {
 
   useEffect(() => {
     const verifyToken = async () => {
+      
       const token = searchParams.get('token');
       const userId = searchParams.get('userId');
 
