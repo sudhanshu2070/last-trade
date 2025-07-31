@@ -1,35 +1,60 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import axios from 'axios';
+import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 type AuthContextType = {
   isAuthenticated: boolean;
-  login: () => void;
+  user: any;
+  login: (userData: any) => void;
   logout: () => void;
 };
 
-const AuthContext = createContext<AuthContextType | null>(null);
+const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    const storedAuth = localStorage.getItem('isAuthenticated');
-    if (storedAuth === 'true') {
-      setIsAuthenticated(true);
-    }
-  }, []);
-
-  const login = () => {
-    localStorage.setItem('isAuthenticated', 'true');
+  const login = (userData: any) => {
     setIsAuthenticated(true);
+    setUser(userData);
   };
 
   const logout = () => {
-    localStorage.removeItem('isAuthenticated');
-    setIsAuthenticated(false);
+    
+    // Clear user data and authentication state
+    try {
+      
+      axios.post(`${import.meta.env.VITE_BACKEND_API_URL}/auth/logout`, {}, { withCredentials: true });
+      setIsAuthenticated(false);
+      setUser(null);
+
+    } catch (error) {
+      console.error('Logout failed:', error);
+    }
   };
 
+  // Fetching user info on initial load to restore session
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const res = await axios.post(
+          `${import.meta.env.VITE_BACKEND_API_URL}/auth/verifyOnRefresh`,
+          {},
+          { withCredentials: true } // IMPORTANT: sends the HttpOnly cookie
+        );
+        login(res.data.user); // set user and isAuthenticated
+      } catch (err) {
+        console.error('Auth check failed:', err);
+        logout(); // invalid token or no token
+      }
+    };
+
+    checkAuth();
+  }, []);
+
+
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
@@ -37,8 +62,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
+  if (!context) throw new Error('useAuth must be used within AuthProvider');
   return context;
 };

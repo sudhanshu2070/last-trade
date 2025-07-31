@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styles from './SignUp.module.css';
 import Logo from '../../assets/logo.jpg';
 import { FiUser, FiMail, FiPhone, FiLock } from 'react-icons/fi';
 
 const SignUp = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -33,20 +35,18 @@ const SignUp = () => {
     }
 
     try {
-      const response = await axios.post(`${import.meta.env.BACKEND_API_URL}/auth/signup`, {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_API_URL}/auth/signup`, {
         name: formData.fullName,
         email: formData.email,
         phone: formData.phone,
         password: formData.password
       });
 
-      console.log('✅ Signup Success:', response.data);
-      alert('Signup successful! Check your email to verify your account.');
+      console.log('Signup Success:', response.data);
+      navigate('/verify-prompt')
 
-      // Optionally redirect to login
-      // navigate('/login');
     } catch (error: any) {
-      console.error('❌ Signup failed:', error.response?.data || error.message);
+      console.error('Signup failed:', error.response?.data || error.message);
       alert(error.response?.data?.message || 'Signup failed. Try again.');
     }
   };

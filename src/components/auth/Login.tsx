@@ -4,6 +4,7 @@ import { useAuth } from '../Context/AuthContext';
 import styles from './Login.module.css';
 import Logo from '../../assets/logo.jpg';
 import { AiOutlineMail, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
+import axios from 'axios';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -13,15 +14,6 @@ const Login = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-
-  // useEffect(() => {
-  //   const params = new URLSearchParams(location.search);
-  //   const token = params.get('token');
-  //   if (token) {
-  //     localStorage.setItem('jwt', token);
-  //     navigate('/dashboard'); 
-  //   }
-  // }, [location, navigate]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -35,15 +27,25 @@ const Login = () => {
     setIsLoading(true);
 
     try {
-      // Hardcoded credentials check
-      if (email === 'admin@pwp.com' && password === '123') {
-        await login(); // Set authenticated state
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_API_URL}/auth/login`,
+        { email, password },
+        { withCredentials: true }
+      );
+
+      if (response.data.status === 'pending') {
+        setError('Please verify your email. A verification link has been sent.');
+        navigate('/verify-prompt')
+      } else if (response.data.status === 'success') {
+        login(response.data.user); 
         navigate('/dashboard');
-      } else {
-        setError('Invalid username or password');
       }
-    } catch (err) {
-      setError('An error occurred during login');
+    } catch (err: any) {
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data?.message || 'Login failed. Please try again.');
+      } else {
+        setError('Something went wrong. Please try again.');
+      }
     } finally {
       setIsLoading(false);
     }
