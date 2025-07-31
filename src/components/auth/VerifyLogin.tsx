@@ -24,9 +24,8 @@ const VerifyLogin = () => {
             token,  userId
         });
 
-        console.log('Verified:', response.data);
+        // console.log('Verified:', response.data);
 
-        
         //Setting auth context
         login(response.data.user); 
         setStatus('Login verified successfully! Redirecting...');
