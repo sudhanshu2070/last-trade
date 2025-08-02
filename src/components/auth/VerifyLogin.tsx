@@ -28,6 +28,7 @@ const VerifyLogin = () => {
         // console.log('Verified:', response.data);
 
         //Setting auth context
+        console.log('Login verified Successfully:', response.data.user);
         login(response.data.user); 
         setStatus('Login verified successfully! Redirecting...');
 

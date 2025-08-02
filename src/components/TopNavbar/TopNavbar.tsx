@@ -8,19 +8,14 @@ import {
 } from 'react-icons/fi';
 import { CSSTransition } from 'react-transition-group';
 import logo from '../../assets/logo.jpg';
-import { useAuth } from '../Context/AuthContext'; // Import the auth context
-
-const userData = {
-  name: 'Thomas Muller',
-  email: 'thomasMuller@bayern.com',
-};
+import { useAuth } from '../Context/AuthContext'; 
 
 const TopNavbar = () => {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dropdownNodeRef = useRef<HTMLDivElement>(null);
-  const { logout } = useAuth(); // Get the logout function from auth context
+  const { logout, user } = useAuth(); // Get the logout function from auth context
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -75,7 +70,7 @@ const TopNavbar = () => {
         </button>
 
         <div className={styles.profileSection} ref={dropdownRef}>
-          <span className={styles.greeting}>Hello, {userData.name}</span>
+          <span className={styles.greeting}>Hello, {user?.name ||  'Guest'}</span>
           <button 
             className={`${styles.iconButton} ${styles.avatarButton}`} 
             aria-label="Profile"
@@ -105,8 +100,8 @@ const TopNavbar = () => {
                   className={styles.dropdownAvatar} 
                 />
                 <div>
-                  <div className={styles.dropdownName}>{userData.name}</div>
-                  <div className={styles.dropdownEmail}>{userData.email}</div>
+                  <div className={styles.dropdownName}>{user?.name || 'Guest'}</div>
+                  <div className={styles.dropdownEmail}>{user?.email || 'Not logged in'}</div>
                 </div>
               </div>
               
