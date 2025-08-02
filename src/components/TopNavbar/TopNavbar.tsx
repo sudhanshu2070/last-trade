@@ -15,7 +15,7 @@ const TopNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const dropdownNodeRef = useRef<HTMLDivElement>(null);
-  const { logout, user } = useAuth(); // Get the logout function from auth context
+  const { logout, user } = useAuth(); 
 
   // Close dropdown when clicking outside
   useEffect(() => {
