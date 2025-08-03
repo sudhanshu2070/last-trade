@@ -24,11 +24,13 @@ jobs:
           echo "Generated .env.production:"
           cat .env.production
 
-      - name: Build React app
+      - name: Clean before build
         run: |
-          npm run build -- --force
-          # Verify the built files contain the new URL
-          grep -r "api.pwps.online" dist/ || echo "Warning: New backend URL not found in build"
+          rm -rf node_modules/.vite
+          rm -rf dist
+
+      - name: Build React app
+        run: npm run build
 
       - name: Verify Build Output
         run: |
