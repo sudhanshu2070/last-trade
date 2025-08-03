@@ -1,54 +1,45 @@
-# React + TypeScript + Vite
+# App Deployment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Deployment Overview
 
-Currently, two official plugins are available:
+- During GitHub Actions deployment, this command creates `.env.production`:
+echo "VITE_BACKEND_API_URL=${{ secrets.VITE_BACKEND_API_URL }}" > .env.production
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+It injects the backend API URL from **GitHub Secrets** into the React build securely.
 
-## Expanding the ESLint configuration
+- The `.htaccess` file is copied into the build folder and deployed to Hostinger every time to enable SPA routing on Apache servers.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Important Notes
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- Add your `VITE_BACKEND_API_URL`, `FTP_USERNAME`, and `FTP_PASSWORD` as **GitHub Secrets**.
+- Ensure `.htaccess` is included in your repo (not ignored).
+- The deployment uploads all build files and `.htaccess` to Hostinger’s `public_html` folder.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Deployment Steps
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+1. **Set up GitHub Secrets**  
+  Add the following secrets to your GitHub repository:
+  - `VITE_BACKEND_API_URL`
+  - `FTP_USERNAME`
+  - `FTP_PASSWORD`
+
+2. **Build and Configure Environment**  
+  During the GitHub Actions workflow, the following command creates the production environment file:
+  ```sh
+  echo "VITE_BACKEND_API_URL=${{ secrets.VITE_BACKEND_API_URL }}" > .env.production
+  ```
+  This securely injects the backend API URL into the React build.
+
+3. **Include `.htaccess`**  
+  Ensure the `.htaccess` file is present in your repository (not in `.gitignore`).  
+  It will be copied into the build folder to enable SPA routing on Apache servers.
+
+4. **Deploy to Hostinger**  
+  The workflow uploads all build files and `.htaccess` to the `public_html` directory on Hostinger.
+
+---
+
+
+This setup ensures smooth routing and secure environment config during deployment.
