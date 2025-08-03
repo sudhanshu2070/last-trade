@@ -26,10 +26,12 @@ const Login = () => {
     setError('');
     setIsLoading(true);
 
+    const trimmedEmailOrUserId = emailOrUserId.trim().toLowerCase;
+
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_API_URL}/auth/login`,
-        { emailOrUserId, password },
+        { trimmedEmailOrUserId, password },
         { withCredentials: true }
       );
 
