@@ -25,7 +25,10 @@ jobs:
           cat .env.production
 
       - name: Build React app
-        run: npm run build
+        run: |
+          npm run build -- --force
+          # Verify the built files contain the new URL
+          grep -r "api.pwps.online" dist/ || echo "Warning: New backend URL not found in build"
 
       - name: Verify Build Output
         run: |
