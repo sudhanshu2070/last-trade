@@ -99,7 +99,7 @@ const TopNavbar = () => {
                   alt="Profile" 
                   className={styles.dropdownAvatar} 
                 />
-                <div>
+                <div className={styles.dropdownUserInfo}>
                   <div className={styles.dropdownName}>{user?.name || 'Guest'}</div>
                   <div className={styles.dropdownEmail}>{user?.email || 'Not logged in'}</div>
                 </div>
