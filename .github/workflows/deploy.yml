@@ -19,11 +19,6 @@ jobs:
       - name: Create .env.production
         run: echo "VITE_BACKEND_API_URL=${{ secrets.VITE_BACKEND_API_URL }}" > .env.production
 
-      - name: Verify .env.production
-        run: |
-          echo "Generated .env.production:"
-          cat .env.production
-
       - name: Clean before build
         run: |
           rm -rf node_modules/.vite
@@ -31,16 +26,6 @@ jobs:
 
       - name: Build React app
         run: npm run build
-
-      - name: Verify Build Output
-        run: |
-          echo "Checking for backend URL in built files:"
-          grep -r "api.pwps.online" dist/ || echo "Backend URL not found (check secrets or build)"
-
-      - name: Debug Backend URL Usage
-        run: |
-          echo "Checking where the backend URL is used:"
-          find dist/ -type f -exec grep -l "https://" {} \; || echo "No files using the backend URL found"
 
       - name: Copy .htaccess to build output
         run: cp .htaccess dist/
