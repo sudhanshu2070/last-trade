@@ -11,9 +11,9 @@ const VerifyLogin = () => {
 
   useEffect(() => {
     let isMounted = true;
+    let verificationSuccess = false;
 
     const verifyToken = async () => {
-      
       const token = searchParams.get('token');
       const userId = searchParams.get('userId');
 
@@ -23,42 +23,37 @@ const VerifyLogin = () => {
       }
 
       try {
-        const response = await axios.post(`${import.meta.env.VITE_BACKEND_API_URL}/auth/verify-token`, {
-            token,  
-            userId
-        });
-
-        // console.log('Verified:', response.data);
-
-        //Setting auth context
-      if (isMounted) {
-        console.log('Login verified Successfully:', response.data.user);
-        login(response.data.user);
-        setStatus('Login verified successfully! Redirecting...');
-
-        setTimeout(() => {
-          navigate('/dashboard');
-        }, 2000);
-      }
-      } catch (error) {
-        if (isMounted) {
-        console.error(
-          'Verification Error:',
-          axios.isAxiosError(error)
-            ? error.response?.data || error.message
-            : (error as Error).message
+        const response = await axios.post(
+          `${import.meta.env.VITE_BACKEND_API_URL}/auth/verify-token`,
+          { token, userId }
         );
-        setStatus('Verification failed. The link may be expired or invalid.');
+
+        if (isMounted) {
+          verificationSuccess = true;
+          login(response.data.user);
+          setStatus('Login verified successfully! Redirecting...');
+          setTimeout(() => navigate('/dashboard'), 2000);
+        }
+      } catch (error) {
+        if (isMounted && !verificationSuccess) {
+          console.error(
+            'Verification Error:',
+            axios.isAxiosError(error)
+              ? error.response?.data || error.message
+              : (error as Error).message
+          );
+          setStatus('Verification failed. The link may be expired or invalid.');
+        }
       }
-    }
-  };
+    };
 
-  verifyToken();
+    verifyToken();
 
-  return () => {
-    isMounted = false;
-  };
-}, [searchParams, navigate, login]);
+    return () => {
+      isMounted = false;
+    };
+  }, [searchParams, navigate, login]);
+
 
   return (
     <div style={{ textAlign: 'center', marginTop: '100px' }}>
