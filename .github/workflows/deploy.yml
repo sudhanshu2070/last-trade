@@ -19,8 +19,18 @@ jobs:
       - name: Create .env.production
         run: echo "VITE_BACKEND_API_URL=${{ secrets.VITE_BACKEND_API_URL }}" > .env.production
 
+      - name: Verify .env.production
+        run: |
+          echo "Generated .env.production:"
+          cat .env.production
+
       - name: Build React app
         run: npm run build
+
+      - name: Verify Build Output (Check if URL is applied)
+        run: |
+          echo "Checking for BACKEND_API_URL in built files:"
+          grep -r "BACKEND_API_URL" dist/
 
       - name: Copy .htaccess to build output
         run: cp .htaccess dist/
