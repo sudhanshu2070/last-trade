@@ -7,7 +7,7 @@ import { AiOutlineMail, AiOutlineLock, AiOutlineEye, AiOutlineEyeInvisible } fro
 import axios from 'axios';
 
 const Login = () => {
-  const [email, setEmail] = useState('');
+  const [emailOrUserId, setEmailOrUserId] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
@@ -29,7 +29,7 @@ const Login = () => {
     try {
       const response = await axios.post(
         `${import.meta.env.VITE_BACKEND_API_URL}/auth/login`,
-        { email, password },
+        { emailOrUserId, password },
         { withCredentials: true }
       );
 
@@ -75,14 +75,14 @@ const Login = () => {
 
           {error && <div className={styles.errorMessage}>{error}</div>}
           
-          {/* Email */}
+          {/* Email or User ID */}
           <div className={styles.inputGroup}>
             <AiOutlineMail className={styles.inputIcon} />
             <input
-              type="email"
-              placeholder="Email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              placeholder="Email or User ID"
+              value={emailOrUserId}
+              onChange={(e) => setEmailOrUserId(e.target.value)}
               required
               autoComplete="username"
             />
