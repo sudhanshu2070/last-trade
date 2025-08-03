@@ -101,7 +101,7 @@ const TopNavbar = () => {
                 />
                 <div className={styles.dropdownUserInfo}>
                   <div className={styles.dropdownName}>{user?.name || 'Guest'}</div>
-                  <div className={styles.dropdownEmail}>{user?.email || 'Not logged in'}</div>
+                  <div className={styles.dropdownEmail}>{user?.userId || 'Not logged in'}</div>
                 </div>
               </div>
               

@@ -42,7 +42,12 @@ const Login = () => {
       }
     } catch (err: any) {
       if (axios.isAxiosError(err)) {
-        setError(err.response?.data?.message || 'Login failed. Please try again.');
+
+        console.error('Axios error:', err.response);
+
+        // Check if error response has the message field
+        const errorMessage = err.response?.data?.message || 'Login failed. Please try again.';
+        setError(errorMessage);      
       } else {
         setError('Something went wrong. Please try again.');
       }
@@ -122,7 +127,7 @@ const Login = () => {
 
           {/* Google Sign In */}
           <a
-            href="http://51-20-41-6.nip.io:3000/api/auth/google"
+            href="https://api.pwps.online/api/auth/google"
             className={styles.googleButton}
           >
             <img
