@@ -10,37 +10,55 @@ const VerifyLogin = () => {
   const { login } = useAuth();
 
   useEffect(() => {
+    let isMounted = true;
+
     const verifyToken = async () => {
       
       const token = searchParams.get('token');
       const userId = searchParams.get('userId');
 
       if (!token || !userId) {
-        setStatus('Invalid verification link.');
+        if (isMounted) setStatus('Invalid verification link.');
         return;
       }
 
       try {
         const response = await axios.post(`${import.meta.env.VITE_BACKEND_API_URL}/auth/verify-token`, {
-            token,  userId
+            token,  
+            userId
         });
 
         // console.log('Verified:', response.data);
 
         //Setting auth context
+      if (isMounted) {
         console.log('Login verified Successfully:', response.data.user);
-        login(response.data.user); 
+        login(response.data.user);
         setStatus('Login verified successfully! Redirecting...');
 
-        setTimeout(() => navigate('/dashboard'), 2000);
+        setTimeout(() => {
+          navigate('/dashboard');
+        }, 2000);
+      }
       } catch (error) {
-        console.error('Verification Error:', axios.isAxiosError(error) ? error.response?.data || error.message : (error as Error).message);
+        if (isMounted) {
+        console.error(
+          'Verification Error:',
+          axios.isAxiosError(error)
+            ? error.response?.data || error.message
+            : (error as Error).message
+        );
         setStatus('Verification failed. The link may be expired or invalid.');
       }
-    };
+    }
+  };
 
-    verifyToken();
-  }, [searchParams, navigate, login]);
+  verifyToken();
+
+  return () => {
+    isMounted = false;
+  };
+}, [searchParams, navigate, login]);
 
   return (
     <div style={{ textAlign: 'center', marginTop: '100px' }}>
