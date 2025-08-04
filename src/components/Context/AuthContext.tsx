@@ -6,6 +6,7 @@ type AuthContextType = {
   user: any;
   login: (userData: any) => void;
   logout: () => void;
+  verifyToken: (token: string) => Promise<boolean>;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -33,6 +34,21 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const verifyToken = async (token: string) => {
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_API_URL}/auth/verify-token`,
+        { token },
+        { withCredentials: true }
+      );
+      login(response.data.user);
+      return true;
+    } catch (err) {
+      logout();
+      return false;
+    }
+  };
+
   // Fetching user info on initial load to restore session
   useEffect(() => {
     const checkAuth = async () => {
@@ -54,7 +70,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout, verifyToken }}>
       {children}
     </AuthContext.Provider>
   );

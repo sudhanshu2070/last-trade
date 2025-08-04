@@ -45,9 +45,7 @@ function App() {
         <Route path="/reset-password/:token" element={
           !isAuthenticated ? <ResetPasswordPage /> : <Navigate to="/dashboard" />
         } />
-        <Route path="/setup-password" element={
-          isAuthenticated ? <SetupPasswordPage /> : <Navigate to="/login" />
-        } />
+        <Route path="/setup-password" element={ <SetupPasswordPage /> } />
 
         <Route path="/verify" element={
           <div className={styles.authContainer}>
