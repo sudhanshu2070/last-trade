@@ -35,7 +35,7 @@
 .contentWrapper {
   display: flex;
   flex: 1;
-  padding-top: var(--topnav-height);
+  /* padding-top: var(--topnav-height); */
   position: relative;
 }
 

@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 import styles from './BrokerConnection.module.css';
 import { FiCheckCircle, FiAlertCircle, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { useAuth } from '../Context/AuthContext';
 
 const brokers = [
   { 
@@ -50,8 +51,8 @@ const brokers = [
 const BrokerConnection: React.FC = () => {
   const [activeBrokerId, setActiveBrokerId] = useState<string>(brokers.find((broker) => broker.connected)?.id || '');
   const [visibleStartIndex, setVisibleStartIndex] = useState(0);
-  const userName = 'Thomas Muller';
   const brokersContainerRef = useRef<HTMLDivElement>(null);
+  const {user} = useAuth();
 
   const handleBrokerClick = (brokerId: string) => {
     setActiveBrokerId(brokerId);
@@ -75,7 +76,7 @@ const BrokerConnection: React.FC = () => {
       {/* Header Section */}
       <div className={styles.header}>
         <div className={styles.userInfo}>
-          <span className={styles.userName}>Morning, {userName}</span>
+          <span className={styles.userName}>Morning, {user?.name || 'Guest'}</span>
         </div>
         <div className={styles.pnlInfo}>
           <span className={styles.pnlLabel}>Total P&L:</span>
