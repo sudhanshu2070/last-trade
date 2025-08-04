@@ -7,8 +7,8 @@ const ProfilePage = () => {
   const [needsPassword, setNeedsPassword] = useState(false);
 
   useEffect(() => {
-    // Checking if the user is authenticated and has a Google account without a password
-    if (user?.authProvider === 'google' && !user.hasPassword) {
+    // Check if user is Google-authenticated without a password
+    if (user?.googleId && !user.password) {
       setNeedsPassword(true);
     }
   }, [user]);
@@ -20,14 +20,18 @@ const ProfilePage = () => {
       <div className={styles.profileCard}>
         <div className={styles.avatarSection}>
           <img 
-            src={"https://api.dicebear.com/7.x/adventurer/svg?seed=Midnight"}   
+            src={user?.picture || `https://ui-avatars.com/api/?name=${encodeURIComponent(user?.name || '')}&background=random`} 
             alt="Profile" 
             className={styles.avatar}
           />
           <h2>{user?.name}</h2>
+          <p className={styles.userId}>User ID: {user?.userId}</p>
           <p className={styles.email}>{user?.email}</p>
           <p className={styles.authMethod}>
-            Signed in with: {user?.authProvider === 'google' ? 'Google' : 'Email'}
+            Signed in with: {user?.googleId ? 'Google' : 'Email'}
+          </p>
+          <p className={styles.accountStatus}>
+            Status: {user?.isEmailVerified ? 'Verified' : 'Not Verified'}
           </p>
         </div>
 
@@ -35,7 +39,7 @@ const ProfilePage = () => {
           {needsPassword && (
             <div className={styles.passwordAlert}>
               <h3>Account Security</h3>
-              <p>Your account doesn't have a password set yet.</p>
+              <p>Your Google account doesn't have a password set yet.</p>
               <button 
                 className={styles.primaryButton}
                 onClick={() => window.location.href = '/setup-password'}
@@ -47,8 +51,20 @@ const ProfilePage = () => {
 
           <div className={styles.settingsGroup}>
             <h3>Account Actions</h3>
+            {!user?.googleId && (
+              <button 
+                className={styles.secondaryButton}
+                onClick={() => {
+                  alert('Work in progress: Change Password functionality will be available soon.');
+                    // window.location.href = '/change-password'
+                  }
+                }
+              >
+                Change Password
+              </button>
+            )}
             <button 
-              className={styles.secondaryButton}
+              className={styles.logoutButton}
               onClick={logout}
             >
               Sign Out
