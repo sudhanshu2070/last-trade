@@ -35,18 +35,20 @@ const Login = () => {
       );
 
       if (response.data.status === 'pending') {
-        setError('Please verify your email. A verification link has been sent.');
-        navigate('/verify-prompt')
+        navigate('/verify-prompt');
       } else if (response.data.status === 'success') {
-        login(response.data.user); 
-        navigate('/dashboard');
+        login(response.data.user);
+        
+        // Check if this is a Google user without password
+        if (response.data.user.authProvider === 'google' && !response.data.user.hasPassword) {
+          navigate('/setup-password');
+        } else {
+          navigate('/dashboard');
+        }
       }
     } catch (err: any) {
       if (axios.isAxiosError(err)) {
-
         console.error('Axios error:', err.response);
-
-        // Check if error response has the message field
         const errorMessage = err.response?.data?.message || 'Login failed. Please try again.';
         setError(errorMessage);      
       } else {
@@ -111,7 +113,10 @@ const Login = () => {
               </button>
             </div>
           </div>
-          <a href="/forgot-password" className={styles.forgotPassword}>Forgot password?</a>
+          
+          <a href="/forgot-password" className={styles.forgotPassword}>
+            Forgot password?
+          </a>
 
           <button 
             type="submit" 
@@ -128,7 +133,7 @@ const Login = () => {
 
           {/* Google Sign In */}
           <a
-            href="https://api.pwps.online/api/auth/google"
+            href={`${import.meta.env.VITE_BACKEND_API_URL}/auth/google`}
             className={styles.googleButton}
           >
             <img

@@ -40,7 +40,7 @@ const TopNavbar = () => {
     { icon: '💎', label: 'Subscription', action: () => navigate('/subscription') },
     { icon: '🔑', label: 'Change Password', action: () => navigate('/change-password') },
     { icon: '🆕', label: "What's New", action: () => navigate('/whats-new'), hasNotification: true },
-    { icon: '🚪', label: 'Logout', action: handleLogout }
+    { icon: '🚪', label: 'Logout', action: handleLogout },
   ];
 
   return (

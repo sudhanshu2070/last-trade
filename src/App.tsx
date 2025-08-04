@@ -13,6 +13,10 @@ import StrategyPage from './Pages/Strategy/StrategyPage';
 import VerifyLogin from './components/auth/VerifyLogin';
 import VerifyPrompt from './components/auth/VerifyPrompt';
 import { useAuth } from './components/Context/AuthContext'; 
+import ForgotPasswordPage from './components/auth/ForgotPasswordPage';
+import ResetPasswordPage from './components/auth/ResetPasswordPage';
+import SetupPasswordPage from './components/auth/SetupPasswordPage';
+import ProfilePage from './Pages/Google/ProfilePage';
 
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -33,6 +37,16 @@ function App() {
         } />
         <Route path="/signup" element={
           !isAuthenticated ? <SignUp /> : <Navigate to="/dashboard" />
+        } />
+
+        <Route path="/forgot-password" element={
+          !isAuthenticated ? <ForgotPasswordPage /> : <Navigate to="/dashboard" />
+        } />
+        <Route path="/reset-password/:token" element={
+          !isAuthenticated ? <ResetPasswordPage /> : <Navigate to="/dashboard" />
+        } />
+        <Route path="/setup-password" element={
+          isAuthenticated ? <SetupPasswordPage /> : <Navigate to="/login" />
         } />
 
         <Route path="/verify" element={
@@ -62,6 +76,8 @@ function App() {
                      {/* <Route path="/strategies/:tab" element={<StrategyPage />} /> */}
                     <Route path="/strategies/:tab" element={<StrategyPage key={location.pathname} />} />                  
                     <Route path="/backtest" element={<TestComp name={'Backtest'}/>} />
+                    <Route path="/profile" element={<ProfilePage />} />
+
 
                     {/* Redirect any unknown paths to dashboard */}
                     <Route path="*" element={<Navigate to="/dashboard" />} />
