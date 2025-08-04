@@ -1,49 +1,84 @@
 import { useEffect, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { useAuth } from '../Context/AuthContext';
+import styles from './SetupPassword.module.css';
 import PasswordForm from './authComponents/PasswordForm';
 
 const SetupPasswordPage = () => {
   const [searchParams] = useSearchParams();
   const token = searchParams.get('token');
-  const { verifyToken, isAuthenticated, user } = useAuth();
-  const [isLoading, setIsLoading] = useState(true);
-  const [isValid, setIsValid] = useState(false);
+  const { 
+    verifyToken, 
+    user, 
+    loading: authLoading 
+  } = useAuth();
+  const [pageLoading, setPageLoading] = useState(true);
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
-    const verify = async () => {
-      if (token) {
-        const valid = await verifyToken(token);
-        setIsValid(valid);
+    const validateAccess = async () => {
+      try {
+        if (!token) {
+          throw new Error('Missing authentication token');
+        }
+
+        const isValid = await verifyToken(token);
+        if (!isValid) {
+          throw new Error('Invalid or expired token');
+        }
+
+        // If user already has password, redirect to dashboard
+        if (user?.hasPassword) {
+          navigate('/dashboard');
+          return;
+        }
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Authentication failed');
+      } finally {
+        setPageLoading(false);
       }
-      setIsLoading(false);
     };
 
-    verify();
-  }, [token, verifyToken]);
+    validateAccess();
+  }, [token, verifyToken, user, navigate]);
 
-  useEffect(() => {
-    if (isAuthenticated && user?.password) {
-      // If user is already authenticated and has password, redirect to dashboard
-      navigate('/dashboard');
-    }
-  }, [isAuthenticated, user, navigate]);
-
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (authLoading || pageLoading) {
+    return (
+      <div className={styles.loadingContainer}>
+        <div className={styles.spinner}></div>
+        <p>Verifying your session...</p>
+      </div>
+    );
   }
 
-  if (!isValid) {
-    return <div>Invalid or expired token. Please try signing in again.</div>;
+  if (error) {
+    return (
+      <div className={styles.errorContainer}>
+        <h2>Authentication Required</h2>
+        <p>{error}</p>
+        <button
+          className={styles.actionButton}
+          onClick={() => navigate('/login')}
+        >
+          Return to Login
+        </button>
+      </div>
+    );
   }
 
   return (
-    <PasswordForm 
-      mode="setup"
-      title="Set Your Password"
-      description="Please create a password for your account"
-    />
+    <div className={styles.container}>
+      <PasswordForm
+        mode="setup"
+        title={user?.googleId ? "Secure Your Account" : "Create Your Password"}
+        description={
+          user?.googleId
+            ? "Please set a password to enable email login"
+            : "Create a password to secure your account"
+        }
+      />
+    </div>
   );
 };
 

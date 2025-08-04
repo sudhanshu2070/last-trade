@@ -8,7 +8,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     // Check if user is Google-authenticated without a password
-    if (user?.googleId && !user.password) {
+    if (user?.googleId && !user.hasPassword) {
       setNeedsPassword(true);
     }
   }, [user]);
