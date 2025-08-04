@@ -1,4 +1,4 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import Dashboard from './components/Dashboard/Dashboard';
 import TestComp from './components/TestComp';
@@ -23,6 +23,7 @@ function App() {
   const { isAuthenticated } = useAuth(); // Hook to check auth status
 
   return (
+    <BrowserRouter>
       <Routes>
         {/* Redirecting root to login if not authenticated */}
         <Route 
@@ -88,6 +89,7 @@ function App() {
           )
         } />
       </Routes>
+    </BrowserRouter>
   );
 }
 

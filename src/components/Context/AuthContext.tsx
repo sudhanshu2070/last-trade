@@ -1,115 +1,60 @@
 import axios from 'axios';
 import { createContext, useContext, useState, ReactNode, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-
-type User = {
-  id: string;
-  name: string;
-  email: string;
-  userId: string;
-  googleId?: string;
-  hasPassword: boolean;
-  isEmailVerified: boolean;
-  picture?: string;
-};
 
 type AuthContextType = {
   isAuthenticated: boolean;
-  user: User | null;
-  login: (userData: User) => void;
-  logout: () => Promise<void>;
-  verifyToken: (token: string) => Promise<boolean>;
-  loading: boolean;
+  user: any;
+  login: (userData: any) => void;
+  logout: () => void;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [user, setUser] = useState<User | null>(null);
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
-  const login = (userData: User) => {
+  const login = (userData: any) => {
     setIsAuthenticated(true);
-    setUser({
-      ...userData,
-      hasPassword: !!userData.hasPassword
-    });
+    setUser(userData);
   };
 
-  const logout = async () => {
+  const logout = () => {
+    
+    // Clear user data and authentication state
     try {
-      await axios.post(
-        `${import.meta.env.VITE_BACKEND_API_URL}/auth/logout`, 
-        {}, 
-        { withCredentials: true }
-      );
+      
+      axios.post(`${import.meta.env.VITE_BACKEND_API_URL}/auth/logout`, {}, { withCredentials: true });
       setIsAuthenticated(false);
       setUser(null);
-      navigate('/login');
+
     } catch (error) {
       console.error('Logout failed:', error);
-      throw error;
     }
   };
 
-  const verifyToken = async (token: string): Promise<boolean> => {
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_API_URL}/auth/verify-token`,
-        { token },
-        { withCredentials: true }
-      );
-      
-      login({
-        ...response.data.user,
-        hasPassword: !!response.data.user.password,
-        picture: response.data.user.googleId 
-          ? response.data.user.picture 
-          : undefined
-      });
-      
-      return true;
-    } catch (err) {
-      await logout();
-      return false;
-    }
-  };
-
+  // Fetching user info on initial load to restore session
   useEffect(() => {
     const checkAuth = async () => {
       try {
         const res = await axios.post(
           `${import.meta.env.VITE_BACKEND_API_URL}/auth/verifyOnRefresh`,
           {},
-          { withCredentials: true }
+          { withCredentials: true } // IMPORTANT: sends the HttpOnly cookie
         );
-        login({
-          ...res.data.user,
-          hasPassword: !!res.data.user.password
-        });
+        login(res.data.user); // set user and isAuthenticated
       } catch (err) {
-        await logout();
-      } finally {
-        setLoading(false);
+        console.error('Auth check failed:', err);
+        logout(); // invalid token or no token
       }
     };
 
     checkAuth();
   }, []);
 
+
   return (
-    <AuthContext.Provider 
-      value={{ 
-        isAuthenticated, 
-        user, 
-        login, 
-        logout, 
-        verifyToken,
-        loading 
-      }}
-    >
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
@@ -117,8 +62,6 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
 export const useAuth = () => {
   const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
+  if (!context) throw new Error('useAuth must be used within AuthProvider');
   return context;
 };
