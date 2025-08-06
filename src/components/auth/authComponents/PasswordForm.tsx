@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from '../../Context/AuthContext'; // Assuming logout is exported from AuthContext
+
 import styles from './PasswordForm.module.css';
 import {
   AiOutlineLock,
@@ -26,6 +28,7 @@ const PasswordForm = ({ mode, token, title, description }: PasswordFormProps) =>
   const [strength, setStrength] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const { logout } = useAuth(); // function to clear session
 
   useEffect(() => {
     // Password strength calculation
@@ -64,8 +67,11 @@ const PasswordForm = ({ mode, token, title, description }: PasswordFormProps) =>
         : 'Password set successfully'
       );
 
+      //Logout from all sessions (including current tab)
+      logout?.();
+
       // Redirect after success
-      setTimeout(() => navigate('/dashboard'), 1500);
+      setTimeout(() => navigate('/login'), 1500);
     } catch (err) {
       setError(
         mode === 'reset' 

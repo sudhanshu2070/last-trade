@@ -42,9 +42,8 @@ function App() {
         <Route path="/forgot-password" element={
           !isAuthenticated ? <ForgotPasswordPage /> : <Navigate to="/dashboard" />
         } />
-        <Route path="/reset-password/:token" element={
-          !isAuthenticated ? <ResetPasswordPage /> : <Navigate to="/dashboard" />
-        } />
+        
+        <Route path="/reset-password/:token" element={<ResetPasswordPage />} />
         <Route path="/setup-password" element={ <SetupPasswordPage /> } />
 
         <Route path="/verify" element={
