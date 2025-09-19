@@ -4,6 +4,7 @@ import styles from './StrategyPage.module.css';
 import CreateStrategy from '../../Pages/StrategyTabs/CreateStrategy/CreateStrategy';
 import TestComponet from '../../components/TestComp';
 import MyStrategies from '../StrategyTabs/MyStrategies/MyStrategies';
+import DeployedStrategies from '../StrategyTabs/DeployedStrategies/DeployedStrategies';
 
 const StrategyPage: React.FC = () => {
   const { tab } = useParams(); // Getting the tab parameter from URL
@@ -31,7 +32,7 @@ const StrategyPage: React.FC = () => {
       case 'myStrategies':
         return <MyStrategies />;
       case 'deployed':
-        return <TestComponet name={'Deployed Strategies'} />;
+        return <DeployedStrategies/>;
       case 'templates':
         return <TestComponet name={'All template'} />;
       default:
