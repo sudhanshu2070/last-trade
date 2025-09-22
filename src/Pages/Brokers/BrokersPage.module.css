@@ -1,7 +1,51 @@
+.page {
+  padding: 2rem;
+}
+
+.header {
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+.subtitle {
+  color: #555;
+  margin-bottom: 1.2rem;
+}
+
+.secureBox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  background: #f9fafb;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.lockIcon {
+  font-size: 1.5rem;
+  color: #007bff;
+  margin-top: 2px;
+}
+
+.secureTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+}
+
+.secureText {
+  color: #666;
+}
+
 .container {
   display: flex;
   gap: 2rem;
-  padding: 2rem;
   flex-wrap: wrap;
 }
 
@@ -32,14 +76,28 @@
 }
 
 .brokerItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1rem;
   border: 1px solid #eee;
   border-radius: 8px;
   background: #fafafa;
 }
 
+.brokerInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.brokerIcon {
+  font-size: 1.3rem;
+  color: #007bff;
+}
+
 .addButton, .requestButton, .activateButton {
-  margin-top: 0.5rem;
+  margin-top: 0.3rem;
   padding: 0.5rem 1rem;
   border: none;
   border-radius: 6px;
@@ -59,6 +117,11 @@
   margin-top: 1.5rem;
   padding-top: 1rem;
   border-top: 1px solid #eee;
+  text-align: center;
+}
+
+.requestSection h4 {
+  margin-bottom: 0.4rem;
 }
 
 .connectedItem {
@@ -67,6 +130,30 @@
   border: 1px solid #eee;
   border-radius: 8px;
   background: #fafafa;
+}
+
+.connectedHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.connectedInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.deleteIcon {
+  font-size: 1rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+
+.deleteIcon:hover {
+  color: red;
 }
 
 .active {
