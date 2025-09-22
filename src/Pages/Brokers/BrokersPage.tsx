@@ -1,114 +1,78 @@
 import React from "react";
 import styles from "./BrokersPage.module.css";
 
-const availableBrokers = [
-  { name: "Zerodha", description: "India's largest stock broker" },
-  { name: "Upstox", description: "Discount broker with powerful API" },
-  { name: "Angel One", description: "Full-service broker with API access" },
-  { name: "ICICI Direct", description: "Bank-based trading platform" },
-];
-
-const connectedBrokers = [
-  {
-    name: "Zerodha",
-    connectedOn: "Jun 15, 2023",
-    status: "Active",
-    margin: "₹1,25,000",
-    balance: "₹2,50,000",
-    clientId: "ZD1234",
-  },
-  {
-    name: "Angel One",
-    connectedOn: "Jun 10, 2023",
-    status: "Inactive",
-    note: "Account needs to be activated to access trading features",
-  },
-];
-
 const BrokersPage: React.FC = () => {
   return (
     <div className={styles.container}>
-      {/* Header */}
-      <div className={styles.header}>
-        <h2>Broker Integrations</h2>
-        <p>
-          Connect your trading accounts for automated execution
+      {/* Available Brokers */}
+      <div className={styles.card}>
+        <h2 className={styles.cardTitle}>Available Brokers</h2>
+        <p className={styles.description}>
+          Select from our supported brokers to connect your account
         </p>
-        <div className={styles.securityBox}>
-          <h4>Secure Connection</h4>
+
+        <div className={styles.brokerList}>
+          <div className={styles.brokerItem}>
+            <h3>Zerodha</h3>
+            <p>India's largest stock broker</p>
+            <button className={styles.addButton}>Add Broker</button>
+          </div>
+          <div className={styles.brokerItem}>
+            <h3>Upstox</h3>
+            <p>Discount broker with powerful API</p>
+            <button className={styles.addButton}>Add Broker</button>
+          </div>
+          <div className={styles.brokerItem}>
+            <h3>Angel One</h3>
+            <p>Full-service broker with API access</p>
+            <button className={styles.addButton}>Add Broker</button>
+          </div>
+          <div className={styles.brokerItem}>
+            <h3>ICICI Direct</h3>
+            <p>Bank-based trading platform</p>
+            <button className={styles.addButton}>Add Broker</button>
+          </div>
+        </div>
+
+        <div className={styles.requestSection}>
+          <h4>Don't see your broker?</h4>
           <p>
-            All broker connections use official APIs with OAuth authentication.
-            Your credentials are encrypted and never stored on our servers.
+            We're constantly adding new broker integrations. Request support for
+            your preferred broker.
           </p>
+          <button className={styles.requestButton}>Request Broker</button>
         </div>
       </div>
 
-      {/* Available Brokers */}
-      <section className={styles.section}>
-        <h3>Available Brokers</h3>
-        <p>Select from our supported brokers to connect your account</p>
-        <div className={styles.brokerGrid}>
-          {availableBrokers.map((broker, idx) => (
-            <div key={idx} className={styles.brokerCard}>
-              <h4>{broker.name}</h4>
-              <p>{broker.description}</p>
-              <button className={styles.addBtn}>Add Broker</button>
-            </div>
-          ))}
-        </div>
-        <div className={styles.requestBox}>
-          <p>
-            Don't see your broker? We're constantly adding new broker
-            integrations. Request support for your preferred broker.
-          </p>
-          <button className={styles.requestBtn}>Request Broker</button>
-        </div>
-      </section>
-
       {/* Connected Brokers */}
-      <section className={styles.section}>
-        <h3>Connected Brokers</h3>
-        <p>Manage your connected trading accounts</p>
-        <div className={styles.connectedList}>
-          {connectedBrokers.map((broker, idx) => (
-            <div key={idx} className={styles.connectedCard}>
-              <div className={styles.connectedHeader}>
-                <h4>{broker.name}</h4>
-                <span>Connected on {broker.connectedOn}</span>
-              </div>
-
-              {broker.status === "Active" ? (
-                <div className={styles.activeContent}>
-                  <p>
-                    <strong>Status:</strong> {broker.status}
-                  </p>
-                  <p>
-                    <strong>Available Margin:</strong> {broker.margin}
-                  </p>
-                  <p>
-                    <strong>Account Balance:</strong> {broker.balance}
-                  </p>
-                  <p>
-                    <strong>Client ID:</strong> {broker.clientId}
-                  </p>
-                </div>
-              ) : (
-                <div className={styles.inactiveContent}>
-                  <p>
-                    <strong>Status:</strong> {broker.status}
-                  </p>
-                  <p>{broker.note}</p>
-                  <button className={styles.activateBtn}>Activate Now</button>
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-        <p className={styles.footerNote}>
-          Add more brokers to diversify your trading
+      <div className={styles.card}>
+        <h2 className={styles.cardTitle}>Connected Brokers</h2>
+        <p className={styles.description}>
+          Manage your connected trading accounts
         </p>
-        <button className={styles.connectBtn}>Connect Another Broker</button>
-      </section>
+
+        <div className={styles.connectedItem}>
+          <h3>Zerodha</h3>
+          <p>Connected on Jun 15, 2023</p>
+          <p>Status: <span className={styles.active}>Active</span></p>
+          <p>Available Margin: ₹1,25,000</p>
+          <p>Account Balance: ₹2,50,000</p>
+          <p>Client ID: ZD1234</p>
+        </div>
+
+        <div className={styles.connectedItem}>
+          <h3>Angel One</h3>
+          <p>Connected on Jun 10, 2023</p>
+          <p>Status: <span className={styles.inactive}>Inactive</span></p>
+          <p>Account needs to be activated to access trading features</p>
+          <button className={styles.activateButton}>Activate Now</button>
+        </div>
+
+        <div className={styles.connectAnother}>
+          <p>Add more brokers to diversify your trading</p>
+          <button className={styles.addButton}>Connect Another Broker</button>
+        </div>
+      </div>
     </div>
   );
 };
