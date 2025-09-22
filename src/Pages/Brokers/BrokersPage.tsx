@@ -13,7 +13,9 @@ const BrokersPage: React.FC = () => {
         </p>
 
         <div className={styles.secureBox}>
-          <FaLock className={styles.lockIcon} />
+          <div className={styles.iconCircle}>
+            <FaLock className={styles.lockIcon} />
+          </div>
           <div>
             <h2 className={styles.secureTitle}>Secure Connection</h2>
             <p className={styles.secureText}>
@@ -36,7 +38,9 @@ const BrokersPage: React.FC = () => {
           <div className={styles.brokerList}>
             <div className={styles.brokerItem}>
               <div className={styles.brokerInfo}>
-                <FaChartLine className={styles.brokerIcon} />
+                <div className={styles.iconCircle}>
+                  <FaChartLine className={styles.brokerIcon} />
+                </div>
                 <div>
                   <h3>Zerodha</h3>
                   <p>India's largest stock broker</p>
@@ -47,7 +51,9 @@ const BrokersPage: React.FC = () => {
 
             <div className={styles.brokerItem}>
               <div className={styles.brokerInfo}>
-                <FaUserTie className={styles.brokerIcon} />
+                <div className={styles.iconCircle}>
+                  <FaUserTie className={styles.brokerIcon} />
+                </div>
                 <div>
                   <h3>Upstox</h3>
                   <p>Discount broker with powerful API</p>
@@ -58,7 +64,9 @@ const BrokersPage: React.FC = () => {
 
             <div className={styles.brokerItem}>
               <div className={styles.brokerInfo}>
-                <FaBuilding className={styles.brokerIcon} />
+                <div className={styles.iconCircle}>
+                  <FaBuilding className={styles.brokerIcon} />
+                </div>
                 <div>
                   <h3>Angel One</h3>
                   <p>Full-service broker with API access</p>
@@ -69,7 +77,9 @@ const BrokersPage: React.FC = () => {
 
             <div className={styles.brokerItem}>
               <div className={styles.brokerInfo}>
-                <FaUniversity className={styles.brokerIcon} />
+                <div className={styles.iconCircle}>
+                  <FaUniversity className={styles.brokerIcon} />
+                </div>
                 <div>
                   <h3>ICICI Direct</h3>
                   <p>Bank-based trading platform</p>
@@ -99,26 +109,49 @@ const BrokersPage: React.FC = () => {
           <div className={styles.connectedItem}>
             <div className={styles.connectedHeader}>
               <div className={styles.connectedInfo}>
-                <FaChartLine className={styles.brokerIcon} />
+                <div className={styles.iconCircle}>
+                  <FaChartLine className={styles.brokerIcon} />
+                </div>
                 <h3>Zerodha</h3>
               </div>
-              <span className={styles.active}>Active</span>
-              <FaTrashAlt className={styles.deleteIcon} />
+              <div className={styles.rightActions}>
+                <span className={`${styles.status} ${styles.active}`}>Active</span>
+                <FaTrashAlt className={styles.deleteIcon} />
+              </div>
             </div>
             <p>Connected on Jun 15, 2023</p>
-            <p>Available Margin: ₹1,25,000</p>
-            <p>Account Balance: ₹2,50,000</p>
-            <p>Client ID: ZD1234</p>
+            <div className={styles.infoGrid}>
+              <div>
+                <p className={styles.label}>Available Margin</p>
+                <p>₹1,25,000</p>
+              </div>
+              <div>
+                <p className={styles.label}>Account Balance</p>
+                <p>₹2,50,000</p>
+              </div>
+              <div>
+                <p className={styles.label}>Client ID</p>
+                <p>ZD1234</p>
+              </div>
+              <div>
+                <p className={styles.label}>Status</p>
+                <p>Connected</p>
+              </div>
+            </div>
           </div>
 
           <div className={styles.connectedItem}>
             <div className={styles.connectedHeader}>
               <div className={styles.connectedInfo}>
-                <FaBuilding className={styles.brokerIcon} />
+                <div className={styles.iconCircle}>
+                  <FaBuilding className={styles.brokerIcon} />
+                </div>
                 <h3>Angel One</h3>
               </div>
-              <span className={styles.inactive}>Inactive</span>
-              <FaTrashAlt className={styles.deleteIcon} />
+              <div className={styles.rightActions}>
+                <span className={`${styles.status} ${styles.inactive}`}>Inactive</span>
+                <FaTrashAlt className={styles.deleteIcon} />
+              </div>
             </div>
             <p>Connected on Jun 10, 2023</p>
             <p>Account needs to be activated to access trading features</p>

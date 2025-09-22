@@ -27,10 +27,20 @@
   padding: 1rem;
 }
 
-.lockIcon {
-  font-size: 1.5rem;
+.iconCircle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e9f2ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lockIcon,
+.brokerIcon {
+  font-size: 1.2rem;
   color: #007bff;
-  margin-top: 2px;
 }
 
 .secureTitle {
@@ -91,11 +101,6 @@
   gap: 0.8rem;
 }
 
-.brokerIcon {
-  font-size: 1.3rem;
-  color: #007bff;
-}
-
 .addButton, .requestButton, .activateButton {
   margin-top: 0.3rem;
   padding: 0.5rem 1rem;
@@ -145,6 +150,12 @@
   gap: 0.5rem;
 }
 
+.rightActions {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
 .deleteIcon {
   font-size: 1rem;
   color: #888;
@@ -156,14 +167,33 @@
   color: red;
 }
 
-.active {
-  color: green;
+.status {
+  font-size: 0.8rem;
   font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+}
+
+.active {
+  color: #0f5132;
+  background: #d1e7dd;
 }
 
 .inactive {
-  color: red;
+  color: #842029;
+  background: #f8d7da;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 2rem; /* row gap and column gap */
+  margin-top: 0.8rem;
+}
+
+.label {
   font-weight: 600;
+  color: #555;
 }
 
 .connectAnother {
