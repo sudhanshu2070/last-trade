@@ -1,0 +1,161 @@
+.container {
+  padding: 20px;
+  font-family: "Inter", sans-serif;
+  color: #333;
+}
+
+/* Header */
+.header {
+  margin-bottom: 30px;
+}
+
+.header h2 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.header p {
+  color: #666;
+  margin-bottom: 16px;
+}
+
+.securityBox {
+  background: #f5faff;
+  border: 1px solid #d0e6ff;
+  padding: 16px;
+  border-radius: 10px;
+}
+
+.securityBox h4 {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  color: #0066ff;
+}
+
+/* Section */
+.section {
+  margin-bottom: 40px;
+}
+
+.section h3 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.section p {
+  color: #666;
+  margin-bottom: 16px;
+}
+
+/* Available Brokers */
+.brokerGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.brokerCard {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  text-align: left;
+}
+
+.brokerCard h4 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+}
+
+.addBtn {
+  margin-top: 10px;
+  background: #0066ff;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.addBtn:hover {
+  background: #0052cc;
+}
+
+/* Request Broker */
+.requestBox {
+  margin-top: 20px;
+  background: #fafafa;
+  border: 1px dashed #ccc;
+  padding: 16px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.requestBtn {
+  margin-top: 10px;
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* Connected Brokers */
+.connectedList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.connectedCard {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.connectedHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.connectedHeader h4 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.activeContent p,
+.inactiveContent p {
+  margin: 6px 0;
+  color: #444;
+}
+
+.activateBtn {
+  margin-top: 8px;
+  background: #ff4444;
+  color: #fff;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.connectBtn {
+  margin-top: 16px;
+  background: #22bb33;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.footerNote {
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #555;
+}

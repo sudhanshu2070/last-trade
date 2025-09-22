@@ -17,6 +17,7 @@ import ForgotPasswordPage from './components/auth/ForgotPasswordPage';
 import ResetPasswordPage from './components/auth/ResetPasswordPage';
 import SetupPasswordPage from './components/auth/SetupPasswordPage';
 import ProfilePage from './Pages/Google/ProfilePage';
+import BrokersPage from './Pages/Brokers/BrokersPage';
 
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -68,7 +69,7 @@ function App() {
                   <Routes>
                     <Route path="/dashboard" element={<Dashboard />} />
                     <Route path="/portfolio" element={<BrokerConnection />} />
-                    <Route path="/brokers" element={<TestComp name={'Brokers'}/>} />
+                    <Route path="/brokers" element={<BrokersPage/>} />
                     <Route path="/strategies" element={<StrategyPage />} />
                      {/* <Route path="/strategies/:tab" element={<StrategyPage />} /> */}
                     <Route path="/strategies/:tab" element={<StrategyPage key={location.pathname} />} />                  
