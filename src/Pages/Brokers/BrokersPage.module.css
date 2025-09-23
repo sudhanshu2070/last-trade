@@ -257,9 +257,9 @@
 .modalContent {
   background: #fff;
   border-radius: 12px;
-  padding: 2rem;
-  width: 400px;
-  max-width: 90%;
+  padding: 2.5rem;        
+  width: 450px;           
+  max-width: 95%;         
   position: relative;
   box-shadow: 0 4px 20px rgba(0,0,0,0.2);
 }
