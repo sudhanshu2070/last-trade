@@ -101,7 +101,7 @@
   gap: 0.8rem;
 }
 
-.addButton, .requestButton, .activateButton {
+.addButton, .requestButton, .activateButton, .connectButton {
   margin-top: 0.3rem;
   padding: 0.5rem 1rem;
   border: none;
@@ -110,11 +110,13 @@
   color: white;
   cursor: pointer;
   font-size: 0.9rem;
+  transition: background 0.2s;
 }
 
 .addButton:hover,
 .requestButton:hover,
-.activateButton:hover {
+.activateButton:hover,
+.connectButton:hover {
   background-color: #0056b3;
 }
 
@@ -236,4 +238,81 @@
 
 .connectAnother p {
   margin-bottom: 0.5rem;
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalContent {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  width: 400px;
+  max-width: 90%;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.modalForm {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  margin-top: 1rem;
+}
+
+.modalForm label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.modalForm input[type="text"],
+.modalForm input[type="password"] {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.helpText {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.helpText a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.helpText a:hover {
+  text-decoration: underline;
+}
+
+.closeButton {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.3rem 0.5rem;
+  border: none;
+  background: #f0f0f0;
+  border-radius: 6px;
+  cursor: pointer;
 }
