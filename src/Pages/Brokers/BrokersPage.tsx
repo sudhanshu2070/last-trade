@@ -39,7 +39,7 @@ const BrokersPage: React.FC = () => {
             <div className={styles.brokerItem}>
               <div className={styles.brokerInfo}>
                 <div className={styles.iconCircle}>
-                  <FaChartLine className={styles.brokerIcon} />
+                  <FaUniversity className={styles.brokerIcon} />
                 </div>
                 <div>
                   <h3>Zerodha</h3>
@@ -52,7 +52,7 @@ const BrokersPage: React.FC = () => {
             <div className={styles.brokerItem}>
               <div className={styles.brokerInfo}>
                 <div className={styles.iconCircle}>
-                  <FaUserTie className={styles.brokerIcon} />
+                  <FaUniversity className={styles.brokerIcon} />
                 </div>
                 <div>
                   <h3>Upstox</h3>
@@ -65,7 +65,7 @@ const BrokersPage: React.FC = () => {
             <div className={styles.brokerItem}>
               <div className={styles.brokerInfo}>
                 <div className={styles.iconCircle}>
-                  <FaBuilding className={styles.brokerIcon} />
+                  <FaUniversity className={styles.brokerIcon} />
                 </div>
                 <div>
                   <h3>Angel One</h3>
@@ -110,16 +110,18 @@ const BrokersPage: React.FC = () => {
             <div className={styles.connectedHeader}>
               <div className={styles.connectedInfo}>
                 <div className={styles.iconCircle}>
-                  <FaChartLine className={styles.brokerIcon} />
+                  <FaUniversity className={styles.brokerIcon} />
                 </div>
-                <h3>Zerodha</h3>
-              </div>
+                <div className={styles.brokerText}>
+                    <h3>Zerodha</h3>
+                    <p className={styles.connectedDate}>Connected on Jun 15, 2023</p>
+                </div>
+                </div>
               <div className={styles.rightActions}>
                 <span className={`${styles.status} ${styles.active}`}>Active</span>
                 <FaTrashAlt className={styles.deleteIcon} />
               </div>
             </div>
-            <p>Connected on Jun 15, 2023</p>
             <div className={styles.infoGrid}>
               <div>
                 <p className={styles.label}>Available Margin</p>
@@ -140,28 +142,36 @@ const BrokersPage: React.FC = () => {
             </div>
           </div>
 
-          <div className={styles.connectedItem}>
-            <div className={styles.connectedHeader}>
-              <div className={styles.connectedInfo}>
-                <div className={styles.iconCircle}>
-                  <FaBuilding className={styles.brokerIcon} />
+            <div className={`${styles.connectedItem}`}>
+                <div className={styles.connectedHeader}>
+                    <div className={styles.connectedInfo}>
+                        <div className={styles.iconCircle}>
+                            <FaUniversity className={styles.brokerIcon} />
+                        </div>
+                            <div className={styles.brokerText}>
+                                <h3>Angel One</h3>
+                                <p className={styles.connectedDate}>Connected on Jun 10, 2023</p>
+                            </div>
+                        </div>
+                    <div className={styles.rightActions}>
+                        <span className={`${styles.status} ${styles.inactive}`}>Inactive</span>
+                        <FaTrashAlt className={styles.deleteIcon} />
+                    </div>
                 </div>
-                <h3>Angel One</h3>
-              </div>
-              <div className={styles.rightActions}>
-                <span className={`${styles.status} ${styles.inactive}`}>Inactive</span>
-                <FaTrashAlt className={styles.deleteIcon} />
-              </div>
-            </div>
-            <p>Connected on Jun 10, 2023</p>
-            <p>Account needs to be activated to access trading features</p>
-            <button className={styles.activateButton}>Activate Now</button>
-          </div>
 
-          <div className={styles.connectAnother}>
-            <p>Add more brokers to diversify your trading</p>
-            <button className={styles.addButton}>Connect Another Broker</button>
-          </div>
+            <div className={`${styles.sectionBlock} ${styles.centerAlign}`}>
+                <p>Account needs to be activated to access trading features</p>
+                <button className={styles.activateButton}>Activate Now</button>
+            </div>
+
+            <div className={styles.divider}></div>
+
+                <div className={`${styles.sectionBlock} ${styles.connectAnother}`}>
+                    <p>Add more brokers to diversify your trading</p>
+                    <button className={styles.addButton}>Connect Another Broker</button>
+                </div>
+            </div>
+
         </div>
       </div>
     </div>
