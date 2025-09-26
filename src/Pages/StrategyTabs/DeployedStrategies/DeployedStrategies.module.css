@@ -1,141 +1,175 @@
 .container {
-  padding: 20px;
-  font-family: "Inter", sans-serif;
-  color: #333;
+  padding: 24px;
 }
 
-/* Summary Cards */
-.summaryRow {
+.statusRow {
   display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
+  gap: 24px;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
-.summaryCard {
-  flex: 1;
-  background: #fff;
-  border-radius: 12px;
-  padding: 16px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+.live {
+  color: green;
 }
 
-.summaryCard h2 {
-  margin: 8px 0;
-  font-size: 1.6rem;
-  font-weight: bold;
+.paper {
+  color: blue;
 }
 
-.trend {
-  font-size: 0.9rem;
-  color: #666;
+.stopped {
+  color: red;
 }
 
-.trendPositive {
-  font-size: 0.9rem;
-  color: #22bb33;
-}
-
-/* Filters */
-.filters {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.filters select,
-.filters input {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  outline: none;
-}
-
-/* Broker Cards */
-.brokerList {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.paused {
+  color: goldenrod;
 }
 
 .brokerCard {
-  background: #fff;
+  border: 1px solid #ddd;
   border-radius: 12px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  padding: 16px;
+  margin-top: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
 }
 
 .brokerHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px;
   cursor: pointer;
 }
 
-.brokerHeader h3 {
-  margin: 0;
-  font-size: 1.2rem;
+.brokerInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.brokerStats {
+.brokerName {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.brokerStatus {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.startButton {
+  padding: 6px 12px;
+  background: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.stopButton {
+  padding: 6px 12px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.brokerExpanded {
+  margin-top: 16px;
+  padding-left: 24px;
+}
+
+.strategyStatusRow {
   display: flex;
   gap: 16px;
-  align-items: center;
-  font-size: 0.9rem;
-}
-
-.startBtn {
-  background: #22bb33;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.stopBtn {
-  background: #ff4444;
-  color: white;
-  border: none;
-  padding: 6px 12px;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.expandedContent {
-  padding: 16px;
-  border-top: 1px solid #eee;
-}
-
-.expandedStats {
-  display: flex;
-  gap: 20px;
+  font-weight: 500;
   margin-bottom: 12px;
-  font-size: 0.9rem;
-  color: #555;
 }
 
-.strategyTable {
-  width: 100%;
-  border-collapse: collapse;
+.open {
+  color: green;
 }
 
-.strategyTable th,
-.strategyTable td {
-  text-align: left;
-  padding: 10px;
-  border-bottom: 1px solid #eee;
+.pending {
+  color: goldenrod;
 }
 
-.strategyTable th {
-  background: #f9f9f9;
+.archived {
+  color: gray;
+}
+
+.strategyCard {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.strategyHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px;
+  cursor: pointer;
   font-weight: 600;
 }
 
-.squareOffBtn {
-  background: #0066ff;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  border-radius: 6px;
+.strategyName {
+  font-weight: 600;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.table th,
+.table td {
+  padding: 8px 12px;
+  border-top: 1px solid #ddd;
+}
+
+.table th {
+  background: #f9f9f9;
+  text-align: left;
+}
+
+.buy {
+  color: green;
+}
+
+.sell {
+  color: red;
+}
+
+.profit {
+  color: green;
+}
+
+.addNewWrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.addNewButton {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: 1px solid #007bff;
+  border-radius: 8px;
+  background: white;
+  color: #007bff;
+  font-weight: 500;
   cursor: pointer;
 }
