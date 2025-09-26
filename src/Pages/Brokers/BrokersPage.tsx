@@ -179,6 +179,19 @@ const BrokersPage: React.FC = () => {
               <label>API Secret</label>
               <input type="password" placeholder="Enter API Secret" />
 
+              {/* Whitelisted IP Section */}
+              <p className={styles.whitelistText}>
+                Whitelist IP: <span className={styles.ipAddress}>192.168.1.1</span>
+                <span className={styles.copyIcon} onClick={() => navigator.clipboard.writeText("192.168.1.1")}>
+                  📋
+                </span>
+              </p>
+              <input
+                type="text"
+                placeholder="Paste whitelisted IP / domain here"
+                className={styles.whitelistInput}
+              />
+
               <div className={styles.terms}>
                 <input type="checkbox" id="authorize" />
                 <label htmlFor="authorize">

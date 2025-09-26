@@ -320,3 +320,24 @@
   border-radius: 6px;
   cursor: pointer;
 }
+
+.whitelistText {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.ipAddress {
+  font-weight: bold;
+  color: #333;
+}
+
+.copyIcon {
+  cursor: pointer;
+  font-size: 16px;
+  margin-left: 4px;
+  transition: transform 0.2s ease;
+}
+
+.copyIcon:hover {
+  transform: scale(1.1);
+}
