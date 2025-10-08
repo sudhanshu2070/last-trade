@@ -37,7 +37,7 @@ const BacktestPage: React.FC = () => {
         span_b: parseInt(spanBPeriod)
       });
 
-      const response = await fetch('http://56.228.18.183:9080/backtest', {
+      const response = await fetch('http://backtest-api.pwps.online/backtest', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
