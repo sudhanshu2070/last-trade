@@ -1,7 +1,6 @@
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import { useMediaQuery } from 'react-responsive';
 import Dashboard from './components/Dashboard/Dashboard';
-import TestComp from './components/TestComp';
 import TopNavbar from './components/TopNavbar/TopNavbar';
 import NavTabs from './components/NavTabs/NavTabs';
 import Login from './components/auth/Login';
@@ -18,6 +17,7 @@ import ResetPasswordPage from './components/auth/ResetPasswordPage';
 import SetupPasswordPage from './components/auth/SetupPasswordPage';
 import ProfilePage from './Pages/Google/ProfilePage';
 import BrokersPage from './Pages/Brokers/BrokersPage';
+import BacktestPage from './Pages/Backtest/BacktestPage';
 
 function App() {
   const isMobile = useMediaQuery({ maxWidth: 768 });
@@ -73,7 +73,7 @@ function App() {
                     <Route path="/strategies" element={<StrategyPage />} />
                      {/* <Route path="/strategies/:tab" element={<StrategyPage />} /> */}
                     <Route path="/strategies/:tab" element={<StrategyPage key={location.pathname} />} />                  
-                    <Route path="/backtest" element={<TestComp name={'Backtest'}/>} />
+                    <Route path="/backtest" element={<BacktestPage/>} />
                     <Route path="/profile" element={<ProfilePage />} />
 
 
